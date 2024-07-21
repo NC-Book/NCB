@@ -5,6 +5,7 @@ The format of a textbook only allows for very limited references to allow for a 
 - [Chapter 02: The shortest darkest path](https://github.com/NC-Book/NCB/blob/main/further/chap02.md)
 - [Chapter 03: Bridgewalk](https://github.com/NC-Book/NCB/blob/main/further/chap03.md)
 - [Chapter 04: Divide and conquer](https://github.com/NC-Book/NCB/blob/main/further/chap04.md)
+  
 - [Chapter 05: The small world](https://github.com/NC-Book/NCB/blob/main/further/chap05.md)
 - [Chapter 06: Friends of friends](https://github.com/NC-Book/NCB/blob/main/further/chap06.md)
 - [Chapter 07: Random graphs](https://github.com/NC-Book/NCB/blob/main/further/chap07.md)
@@ -12,6 +13,7 @@ The format of a textbook only allows for very limited references to allow for a 
 - [Chapter 09: Massively parallel maths](https://github.com/NC-Book/NCB/blob/main/further/chap09.md)
 - [Chapter 10: Attacks on networks](https://github.com/NC-Book/NCB/blob/main/further/chap10.md)
 - [Chapter 11: More is different](https://github.com/NC-Book/NCB/blob/main/further/chap11.md)
+
 - [Chapter 12: Models of growth](https://github.com/NC-Book/NCB/blob/main/further/chap12.md)
 - [Chapter 13: A secret of bees](https://github.com/NC-Book/NCB/blob/main/further/chap13.md)
 - [Chapter 14: The complexity-stability debate](https://github.com/NC-Book/NCB/blob/main/further/chap14.md)
@@ -19,6 +21,7 @@ The format of a textbook only allows for very limited references to allow for a 
 - [Chapter 16: The critical brain](https://github.com/NC-Book/NCB/blob/main/further/chap16.md)
 - [Chapter 17: Manifolds and coarse graining](https://github.com/NC-Book/NCB/blob/main/further/chap17.md)
 - [Chapter 18: Laplace's demon](https://github.com/NC-Book/NCB/blob/main/further/chap18.md)
+  
 - [Chapter 19: The most important node](https://github.com/NC-Book/NCB/blob/main/further/chap19.md)
 - [Chapter 20: Symmetry and motifs](https://github.com/NC-Book/NCB/blob/main/further/chap20.md)
 - [Chapter 21: The vibe of a city](https://github.com/NC-Book/NCB/blob/main/further/chap21.md)
