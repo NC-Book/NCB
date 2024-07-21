@@ -11,13 +11,18 @@ For most common problems the classical algorithms will get the job done in reaso
 ## Relation to Steiner Trees
 The MST algorithms find the optimal solution to the power grid problem provided that power lines always connect cities. In the real world there is typically a way to connect the cities with shorter power lines if we are allowed to place nodes where lines intersect outside cities. This related problem is known as the Steiner tree problem (Gilbert 1968). While the Steiner tree problem seems at first glance more general it is in my assessment of lesser importance as by comparison the spanning tree problem appears in a much wider range of applications. 
 
-## Greedy Algorithms
+## Greedy Algorithms and Gredoids
 The spanning tree problem studied here is an example of the wider class of problems that can be solved by greedy algorithms. It has been shown that all such problems have a common algebraic structure, now called a greedoid. This was proven by Kortel (1984), which is still a good introduction to this topic. Therin the work of Borůvka (1926a) is creditited with laying important foundations for this theory.  
 
 ## Otakar Borůvka 
 For more information about the life of Otakar Boruvka and the history of the spanning tree problem see Nešetřil (2012) 
 
+## Networks for geometrical objects
+We mentioned that one of the first applications of graph theory was to describe the vertieces and edges of geometrical objects. An overfiew of these early works can be found in Biggs (1999)  
+
 # References
+
+Biggs (1999) -- N.L. Biggs, E.K. Lloyd, R.J. Wilson: *Graph Theory 1736-1936*, Clarendon Press. 
 
 Borůvka (1926) -- O. Borůvka: *O jistém problému minimálním*, Práce Mor. Přírodověd. Spol. V Brně **3**, 37-58.  
 
