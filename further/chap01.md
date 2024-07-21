@@ -4,7 +4,7 @@
 **Kruskal's greedy algorithm**
 
 ## MST Algorithms
-Kruskal's algorithm (Kruskal 1956) is one of several algorithm that solve the minimum spanning tree problem. Other algorithms include Borůvka's original algorithm (Borůvka 1926, Borůvka 1926a), translated in (Nešetřil 2001) the reverse-delete algorithm (Kruskal 1956), also by Kruskal, and Prim's algorithm, which was originally discovered by Jarník (1930), and independently rediscovered by Prim (1975)  and also Dijkstra (1959).  While all of these algorithms build on similar ideas, they differ in some details that affect their efficiency in different settings. A very good survey and comparison of these classical algorithms was provided by Graham (1985). 
+Kruskal's algorithm (Kruskal 1956) is one of several algorithm that solve the minimum spanning tree problem. Other algorithms include Borůvka's original algorithm (Borůvka 1926, Borůvka 1926a), translated in (Nešetřil 2001) the reverse-delete algorithm (Kruskal 1956), also by Kruskal, and Prim's algorithm, which was originally discovered by Jarník (1930), and independently rediscovered by Prim (1957) and also Dijkstra (1959).  While all of these algorithms build on similar ideas, they differ in some details that affect their efficiency in different settings. A very good survey and comparison of these classical algorithms was provided by Graham (1985). 
 
 For most common problems the classical algorithms will get the job done in reasonable time. Additionally, some very highly optimized algorithms exist which are faster for very large problems, e.g. (Karger 1995, Chazelle 2000, Pettie 2002).
 
@@ -33,14 +33,14 @@ Graham (1985) -- R.L. Graham, P. Hell: *On the History of the Minimum Spanning T
 
 Jarník (1930) -- V. Jarník: *O jistém problému minimálním. (Z dopisu panu O. Borůvkovi)*, Práce moravské přírodovědecké společnosti **6**, 57-63.
 
-Karger (1995) -- 
+Karger (1995) --  D.R. Karger, P.N. Klein, R.E. Tarjan: *A randomized linear-time algorithm to find minimum spanning trees*, Journal of the ACM **42**, 321-328.  
 
-Kruskal (1956) -- J.B. Kruskal Jr.: *On the Shortest Spanning Subtree of a Graph and the Travelling Salesman Problem*. Proceedings of the  American Mathematical Society **7** 48–50.
+Kruskal (1956) -- J.B. Kruskal Jr.: *On the Shortest Spanning Subtree of a Graph and the Travelling Salesman Problem*. Proceedings of the American Mathematical Society **7** 48–50.
 
 Nešetřil (2001) -- J. Nešetřil, E. Milková, H. Nešetřilová: *Otakar Borůvka on minimum spanning tree problem: Translation of both the 1926 papers, comments, history*, Discrete mathematics **223**, 3-36.
 
-Nešetřil (2012) -- J. Nešetril, H. Nešetrilová: *The origins of minimal spanning tree algorithms–Boruvka and Jarnık*, Documenta Mathematica **Extra Volume: Optimization Stories**, 127-141.
+Nešetřil (2012) -- J. Nešetril, H. Nešetrilová: *The origins of minimal spanning tree algorithms–Boruvka and Jarnık*, Documenta Mathematica, **Extra Volume: Optimization Stories**, 127-141.
 
-Pettie (2002)
+Pettie (2002) -- S. Pettie, V. Ramachandran: *An optimal minimum spanning tree algorithm*, Journal of the ACM **49**, 16-43. 
 
-Prim (1975) 
+Prim (1957) -- R.C. Prim, *Shortest connection networks And some generalizations*, Bell System Technical Journal **36**, 1389–1401.  
