@@ -4,7 +4,7 @@ This one works works best if the students haven't had much network exposure yet.
 
 Ask your students the following:
 
-## Question: What are the most important events that have happened since the year 2000? What were humanities greatest problems and successes over this timespan?  
+## Question 1: What are the most important events that have happened since the year 2000? What were humanities greatest problems and successes over this timespan?  
 
 If they are initially shy, a good way to nudge them is to ask about the past 5 years first then expand the time horizon. 
 Collect the answers on a blackboard or similar. Of course there are only right answers to this question, but you will likely end up with a list like this:
@@ -23,14 +23,14 @@ Collect the answers on a blackboard or similar. Of course there are only right a
 
 Now wee can ask another question:
 
-## Question: Which of these have to do with networks?
+## Question 2: Which of these have to do with networks?
 
 In my experience hardly any nudging is needed at this stage. Maybe somebody will point out one thing or another, but very quickly they will figure out that 
 almost all of them have to do with networks. Ideally there will be some where it is not immediately obvious how networks are involved. 
 These will usually spark an interesting discussion. I had "Royal Wedding" on the list once when I taught in the UK, after a brief discussion 
 the students figured out that both genealogical trees and social networks are important for the royal wedding, so it is connected to networks in at least two ways. 
 
-## Question: So why do networks suddenly show up in all of our greatest problems and successes?
+## Question 3: So why do networks suddenly show up in all of our greatest problems and successes?
 
 (After all modern network science hardly even existed in 2000.) It's actually a trick question. We could have asked which of these events
 involve differential equations, and the answer is of course: all of them if you describe them with differential equations. Likewise networks 
