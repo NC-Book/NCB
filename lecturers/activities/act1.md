@@ -1,4 +1,4 @@
-# Activity 1: Networks are everywhere
+# Activity 1: Networks are Everywhere
 
 This one works works best if the students haven't had much network exposure yet. 
 
