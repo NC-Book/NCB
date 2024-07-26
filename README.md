@@ -8,4 +8,4 @@ The following materials are presently available:
 - [Further reading materials](further/further.md) 
 - [Youtube videos](videos.md) 
 
-- [Materials for Lecturers](lecturers/lecturers.md) 
+- [Materials for lecturers](lecturers/lecturers.md) 
