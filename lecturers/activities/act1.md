@@ -2,7 +2,7 @@
 
 This one works works best if the students haven't had much network exposure yet. 
 
-Ask the students to name the students the following question:
+Ask your students the following:
 
 ## Question: What are the most important events that have happened since the year 2000? What were humanities greatest problems and successes over this timespan?  
 
