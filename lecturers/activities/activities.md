@@ -1,4 +1,4 @@
-# Ideas for Classroom activities
+# Ideas for Classroom Activities
 Below a number of activities are listed that you can use to get your students started thinking and discussing about networks. 
 I use these for inverted classroom activities where the student watch the technical content before on youtube. Then we
 use the time in class to discussions like these and to work on projects. 
