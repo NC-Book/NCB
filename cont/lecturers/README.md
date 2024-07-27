@@ -1,4 +1,4 @@
 # Materials for Lecturers
 
-* [Ideas for Classroom Activities](activities/README.md)
+* [Ideas for classroom activities](activities/README.md)
 * Lecture slides *(coming soon)* 
