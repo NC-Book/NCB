@@ -7,5 +7,6 @@ Some might be expandable into Master's thesis or research papers.
 If you successfully complete one of the projects and publish your results somewhere (possibly in a journal, possibly just on a repository 
 or your homepage) then let me know so I can link your report from the question. Alternatively add a link to your solution via a pull request. 
 
-* [Make a Bridgewalk](proj1.md)
+* [Make a bridgewalk](proj1.md) -- Design a bridgewalk for your city.
+  
 
