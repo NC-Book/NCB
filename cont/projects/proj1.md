@@ -48,14 +48,14 @@ Seriously, write a press releases. Mention that you walked it, and highlight the
 can help you writing and distributing the press release, and I promise local media will be interested. 
 
 ## Reports on solutions
-* My Bristol bridgewalk. The walk is described in (Lucas 2019) and a more personal account of this project has appeared as a chapter in [2]. 
+* My Bristol bridgewalk. The walk is described by Lucas (2019) and a more personal account of this project has appeared as a chapter in Parc (2014). 
 
 
 ## References
 
-Lucas 2019 1909446181
+Lucas (2019) -- J. Lucas, T.Gross: *From Brycgstow to Bristol in 45 bridges*, Bristol Books (ISBN 1909446181) -- [link](https://www.bristolbooks.org/shop/from-brycgstow-to-bristol-in-45bridges) 
 
-[this book](https://www.bristolbooks.org/shop/from-brycgstow-to-bristol-in-45bridges)  
+Parc (2014) -- S. Parc, Ed.: *50 Visions of Mathematics*, Oxford University Press (ISBN 0198701810) -- [link](https://global.oup.com/academic/product/50-visions-of-mathematics-9780198701811?cc=de&lang=en&#) 
 
 
 
