@@ -3,7 +3,7 @@
 This repository contains addtional material for the book "Networks and Complexity" by Thilo Gross, available from Springer. 
 
 The following materials are presently available:
-- [Errata](cont/errata)
+- [Errata](cont/errata/README.md)
 - [Solutions to exercises](sol/solutions.md)
 - [Further reading materials](further/further.md) 
 - [Youtube videos](videos.md) 
