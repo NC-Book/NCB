@@ -4,8 +4,8 @@ This repository contains addtional material for the book "Networks and Complexit
 
 The following materials are presently available:
 - [Errata](cont/errata/README.md)
-- [Solutions to exercises](sol/solutions.md)
-- [Further reading materials](further/further.md) 
-- [Youtube videos](videos.md) 
+- [Solutions to exercises](cont/sol/README.md)
+- [Further reading materials](cont/further/README.md) 
+- [Youtube videos](cont/videos/README.md) 
 
-- [Materials for lecturers](lecturers/lecturers.md) 
+- [Materials for lecturers](cont/lecturers/README.md) 
