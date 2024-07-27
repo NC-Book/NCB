@@ -8,7 +8,7 @@ Ask your students the following:
 
 If they are initially shy, a good way to nudge them is to ask about the past 5 years first then expand the time horizon. 
 Collect the answers on a blackboard or similar. Of course there are only right answers to this question, but you will likely end up with a list like this:
- * 9/11 attacks & global terror
+ * 9/11 Attacks
  * Covid-19
  * End of Cold War
  * Climate Change
