@@ -18,7 +18,6 @@ Collect the answers on a blackboard or similar. Of course there are only right a
  * Globalization
  * Parcipative Web (Web 2.0)
  * Omics technologies
- * Arab Spring
  * Industry 4.0
 
 Now wee can ask another question:
