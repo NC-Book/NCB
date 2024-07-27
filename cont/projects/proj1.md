@@ -44,12 +44,11 @@ Of course if you are confident in your solution, you want to prove that it works
 Duh! Back to the drawing board. Also take some pictures on the walk, for the next step. 
 
 ### Step 6: Write a press release
-Seriously, write a press releases. Mention that you walked it, and highlight the connection to the centuries old mathematical puzzle (Königsberg!). Your university has a press office that 
+Seriously, write a press releases. Mention that you walked it, and highlight the connection to the centuries old-mathematical puzzle (Königsberg, 1736!). Your university has a press office that 
 can help you writing and distributing the press release, and I promise local media will be interested. 
 
 ## Reports on solutions
 * My Bristol bridgewalk. The walk is described by Lucas (2019) and a more personal account of this project has appeared as a chapter in Parc (2014). 
-
 
 ## References
 
