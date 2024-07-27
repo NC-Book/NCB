@@ -7,6 +7,6 @@ The following materials are presently available:
 - [Solutions to exercises](cont/sol/README.md)
 - [Further reading materials](cont/further/README.md) 
 - [Youtube videos](cont/videos/README.md)
-- [Project ideas] (cont/projects/README.md)
+- [Project ideas](cont/projects/README.md)
 
 - [Materials for lecturers](cont/lecturers/README.md) 
