@@ -1,6 +1,8 @@
 # Further Reading for Chapter 03
 *If something is missing that should be listed here, contribute it via a pull request*
 
+**Bridgewalk**
+
 # References
 
 Biggs (1999) -- N.L. Biggs, E.K. Lloyd, R.J. Wilson: *Graph Theory 1736-1936*, Clarendon Press. 
