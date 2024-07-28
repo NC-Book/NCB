@@ -1,6 +1,7 @@
 # Further Reading for Chapter 04
 *If something is missing that should be listed here, contribute it via a pull request*
 
+**Divide and Conquer**
 
 # References
 
