@@ -10,11 +10,11 @@ Interestingly, Dijkstra published it in the same paper as his rediscovery of Pri
 Some other algorithms also deserve a mentions. One limitation of Dijkstra's algorithm is that edges cannot have negative weights. 
 If negative weights are allowed we might later find shortcuts that take us back to places that we thought we are already done with. 
 In this case we might have to redo updates from these places, this leads to the Bellmann-Ford algorithms described first by Shimbel (1955) and 
-later by Ford and Bellmann.
+later by Ford and Bellmann. Of course if the network has a cycle that in which the sum of the edge weights is negative, we have basically a time machine 
+that we can use to arrive as early as we want at every destination.
 
 There is also a whole class of algorithms that find the distances between all pairs of neodes in a network in parallel. Perhaps the most well-known 
 among them is the Floyd-Warshall algorithm, which was described by Roy (1959), Floyd (1962) and Warshall (1962).
-
 
 ## More on Branch and Bound
 A more extensive discussion of problem solving strategies and particulalry branch-and-bound can be found 
@@ -23,6 +23,11 @@ in Moore (2011) -- I can't recommend this book highly enough.
 ## More Graph Theory
 There are several good textbooks that provide a rigorous introduction to graph theory. I personally like 
 the Trudeau (1999). 
+
+## Longest Path Problem
+Recall that paths cannot reuse nodes, and trails cannot reuse links so the longest path and the longest trail in a finite network 
+are finite. The task of finding the longest path is a very difficult problem. However, finding the longesttrail is comparatively easy, 
+using some results from Chap. 3. 
 
 # References
 
