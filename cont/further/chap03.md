@@ -3,6 +3,13 @@
 
 **Bridgewalk**
 
+## Eulerian walks vs. Hamiltonian walks
+
+## Chinese postman vs. trvelling saleman
+
+## The windy postman  
+
+
 # References
 
 Biggs (1999) -- N.L. Biggs, E.K. Lloyd, R.J. Wilson: *Graph Theory 1736-1936*, Clarendon Press. 
