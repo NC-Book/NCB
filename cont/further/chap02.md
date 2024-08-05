@@ -26,8 +26,10 @@ the Trudeau (1999).
 
 ## Longest Path Problem
 Recall that paths cannot reuse nodes, and trails cannot reuse links so the longest path and the longest trail in a finite network 
-are finite. The task of finding the longest path is a very difficult problem. However, finding the longesttrail is comparatively easy, 
-using some results from Chap. 3. 
+are finite. The task of finding the longest path is a very difficult problem, whereas finding the longest trail is comparatively easy, 
+using some results from Chap. 3. To understand the difficulty of the finding the longest path, note that a longest path that uses 
+all nodes would be a so-called Hamiltonian path. If the longest walk does not use all nodes then a Hamiltonian path does not exist. 
+Hence a longest path algorithm would solve also the Hamiltonian path problem.  
 
 # References
 
