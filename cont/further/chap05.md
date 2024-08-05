@@ -9,7 +9,7 @@
 
 ## Navigating Worlds
 
-## Better estimates of Diameter
+## Better estimates of diameter
 
 
 
