@@ -5,7 +5,7 @@
 
 
 
-## Lessons from the Watts-Strogatz Model
+## Lessons from the Watts-Strogatz model
 
 ## Navigating Worlds
 
