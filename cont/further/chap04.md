@@ -3,6 +3,12 @@
 
 **Divide and Conquer**
 
+## Computational Complexity
+
+## Searching 
+
+## Some other network algorithms
+
 # References
 
 Biggs (1999) -- N.L. Biggs, E.K. Lloyd, R.J. Wilson: *Graph Theory 1736-1936*, Clarendon Press. 
