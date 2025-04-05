@@ -1,0 +1,37 @@
+
+%%% Exercise 8 %%%
+
+\exercise{Another network in Moravia}{3}
+Let's revisit the Moravian example, described by the distance matrix 
+\eqn{
+{\bf D} = \left(\begin{array}{c c c c c} 
+ 0  & 137 &  63 &  74 &  77 \\
+137 &  0  &  75 &  76 & 198 \\
+ 63 &  75 &  0  &  51 & 121 \\ 
+ 74 &  76 &  51 &  0  & 151 \\
+ 77 & 198 & 121 & 151 &  0  
+\end{array}\right)
+}
+where the nodes are again 
+\eqn{
+1: {\rm B}, \, 2: {\rm O}, \, 3: {\rm L}, \, 4: {\rm Z}, \, 5: { \rm J}.
+}
+This time we assume that when we get to work there is already a power line from B to Z. Find which additional lines need to be built such that all cities are connected and the length of additional lines built is minimal. 
+
+% solution %
+
+\solution
+We can apply Kruskal's algorithm, but line (B,Z) is already there (or alternatively, we could say it has cost 0). So what we do is
+\begin{enumerate}[label=\arabic*.]
+\item Place (B,Z)
+\item Try (L,Z) [52km] -- accept
+\item Try (L,B) [63km] -- reject
+\item Try (L,O) [75km] -- accept
+\item Try (O,Z) [76km] -- reject
+\item Try (B,J) [77km] -- accept
+\end{enumerate}
+So, the final edge set is 
+\eq{
+E= \{{\rm (B,Z),(L,Z),(L,O),(B,J)}\}.
+}
+

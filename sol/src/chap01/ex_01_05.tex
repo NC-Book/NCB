@@ -1,0 +1,29 @@
+
+%%% Exercise 5 %%%
+
+\exercise{Another power grid}{2}
+Construct a power grid between 4 cities $V=\{ {\rm A},{\rm B},{\rm C},{\rm D}\}$. The distance between cities (in km) is given by
+\eqn{
+  {\bf D}=\left(\begin{array}{c c c c} 
+    0  & 17 & 23 & 9\\
+    17 & 0  & 18 & 13\\
+    23 & 18 & 0  & 27\\
+    9  & 13 & 27 & 0
+   \end{array} \right).
+  }
+  
+% solution %
+
+\solution
+We do the following:
+\begin{enumerate}[label=\arabic*.]
+\item Try (A,D) [9km] -- accept
+\item Try (B,D) [13km] -- accept
+\item Try (A,B) [17km] -- reject
+\item Try (B,C) [18km] -- accept  
+\end{enumerate}
+So, the resulting edge set is 
+\eq{
+E=\{{(\rm A,\rm D),(\rm B,\rm D),(\rm B,\rm C)}\}.
+}
+

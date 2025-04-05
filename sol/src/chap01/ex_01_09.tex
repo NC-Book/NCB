@@ -1,0 +1,83 @@
+
+%%% Exercise 9 %%%
+
+\exercise{A tale of two cities}{3}
+Consider the Moravian power grid from the previous exercise for a final time. Now we start again with an empty graph, but there are two power plants, which are located in B and Z. Each of the plants has the capacity to supply the whole region. Find the lines that need to be built such that each city can get power from one of the power plants and the length of lines built is minimal. (Bonus: Can you also solve this exercise without drawing the network, you might need to invent some other form of bookkeeping.)
+
+% solution %
+
+\solution
+Before we start, here is the distance matrix again 
+\eq{
+{\bf D} = \left(\begin{array}{c c c c c} 
+ 0  & 137 &  63 &  74 &  77 \\
+137 &  0  &  75 &  76 & 198 \\
+ 63 &  75 &  0  &  51 & 121 \\ 
+ 74 &  76 &  51 &  0  & 151 \\
+ 77 & 198 & 121 & 151 &  0  
+\end{array}\right)
+}
+and the ordering of nodes 
+\eq{
+1: {\rm B}, \, 2: {\rm O}, \, 3: {\rm L}, \, 4: {\rm Z}, \, 5: { \rm J}.
+}
+We apply a variant of Kruskal's algorithm: In addition to rejecting any link that does not reduce the number of components, we also reject any link that would connect the two components in which B and Z are located.
+\begin{enumerate}[label=\arabic*.]
+\item Try (L,Z) [51km] -- accept
+\item Try (L,B) [63km] -- reject (puts B and Z in same component)
+\item Try (B,Z) [74km] -- reject (puts B and Z in same component)
+\item Try (L,O) [75km] -- accept
+\item Try (O,Z) [76km] -- reject (does not reduce number of components)
+\item Try (J,B) [77km] -- accept
+\end{enumerate}
+Now everybody is connected to one of the power plants. The final edge set is 
+\eq{
+E= \{{\rm (L,Z),(L,O),(J,B)}\}.
+}
+But how could we do these steps without drawing the network? Note that we only need to remember which components the nodes are in. Instead of drawing the network we can also remember this in a table. 
+In our initial network where no links have been placed each node is in its own component, so the able could look like this 
+\begin{center}
+\begin{tabular}{c c c c c}
+B & O & L & Z & J \\\hline
+1 & 2 & 3 & 4 & 5 
+\end{tabular}
+\end{center}
+So Brno is in component 1, Ostrava is in component 2 and so on. Now we try to place the link (L,Z). This connects two different components (3,4) and does not connect Connect the components of Brno and Zlin. Hence, we can place (L,Z). 
+
+Placing the link puts all nodes from component 3 and 4 into the same component. From now on this joint component is denoted by 3. We record the updated component assignments in a new row in our table, which now looks as follows: 
+\begin{center}
+\begin{tabular}{c c c c c}
+B & O & L & Z & J \\\hline
+1 & 2 & 3 & 4 & 5 \\
+1 & 2 & 3 & 3 & 5 
+\end{tabular}
+\end{center}
+Next we try to place the link (L,B), but this would connect the component of Brno (1) to the component os Zlin (3), so we reject the link and the table stays unchanged.
+
+The next shortest link is (B,Z) but this would even connect Brno and Zlin directly. So that's another rejection.
+
+Next we try (L,O). This connects two different components (2,3) and does not involve connecting the component of Brno to the component of Zlin. Placing the link merges components 2 and 3. We now refer to the merged component as component 2, in the next update all 3s in the table become 2s:
+\begin{center}
+\begin{tabular}{c c c c c}
+B & O & L & Z & J \\\hline
+1 & 2 & 3 & 4 & 5 \\
+1 & 2 & 2 & 2 & 5 
+\end{tabular}
+\end{center}
+We reject the next link (O,Z) because the two nodes are already in the same component, and instead try the next shortest (J,B), which can be placed. Our final table is 
+\begin{center}
+\begin{tabular}{c c c c c}
+B & O & L & Z & J \\\hline
+1 & 2 & 3 & 4 & 5 \\
+1 & 2 & 2 & 2 & 5 \\
+1 & 2 & 2 & 2 & 1 
+\end{tabular}
+\end{center}
+Now there are only two components left. The one containing Zlin and the one containing Brno. So we are done. 
+
+In retrospect we could have even solved the problem a bit easier if we had assigned the same component number to Zlin and Brno in the beginning without actually linking them. This would have saved us the work of checking whether a candidate link would connect B and Z, as those links would be ruled out automatically. 
+
+Perhaps more importantly, being able to solve the spanning tree problem without drawing the network, allows us also to implement the algorithm efficiently on a computer. Recording the component membership in a table is useful for pen and paper solutions because as new rows can easily be added when updates occur. But we are only ever using the most recent row of the table. So when we implement the algorithm on a computer we wont need the whole table. Instead we can just store the current cluster memberships of the nodes in a one dimensional array.  
+
+
+

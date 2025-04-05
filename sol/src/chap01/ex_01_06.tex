@@ -1,0 +1,39 @@
+
+%%% Exercise 6 %%%
+
+\exercise{Larger abstract example}{2}
+Construct the minimal spanning tree in a network where the weight of links is given by
+\eqn{
+{\bf D}=\left(\begin{array}{c c c c c c} 
+0  & 8  & 1  & 14 & 4  & 5  \\
+8  & 0  & 7  & 12 & 9  & 10  \\
+1  & 7  & 0  & 11 & 3  & 2  \\
+14 & 12 & 11 & 0  & 15 & 13  \\
+4  & 9  & 3  & 15 & 0  & 6  \\
+5  & 10 & 2  & 13 & 6  & 0  \\   
+\end{array} \right).
+}
+To reduce the tediousness, the distances in this exercise have been chosen as 1,2,3, and so on. (Hint: If you draw unknown networks like this one it is best to arrange nodes in a circle.)
+
+% solution %
+
+\solution
+Using Kruskal's algorithm we do the following:
+\begin{enumerate}[label=\arabic*.]
+\item Try (1,3) [1] -- accept 
+\item Try (3,6) [2] -- accept
+\item Try (3,5) [3] -- accept
+\item Try (1,5) [4] -- reject
+\item Try (1,6) [5] -- reject
+\item Try (5,6) [6] -- reject
+\item Try (2,3) [7] -- accept
+\item Try (1,2) [8] -- reject
+\item Try (2,5) [9] -- reject
+\item Try (2,6) [10] -- reject
+\item Try (3,4) [11] -- accept
+\end{enumerate}
+Hence, the edge set of the solution is 
+\eq{
+E=\{(1,3),(3,6),(3,5),(2,3),(3,4) \}.
+}
+
