@@ -1,0 +1,24 @@
+
+%%% Exercise 10 %%%
+
+\exercise{Pandemic rideshare}{3}
+During a pandemic Dave and Peter are driving home. Their friend Bob asks them if they can give him a lift. However, the two are slightly worried because such close contacts allow the disease to spread and there are many asymptomatic infections. 
+
+\subquestion
+Bob argues that adding another person only increase the group size by 50\%, but by what factor does it increase the number of contacts?
+
+\solution
+First have to make up our mind if we want to count contacts in two ways or just in one. For example if there are two people in the car we could count this as two contacts (Dave to Peter, Peter to Dave), or one contact (Peter-Dave). For the sake of simplicity I will count contacts as undirected links. With this counting the two guys in a car creates just one contact (Peter-Dave).
+
+With three people in the car we have three contacts (Dave-Peter, Peter-Bob, Dave-Bob). So while the group size is only 50\% greater, the number of contacts grows by 200\%. (Note that the people in the car form a fully connected network, so we could use the formula from the chapter, but due to the small numbers we hardly need it.)
+
+\subquestion
+Actually Dave was planning to have his birthday party with 20 people on Friday night. Now he is wondering how many contacts that would create?
+
+\solution
+Again we assume a fully connected network. In the birthday party the number of contacts is 
+\eq{
+\frac{20\cdot19}{2} = 190
+}
+So the 20 people meeting at the party cause 190 contacts.
+

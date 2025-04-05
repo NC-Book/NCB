@@ -1,0 +1,60 @@
+
+% LEVEL 5 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%% Exercise 12 %%%
+
+\exercise{Counting graphs}{5}
+When we derived the formula for the number of network that can be constructed with a given number of nodes, we emphasized that the nodes are labelled. In an unlabelled graph the nodes are indistinguishable, so for example all networks that contain five nodes and  one link are actually the same network, no matter which two nodes the link connects, To warm up find the number of networks that can be constructed between 3 unlabelled nodes (The answer is 4). Then try four nodes. Find a general formula for the number of unlabeled graphs that can be efficiently evaluated.
+
+% solution %
+
+\solution
+Between four nodes 11 different unlabeled graphs can be constructed. 1: no links, 2: one link, 3: two links connecting to the same node, 4: two links that don't share a node, 5: three links in a line, 6: three links in a triangle, 7: three links, all connecting to the same node, 8: four links in a square, 9: four links in a triangle with a handle, 10: five links, 11: six links.
+
+There is actually a way to compute the number of unlabeled graphs that can be derived using counting theory, but it is quite complex. To compute the number of graphs between $N$ unlabeled nodes, one first considers all the ways in which the $N$ nodes can be split into groups containing at least one node. For example with 4 nodes we can have:
+\begin{itemize}
+\item A single group of 4, which we write as (4)
+\item A group of three and a group of one (3,1)
+\item A groups of two (2,2) 
+\item A group of two and two groups of one (2,1,1)
+\item Four groups of (1,1,1,1)
+\end{itemize}
+Then for each of these partitionings compute the following:
+\begin{itemize}
+\item A: In each group, take the number of members, divide by 2, round down and sum the result over all groups.
+\item B: Consider all pairs of groups. For each pair compute the greatest common denominator, then the results from all pairs.
+\item C: For all $n$ count the number of groups that have $n$ members. Call this number $k_n$. Then compute the factor $k_n!\cdot n^{k_n}$. Then multiply these factors for all $n$.
+\item D: Compute $2^{A+B}/C$  
+\end{itemize}
+Then the number of graphs is the sum over all of the results $D$ that we get for the different partitionings.   
+
+For example for four nodes we record the results in the following table 
+\begin{center}
+\begin{tabular}{c | c c c | c}
+Partionining & $A$ & $B$ & $C$ & $D$ \\\hline
+(4)          & 2   & 0   &  4  & 24/24 \\
+(3)(1)       & 1   & 1   &  3  & 32/24 \\
+(2)(2)       & 2   & 2   &  8  & 48/24 \\
+(2)(1)(1)    & 1   & 3   &  4  & 96/24 \\
+(1)(1)(1)(1) & 0   & 6   &  24 & 64/24 \\
+\end{tabular}
+\end{center}
+If we sum up all the $D$ we get
+\eq{
+\frac{24+32+48+96+64}{24} = \frac{3+4+6+12+8}{3} = \frac{33}{3} = 11  
+}
+At this point this probably looks like a magic trick. But of course there is a perfectly rational explanation why this works. I will put it into the ``Further Reading'' material for one of the later chapters. 
+
+The procedure outlined above could be cast into a closed form equation. But the question asked for an equation that could be efficiently evaluated. The procedure outlined here clearly fails in this respect. Already for four nodes it is quite tedious. Moreover the number of ways to partition a number rises very quickly and also the appearance of the greatest common denominator and products of factorials is not nice. 
+
+So this remains essentially an unsolved problem, and perhaps completely different ideas are needed to eventually solve it. 
+
+
+
+
+
+This is an unsolved problem. If we had a solution it would make many it would make significant progress in many important applications possible.
+
+\solutionend

@@ -74,16 +74,16 @@
 
 \newcommand{\exlink}{https://github.com/NC-Book/NCB/blob/main/sol/pdf/chap\padzero{\thesheet}/ex_\padzero{\thesheet}.pdf}
 
-\newcommand{\sollink}{https://github.com/NC-Book/NCB/blob/main/sol/pdf/chap\padzero{\thesheet}/sol_\padzero{\thesheet}_\padzero{\theexercise}.pdf}
+\newcommand{\sollink}{https://github.com/NC-Book/NCB/blob/main/sol/pdf/chap\padzero{\thesheet}/ex_\padzero{\thesheet}_\padzero{\theexercise}.pdf}
 
 \newcommand{\exercise}[2]{
 \ifinsolution \solutionend \fi
 \setlength{\leftskip}{0cm}
 \spacewherebelongs{\topsep}
 \ifsinglemode
-\href{\exlink}{\bf Ex \thesheet .\theexercise : #1}
+\href{\exlink}{\bf Ex \thesheet .\theexercise : #1 [#2]}
 \else
-\href{\sollink}{\bf Ex \thesheet .\theexercise : #1}
+\href{\sollink}{\bf Ex \thesheet .\theexercise : #1 [#2]}
 \fi
 \refstepcounter{exercise}\nopagebreak
 \vspace{0.2em}\nopagebreak\par\nopagebreak\noindent\nopagebreak\ignorespaces%

@@ -1,0 +1,31 @@
+
+
+% LEVEL 3 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%% Exercise 7 %%%
+
+\exercise{Ethernet}{3}
+ I want to install a wired network connection in my house. My internet connection is via a router that sits in the cellar, and I want to connect the bedroom, living room, and the kitchen. I don't mind installing network switches in these rooms such that a room can get network access from any other room that has network access. To connect the cellar to the kitchen I would need 6m of cable, to the living room its 8m and to the bed room its 12m. But I could connect the kitchen to the bedroom with just 3m, and to the living room with 7m. Finally, the bedroom could be connected to the living room with 4m of cable. How much cable do I need?
+
+% solution %
+
+\solution
+Here, the first step is to extract the distance from the text, they are 
+\begin{itemize}
+\item (C,K) - 6m
+\item (C,L) - 8m
+\item (C,B) - 12m
+\item (K,B) - 3m
+\item (K,L) - 7m
+\item (B,L) - 4m
+\end{itemize}
+where the nodes are C: Cellar, K: Kitchen, L: Living Room, B: Bedroom. Now we can apply our algorithm
+\begin{enumerate}[label=\arabic*.]
+\item Try (K,B) [3m] -- accept
+\item Try (B,L) [4m] -- accept
+\item Try (C,K) [6m] -- accept
+\end{enumerate}
+We connect (K,B),(B,L),(C,K) and we are already done. I only need 13m of cable.
+
