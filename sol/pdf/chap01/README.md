@@ -1,6 +1,6 @@
 # Exercises for Chapter 1: Power for Moravia
 
-## Exercise sheet
+## Exercise Sheet
 - [Exercise Sheet 1](ex_01.pdf)
 
 ## Solutions
