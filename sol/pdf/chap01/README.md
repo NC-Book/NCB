@@ -1,8 +1,9 @@
+# Exercises for Chapter 1: Power for Moravia
 
-The following materials are available for Chap. 1:
+## Exercise sheet
 - [Exercise Sheet 1](ex_01.pdf)
 
-+Solutions 
+## Solutions
 - [Exercise 01-01](ex_01_01.pdf)
 - [Exercise 01-02](ex_01_02.pdf)
 - [Exercise 01-03](ex_01_03.pdf)
