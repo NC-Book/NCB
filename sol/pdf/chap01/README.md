@@ -4,9 +4,9 @@
 - [Exercise Sheet 1](ex_01.pdf)
 
 ## Solutions
-- [Exercise 01-01](ex_01_01.pdf)
-- [Exercise 01-02](ex_01_02.pdf)
-- [Exercise 01-03](ex_01_03.pdf)
+- [Exercise 01-01: Terminology](ex_01_01.pdf)
+- [Exercise 01-02: Number of links](ex_01_02.pdf)
+- [Exercise 01-03: Number of networks](ex_01_03.pdf)
 - [Exercise 01-04](ex_01_04.pdf)
 - [Exercise 01-05](ex_01_05.pdf)
 - [Exercise 01-06](ex_01_06.pdf)
