@@ -41,7 +41,7 @@
 \newcommand{\spacewherebelongs}[1]{\if@nobreak \par\noindent\ignorespaces \else \par\vspace{#1}\par\noindent\ignorespaces \fi}
 
 \newcommand{\theType}{Exercise Sheet}
-\newcommand{\theUnit}{Networks and Complexity}
+\newcommand{\theUnit}{\href{https://github.com/NC-Book/NCB/blob/main/README.md}{Networks and Complexity}}
 \newcommand{\theTopic}{Use \textbackslash topic\{\textit{num}\} to set the topic of the exercise sheet}
 \newcommand{\theInstructions}[1]{}
 
@@ -72,11 +72,20 @@
 \color{\oldquestioncolor}
 }
 
+\newcommand{\exlink}{https://github.com/NC-Book/NCB/blob/main/sol/pdf/chap\padzero{\thesheet}/ex_\padzero{\thesheet}.pdf}
+
+\newcommand{\sollink}{https://github.com/NC-Book/NCB/blob/main/sol/pdf/chap\padzero{\thesheet}/sol_\padzero{\thesheet}_\padzero{\theexercise}.pdf}
+
 \newcommand{\exercise}[2]{
 \ifinsolution \solutionend \fi
 \setlength{\leftskip}{0cm}
 \spacewherebelongs{\topsep}
-{\bf Ex \thesheet .\theexercise : #1}\refstepcounter{exercise}\nopagebreak
+\ifsinglemode
+\href{\exlink}{\bf Ex \thesheet .\theexercise : #1}
+\else
+\href{\sollink}{\bf Ex \thesheet .\theexercise : #1}
+\fi
+\refstepcounter{exercise}\nopagebreak
 \vspace{0.2em}\nopagebreak\par\nopagebreak\noindent\nopagebreak\ignorespaces%
 }
 
@@ -115,7 +124,8 @@
 \begin{center}
 {\large \sc \theUnit}\par\vspace{1em}
 \ifsinglemode
-{\Large Solution \thesheet{}-\theexercise{}}\par\vspace{1.6em} 
+{\Large Solution \thesheet{}-\theexercise{}}\par\vspace{1.6em}
+{\it \theInstructions}
 \else
 {\Large \theType{} \thesheet: \theTopic}\par\vspace{1.6em} 
 {\it \theInstructions}
@@ -269,21 +279,18 @@
 
 \newcommand{\showsheet}[1]{
   \sheet{#1}
-  \instructions{This is an exercise sheet from the forthcoming book Networks and Complexity. Find more exercises and solutions at \href{https://github.com/NC-Book/NCB}{https://github.com/NC-Book/NCB} }
+  \instructions{This is an exercise sheet from the forthcoming book Networks and Complexity.\\{}Find more exercises and solutions at \href{https://github.com/NC-Book/NCB/blob/main/README.md}{https://github.com/NC-Book/NCB} }
   \input{../chap\padzero{#1}/ex_\padzero{#1}.tex}
 }
 
 \newcommand{\showex}[2]{
   \sheet{#1}
-  \instructions{This is an example solution from the forthcoming book Networks and Complexity. Find more exercises at \href{https://github.com/NC-Book/NCB}{https://github.com/NC-Book/NCB} }
-  \input{../chap\padzero{#1}/ex_\padzero{#1}.tex}
+  \instructions{This is an example solution from the forthcoming book Networks and Complexity.\\{}Find more exercises at \href{https://github.com/NC-Book/NCB/blob/main/README.md}{https://github.com/NC-Book/NCB} }
   \setcounter{exercise}{#2}
-  \singlemode
   \showsolutions
-  \begin{document}
+  \singlemode
   \maketitle
   \input{../chap\padzero{#1}/ex_\padzero{#1}_\padzero{#2}.tex}
-  \end{document}
 }
 
 \newcommand*\xoverline[2][0.75]{%
