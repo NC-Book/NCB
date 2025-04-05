@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{exercise}
+\ProvidesPackage{sheet}
 \LoadClass[12pt]{article}
 
 \RequirePackage[a4paper,top=2.5cm,bottom=2.5cm,left=2cm,right=2cm]{geometry}
@@ -7,13 +7,14 @@
 \RequirePackage{xcolor}
 \RequirePackage{amssymb}
 \RequirePackage{amsmath}
+\RequirePackage{hyperref}
 
 \newsavebox{\solutionbuffer}
-
 
 \newcommand{\thesheet}{0}
 \newcommand{\sheet}[1]{\renewcommand{\thesheet}{#1}}
 \newcounter{exercise}
+\refstepcounter{exercise}
 \newcounter{subquestion}[exercise]
 \newcounter{subsubquestion}[subquestion]
 \renewcommand{\thesubquestion}{\alph{subquestion}}
@@ -23,6 +24,10 @@
 \newif\ifshowsolutions
 \showsolutionsfalse
 \insolutionfalse
+
+\newif\ifsinglemode
+\singlemodefalse
+\newcommand{\singlemode}{\singlemodetrue}
 
 \newcommand{\oldquestioncolor}{black}
 \newcommand{\solutioncolor}{blue!30!black}
@@ -38,7 +43,7 @@
 \newcommand{\theType}{Exercise Sheet}
 \newcommand{\theUnit}{Networks and Complexity}
 \newcommand{\theTopic}{Use \textbackslash topic\{\textit{num}\} to set the topic of the exercise sheet}
-\newcommand{\theInstructions}{}
+\newcommand{\theInstructions}[1]{}
 
 \newcommand{\unit}[1]{\renewcommand{\theUnit}{#1}}
 \newcommand{\topic}[1]{\renewcommand{\theTopic}{#1}}
@@ -69,11 +74,10 @@
 
 \newcommand{\exercise}[2]{
 \ifinsolution \solutionend \fi
-\refstepcounter{exercise}
 \setlength{\leftskip}{0cm}
 \spacewherebelongs{\topsep}
-{\bf Ex \thesheet .\theexercise : #1}\nopagebreak
-\vspace{0.2em}\nopagebreak\par\nopagebreak\noindent\nopagebreak\ignorespaces
+{\bf Ex \thesheet .\theexercise : #1}\refstepcounter{exercise}\nopagebreak
+\vspace{0.2em}\nopagebreak\par\nopagebreak\noindent\nopagebreak\ignorespaces%
 }
 
 \newcommand{\subquestion}{%
@@ -110,8 +114,12 @@
 \renewcommand{\maketitle}{
 \begin{center}
 {\large \sc \theUnit}\par\vspace{1em}
+\ifsinglemode
+{\Large Solution \thesheet{}-\theexercise{}}\par\vspace{1.6em} 
+\else
 {\Large \theType{} \thesheet: \theTopic}\par\vspace{1.6em} 
 {\it \theInstructions}
+\fi
 \end{center}
 }
 
@@ -247,7 +255,7 @@
 \newcommand{\dt}{{\rm d}t}
 \newcommand{\vs}[2]{#2}
 
-\graphicspath{{.}{./figs/}}
+\graphicspath{{.}{../figures/}}
 
 \makeatletter
 \newsavebox\myboxA
@@ -261,9 +269,22 @@
 
 \newcommand{\showsheet}[1]{
   \sheet{#1}
+  \instructions{This is an exercise sheet from the forthcoming book Networks and Complexity. Find more exercises and solutions at \href{https://github.com/NC-Book/NCB}{https://github.com/NC-Book/NCB} }
   \input{../chap\padzero{#1}/ex_\padzero{#1}.tex}
 }
 
+\newcommand{\showex}[2]{
+  \sheet{#1}
+  \instructions{This is an example solution from the forthcoming book Networks and Complexity. Find more exercises at \href{https://github.com/NC-Book/NCB}{https://github.com/NC-Book/NCB} }
+  \input{../chap\padzero{#1}/ex_\padzero{#1}.tex}
+  \setcounter{exercise}{#2}
+  \singlemode
+  \showsolutions
+  \begin{document}
+  \maketitle
+  \input{../chap\padzero{#1}/ex_\padzero{#1}_\padzero{#2}.tex}
+  \end{document}
+}
 
 \newcommand*\xoverline[2][0.75]{%
     \sbox{\myboxA}{$\m@th#2$}%
