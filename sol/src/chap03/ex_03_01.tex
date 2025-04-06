@@ -1,0 +1,72 @@
+
+\exercise{Mathematical Tools\label{exBridgesSummation}}{1}
+Evaluate the following expressions (If you get stuck, check out the solution, it will explain what you need to know). 
+
+\subquestion $\sum_{i=1}^3 i$
+
+\solution 
+This represents the sum over $i$, where $i$ runs from 1 to 3. So, 
+\eq{
+\sum_{i=1}^3 i= 1+2+3 = 6
+}
+
+\subquestion $\sum_{i=1}^2 3i$
+
+\solution 
+This time $i$ takes only two values $1$ and $2$, but we are summing $3i$, so we have
+\eq{
+\sum_{i=1}^2 3i = 3 \cdot 1 + 3 \cdot 2 = 3+6=9
+}
+
+\subquestion $\sum_j A_{2,j}$, where 
+\eqn{
+\label{eqBridgeAdjacency}
+{\bf A} = \left(\begin{array}{c c c c} 
+0 & 0 & 1 & 2 \\
+0 & 0 & 1 & 2 \\
+1 & 1 & 0 & 1 \\
+2 & 2 & 1 & 0
+ \end{array}\right).
+}
+
+\solution 
+Here we aren't given bounds for the summation, but from the context we can conclude that we are meant to run $j$ over all values that make sense as a column index of matrix ${\bf A}$.
+As a result the expression sums over the whole second row of the matrix 
+\eq{
+\sum_j A_{2,j} = A_{2,1}+A_{2,2}+A_{2,3}+A_{2,4} = 0+0+1+2=3.
+}
+
+\subquestion
+$\prod_{i=3}^6 i$ 
+\solution
+The product sign tells us to multiply factors. In this case it runs from 3 to 6 so we get 
+\eq{
+\prod_{i=3}^6 i=3\cdot 4 \cdot 5 \cdot 6 = 360
+}
+
+\subquestion
+$\prod (A_{n,5-n}+1)$, with $\bf A$ from above.
+
+\solution
+The first complication here is that the product sign is not annotated with the name of the index, but looking at the right-hand-side we see that a variable $n$ appears which is otherwise undetermined. So $n$ must be the index of the product. 
+
+Furthermore, we are not given bounds but we are using $n$ as index in the $4\times 4$ matrix $\bf A$ so it needs to run from 1 to 4. We can now evaluate
+\eqa{
+\prod (A_{n,5-n}+1) &=& \prod_{n=1}^4 (A_{n,5-n}+1) \\
+  &=& (A_{1,4}+1) \cdot (A_{2,3}+1) \cdot (A_{3,2}+1) \cdot (A_{4,1}+1) \\
+  &=& (2+1) \cdot (1+1) \cdot (1+1) \cdot (2+1) \\ 
+  &=& 3 \cdot 2 \cdot 2 \cdot 3 \\ 
+  &=& 24
+}
+
+\subquestion $3!$
+
+\solution 
+The factorial $n!$ is a shorthand notation for
+\eq{
+    \prod^n_{i=1} i 
+}
+So in the present case 
+\eq{
+3! = \prod^n_{i=1} i = 1\cdot 2 \cdot 3 = 6
+}

@@ -1,0 +1,12 @@
+
+\exercise{St.~Nic's house\label{exBridgeHouse}}{3}
+An old children's puzzle is to draw the following figure with an unbroken line:
+\pic{nikolaus}{0.15}
+Can you do it? (The rules are: once you start drawing, you can't lift the pen or draw a line twice until the house is complete.)
+ 
+\solution
+The key is of course to regard the corners in the lines as nodes and the lines that need to be drawn as links. The challenge is then to find an Eulerian trail.  
+
+There is some freedom in the assignment of nodes. Are the crossing point in the center or the tip of the roof nodes? However, even if we regards those points as nodes they are of even degree and hence do not affect the Eulerian trail. 
+
+We have odd degree nodes only in the bottom corners, so we have to start drawing in one of them and end in the other. Once we realize this, drawing the house becomes very easy and can be done by inspection (if your first attempt fails, you can switch to Hierholzer's algorithm). One possible solution is: bottom-left, top-left, tip-of-roof, top-right, top-left, bottom-right, top-right, bottom-left, bottom-right.

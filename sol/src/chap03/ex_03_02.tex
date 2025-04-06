@@ -1,0 +1,38 @@
+\exercise{In and out\label{exBridgeInANdOut}}{1}
+In the digraph described by the adjacency matrix
+\eqn{
+{\bf A} = \left(\begin{array}{c c c} 0 & 1 & 2 \\
+1 & 0 & 1 \\ 0 & 0 & 2 \end{array} \right), 
+}
+compute the in- and out-degrees of the three nodes?
+
+\solution
+We defined the in-degree
+\eq{
+k^{\rm in}_i=\sum_j A_{ij}
+}
+which means 
+\eq{
+k^{\rm in}_1=\sum_j A_{1j} = A_{11} + A_{12} + A_{13} = 0+1+2 = 3 
+}
+\eq{
+k^{\rm in}_2=\sum_j A_{2j} = A_{21} + A_{22} + A_{23} = 1+0+1 = 2 
+}
+\eq{
+k^{\rm in}_3=\sum_j A_{3j} = A_{31} + A_{32} + A_{33} = 0+0+2 = 2 
+}
+
+\noindent Similarly the out-degree is
+\eq{
+k^{\rm out}_i=\sum_j A_{ji}
+}
+which means 
+\eq{
+k^{\rm out}_1=\sum_j A_{j1} = A_{11} + A_{21} + A_{31} = 0+1+0 = 1 
+}
+\eq{
+k^{\rm out}_2=\sum_j A_{j2} = A_{12} + A_{22} + A_{32} = 1+0+0 = 1 
+}
+\eq{
+k^{\rm out}_3=\sum_j A_{j3} = A_{13} + A_{23} + A_{33} = 2+1+2 = 5 
+}

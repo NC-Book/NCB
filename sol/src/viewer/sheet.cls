@@ -8,6 +8,7 @@
 \RequirePackage{amssymb}
 \RequirePackage{amsmath}
 \RequirePackage{hyperref}
+\RequirePackage{qrcode}
 
 \newsavebox{\solutionbuffer}
 
