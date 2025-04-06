@@ -1,0 +1,10 @@
+
+
+\exercise{Cat bridges}{4}
+Consider a network, where all the links are directed and can only be walked in the respective direction (i.e.~they are one-way roads). Suppose that the network is at least weakly connected. Under what conditions does an eulerian circuit exist?
+
+\solution
+If a node has an out-degree that is smaller than its in-degree, we will eventually get stuck there. If a node has an out-degree that is greater than its in-degree some other node must have an out-degree that is smaller than its in-degree (in every network, the sum over all in-degrees equals the sum over all out degrees), so we will get stuck in that other node. Hence an eulerian circuit exists only if for each node the in-degree is identical to the out-degree. (It's that simple)
+
+(This question becomes much more difficult if a network has both directed and bidirectional links.) 
+

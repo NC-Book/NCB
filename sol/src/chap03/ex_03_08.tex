@@ -1,0 +1,9 @@
+\exercise{Hierholzer's round trip}{4}
+In Hierholzer's algorithm, on the second attempt, we can only get stuck in the node that we started from. Explain why this is the case. 
+
+\solution
+Consider the network of unused links, i.e.~our original network minus those links we already used in the first attempt. In this network there can only be nodes of even degree. Here is why: Since we are applying the algorithm, the original network had either 0 or 2 nodes of odd degree. If the number was zero our first attempt was a circuit. A circuit can only remove an even number of links from each node it travels trough, hence in this case the degree of every node remains even if we delete the links used in the first attempt. 
+
+If the original network had two nodes of odd degree then the first attempt was a trail that connected these nodes. In this case we remove an odd number of links from the two odd degree nodes and an even number from all the even nodes we pass through. In either case the network of remaining nodes has only nodes of even degree. 
+
+However, we already know that in a network of even-degree nodes we can only get stuck in the node we started from, which explains why the second attempt must be a circuit. 

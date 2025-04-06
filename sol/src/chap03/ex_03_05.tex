@@ -1,0 +1,12 @@
+\exercise{Security guard\label{exBridgeGuard}}{3}
+A security guard patrols the corridors in the office building from Exercise 3.3. The guard needs to patrol all 5 floors of the building. The floors have identical floor plans. They are connected via stairs at d and an elevator at e. The elevator can be used by the guard but otherwise does not require particular attention. However, the stairs between floors must be patrolled as well. Suppose the guard walks a circular round through the building, which bits does the guard need to walk twice on each round. (Use the notation of the form `a3', to refer to node `a' on floor 3). 
+
+\solution
+Before we start here is the floor plan again:
+\pic{floorb}{0.4}
+
+All nodes apart from e and d are of even degree on every floor, so they won't impact the guards ability to walk a circular round. Hence we can focus solely on the stairs and the elevator. The stairs count as an additional link so that means that node d will have even degree on the top and bottom floor, but odd degree on floors 2,3 and 4, i.e.~d2, d3, and d4 are nodes of odd degree. The elevator is also a node of odd degree as it connects to 3 links on 5 floors, so it has degree 15 in total. Hence we have four nodes of odd degree (d2,d3,d4,e).
+
+To make a circular round we need to turn these nodes into nodes of even degree. We can for instance do this by walking the stairs (d2,d3), and the stretch between the elevator and the stairs on floor 4 (d4,e) twice. Alternatively if we don't want to walk stairs unnecessarily we can walk (d2,e), (d3,e), and (d4,e) twice.
+
+(It is an interesting to consider if the guard can do it's round such that all stairs are only walked in the descending direction. This turns out to be a much more complicated problem.)

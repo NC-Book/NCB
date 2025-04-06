@@ -1,0 +1,23 @@
+
+\exercise{Bristol Bridgewalk\label{exBridgeBristol}}{3}
+The city of Bristol, like K\"onigsberg, occupies land around two river islands. We'll call the parts of the city Clifton, Redcliffe, Spike Island, Bedminster. There are 12 bridges connecting Clifton and Redcliffe, 3 connecting Clifton and Spike Island, also 3 connecting Clifton and Bedminster, and 4 connecting Clifton to itself. There are 3 bridges, connecting Redcliffe to Spike island and 13 between Redcliffe and Bedminster. Spike Island has 4 bridges to Bedminster, 1 to itself and 2 that connected it to a tiny artificial island. Does an eulerian walk exist in Bristol?  
+ 
+\solution
+we can summarize the information in the following table: 
+\begin{center}
+\begin{tabular}{l | c c c c c | c}
+ & Clifton & Redcliffe & Spike Island & Bedminster & tiny island & degree \\\hline
+Clifton      & 4  & 12 & 3 & 3  & 0 & 26\\
+Redcliffe    & 12 & 0  & 3 & 13 & 0 & 28\\
+Spike Island & 3  & 3  & 1 & 4  & 2 & 14\\
+Bedminster   & 3  & 13 & 4 & 0  & 0 & 20\\
+tiny island  & 0  & 0  & 2 & 0  & 0 & 2 
+\end{tabular}
+\end{center}
+where we took into account that self-loops contribute twice to the degree. 
+
+All nodes have even degree and the network is connected, so an Eulerian walk is possible and it is a circuit. This circuit makes a very nice walk of ca.~48km length. So it's quite a challenge but worthwhile if you have the chance. You can read more about the walk here: 
+\begin{center}
+\qrcode{https://en.wikipedia.org/wiki/Bristol_Bridges_Walk}\\
+\url{https://en.wikipedia.org/wiki/Bristol_Bridges_Walk}
+\end{center}

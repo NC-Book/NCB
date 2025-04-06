@@ -1,0 +1,10 @@
+
+\exercise{Seeing everything twice}{4}
+Under what conditions can we go on a walk that crosses each bridge exactly twice? What if you wanted to cross each bridge exactly $n$ times? 
+
+\solution
+Remember the ``Bend networks'' tip. If we cross every bridge twice, all links are effectively doubled. So the degree of each node is twice of what it was in the original graph. This means that all degrees are even now and a walk is always possible (if links exist only in one component).
+
+If we triple all links then a node has odd degree if and only if it had odd degree in the original graph. Thus the walk is possible when it was possible in the original graph. 
+
+Hence, if $n$ is even this is always possible if links exist only in one component. If $n$ is odd the walk is possible possible if it was possible for $n=1$. 
