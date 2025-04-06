@@ -1,0 +1,58 @@
+
+\exercise{Pathfinding \label{exHobbitPathfinding}}{3}
+In the network from the previous exercise, I also wanted to go from Fort Kerron to Tewen. I have already used Dijkstra's algorithm to work out the distances from Fort Kerron to all other place they are:
+\begin{center}
+    Solhaven: 4, Fimoria 5, Silvaster 6, Isangel 7, Tewen 7, Kliften 8 
+\end{center}
+Unfortunately, I have lost the corresponding Dijkstra table. Let's see if we can still figure out the actual path without redoing Dijkstra's Algorithm. 
+
+\subquestion Given the distances above and the link list from the previous exercise, is it possible that the last link in the shortest path from Fort Kerron to Tewen is Isangel $\rightarrow$ Tewen?
+
+\solution
+No, that can't be the case. I know that I would need 7 days to get to Isangel. From the link list, we know that the direct way from Isangel to Tewen takes 40 days. So if I took this route I would only arrive in Tewen on day 47. But, I know that the shortest path gets me to Tewen in 7 days.
+
+\subquestion So, on the shortest path Fort Kerron to Tewen, which place do I visit directly before arriving in Tewen?
+
+\solution
+Since we have ruled out Isangel, there are only two places left from which I can travel directly to Tewen: Silvaster and Kliften. If I go via Kliften, it would take me 8 days to get to Kliften and then another 48 to go from Kliften to Tewen, so I would only arrive at Tewen on day 56, which clearly can't be the shortest path. By contrast, I know that I can be Silvaster in 6 days, and from there I can reach Tewen in another day, to arrive on day 7. This is consistent with our information that we can reach Tewen in 7 days. So, Silvaster is the last stop before Tewen on the shortest path. 
+
+\subquestion And how do I get to the place that is the answer to part b? Directly from Fort Kerron? Or, do I need to visit a different place on the way?
+
+\solution
+At this point we know how to do this, don't we? We know that the correct anwer will take us to Silvaster in 6 days, so we are looking for a place X that we can reach in $d$ days from our starting point, and from which we can then reach Silvaster in $6-d$ days. The places from which we can reach Silvaster are Solhaven and Tewen. We can rule out Tewen, because it is the ultimate destination. Let's check if Solhaven fits the bill, it is $d=4$ days from our starting point, and from Solhaven we can reach Silvaster in $2=6-d$ days. This shows that Solhaven is the stop before Silvaster.     
+
+\subquestion Formulate a general strategy to find the the shortest path given the linklist and the precomputed distances from the start point to all places.  
+
+\solution
+Based on the insights from the previous parts we can now formulate the following algorithm:\vspace{0.5cm}
+
+\noindent{\bf Pathfinding. \\}
+Given a a list of distances $\vec{d}=d_1, \ldots, d_N $ from a starting point $S$ and the direct distances $D_{ij}$ for all direct routes from $j$ to $i$. We can find the shortest path from $S$ to a destination $Z$ as follows:
+\begin{enumerate}[label=\arabic*., leftmargin=5em] 
+    \item Create a list of waypoints. Initally this list is empty. 
+    \item Set the current location $C$ to $Z$.
+    \item Take the current location $C$ and insert it in the list of waypoints in the beginning (i.e.~$C$ becomes the first element in the list of waypoints, if there are already other elements they are pushed back in the list to make space).
+    \item If $C=S$, terminate, otherwise continue.
+    \item Find a place $X$ such that $d_X+D_{CX}=d_C$.
+    \item Set $C$ to $X$ and go to 3.
+\end{enumerate}
+After applying this algorithm to the present problem the list of waypoints would contain
+\begin{center}
+    Fort Kerron, Solhaven, Silvaster, Tewen
+\end{center}
+which are the stops on the shortest path form Fort Kerron to Tewen. Which is the solution to this exercise.
+
+This question explicitly asked not to redo Dijkstra for the given starting point. However, if you did it anyway, your table should look like this
+\begin{center}
+\begin{tabular}{c c c c c c c c} 
+\sw{Solhaven}  & \sw{Fimoria} & \sw{Isangel} & \sw{Kliften} & \sw{Silvaster} & \sw{Tewen} & \sw{F. Kerron} \\\hline 
+\oo & \oo & \oo & \oo & \oo & \oo &  0  \\ 
+ 4  & 5   & \oo & \oo & \oo & \oo &     \\ 
+    & 5   & 27  & \oo & 6   & \oo &     \\ 
+    &     &  7  & 9   & 6   & \oo &     \\ 
+    &     &  7  & 9   &     & 7   &     \\ 
+    &     &     & 8   &     & 7   &     \\ 
+    &     &     & 8   &     &     &      
+\end{tabular}
+\end{center}
+

@@ -1,0 +1,53 @@
+
+\exercise{Search and rescue}{3}
+A robot needs to reach a destination inside a burning office building. Fire creates a dangerous environment even for our dedicated rescue robot. Therefore the robot is complemented by a remote sensing system that assesses the risk in different parts of the building. This system has returned the risk that the robot will become dysfunctional when trying to traverse journey segments between 7 locations: 1: Entrance, 2: Door A, 3: Door B, 4: Door C 5: Door D, 6: Door E, 7: Destination. 
+
+The survival probabilities in \% for the journey segments between these destinations are given in the following matrix
+\eqn{
+{\bf A} = \left( \begin{array}{c c c c c c c}
+0   & 100 & 95 & 0   & 0  & 0 & 2 \\
+100 & 0   & 0  & 100 & 50 & 0 & 0\\
+95  & 0   & 0  & 40  & 0  & 30 & 0\\
+0   & 100 & 40 & 0   & 60  & 90 & 0\\
+0   & 50  & 0  & 60  & 0  & 20 & 50 \\
+0   & 0   & 30 & 90  & 20  & 0 & 100 \\
+2   & 0   & 0  & 0   & 50  & 100 & 0
+\end{array}\right)
+}
+Find the optimal path for the robot from the entrance to the destination and state the probability for reaching the destination. (Do not draw a map.) 
+
+% solution %
+
+\solution
+This is a variation on the Dijkstra theme:
+Instead of the shortest, we are now looking for the safest path. Instead of minimizing the distance we are maximizing the survival probability. Instead of adding up journey times we are multiplying probabilities. And, instead of upper bounds, we record our estimates of lower bounds.
+
+Despite these differences our key assumptions that we made for constructing Dijkstra's algorithm still apply. (See below for details)
+
+Applying a slightly modified algorithm leads to the table:
+\begin{center}
+\begin{tabular}{c c c c c c c}
+\sw{Entrance} & \sw{Door A} & \sw{Door B} & \sw{Door C} & \sw{Door D} & \sw{Door E}& \sw{Destination} \\ 
+1 & 2 & 3 & 4 & 5 & 6 & 7 \\\hline
+100 &   0 &   0 &  0  &   0 &   0 &   0 \\
+    & 100 &  95 &  0  &   0 &   0 &   2 \\
+    &     &  95 & 100 &  50 &   0 &   2 \\
+    &     &  95 &     &  60 &  90 &   2 \\
+    &     &     &     &  60 &  90 &   2 \\
+    &     &     &     &  60 &     &  90 
+\end{tabular}
+\end{center}
+The detailed reasoning is as follows: In the beginning we know that we can make it to the entrance with 100\% probability, whereas our chances of reaching the other rooms might be 0. These zeros are so far lower bounds.  
+
+Since we can be sure about the chance of reaching the entrance we can update from there. By considering the links from the entrance we realize that we can directly go to the destination but have only a 2\% chance reaching it in this way. We can safely make it to door A (100\%) or to door B with a 95\% survival probability.
+
+We are now sure that the probability of reaching door A intact is 100\%. So we update from there. This reveals that we can go to door C (100\% survival) or door D (50\% survival). After this step we are sure that we can make it to door C intact. 
+
+Updating from door C we find a path that takes us to door D with 60\% survival probability, or door E with 90\% survival probability. At the option with the highest survival probability that we haven't updated from yet is door B, which we can reach with 95\% probability. We are now sure that there is no better path to door B that would lead us there with more than 95\% survival probability. But updating from door B does not open up any new attractive paths. 
+
+Now the place with the highest survival probability from which we haven't updated yet is door E, which we can reach with 90\% probability. Updating from there reveals a path to the destination that we can transverse safely (100\%) However, because the probability to reach door E is only 90\% the total probability to reach the destination in this way is 90\%. 
+
+At this point the node with the highest survival probability from which we haven't updated yet is the destination. Since all other waypoints that we haven't considered yet are less safe to reach we can be sure that the 90\% probability to reach the destination is not only a lower bound, but the actual probability achieve the objective.  
+In summary we find: The best route is (in reverse order): Destination, Door E, Door C, Door A, Entrance. It allows the robot to survive with 90\% probability.
+
+(No robots were harmed in the design of this exercise.)

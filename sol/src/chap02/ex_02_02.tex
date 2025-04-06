@@ -1,0 +1,54 @@
+\exercise{Through the mines?}{2}
+%\hint{Level 2}{If you followed the chapter these two exercises should be straight forward.} 
+After leaving Rivendell and finding the Caradhras pass blocked, Frodo has to decide for an alternative route. Find the shortest pass from Rivendell to the Orodruin in a network that is described by the distance matrix 
+
+\eqn{
+{\bf D}=\left( \begin{array}{c c c c c c c c c c c c c}
+ \0 &  6 & \0 & \0 & \0 & \0 & 49 & \0 & \0 & \0 & \0 & \0 & \0 \\
+  6 & \0 & \0 & \0 &  6 & \0 & 48 & \0 & \0 & \0 & \0 & \0 & \0  \\ 
+ \0 & \0 & \0 & \0 & \0 & 18 & 24 & \0 & \0 &  1 &  7 & \0 & \0  \\ 
+ \0 & \0 & \0 & \0 & 17 & \0 & \0 & 19 & 30 & \0 & \0 & \0 & \0 \\ 
+ \0 &  7 & \0 & 18 & \0 & \0 & \0 & \0 & \0 & \0 & \0 & \0 & \0  \\ 
+ \0 & \0 & 40 & 0 & \0 & \0 & 19 &  4 & \0 & \0 & \0 & \0 & \0 \\
+ 49 & 48 & 24 & \0 & \0 & 19 & \0 & \0 & \0 & \0 & \0 & \0 & \0  \\ 
+ \0 & \0 & \0 & 20 & \0 &  4 & \0 & \0 & \0 & \0 & \0 & \0 & \0  \\ 
+ \0 & \0 & \0 & 30 & \0 & \0 & \0 & \0 & \0 & \0 & \0 & \0 & \0  \\ 
+ \0 & \0 &  1 & \0 & \0 & \0 & \0 & \0 & \0 & \0 &  6 &  5 & \0  \\ 
+ \0 & \0 &  6 & \0 & \0 & \0 & \0 & \0 & \0 &  7 & \0 &  7 & 8  \\
+ \0 & \0 & \0 & \0 & \0 & \0 & \0 & \0 & \0 &  7 &  9 & \0 & 5  \\ 
+ \0 & \0 & \0 & \0 & \0 & \0 & \0 & \0 & \0 & \0 &  8 &  4 & \0     
+\end{array} 
+\right).
+}
+where the nodes are 1: Hobbiton, 2: Bree, 3: Osgiliath, 4: Rivendell, 5: Weathertop, 6: Lorien, 7: Isengard, 8: Moria, 9: Erebor, 10: Cirith Ungol, 11: Morannon, 12: Orodruin, 13: Barad-Dur.
+
+% solution %
+
+\solution
+Using Dijkstra's algorithm leads to the table
+{
+\begin{center}
+\begin{tabular}{c c c c c c c c c c c c c} 
+\sw{HOB}  & \sw{BRE} & \sw{OSG} & \sw{RIV} & \sw{WEA} & \sw{LOR} & \sw{ISE} & \sw{MRA} & \sw{ERE} & \sw{CIR} & \sw{MRN} & \sw{ORO} & \sw{BAR} \\
+1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 & 13 \\\hline 
+\oo & \oo & \oo & 0 & \oo & \oo & \oo & \oo & \oo & \oo & \oo & \oo & \oo\\ 
+\oo & \oo & \oo &   & 18 & \oo & \oo & 20 & 30 & \oo & \oo & \oo & \oo\\ 
+\oo & 24 & \oo &   &    & \oo & \oo & 20 & 30 & \oo & \oo & \oo & \oo\\ 
+\oo & 24 & \oo &   &    & 24 & \oo &   & 30 & \oo & \oo & \oo & \oo\\ 
+30 &    & \oo &   &    & 24 & 72 &   & 30 & \oo & \oo & \oo & \oo\\ 
+30 &    & 42 &   &    &    & 43 &   & 30 & \oo & \oo & \oo & \oo\\ 
+30 &    & 42 &   &    &    & 43 &   & 30  & \oo & \oo & \oo & \oo\\ 
+  &    & 42 &   &    &    & 43 &   & 30  & \oo & \oo & \oo & \oo\\ 
+  &    & 42 &   &    &    & 43 &   &    & \oo & \oo & \oo & \oo\\ 
+  &    &    &   &    &    & 43 &   &    & 43 & 48 & \oo & \oo\\ 
+  &    &    &   &    &    &    &   &    & 43 & 48 & \oo & \oo\\ 
+  &    &    &   &    &    &    &   &    &    & 48 & 50 & \oo\\
+  &    &    &   &    &    &    &   &    &    &    & 50 & 54\\   
+\end{tabular}
+\end{center}
+}
+We can now quickly find the route. In reverse order: 
+\begin{center}
+Orodruin, Cirith Ungol, Osgiliath, Lorien, Moria, Rivendell
+\end{center}
+which is indeed the path Frodo takes.
