@@ -1,0 +1,20 @@
+
+\exercise{Greedy Hobbit}{4}
+Formulate a greedy algorithm to solve the shortest path problem. Your algorithm does not need to yield an optimal result and you can phrase it colloquially. However, make sure your algorithm terminates at some point. How long would the journey from Hobbiton to the Orodruin (from Ex. 2.2) take if we followed the algorithm. 
+
+\solution
+There are multiple solutions to this question, but consider this one:
+\begin{enumerate}[label=\arabic*.]
+    \item Start at the start point. 
+    \item Move to the closest location that you haven't visited yet. If no such location is reachable from the current location and you are not at the start point then walk back to the location from whence you came when you visited the present location for the first time. If no new location is reachable from the present location and you are at the start point then terminate, there is no route to the destination.
+    \item If you are at the destination then terminate (but don't forget to drop the ring into the flames).
+    \item Go to 2.
+\end{enumerate}
+
+\noindent{}If we Frodo follows these instructions, he visits
+\begin{center}
+Hobbiton, Bree, Weathertop, Rivendell, Moria, Lorien, Osgiliath, Cirith Ungol, Orodruin 
+\end{center}
+which takes 80 days, so only 2 days longer than the optimal solution.
+
+The interesting bit about this solution is obviously step 2. Note that without the phrase `that you haven't visited' our Hobbit would end up walking back and fourth between Hobbiton and Bree. Without the instructions `If no such place is reachable ...' he might get stuck not knowing what to do next. 

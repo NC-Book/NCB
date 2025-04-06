@@ -1,0 +1,67 @@
+
+\exercise{Another world \label{exHobbitKerrodia}}{2}
+Use Dijkstra's Algorithm to find the shortest path from Kliften to Solhaven in the network described by the following link list:
+\begin{center}
+\vspace{-1mm}
+\begin{minipage}[T]{0.90\textwidth}
+\begin{minipage}[T]{0.32\textwidth}  
+\vspace{-4mm}{\bf Solhaven}\\ 
+to Fimoria 3\\
+to Isangel 23\\
+to Fort Kerron 4 \\
+to Silvaster 2 \\
+  
+{\bf Fimoria\\}
+to Solhaven 3 \\
+to Fort Kerron 5 \\
+to Isangel 2 \\
+to Kliften 4 
+\end{minipage}
+\begin{minipage}[T]{0.32\textwidth}  
+
+{\bf Isangel\\}
+to Fimoria 2 \\
+to Solhaven 22 \\
+to Tewen 40 \\
+to Kliften 1 \\
+
+{\bf Kliften\\}
+to Isangel 1 \\
+to Fimoria 5 \\
+to Tewen 48 \\
+to Fort Kerron 9 \\
+
+\end{minipage}
+\begin{minipage}[T]{0.32\textwidth}  
+\vspace{-0mm}
+{\bf Silvaster\\}
+to Solhaven 2\\
+to Tewen 1 \\
+
+{\bf Tewen\\}
+to Silvaster 1\\
+to Solhaven 1\\
+
+{\bf Fort Kerron\\}
+to Solhaven 4 \\
+to Fimoria 5 \\
+\end{minipage}
+\end{minipage}
+\end{center}
+\vspace{-1mm}
+
+\solution
+Using Dijkstra's algorithm results in the following table
+\begin{center}
+\begin{tabular}{c c c c c c c} 
+\sw{Solhaven}  & \sw{Fimoria} & \sw{Isangel} & \sw{Kliften} & \sw{Silvaster} & \sw{Tewen} & \sw{F. Kerron} \\\hline 
+\oo & \oo & \oo & 0   & \oo & \oo & \oo \\ 
+\oo & 5   & 1   &     & \oo & 48  & 9 \\ 
+23  & 3   &     &     & \oo & 41  & 9 \\ 
+6   &     &     &     & \oo & 41  & 8 
+\end{tabular}
+\end{center}
+At this point we can already be sure about the shortest route to Solhaven. It takes 6 days and the waypoints are:
+\begin{center}
+    Kliften, Isangel, Fimoria, Solhaven
+\end{center}

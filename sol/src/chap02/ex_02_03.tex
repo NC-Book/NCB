@@ -1,0 +1,28 @@
+
+\exercise{An abstract example}{2}
+Find the route from the first to the fifth node in a network described by the distance matrix
+\eq{
+{\bf D} = \left( \begin{array}{c c c c c} 
+0 & 3 & 6 & 8 & 9 \\
+3 & 0 & 1 & 6 & 7 \\
+6 & 1 & 0 & 3 & 1 \\
+8 & 6 & 3 & 0 & 1 \\
+9 & 7 & 1 & 1 & 0 \end{array}
+\right).
+}
+(use Dijkstra, do not draw a map)
+
+% solution %
+
+\solution
+Using Dijkstra's algorithm we find
+\begin{center}
+\begin{tabular}{c c c c c}
+1 & 2 & 3 & 4 & 5 \\\hline
+0 & \oo & \oo & \oo & \oo \\
+  & 3  & 6 & 8 & 9 \\
+  &    & 4 & 8 & 9 \\
+  &    &   & 7 & 5 \\
+\end{tabular}
+\end{center}
+Hence, the shortest route is 1,2,3,5.

@@ -260,7 +260,7 @@
 \end{center}
 }
 \newcommand{\X}{$\checkmark$}
-\newcommand{\0}{{\color{gray}0}}
+\newcommand{\0}{{\color{gray}\oslash}}
 \newcommand{\dx}{{\rm d}x}
 \newcommand{\dt}{{\rm d}t}
 \newcommand{\vs}[2]{#2}
@@ -292,6 +292,8 @@
   \maketitle
   \input{../chap\padzero{#1}/ex_\padzero{#1}_\padzero{#2}.tex}
 }
+
+
 
 \newcommand*\xoverline[2][0.75]{%
     \sbox{\myboxA}{$\m@th#2$}%
