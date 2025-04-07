@@ -1,0 +1,39 @@
+
+\exercise{Local clustering coefficient\label{exSWlocal}}{3}
+In a friendship network we find $n_{--}=45000$ three node chains and $n_{\Delta}=1500$ three-cycles (triangles). 
+\subquestion Compute the clustering coefficient. 
+
+\solution
+We compute the clustering coefficient using the formula from the chapter
+\eq{
+c=\frac{3n_\Delta}{n_{--}} = \frac{4.500}{45.000} =0.1 = 10\%.  
+}
+
+\subquestion Ali is a node in the network, he has $k=17$ friends. How many friendship links $f$ do you expect to find between Ali's 17 friends? 
+
+\solution
+Ali has $k= 17$ friends, that means that the number of distinct pair of friends between friendships could exist is 
+\eq{
+n = \frac{17\cdot{}16}{2} = 136.
+}
+This is also the number of three-node-chains that have Ali in the center. 
+
+From the clustering coefficient we know that 10\% of these chains are closed triangles, so our best guess is that ca.~$f=14$ friendships exist among Ali's friends.
+
+\subquestion Use the insights gained from this example to write a general formula that can be used to estimate the clustering coefficient $c$ from $k$ and $f$.    
+
+\solution
+The final part asks for a general formula. We start from the observation that the clustering coefficient is the probability that two of friends of a node (ego) are also mutually friends. We can write this as 
+\eq{
+\label{testtest}
+c=\frac{f}{n}, 
+}
+where $n$ is the number of three-node-chains centered with ego in the center or in other words the number of ways in which we can pick 2 two people from ego's set of friends. We can compute this number as
+\eq{
+n=\frac{k(k-1)}{2},
+}
+where $k$ is the number of ego's friends. Substituting this relationship into the equation above yields the desired formula
+\eq{
+c=\frac{2f}{k(k-1)}. 
+}
+You can use this formula for a quick rough estimate the clustering coefficient of the human friendship network, based on your number of friends and the number of friendship links between them. 

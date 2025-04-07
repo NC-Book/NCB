@@ -1,0 +1,9 @@
+
+\exercise{Diameter of a specific network\label{exSWsimplediameter}}{2}
+Consider a network consisting of a central hub of degree 9 that connects to 9 nodes of degree 1. Compute the diameter according to both definitions (do not use the approximation, it won't work well for such a small and heterogeneous network)  
+
+\solution
+If we use the classical definition `longest shortest path', we get the answer 2, immediately. If we use the average path length definition we note that the distance from the central node to one of the 9 peripheral nodes is 1. The distance from one of the 9 peripheral nodes to one the central node is also 1. and the distance between two peripheral nodes is 2. Sine there are $9\cdot8=72$ distances between peripheral nodes we get the mean path length
+\eq{
+D = \frac{9\cdot1+9\cdot 1 + 72\cdot 2}{9+9+72} = \frac{90 + 72}{90}=1.8 
+}
