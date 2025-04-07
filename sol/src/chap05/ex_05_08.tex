@@ -1,0 +1,15 @@
+
+\exercise{Three hop rule\label{exSWthreehops}}{3}
+In the USA the Department of Homeland Security routinely collects and stores communication metadata as part of its anti-terrorism efforts. The use of this data is governed by the so-called three-hop-rule, which means that if there is a terrorism suspect investigators can access the data up to 3 links away from the suspect. We do not know how extensive the database is but it seems fair to assume that it is not very different from the facebook network. So let's assume $z=200$, $c=0.15$ and $N=10^{10}$. Compute the number of records that can be accessed in one investigation. Then, suppose there are 10.000 investigations per year. How often will your records be accessed in a year?
+
+\solution
+We know that the number of nodes 3 steps from the focal node is 
+\eq{
+n_3 = z^3(1-c)^2 = 5,780,000
+}
+We could add the number of nodes at distance 1 and 2, but these 
+(34,000 and 200, respectively) hardly matter. So our estimate is that one investigation could look at $\sim$5.8 million people, that means there is a 0.58\% chance that my records are accessed in an investigation. So the expectation value for the number of times my records are accessed is 
+\eq{
+0.0058\cdot 10,000 = 58
+}
+so approximately 58 times a year. 

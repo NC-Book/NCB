@@ -1,0 +1,31 @@
+
+\exercise{A mean degree puzzle\label{exSWmean}}{4}
+A connected network has a mean degree of 
+$z=1.99901234568\ldots$. How many nodes does the network contain?
+
+This is a puzzle! Start by drawing some small networks and calculate $z$. How do you have to change the network to bring $z$ closer to the desired value, while remaining connected?
+
+\solution
+If we follow the advice we find very quickly that every small network that we draw will have a mean degree that is too high, unless it is a tree. In fact you might notice that every connected network that contains a single cycle has a mean degree of exactly 2 and every network that contains more than one cycle has a mean degree greater than two. So the network we are looking for must be a tree. 
+
+We also noticed that in a tree of $N$ nodes the number of links is $K=N-1$. 
+(this can be easily proved by induction, the tree with 1 node contains no links, to add another node to the tree we need exactly one link, etc.)
+Hence the mean degree of a tree is 
+\eq{
+z=\frac{2K}{N} = \frac{2(N-1)}{N} 
+}
+In the exercise we are asked to find the number of nodes for a given mean degree so let's solve for $N$
+\eqa{
+z&=&2(N-1)/N \\
+Nz&=&2(N-1) \\
+Nz&=&2N-2 \\
+N(z-2)&=&-2 \\
+N&=&2/(2-z)
+}
+Substituting the mean degree from the question we get
+\eq{
+N=\frac{2}{2-1.99901234568}\approx 2025.0000
+}
+so the answer is 2025, the year in which this book was published.  
+
+\solutionend
