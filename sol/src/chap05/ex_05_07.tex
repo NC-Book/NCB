@@ -1,0 +1,35 @@
+
+\exercise{A small example \label{exSWbig}}{3}
+Find the clustering coefficient $c$ and the mean degree $z$ of the following network:
+\pic{bignet}{0.65}
+(Hint: Trying to count the three-node chains in this network is a pain. Perhaps some math can help.)
+
+\solution
+To compute the mean degree, we note that there are 3 nodes of degree one 3 nodes of degree three, 4 nodes of degree four, and 1 node of degree six. We find the mean degree by computing the average
+\eq{
+z = \frac{3\cdot 1 + 3 \cdot 3 + 4\cdot 4 + 1\cdot 6}{3+3+4+1} = \frac{34}{11} \approx 3.1
+}
+
+To compute the clustering coefficient we count the triangles
+\eq{
+n_{\Delta}=7
+}
+Now we encounter a problem. I simply don't have the focus necessary to count the three-node chains and arrive at the right result. But looking at the previous exercise might give us an idea for an approach that simplifies counting the 3-chains: If a node has degree $k$ then the number of 3-chains centered on the node is $k(k-1)/2$. If we compute this for every node and add the results then we have counted all the three-node chains. Let's make the following table: 
+\begin{center}
+\begin{tabular}{l | c  c  c  c  c  c}
+Degree $k$ & 1 & 2 & 3 & 4 & 5 & 6 \\\hline
+Chains per node & 0 & 1 & 3 & 6 & 10 & 15 \\
+Number of nodes & 3 & 0 & 3 & 4 & 0 & 1  \\
+Product         & 0 & 0 & 9 & 24 & 0 & 15 
+\end{tabular}    
+\end{center}
+In the top line I have computed the number of three node chains that are centered on a node of given degree. In the second line I just counted how many nodes of the respective degree exist in the network. Multiplying these two lines gives us the third line which contains the number of three node chains centered on nodes of a given degree. 
+For example there are three nodes of degree 3 (F,H,J) and every node of degree 3 is at the center of 3 three-node chains, so this gives us 9 three-node chains that are centered on nodes of degree 3. Hence, in total there are 
+\eq{
+n_{--}= 9+15+24 = 48 
+}
+three-node chains in the network. We can now compute the clustering coefficient 
+\eq{
+c= \frac{3\cdot 7}{48} = \frac{7}{16}=0.4375
+}
+Even though this network seemingly contains a lot of triangles. it has a clustering coefficient of less than 0.5. 
