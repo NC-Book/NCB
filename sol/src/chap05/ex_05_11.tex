@@ -32,7 +32,7 @@ Using our simple diameter estimate we would expect that the average path length 
 \eq{
 D_{\rm Est}=\log_{2.095}(105) \approx 6.44 
 }
-which more than twice the actual value. SO let's try the formula with the clustering coefficient correction. To do so let's first count the triangles in the network. The number of three-node-chains between servers is $5\cdot 4 \cdot 3 / 2 = 30$ as all of these are part of triangles we can simply find the number of triangles by dividing by 3 to obtain \eq{n_{\Delta}=10.}
+which more than twice the actual value. So let's try the formula with the clustering coefficient correction. To do so let's first count the triangles in the network. The number of three-node-chains between servers is $5\cdot 4 \cdot 3 / 2 = 30$ as all of these are part of triangles we can simply find the number of triangles by dividing by 3 to obtain \eq{n_{\Delta}=10.}
 To find the total number of three-node chains we have to add the all the three node chains between servers and workstations connected to other servers ($5\cdot 4 \cdot 20=400$) and chains between workstations on the same server ($5 \cdot 19 \cdot 20/2=950$), hence 
 \eq{
 n_{--} = 30 + 400 + 950 = 1380. 
@@ -43,7 +43,7 @@ c=\frac{3_{n_{\Delta}}}{n_{--}} = \frac{30}{1380}\approx 0.02
 }
 At this low value we don't expect the clustering coefficient to expect the diameter estimate very much. Indeed we find 
 \eq{
-D_{\rm Est2}=\log_{(1-c)z ((1-c)N)} \approx log_{2.05}(103) ]approx 6.46
+D_{\rm Est2}=\log_{(1-c)z ((1-c)N)} \approx \log_{2.05}(103) \approx 6.46
 }
 So the correction due to the clustering coefficient is very minor and takes our estimate even a bit further from the truth. 
 
@@ -51,4 +51,4 @@ Why does the estimate perform so poorly in this case? Consider that in our deriv
 
 Of course this is no accident, we build computer networks in this way precisely because having central highly connected servers brings down the diameter substantially and thus allows data to be exchanged efficiently. 
 
-We will understand the mathematical reason why this happens in the next chapter. 
+We will understand the mathematics of how this reduction in diameter is achieved in the next chapter and discover how to account for it  for it in our equations. 
