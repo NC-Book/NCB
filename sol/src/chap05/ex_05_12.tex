@@ -3,7 +3,7 @@
 A connected network has a mean degree of 
 $z=1.99901234568\ldots$. How many nodes does the network contain?
 
-This is a puzzle! Start by drawing some small networks and calculate $z$. How do you have to change the network to bring $z$ closer to the desired value, while remaining connected?
+[Hint: This is a puzzle! Start by drawing some small networks and calculate $z$. How do you have to change the network to bring $z$ closer to the desired value, while remaining connected?]
 
 \solution
 If we follow the advice we find very quickly that every small network that we draw will have a mean degree that is too high, unless it is a tree. In fact you might notice that every connected network that contains a single cycle has a mean degree of exactly 2 and every network that contains more than one cycle has a mean degree greater than two. So the network we are looking for must be a tree. 
@@ -26,6 +26,10 @@ Substituting the mean degree from the question we get
 \eq{
 N=\frac{2}{2-1.99901234568}\approx 2025.0000
 }
-so the answer is 2025, the year in which this book was published.  
+so the answer is $N=2025$.  
 
+As a little bonus, we can even compute the exact mean degree of a tree with 2025 nodes. It is the beautiful
+\eq{
+z = \frac{2\cdot 2024}{2025} = 1.999\overline{012345679}.
+}
 \solutionend
