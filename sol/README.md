@@ -6,4 +6,6 @@ Exercise sheets and solutions are available for:
 - [Chap. 3: Bridgewalk](pdf/chap03/README.md)  -- *(eulerian walks, Hierholzer's algorithm, Chinese postman)*
 
 - [Chap. 5: The small world](pdf/chap05/README.md)  -- *(eulerian walks, Hierholzer's algorithm, Chinese postman)*
+- [Chap. 6: Friendship Paradox](pdf/chap06/README.md)  -- *(degree distribution, mean excess degree, kronecker delta notation)*
+  
   
