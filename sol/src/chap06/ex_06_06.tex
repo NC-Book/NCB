@@ -1,0 +1,51 @@
+
+
+\exercise{Another abstract example}{2}
+Now consider the networks described by the two degree distributions from Ex.~6.1 (c) and (d). Compute the excess degree distributions $q_k$ for these networks and then show that it is a correctly normalized probability distribution. 
+
+\solution
+The distribution from Ex.~6.1c is 
+\eq{
+p_k =\frac16 \delta_{k,1} + \frac13 \delta_{k,2} + \frac12 \delta_{k,3}.
+}
+To compute the excess degree distribution we first need to find the mean degree
+\eqa{
+z&=& \sum k p_k \\
+ &=& \sum k \left(\frac16 \delta_{k,1} + \frac13 \delta_{k,2} + \frac12 \delta_{k,3} \right) \\
+ &=&  \frac16  \left(\sum k\delta_{k,1}\right) + \frac13 \left(\sum k\delta_{k,2}\right) + \frac12 \left(\sum k \delta_{k,3} \right) \\
+&=&  \frac16  + \frac23  + \frac32  \\
+&=&  \frac16  + \frac46  + \frac96 = \frac{14}{6}= \frac73.  
+}
+Now we have everything that we need to compute the excess degree distribution
+\eqa{
+q_k &=& (k+1)p_{k+1}/z \\
+    &=& 3(k+1)p_{k+1}/7 \\
+    &=& 3(k+1)\left(\frac16 \delta_{k+1,1} + \frac26 \delta_{k+1,2} + \frac36 \delta_{k+1,3}\right)/7 \\
+    &=& \frac16 \frac{3}{7} \delta_{k+1,1} + \frac26 \frac{6}{7} \delta_{k+1,2} + \frac36 \frac{9}{7} \delta_{k+1,3} \\
+    &=& \frac{3}{42} \delta_{k,0} + \frac{12}{42} \delta_{k,1} +  \frac{27}{42} \delta_{k,2}. 
+}
+To check that the distribution is a correctly normalized probability distribution, we compute
+\eqa{
+ \sum q_k &=& \sum \left(\frac{3}{42} \delta_{k,0} + \frac{12}{42} \delta_{k,1} +  \frac{27}{42} \delta_{k,2}\right) \\
+ &=& \frac{3}{42} + \frac{12}{42}  +  \frac{27}{42} \\
+ &=& \frac{42}{42} = 1.
+}
+We now do the same for the distribution from Ex.~6.1d. We compute the mean degree
+\eqa{
+z&=& \sum k p_k \\
+ &=& \sum k \left(\frac15 \delta_{k,5} + \frac45 \delta_{k,10} \right) \\
+ &=& \frac55  + \frac{40}5   \\
+ &=& 1+8 = 9.   
+}
+and then the excess degree distribution
+\eqa{
+q_k&=& (k+1)p_{k+1}/z \\
+  &=& (k+1)\left(\frac15 \delta_{k+1,5} + \frac45 \delta_{k+1,10} \right)/9 \\
+  &=& \frac5{45} \delta_{k+1,5} + \frac{40}{45} \delta_{k+1,10} \\
+  &=& \frac1{9} \delta_{k,4} + \frac{8}{9} \delta_{k,9}. 
+}
+We can now verify
+\eqa{
+\sum q_k = \frac19 + \frac89 = 1
+}
+which shows that the excess degree distribution that we computed is a correctly normalized degree distribution. 

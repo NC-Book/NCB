@@ -1,0 +1,37 @@
+
+\exercise{Rumors\label{exFriendsRumors}}{3}
+In a company 75\% of employees have three friends who are also working for the company. 20\% have 6 friends in the company, and 5\% have 71 friends in the company. All employees attend the company Christmas party. After some drinks Ada tells her friend Bob, an embarrassing secret about her private life. Over the course of the next week Bob shares Ada's secret with all his friends in the company. Find the expectation number for the number of people who know of Ada's secret?
+Would the situation be different if Ada had shared her secret with a random person at the party, say Chris, who had then told all his friends about it?   
+
+\solution
+Let's first consider the social network in the company. We can write the degree distribution as  
+\eq{
+p_k = 0.75 \delta_{k,3} + 0.2 \delta_{k,6} + 0.05 \delta_{k,71} 
+}
+So the expected number of friends that a random employee has in the company is 
+\eqa{
+z&=&\sum k p_k \\
+ &=& 3\cdot0.75 + 6\cdot 0.2  + 71\cdot 0.05 \\
+ &=& 2.25 + 1.2  + 3.55 = 7. 
+}
+Hence we expect a random employee to have in average 7 friends in the company. 
+But, Ada has shared her secret not with a random person, but with a friend. So, let's compute the excess degree distribution 
+\eqa{
+q_k&=&(k+1)p_{k+1}/z \\
+ &=&(k+1)(0.75 \delta_{k+1,3} + 0.2 \delta_{k+1,6} + 0.05 \delta_{k+1,71})/7 \\
+ &=&(0.75\cdot{}(k+1) \delta_{k+1,3} + 0.2\cdot{}(k+1) \delta_{k+1,6} + 0.05\cdot{}(k+1) \delta_{k+1,71})/7 \\
+ &=&(0.75\cdot{}3 \delta_{k+1,3} + 0.2\cdot{}6 \delta_{k+1,6} + 0.05\cdot{}71 \delta_{k+1,71})/7 \\ 
+ &=&(0.75\cdot{}3 \delta_{k,2} + 0.2\cdot{}6 \delta_{k,5} + 0.05\cdot{}71 \delta_{k,70})/7 \\  
+ &=&(2.25 \delta_{k,2} + 1.2 \delta_{k,5} + 3.55 \delta_{k,70})/7.  
+}
+We could now also divide the terms by the 7 but this leads to unsightly decimals, so we skip this for now. Instead let's compute the expected number of friends that Bob has in addition to Alice. This is the mean excess degree 
+\eqa{
+q&=&\sum k q_k \\
+ &=&\sum k (2.25 \delta_{k,2} + 1.2 \delta_{k,5} + 3.55 \delta_{k,70})/7 \\
+&=& (2\cdot 2.25 + 5\cdot 1.2 + 70\cdot 3.55)/7 \\
+&=& (4.5 + 6 + 248.5)/7 \\
+&=& 259/7 = 37. 
+}
+So our expectation is that Bob has 37 friends in the company in addition to Alice. Of course this is a statistical average as we know that nobody has 38 friends in the company, but if you look close at our calculation of the excess degree you seem that the the probability that a random friend is one of the people who have 71 friends in the company is slightly more than 3.55/7, so more than 50\%. 
+
+We can now answer the question. After Bob has shared Alice's secret with all his friends the people who know it are Bob, Alice and Bob's expected 37 other friends. So, 39 people in total. By contrast if Alice had shared her secret with Chris (a random person at the party), who then had shared it with all his friends, the number would be lower. We only expect a random person to have 7 friends in the company so in this case 1+1+7=9 people would know the secret. This outcome illustrates the key message from the chapter: Your friends are not typical people, but (in average) better connected. (Also: If you have friends like Bob you don't need enemies.)

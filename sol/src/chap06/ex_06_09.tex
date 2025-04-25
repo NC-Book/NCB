@@ -1,0 +1,49 @@
+\exercise{Pandemic\label{exFriendsPandemic}}{3}
+During the zombie apocalypse 83\% of the population self-isolate. They reduce their social contacts to a minimum and use protective measures. As a result they don't have any contacts in which the disease could be transmitted. Furthermore, 9\% of the population carry on with their normal lives, which means they maintain contact with 20 people. The remaining 8\% celebrate the end of days in wild parties, let's assume they have 90 contacts. The zombie disease is highly virulent and is guaranteed to spread to all people in contact with an infected person. Suppose person X catches the disease from a friend during the early stage of the pandemic, when almost nobody is infected. 
+
+\subquestion What is the expected number of people that they will infect? 
+
+\solution
+Because X themselves got the disease from a contact they are not a random person but a random friend of a random person. To estimate the number of their other contacts we need to compute the mean excess degree. However, to compute the mean excess degree we need to find the mean degree first. So, we write the degree distribution
+\eq{
+p_k=0.83 \delta_{k,0} + 0.09 \delta_{k,20} + 0.08 \delta_{k,90}
+}
+and compute the mean degree
+\eqa{
+z&=&\sum k p_k \\ 
+ &=& \sum k (0.83 \delta_{k,0} + 0.09 \delta_{k,20} + 0.08 \delta_{k,90})\\
+ &=& \sum  (0.83\cdot 0 \delta_{k,0} + 0.09 \cdot 20 \delta_{k,20} + 0.08 \cdot 90 \delta_{k,90})\\
+ &=& \sum  ( 1.8 \delta_{k,20} + 7.2 \delta_{k,90})\\
+ &=&  1.8 + 7.2 = 9. 
+}
+Now we can compute the excess degree distribution
+\eqa{
+q_k &=& (k+1)p_{k+1}/z \\
+  &=& (k+1)(0.83 \delta_{k+1,0} + 0.09 \delta_{k+1,20} + 0.08\delta_{k+1,90})/9\\ &=&  (20\cdot 0.09 \delta_{k+1,20} + 90\cdot 0.08\delta_{k+1,90})/9\\
+  &=&  (1.8 \delta_{k+1,20} + 7.2 \delta_{k+1,90})/9\\
+  &=&  (1.8 \delta_{k,19} + 7.2 \delta_{k,89})/9\\
+  &=&  0.2 \delta_{k,19} + 0.8 \delta_{k,89}.
+}
+This shows that there is an 80\% chance that a random neighbor is one of the very highly connected nodes. Let's compute the mean excess degree
+\eqa{
+q&=&\sum k q_k \\
+ &=&\sum k (0.2 \delta_{k,19} + 0.8 \delta_{k,89}) \\
+ &=&\sum (19\cdot 0.2 \delta_{k,19} + 89 \cdot 0.8 \delta_{k,89}) \\
+ &=&\sum (3.8 \delta_{k,19} + 71.2 \delta_{k,89}) \\
+ &=&3.8+71.2 = 75.
+}
+So, we expect person X to infect in average 75 other people. This answers part (a) of the question. 
+
+\subquestion 
+What is the expected number of people that are infected by the people that X infects (assume a locally treelike network $c=0$) 
+
+\solution
+In part (b) we are asked for the expected number of people that those 75 people infect. Since the 75 infected have been infected via a link, we can expect them to be typical neighbors so each of these people is expected to infect 75 other people in turn. Hence the answer to part (b) is $75\cdot75=5,625$. In this part we have used the treelike assumption ($c=0$).
+
+\subquestion 
+Why are these estimates only valid for the early stage of the pandemic?
+
+\solution
+If we were considering later stages then the disease would have spread widely, so we would have to take into account that some of X's contacts may be already infected, which means that X can't infect them anymore. During the early stage of the disease this is not a problem because we know that almost nobody is infected. 
+
+I am writing this solution on March 28, 2020. I haven't left my house for nearly two weeks as I am self-isolating during the CoViD-19 pandemic. The zombie disease considered in this exercise is much more virulent than Covid, but the same mathematics apply. Today the official number of infected in the US is 100.000. Even this high number means that a randomly picked person in the US is infected is only 0.3\%, so our assumption the that none of X's contacts are infected before X infects them is still a very good approximation. 

@@ -1,0 +1,24 @@
+\exercise{Kroneckerisms\label{exFriendsKroneckerisms}}{1}
+Compute the following sums:
+\eqn{\mbox{a) }\sum k\delta_{k,3}\quad\quad 
+\mbox{b) }\sum k\delta_{k+1,2}\quad\quad
+\mbox{c) } \sum 3\delta_{k,5}\quad\quad
+\mbox{d) }\sum 4k(\delta_{k,2} - \delta_{k,1})}
+
+\solution
+For part (a), we just sum (starting at $k=0$),
+\eq{\sum k\delta_{k,3} = 0 + 0 + 0 + 3 + 0 + \ldots = 3 }
+Alternatively, we could have used the value substitution and vanishing trick rules, which yields the same result directly.
+
+For part (b) we compute
+\eq{\sum k\delta_{k+1,2} = \sum k\delta_{k,1} = 1}
+We used maths-in-the-index to subtract 1 from both sides of the index, then value substitution and vanishing act to get the result.
+
+For part (c),
+\eq{\sum 3\delta_{k,5} = 3}
+This was a straight forward vanishing act. Still many people get this one wrong because it is `too simple,' If you fell for it, verify the result is right by writing the relevant terms of the sum explicitly.
+
+For part (d),
+\eq{\sum 4k(\delta_{k,2} - \delta_{k,1}) = \left(\sum 8\delta_{k,2}\right) -    \left(\sum 4\delta_{k,1}\right)=4} 
+Splitting the sum and value substitution in the first step, then and the vanishing trick in the second step.
+

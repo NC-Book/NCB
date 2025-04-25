@@ -1,0 +1,71 @@
+
+\exercise{Degree Correlations \label{exFriendsDegreeCorr}}{4}
+In a sufficiently random network the expected degree of a random neighbor of a random node is $k_{\rm nn}=q+1$. However, this isn't true if the nodes are connected in a specific way that causes strong assortativity/disassortativity.
+\subquestion
+For illustration, compute the average degree of a random neighbor of a random node, $k_{\rm nn}$, for the star network from \vs{Fig.~\ref{figFriendsTwoExamples}B.}{the following network: 
+\begin{center}
+\includegraphics[width=0.3\textwidth]{star}    
+\end{center}
+}
+Compare $k_{\rm nn}$ to $q$.
+
+\solution
+If we pick a random node in the network then we get the hub node with probability $1/10$. If we then pick a random neighbor we are guaranteed to get a neighbor with degree 1. With probability $9/10$ we pick one of the peripheral nodes, if we then pick a random neighbor this neighbor will always be the hub, so we will end up with a node of degree $9$. So the expected degree of a random neighbor of a random node is 
+\eq{
+k_{\rm nn} = \frac{1}{10} 1 + \frac{9}{10}9 = 8.2
+}
+Due to the strong disassortativity in this network this significantly greater than $q=4$ which we know from the \vs{chapter}{lecture}. 
+
+\subquestion
+Suppose the degree distribution of a network is $p_k$ and the probability that a neighbor of a node with degree $k$ has degree $j$ is $x_{k,j}$. Find a general formula for $k_{\rm nn}$. 
+
+\solution
+To arrive at the general formula, let's first compute the expected degree of the neighbors of a node of degree $k$. We can write this as 
+\eq{
+\sum_j j x_{k,j}. 
+}
+Now if we randomly pick a node we end up picking a node with degree $k$ with probability $p_k$. Summing over all possibilities we find 
+\eq{
+k_{\rm nn} = \sum_k p_k \sum_j j x_{k,j}. 
+}
+
+\subquestion
+Write $p_k$ and $x_{k,j}$ for network B in terms of Kronecker deltas and show that your formula for $k_{\rm nn}$ yields the expected result. 
+
+\solution
+We already know that the degree distribution of the network can be written as 
+\eq{
+p_k = \frac{1}{10} \delta_{k,9} +\frac{9}{10} \delta_{k,1}
+}
+To also find an expression for $x_{k,j}$, we can see from the network that the neighbors of all nodes of degree one have degree 9 with probability 1 
+\eq{
+x_{1,9} = 1.
+}
+Likewise, a random neighbor of a node of degree 9 has degree 1 with probability 1, i.e.
+\eq{
+x_{9,1} = 1.
+}
+All other $x_{k,j}$ are zero. (Well, actually properties such as $x_{4,5}$ are undefined as there are no nodes of degree 4 in the network, but we can treat them as zero). Hence we can write
+\eq{
+x_{k,j} = \delta_{k,1}\delta_{j,9}+\delta_{k,9}\delta_{j,1}
+}
+Have you figured this out yourself? If yes, well done, if no take a moment to substitute some pairs of numbers $(k,j)$ into this formula and to convince yourself that this is correct. 
+
+Let's substitute $x_{k,j}$ and into our formula 
+\eqa{
+   k_{\rm nn} &=& \sum_k p_k \sum_j j x_{k,j} \\
+     &=&  \sum_k p_k \sum_j j \left(\delta_{k,1}\delta_{j,9}+\delta_{k,9}\delta_{j,1} \right) \\
+     &=& \sum_k p_k \sum_j j \delta_{k,1}\delta_{j,9}+ j \delta_{k,9}\delta_{j,1}. 
+}
+We use the substitution trick-vanishing act combo, first for $j$ and then for $k$, which yields
+\eqa{
+   k_{\rm nn} &=& \sum_k p_k \left( 9 \delta_{k,1}+ \delta_{k,9} \right)\\
+     &=& \sum_k p_k \left( 9 \delta_{k,1}+ \delta_{k,9} \right)\\ 
+     &=& \left(\sum_k 9p_k \delta_{k_1}\right) + \left(\sum_k p_k \delta_{k,9} \right) \\
+     &=& 9p_1 + p_9.
+}
+Of course we could have substituted $p_k$ in already earlier, but waiting with this saved us some writing. So, the last thing to do now is to plug in $p_k$ to find
+\eq{
+   k_{\rm nn} = 9 \frac{9}{10} + \frac{1}{10} = 8.2,
+}
+which is the expected result. 

@@ -1,0 +1,31 @@
+\exercise{Manhattan \label{exFriendsManhattan}}{3}
+In a city every road junction is a 4-way intersection. Write the degree distribution $p_k$ for the network where intersections are represented by nodes and the road segments connecting them are links. Then show mathematically that $z=4$ and $q=3$. 
+
+\solution
+Since every intersection connects to 4 roads, every node has degree 4, and hence 
+\eq{
+p_k = \delta_{4,k}.
+}
+To compute the mean degree mathematically we use 
+\eqa{
+z&=&\sum k p_k \\ 
+ &=&\sum k \delta_{4,k} \\
+ &=&\sum 4 \delta_{4,k} \\
+ &=& 4.
+}
+This shows that we should expect that a randomly chosen intersection connects to 4 roads. No big surprise, since this is true for every intersection individually.
+
+To find the mean excess degree $q$ we first find the excess degree distribution
+\eqa{
+q_k&=&(k+1)p_{k+1}/z \\
+ &=&(k+1)\delta_{4,k+1}/4 \\
+ &=& \delta_{4,k+1} \\
+ &=& \delta_{3,k}.
+}
+We can now compute the mean excess degree 
+\eqa{
+q&=& \sum k q_k \\
+ &=& \sum k \delta_{3,k} \\
+ &=& 3.
+}
+So our expectation is that if we follow a random link then we will find three further links at the next intersection (i.e.~go straight, turn right, turn left). Again this isn't a big surprise, but it is good to see that the maths works out correctly. 
