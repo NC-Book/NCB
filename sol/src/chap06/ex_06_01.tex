@@ -1,0 +1,39 @@
+\exercise{From case-wise to Kronecker and back\label{exFriendsNotation}}{1}
+Write the following case-wise distributions using the Kronecker delta notation:
+
+\eqn{
+  \mbox{a)}\quad p_k = \left\{ \begin{array}{l c l} 3/4 &~& \mbox{if $k=4$}  \\ 1/4 & & \mbox{if $k=8$} \\ 0 & & \mbox{otherwise} \end{array}\right.}
+\eqn{
+\mbox{b)}\quad
+p_k = \left\{ \begin{array}{l c l} 1/3 &~& \mbox{if $k=3$}  \\
+1/3 & & \mbox{if $k=4$} \\ 
+1/3 & & \mbox{if $k=14$} \\
+0 & & \mbox{otherwise} \end{array}\right.
+}
+Then, write the following distributions using the case-wise notation:
+\eqn{
+\mbox{c)}\quad p_k=\frac16 \delta_{k,1} + \frac13 \delta_{k,2} + \frac12 \delta_{k,3}\quad\quad\quad \mbox{d)}\quad p_k=\frac15 \delta_{k,5} + \frac45 \delta_{k,10} 
+}
+
+\solution
+For part (a) we find 
+\eq{
+p_k=\frac34 \delta_{k,4} + \frac14 \delta_{k,8},
+}
+and similarly for (b),
+\eq{
+p_k=\frac13 \delta_{k,3} + \frac13 \delta_{k,4} + \frac13 \delta_{k,14}.
+}
+Now we are going backwards and convert to case-wise notation. For (c) we get
+\eq{
+p_k = \left\{ \begin{array}{l c l} 1/5 &~& \mbox{if $k=5$}  \\
+4/3 & & \mbox{if $k=10$} \\ 
+0 & & \mbox{otherwise} \end{array}\right. .
+}
+Likewise for (d),
+\eq{
+p_k = \left\{ \begin{array}{l c l} 1/6 &~& \mbox{if $k=1$}  \\
+1/3 & & \mbox{if $k=2$} \\ 
+1/2 & & \mbox{if $k=3$} \\
+0 & & \mbox{otherwise} \end{array}\right. .
+}

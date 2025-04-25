@@ -1,0 +1,21 @@
+
+\exercise{Mean degree \label{exFriendsMeanDegree}}{2}
+For the networks described by the two degree distributions from Ex.~6.1 (a) and (b) compute the mean degree, $z=\sum k p_k$.  
+
+\solution
+Using the results of Ex.~6.1 we can write the mean degree for the first network (from Ex.~6.1a) as 
+\eqa{
+z&=& \sum k p_k \\
+ &=& \sum k \left(\frac34 \delta_{k,4} + \frac14  \delta_{k,8}\right) \\
+ &=& \frac34 \left( \sum k \delta_{k,4} \right) + \frac14 \left( \sum k \delta_{k,8}\right) \\
+ &=& \frac34 \left( \sum 4 \delta_{k,4} \right) + \frac14 \left( \sum 8 \delta_{k,8}\right) \\ 
+ &=& \frac{12}4 + \frac84 = \frac{20}4 = 5. 
+}
+Similarly for the second network (from Ex.~6.1b) 
+\eqa{
+z &=& \sum k p_p \\
+  &=& \sum k \left(\frac13 \delta_{k,3} + \frac13 \delta_{k,4} + \frac13 \delta_{k,14} \right) \\
+  &=& \frac13\left(\sum k \delta_{k,3}\right) + \frac13\left(\sum k \delta_{k,4}\right) + \frac13\left(\sum k\delta_{k,14}\right)  \\  
+  &=& \frac13\left(\sum 3 \delta_{k,3}\right) + \frac13\left(\sum 4 \delta_{k,4}\right) + \frac13\left(\sum 14\delta_{k,14}\right)  \\  
+  &=& \frac33 + \frac43 + \frac{14}3 = \frac{21}3 = 7.
+}

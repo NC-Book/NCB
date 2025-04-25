@@ -1,0 +1,55 @@
+
+\exercise{Mean excess degree \label{exFriendsQ}}{2}
+We continue to explore the two networks from Ex.~6.1 (a) and (b). Now, compute the excess degree distribution $q_k=(k+1)p_{k+1}/z$ and the mean excess degree $q=\sum k q_k$. Note that we want to write the excess degree distribution such that $k$ appears only in the index of Kronecker deltas.
+
+\solution
+For the first of the two networks we already know from Ex.~6.1a, 
+\eq{
+p_k=\frac34 \delta_{k,4} + \frac14 \delta_{k,8},
+}
+and we know from Ex.~6.4,
+\eq{
+z=5.
+}
+We can now compute the excess degree distribution
+\eqa{
+q_k &=& (k+1)p_{k+1}/z \\
+ &=& (k+1)\left( \frac34 \delta_{k+1,4} + \frac14 \delta_{k+1,8} \right)/5 \\
+ &=& \frac{3(k+1)}{20} \delta_{k+1,4} + \frac{k+1}{20} \delta_{k+1,8}  \\
+ &=& \frac{12}{20} \delta_{k+1,4} + \frac{8}{20} \delta_{k+1,8}  \\
+ &=& \frac{3}{5} \delta_{k+1,4} + \frac{2}{5} \delta_{k+1,8}  \\
+ &=& \frac{3}{5} \delta_{k,3} + \frac{2}{5} \delta_{k,7}.  
+}
+Now that we have found this convenient form for $q_k$ we can compute compute
+\eqa{
+q&=&\sum k q_k \\
+ &=&\sum k \left(\frac{3}{5} \delta_{k,3} + \frac{2}{5} \delta_{k,7} \right)\\
+ &=&\frac{3}{5} k \delta_{k,3}  + \frac{2}{5} k delta_{k,7} \\
+ &=&\frac{3}{5} 3 \delta_{k,3}  + \frac{2}{5} 7 delta_{k,7} \\
+ &=&\frac{9}{5} + \frac{14}{5} = \frac{23}{5}.
+}
+
+For the second network we know from Ex.~6.1b,
+\eq{
+p_k=\frac13 \delta_{k,3} + \frac13 \delta_{k,4} + \frac13 \delta_{k,14},
+}
+and from Ex.~6.4, 
+\eq{
+z=7.
+}
+We now compute the excess degree distribution 
+\eqa{
+q_k &=& (k+1)p_{k+1}/z \\
+ &=& (k+1)\left(\frac13 \delta_{k+1,3} + \frac13 \delta_{k+1,4} + \frac13 \delta_{k+1,14}\right)/7 \\
+ &=& \frac{k+1}{21} \delta_{k+1,3} + \frac{k+1}{21}\delta_{k+1,4} + \frac{k+1}{21} \delta_{k+1,14} \\
+ &=& \frac3{21} \delta_{k+1,3} + \frac4{21}\delta_{k+1,4} + \frac{14}{21} 14\delta_{k+1,14} \\
+ &=& \frac3{21} \delta_{k,2} + \frac4{21}\delta_{k,3} + \frac{14}{21} 14\delta_{k,13},
+ }
+and the mean excess degree
+\eqa{
+q&=&\sum k q_k \\
+ &=&\sum k \left(\frac3{21} \delta_{k,2} + \frac4{21}\delta_{k,3} + \frac{14}{21} 14\delta_{k,13} \right) \\
+ &=& \frac{3}{21}\left(\sum k \delta_{k,2}\right) + \frac4{21}\left(\sum k\delta_{k,3}\right) + \frac{14}{21}\left(\sum k \delta_{k,13} \right) \\
+ &=& \frac{3}{21}\left(\sum 2 \delta_{k,2}\right) + \frac4{21}\left(\sum 3\delta_{k,3}\right) + \frac{14}{21}\left(\sum 13 \delta_{k,13} \right) \\ 
+ &=& \frac{6}{21} + \frac{12}{21} + \frac{182}{21} = \frac{200}{21} = 9 \frac{11}{21}.
+}

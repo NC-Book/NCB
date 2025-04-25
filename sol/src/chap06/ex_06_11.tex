@@ -1,0 +1,30 @@
+\exercise{Normalization proof\label{exFriendsProof}}{4}
+Suppose we start with a correctly normalized degree distribution $p_k$, such that $\sum p_k=1$. If we calculate the corresponding excess degree distribution $q_k$ we should get a distribution that is a proper probability distribution. Meaning it is also correctly normalized. But can you actually show that $\sum q_k=1$, for every $p_k$ that meets the normalization condition? 
+
+\solution
+We know 
+\eq{
+\sum p_k = 1
+}
+and we want to show
+\eq{
+\sum q_k = 1.
+}
+Our starting point is 
+\eq{
+q_k = (k+1)p_{k+1}/z
+}
+If we sum the this equation over $k$ we get 
+\eq{
+\sum q_k = \sum (k+1)p_{k+1}/z  
+}
+So far we have the expression we want on the left-hand-side. Now we need to show the right-hand side equals 1. Because $z$ appears our hope is that the other symbols that appear will somehow cancel the $z$. We know $\sum kp_k=z$, so lets try to use this. We pull the $z$ out of the sum and shift the index in the sum on the right-hand-side such that $k+1$ becomes $k$. This gives us
+\eq{
+\sum q_k = \frac1z \sum kp_{k}.
+}
+When we do the shifting we need to be careful that we don't lose or gain an edge term, but in this case we can verify that the sum started $1p_1+\ldots$ before the shift and now it starts $0p_0+1p_1+\ldots$, which is the same, so all is okay. 
+
+We now substitute $\sum kp_k=z$ which yields desired result
+\eq{
+\sum q_k = \frac1z \sum kp_{k} = \frac{z}{z}=1.
+}
