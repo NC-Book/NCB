@@ -1,0 +1,10 @@
+\exercise{3-chains done differently}{3}
+Let's try to estimate the number of 3-chains in an ER graph in a different way. Revisit the reasoning from Chap.~5 regarding the number of nodes that we find at distance 2 from a typical node. 
+Use this type of reasoning to estimate the number of 3-chains in the network. Show that the resulting estimate is consistent with $n_{--}$ from the present chapter.   
+
+\solution
+A typical node has $z$ neighbors. Because we reach these neighbors via a link we can expect them to have $q$ neighbors each. So there are $qz$ nodes at distance 2 from a typical node. In other words there are $qz$ 3-chains starting in a typical node. In the whole network we have $N$ nodes. So multiplying yields $Nzq$. But, now we are counting any 3-chain twice (once from each end). So we need to divide by two. Using that $q=z$ in the ER graph we arrive at  
+\eq{
+n_{--} = \frac{Nz^2}{2}
+}
+which is the same result the same result that we found in the chapter in a different way.

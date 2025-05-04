@@ -1,0 +1,62 @@
+
+
+\exercise{Degree distribution of ER graphs \label{exRGdegreedist}}{2}
+We discovered that the degree distribution of ER graphs can be written as $p_k=z^{k}\exp{-z}/{k!}$.
+
+\subquestion 
+Show that $p_k$ is a correctly normalized probability distribution. (i.e.~$\sum p_k=1$)
+
+\solution
+We compute 
+\eqa{
+\sum p_k &=& \sum \frac{z^{k}\exp{-z}}{k!} \\
+  &=&  \exp{-z} \sum \frac{z^{k}}{k!} \\
+  &=&  \exp{-z}\exp{z} = 1 
+}
+as it should be. In the second step we were able to pull $\exp{-z}$ out of the sum as it does not depend on $k$. Thereafter we used the 
+$\sum x^k /k! = \exp{x}$ from the chapter. 
+
+\subquestion
+Compute the mean degree from $p_k$ to confirm that it is $z$.
+
+\solution
+In this case we compute
+\eq{
+\sum kp_k = \sum k\frac{z^{k}\exp{-z}}{k!} = \exp{-z} \sum k\frac{z^{k}}{k!} 
+}
+Again we pulled $\exp{-z}$ out of the sum, however we can't do the same to $k$ because it depends on $k$ (in fact, it is $k$, and outside the sum we wouldn't know what it's value is). 
+Note however that the last factor of the factorial in the denominator is also $k$, so unless $k=0$ we can cancel these $k$'s. Now our sum starts with a $k=0$ term but this term is actually 0. So we can just ignore it, start the sum at $k=1$ and do the cancellation of the $k$
+\eq{
+\sum kp_k = \exp{-z} \sum_{k=1}^\infty \frac{z^{k}}{(k-1)!} 
+}
+If we haven't done it already, now is the time to think how we are going to turn this equation into something nice. We need some way to 
+take care of the sum. Our best shot is again to apply $\sum x^k/k!=\exp{x}$. So we would like to have a $k!$ in the denominator, not $(k-1)!$. We could try expanding the whole fraction by $k$ but that would just undo the simplifiation we just did. Instead, let's try shifting the index. 
+\eq{
+\sum kp_k = \exp{-z} \sum \frac{z^{k+1}}{k!} 
+}
+where the summation starts again at zero. We are now almost where we wanted to go but there is a factor of $z$ too much in the numerator. Fortunately we can just pull this out of the sum
+\eq{
+\sum kp_k = z \exp{-z}  \sum \frac{z^k}{k!} 
+}
+Now we can apply the series expansion backwards to arrive at the result
+\eq{
+\sum kp_k = z \exp{-z} \exp{z}= z
+}
+The mean degree is $z$ as expected. 
+
+\subquestion
+Finally, compute the excess degree distribution $q_k$ and the mean excess degree $q$.
+
+\solution
+This one is fun: We just substitute in the Poisson distribution into our formula for $q_k$ from the previous chapter and simplify
+\eqa{
+q_k &=& \frac{(k+1)}{z}p_{k+1} \\
+  &=& \frac{(k+1)}{z} \frac{z^{k+1}\exp{-z}}{(k+1)!} \\
+  &=& (k+1) \frac{z^{k}\exp{-z}}{(k+1)!} \\
+  &=& \frac{z^{k}\exp{-z}}{k!} = p_k 
+}
+The excess degree distribution is exactly identical to the degree distribution. Therefore, the mean excess degree must also be identical to the mean degree,
+\eq{
+q=\sum k q_k = \sum k p_k = z 
+}
+

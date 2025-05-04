@@ -1,0 +1,14 @@
+\exercise{3-chains in yet another way}{4}
+Let's estimate the number of three-chains in large network in yet another way:
+This time we argue from the perspective of links. So we pick two links from the network and then ask if these to links happen to be incident on the same node, such that they form a three node chain. Then we check the next pair of links, and so on, until we have checked all possible pairs of links that can be picked from the network. Does this way of thinking also give you a formula for the number of three node chains?   
+
+\solution
+Since the number of links is $K$ there are approximately $K(K-1)/2$ ways to pick two links. 
+
+Now assume we have two links, which we call `link 1' and `link 2.' The probability that the first endpoint of link 1 is on the same node as the first endpoint of link 2 $1/N$. Since their are four such combination that would put an endpoint of link one on the same node as an endpoint of link 2 the probability that the links form a three chain is $4/N$. 
+
+If we multiply the number of pairs of links with the probability that a given pair is a three-chain, we get
+\eq{
+n_{--}=\frac{4}{N}\frac{K(K-1)}{2} \approx \left(\frac{2K}{N}\right)^2\frac{N}{2}=\frac{Nz^2}{2}
+}
+which is the same as before. Note that no additional symmetry factors appears because we already taken care of the respective symmetry when we included the 2 in the denominator when we computed the number of pairs of links. (This last point is admittedly tricky.)
