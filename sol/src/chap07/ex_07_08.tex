@@ -1,0 +1,17 @@
+
+\exercise{Apparent competition}{4}
+Food webs are the networks of who-eats-who in ecology. In these networks the nodes represent species and directed links between them are predator-prey interactions. An important ecological motif is the `apparent competition' motif, which consists of one species feeding on two other species. How many apparent competition motifs would we expect in a (small) network of $N$ species and $K$ predator-prey links if the links were distributed randomly. 
+
+\solution
+
+The quick way to find the answer is to treat this an an undirected network and compute the number of three chains, which we know to be 
+\eq{
+n_{--}=\frac{Nz^2}{2}
+}
+Not every three-chain will be an apparent competition motif as the directed links have to be aligned in the right way (otherwise we could have a predator eating two prey species or a food chain of three species). 
+
+A three-chain consists of one central node and two peripheral nodes. A three-chain is an apparent competition motif if the two peripheral nodes are prey of the central node. Since we are assuming that the links are placed randomly, each of the two links points in the right direction with 50\% probability. Hence the expected number of apparent competition motifs is 
+\eq{
+n_{\rm ac} = \frac{Nz^2}{8} = \frac{4NK^2}{8N^2} = \frac{K^2}{2N} 
+}
+This result scales quadratically with the number of links but inversely with the number of nodes. This shows that in larger food webs apparent competition motifs become more and more numerous. Studies of food web dynamics show that these motif have important effects of the stability of large food webs. 
