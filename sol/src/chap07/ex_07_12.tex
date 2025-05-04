@@ -1,0 +1,43 @@
+\exercise{Counting lollypops}{4}
+The lolly motif consists of a 4-cycle with an additional link attached to the nodes in the cycle ($\diamond -$). 
+
+\subquestion Use the formula from the lecture to estimate the number of lolly motifs, $n_{\diamond -}$, in a large network with given $z$. 
+
+\solution
+The lolly motif has $n=5$, $k=5$, $s=2$. The $s=2$ can be worked out by checking carefully how many ways there are to assign numbers to the nodes such that we get the same motif using the same links (only two). Or we can guess it based on the mirror symmetry of the motif (works as well). Using the formula for the number of motifs we can now write the solution
+\eq{
+n_{\diamond -} = \frac{z^k}{s}N^{n-k} = \frac{z^5}{2}
+}
+
+\subquestion Now suppose that we already know the number of four-cycles, $n_{\square}$ in our network. Think about the probability that a given four-cycle has an additional node attached to it, so that it is part of a lolly. Use this approach to estimate for the number of lolly motifs based on $n_{\square}$ and $z$. 
+
+\solution We follow the same reasoning as in the chapter. There are in total $n_\square$ four-cycles that could be part of one or more lolly. Also the network has $N-4\approx N$ nodes which to which each four-cycle could connect to form a lolly. 
+
+We can now imagine that we pick one four-cycle and one additional node at the time and check if the are linked so that they make a lolly. The number of these tests that we need to carry out to check all combinations of four-cycles and nodes is approximately $Nn_{\square}$. 
+
+The probability that a given node links to a given four-cycle is $4p$, because there are 4 nodes in the cycle that we can potentially link to and the link to each of the 4 nodes was placed with probability $p$ in the network creation. 
+Multiplying this probability with the number cycle-node combinations that we check gives us
+\eq{
+n_{\diamond -} = 4p N n_{\square} \approx 4z n_{\square}
+}
+Note that there is no additional symmetry factor. The symmetry of the four-cycle is already accounted for in the number of squares. If anything we reduce the symmetry by turning a four-cycle into a lolly. This reduction in symmetry is another way of explaining why the factor 4 appears (4-cycle $s=8$ becomes lolly $s=2$). 
+
+\subquestion Now, substitute the estimate for the number of 4-cycles from  Ex.~7.4 into your solution from (b) and show that the result is consistent with part (a).  
+
+\solution 
+We know from above that the number of expected number of four-cycles is 
+\eq{
+n_{\square} = \frac{z^4}{8} 
+}
+substitution into 
+\eq{
+n_{\diamond -} = 4z n_{\square}
+}
+yields
+\eq{
+n_{\diamond -} = 4z \frac{z^4}{8} = \frac{z^5}{2}
+}
+which is the same result as in (a).
+
+\solutionend
+

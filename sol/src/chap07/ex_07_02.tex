@@ -1,0 +1,29 @@
+
+
+\exercise{Combinatorics \label{exRGbinomial}}{2}
+Compute the following: 
+
+\subquestion 
+In the German Democratic Republic there were four ice cream flavours. So, how many different ways were there to make an ice cream cone containing two scoops of different flavors? Assume the order of scoops does not matter.
+
+\solution
+We have four option for the first flavor, three for the second. So there are 12 different sequences in which we can put two flavors in the cone. However, the question actually asks for the number of different sets, so we are double counting by a factor 2. So, in total there were 6 different cones with 2 flavors. (We get the same result from the Binomial formula $B(4,2)=6$) 
+
+\subquestion
+As part of their degree program students have to pick three optional courses. In total 20 optional courses are offered. How many possible combinations of three of these courses exist?
+\solution
+The Binomial formula gives us the result 
+\eq{
+\frac{20!}{17!3!}=\frac{20\cdot 19 \cdot 18}{3\cdot 2\cdot 1}= \frac{6840}{6}=1140  
+}
+ 
+\subquestion 
+On a lottery ticket you can pick 6 numbers out of 49. How many possible combinations are there?
+
+\solution
+This one is a bit nasty because $49!$ is unwieldy as a number. Fortunately we know how to simplify,
+\eq{
+B(49,6) = \frac{49!}{43! \cdot 6!} = \frac{49\cdot 48\cdot 47\cdot 46\cdot 45 \cdot 44}{6!} = \frac{10068347520}{720}=13983816 
+}
+which isn't even so much compared to some of the other number that we have encountered in the previous chapters. 
+
