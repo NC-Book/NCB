@@ -1,0 +1,47 @@
+
+\exercise{Poisson approximation}{4}
+Using approximations from the chapter and 
+\eq{
+(1+x)^n \approx \exp{xn}
+}
+for small $x$ show that the Binomial distribution can be approximated by the Poisson distribution. 
+
+\solution
+We start with the Binomial distribution 
+\eq{
+p_k = p^kq^{N-1-k} B(N-1-k)
+}
+and use the approximation for $B$ from the chapter
+\eq{
+B(N,n) \approx \frac{N^n}{n!}.
+}
+So in the present case 
+\eq{
+B(N-1,k) \approx \frac{(N-1)^k}{k!}.
+}
+Substituting into $p_k$ this yields 
+\eqa{
+p_k &\approx& p^kq^{N-1-k} \frac{(N-1)^k}{k!} \\
+  & = &  \frac{(p(N-1))^k}{k!} q^{N-1-k} \\
+  & = &  \frac{z^k}{k!} q^{N-1-k}
+}
+The fraction that appears is starting to look like a Poisson distribution, but we are still lacking a factor $\exp{-z}$. The question actually gives us a hint where to find it. To use
+\eq{
+(1+x)^n \approx \exp{xn}
+}
+We rewrite the factor $q^{N-1-k}$ that appears in the distribution: 
+\eqa{
+q^{N-1-k} &=& (1-p)^{N-1-k} \\
+  &\approx& \exp{-p(N-1-k)} \\
+  &=& \exp{-z}\exp{pk}  \\
+  &\approx & \exp{-z} 
+}
+In the last step we have used that for large $N$, $pk=zk/(1-N)$ goes to zero and hence $\exp{pk}\approx 1$. Substituting 
+\eq{
+q^{N-1-k} \approx \exp{-z}
+}
+into our equation for $p_k$ yields the desired Poisson distribution
+\eq{
+p_k = \frac{z^k\exp{-z}}{k!} 
+}
+As approximations go, this derivation was relatively crude. A more careful analysis reveals that the Poisson approximation is actually much better than this derivation suggests: The inaccuracies introduced by the three approximation steps we used here actually largely cancel each other such that the result is very precise.    

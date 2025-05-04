@@ -1,0 +1,13 @@
+\exercise{Independence \label{exRGindependence}}{1}
+One problem of the G(n,M) is statistical interdependence between links. Suppose we have a simple graph with $N=3$ nodes and $K=2$ links. 
+\subquestion
+Compute the probability that there is a link between node 1 and node 2.
+
+\solution
+There are three pairs of nodes in the network. Two of these pairs have a link connecting them. So the probability for any pair is $2/3$. 
+
+\subquestion 
+Suppose you know that there is a link between nodes 2 and 3, what is the probability for a link between node 1 and 2 now?
+
+\solution
+Since we already know about one link, the only other link will be either between nodes 1 and 2 or between nodes 1 and 3. Both of these possibilities are equally likely, so the probability is now $1/2$. Hence, knowing one link has changed the probabilities for the existence of other links. If we want exact results on the expected number of motifs, then we need to take this dependence between the links into account in calculations. By contrast studying motifs in G(n,p) networks is easier because here the probability for a link between a given pair of nodes is always $p$ and never changes irrespective of what other links we might already know.  
