@@ -9,7 +9,7 @@ Videos for the following lectures are currently available on YouTube:
   
 ## Part 2: Network physics and network structure
 - 05 - The small world [part 1](https://youtu.be/8Q5kUlGxe6g)
-- 06 - Friends of friends [part 1](https://youtu.be/2X0Q8n2HHVs)
+- 06 - Friendship paradox [part 1](https://youtu.be/2X0Q8n2HHVs)
 - 10 - Attacks on networks [part 1](https://youtu.be/5pAILvyFoNw)
 
 ## Part 3: Dynamical systems and bifurcations
