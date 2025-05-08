@@ -1,0 +1,29 @@
+
+\exercise{Abstract component sizes\label{exCowsAbstractComp}}{2}
+Compute the expected size in of the component of a randomly picked node in an ER network with
+
+\subquestion $z=0.1$
+
+\solution 
+For (a) and (b) use the formula for the size of small components
+\eq{
+S=1+\frac{z}{1-q}
+}
+Because the network is an ER-graph, $z=q$. And hence in the case (a) we get 
+\eq{
+S=1+\frac{0.1}{0.9}\approx 1.1  
+}
+This makes sense, every component contains at least the randomly picked node. If the mean degree is 0.1, then we expect less than every 10th node to have a degree of 1. So only about every tenth randomly picked node will be in a component of size 2. The chances of picking a node that is in a component containing more than two nodes are very small. 
+
+\subquestion $z=0.9$
+
+\solution
+Now $z=q=0.9$. Substituting into the same equation as in (a) yields 
+\eq{
+S=1+\frac{0.1}{0.9}\approx 1  
+}
+and in the case (b)
+\eq{
+S=1+\frac{0.9}{0.1}= 10
+}
+As the mean degree approaches 1 the components are becoming larger quickly.

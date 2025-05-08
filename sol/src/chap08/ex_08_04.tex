@@ -1,0 +1,9 @@
+\exercise{Poissonian dictionary\label{exCowsPD}}{2}
+I have a Spanish-Spanish dictionary which I use to look up words, but when I look up a work there are typically a number of words in the explanation that I don't understand, so I have to look up their definitions as well. I noticed that the number of these words follows a Poisson distribution with mean $0.8$. Estimate the average number of words that I have to look up to understand the meaning of one word. 
+
+\solution
+We can think of the words that I don't know as the node in a (directed) network, where $z=q=0.8$. (The directionality of links does not make it more difficult in this case.) We can straightforwardly estimate the size of the component as
+\eq{
+S=1+\frac{0.8}{1-0.8} = 1+\frac{0.8}{0.2} = 5
+}
+So in average I have to look up five words to understand one word. 
