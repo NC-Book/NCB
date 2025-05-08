@@ -1,0 +1,37 @@
+
+\exercise{Giant components in ER networks \label{exCowsER}}{1}
+Derive the equation
+\eq{
+\label{eqCowsERb}
+v=\exp{(v-1)z}.
+}
+starting from 
+\eq{
+v=\sum q_k v^k.
+}
+Assume that the network is an ER random graph. 
+
+\solution
+
+ After substituting the poisson distribution for $q_k$ the equation reads
+\eq{
+v=\sum \frac{z^k\exp{-z}}{k!} v^k. 
+}
+Based on the experience from the previous chapter we know sums that contain factorials in the of the index in the denominator can often be dealt with by using the definition of the exponential series
+\eq{
+\sum \frac{x^k}{k!} =\exp{x}.
+}
+To bring the equation of interest into the right form we pull the $\exp{-z}$ out of the sum and collect the the factors that are raised to the exponent $k$, this gives us 
+\eq{
+v=\exp{-z} \sum \frac{(zv)^k}{k!}. 
+}
+Using the exponential series the sum now becomes $\exp{zu}$, and so
+\eq{
+u=\exp{-z}\exp{zu},
+}
+which we can also write as 
+\eq{
+v=\exp{z(v-1)}.
+}
+which is the derisred result.
+

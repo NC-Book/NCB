@@ -1,0 +1,48 @@
+\exercise{Peculiar networks}{4}
+Our estimate of the giant component transition relies on the networks being sufficiently random. If networks are constructed in a very particular way then the transition may happen at other values of $z$ and $q$. 
+
+To provide example construct networks that have...
+
+\subquestion $z>4$ but no giant component.
+
+\solution 
+Suppose our network is constructed as follows ``Divide the nodes into groups of 10. Every node is connected to every other node in the same group, but not to any other node.'' So every node will have degree $z=9$, but every component has size $S=10$. Hence there is no component that contains a finite fraction of nodes in the limit $N\to \infty$ despite the high mean degree.
+
+\subquestion $z<0.5$ but has a giant component
+
+\solution
+We could do the following: ``Select one tenth of all nodes, connect these nodes in a cycle. Leave all other nodes disconnected.'' The cycle will contain one tenth of the total number of nodes so its size scales with $N$, hence the cycle is a giant component. But the mean degree of the entire network (counting the disconnected nodes) is $z=0.2$.
+
+\subquestion
+$q>100$ no giant component. 
+
+\solution
+The key here is to recognize that our solution to part (a), almost gets us there. In the network from (a) following a link will always lead us to a node of degree 9, so the mean excess degree is $q=8$. So this is already much more than the mean excess degree of 1 where we expect the giant component to form. So let's stick with the same theme. To make the desired network we can do the following: 
+``Divide the nodes into groups of 102. Every node is connected to every other node in the same group, but not to any other node.''
+This gives us components of size 102, which is big, but because they contain only a finite number of nodes, even for $N\to \infty$, they are not giant components. At the same time the mean excess degree of the network is $q=101$. 
+
+\subquestion $q<0.001$ but a giant component.
+
+\solution This is by far the trickiest one. (Kudos if you figured it out!). In part (b) we saw that by adding isolated nodes we can bring the mean degree down as far as we want without destroying the giant component. But adding isolated nodes won't lower $q$. As we can't reach isolated nodes via a link, they won't affect $q$ at all. 
+
+This gives us a clue to the solution. Instead of isolated nodes we add isolated pairs. The nodes in a linked pair have excess degree 0 but they can be reached via a link so they will bring the mean excess degree down. 
+
+Let's try the following: ``Select one ten-thousands of the nodes and link them in a cycle. Partition the rest of the nodes into groups of two and link the nodes in each group (but place no other link.)''
+
+We can now verify that this meats the requirements. They cycle only contains $N/10000$ nodes, but that is still a finite fraction of $N$ so the cycle contains infinite nodes in the limit $N\to\infty$, so it is a giant component. The degree distribution is 
+\eq{
+p_k = \frac{1}{10^5} \delta{k,2} + \frac{9999}{10^5} \delta_{k,1}.
+}
+We compute 
+\eq{
+z=\sum k p_k = \frac{2 + 9999}{10^5} = \frac{10001}{10000}
+}
+and construct
+\eq{
+q_k = \frac{(k+1)p_{k+1}}{z} = \frac{2}{10001} \delta_{k,1} + \frac{9999}{10001} \delta_{k,0}.
+}
+We can now compute
+\eq{
+q=\sum k q_k = \frac{2}{10001} \approx 0.0002 < 0.001.
+}
+  

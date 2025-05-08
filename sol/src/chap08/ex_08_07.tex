@@ -1,0 +1,37 @@
+\exercise{Astrobiochemistry\label{exCowsAstro}}{3}
+Researchers want to estimate the density of the atmosphere of an extrasolar planet. They know that the atmosphere consists of 6\% carbon and 94\% Hydrogen. It is assumed that basically all of the atoms in the atmosphere are bound in molecules. Each carbon atom binds to four other atoms and each hydrogen atom binds to one other atom. Assume that the binding strength is irrelevant (the planet is quite hot). Use the method from the chapter to determine the size of the molecule we find typical Atoms in. 
+
+\solution
+Let's start by making a plan. It seems unlikely that a finite fraction of the atmosphere is bound up in one giant molecule. So we can guess we that this question is about small components, not giant components. This suggests we are ultimately going to find the answer via the equation for small component sizes
+\eq{
+S=1+\frac{z}{1-q}
+}
+To make this work, we need the mean degree $z$ and the mean excess degree $q$. From the past chapters we know how to find those quantities. So we will construct the degree distribution, then compute the mean degree, construct the excess degree distribution, find the mean excess degree and then use the equation above to estimate $S$. Let's go.
+
+The first step is the degree distribution, it is 
+\eq{
+p_k = 0.06 \delta_{4,k} + 0.94 \delta_{1,k}
+}
+
+Step two is computing the mean degree. We do this in the usual way
+\eq{
+z=\sum k p_k = 4 \cdot 0.06 + 1 \cdot 0.94 = 0.24+0.94=1.18 
+}
+
+Step three: We construct the excess degree distribution 
+\eq{
+q_k =\frac{(k+1)p_{k+1}}{z} =  \frac{4\cdot0.06 \delta_{3,k} + 1\cdot0.94 \delta_{0,k}}{1.18} = 
+\frac{0.24 \delta_{3,k} + 0.94 \delta_{0,k}}{1.18} 
+}
+and the mean excess degree
+\eq{
+q=\sum k q_k = 3 \cdot \frac{0.24}{1.18} = \frac{3\cdot 24}{118} = 
+\frac{36}{59}
+}
+It is good to see that the mean excess degree is less than 1. Otherwise we would get some giant molecule. 
+
+Step five. All that is left to do now is to apply the component size formula
+\eq{
+S= 1 + \frac{z}{1-q} = 1 + \frac{1.18}{1-36/59} = 1 + \frac{1.18}{23/59} \approx 4
+}
+So a typical atom is in a molecule consisting of four atoms. Of course no molecule will have exactly four atoms. We can guess that the atmosphere is a mixture of methane (1 Carbon + 4 Hydrogen) and hydrogen gas (2 Hydrogen atoms). 
