@@ -1,0 +1,34 @@
+\exercise{Hypergraph components}{4}
+Hypergraphs are networks, where links connect more than two nodes. 
+(Imagine them as multi-way connectors). Compute the giant component size in a hypergraph where half of the nodes have degree 1, half the nodes have degree 3 and each link connects exactly 3 nodes.
+
+\solution
+We follow the same approach as in the chapter, however for every link the node now has two chances to connect to the giant component.
+So we write
+\eqa{
+s=1-\sum p_k v^{2k}
+v=\sum q_k v^{2k}
+}
+We also know the degree distribution 
+\eq{
+p_k = \frac{1}{2}\delta_{k,1}+\frac{1}{2}\delta_{k,3}
+}
+and we can therefore compute the mean degree $z=2$ and the excess degree distribution
+\eq{
+q_k=\frac{(k+1)p_{k+1}}{z} = \frac{1}{4} \delta_{k,0} + \frac{3}{4}\delta_{k,2}  
+}
+Substituting into the self-consistency condition for $v$ yields
+\eq{
+v=\frac{1}{4}+\frac{3}{4}v^4 
+}
+This suggests that $v\approx 1/4$, indeed iteration reveals 
+$v\approx 0.2530765865$. This is close enough that I am happy to continue with $v=1/4$. We now substitute into the equation for the giant component size
+\eqa{
+s&=&1-\frac{1}{2}v^2 - \frac{1}{2}v^6 \\
+ &=&1-\frac{1}{2}\frac{1}{4^2}-\frac{1}{2}\frac{1}{4^6}  \\
+ &=&1-2^{-5}-2^{-13}=0.9686
+}
+Using the numerical value from the iteration instead yields $0.9678$. 
+
+Predictably the three-way connectors are pretty good and holding this network together, leading to a giant component that spans 96\%
+of the network. 

@@ -1,0 +1,78 @@
+\exercise{Sexual contact network}{3}
+Extensive surveys found that typical people have had 5 sexual partners. 
+
+\subquestion Does the human sexual contact network have a giant component? And, if yes what proportion of people would you expect to be in the giant component, assuming that the network is an ER random graph? 
+
+\solution
+With mean degree $z=5$, we expect a giant component. (Also sexually transmitted diseases would not survive if there wasn't one.). 
+
+To estimate the size of the giant component we start at an initial guess of $s_0=0.5$ and iterate 
+\eq{
+s_{i+1}= 1-\exp{-5s_i}
+}
+The iteration yields 
+\begin{center}
+0.9179150014,
+0.9898428258,
+0.9929110222,
+0.9930189442,
+0.9930227102,
+0.9930228416,
+0.9930228462,
+0.9930228463,
+0.9930228463
+\end{center}
+So even at $z=5$ more than 99\% of people end up in the giant component. 
+
+\subquestion 
+The real sexual contact network is more heterogeneous. How would your estimate of the giant component size change if we assumed the degree distribution $p_k=0.8 \delta_{k,1} + 0.2 \delta_{k,21}$?
+(Bonus: What is your expectation of the number of contacts of your partner)
+
+\solution
+In this case the first step is to compute the probability that a random link does not lead to a node in the giant component, $v$. From the chapter we know 
+\eq{
+\label{eqExV}
+v=\sum q_k v^k.
+}
+For this we need the the excess degree distribution $q_k$. 
+Using results from Chap.~6 we compute
+\eqa{
+q_k &=& \frac{(k+1)p_{k+1}}{z} \\
+    &=& \frac{1}{5} \left( (k+1) 0.8 \delta_{k+1,1} + (k+1) 0.2 \delta_{k+1,21} \right) \\
+    &=& \frac{1}{5} \left( 0.8 \delta_{k+1,1} + 21\cdot 0.2 \delta_{k+1,21} \right) \\
+    &=& \frac{1}{5} \left( 0.8 \delta_{k,0} + 21\cdot 0.2 \delta_{k,20} \right) \\
+    &=& \frac{4}{25} \delta_{k,0} + \frac{21}{25} \delta_{k,20} 
+}
+Substituting into the self-consistency condition yields
+\eqa{
+  v&=&\sum  \left( \frac{4}{25} \delta_{k,0} + \frac{21}{25} \delta_{k,20} \right) v^k \\
+   &=& \frac{4}{25} + \frac{21}{25} v^{20}
+}
+We can solve the resulting equation 
+\eq{
+   v = \frac{4}{25} + \frac{21}{25} v^{20}
+}
+by iteration. However, in this case there is also another way. Since it is clear that $v<1$ (it's a probability), $v^{20}$ will probably be a very small number, so let's assume it's 0. (Try the iteration if you don't trust me.) Hence we find the result 
+\eq{
+v=\frac{4}{25}
+}
+We can now compute the giant component size as 
+\eqa{
+s&=&1-\sum p_k v^k \\
+ &=&1 - \sum \left(0.8 \delta_{k,1} + 0.2 \delta_{k,21} \right)v^k \\
+ &=&1 - \sum \left(0.8 v^k \delta_{k,1} + 0.2 v^k \delta_{k,21} \right) \\
+ &=&1 - \sum \left(0.8 v^1 \delta_{k,1} + 0.2 v^{21} \delta_{k,21} \right) \\
+ &=&1 - \left(0.8 v + 0.2 v^{21}\right) \\ 
+ &\approx& 1 - 0.8 v \\
+ &\approx& 1 - \frac{4}{5} \frac{4}{25} = \frac{109}{125}.\\
+}
+We can also write this as 87.2\%. This is still large but we can see that the heterogeneous degree distribution leads to a somewhat smaller giant component. We will come back to this insight in Chap.~10.
+
+The bonus question is actually asking for the mean excess degree. Since we already know the excess degree distribution we compute
+\eqa{
+q&=&\sum k q_k \\ 
+&=&\sum k \left( \frac{4}{25} \delta_{k,0} + \frac{21}{25} \delta_{k,20} \right) \\
+&=&\sum  20  \frac{21}{25} \delta_{k,20} \\
+&=&   \frac{420}{25} = 16.8,
+}
+which is a different way of saying that condoms are a great invention ;o) 

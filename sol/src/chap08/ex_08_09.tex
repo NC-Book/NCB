@@ -1,0 +1,39 @@
+\exercise{Is this right?}{4}
+Consider a network in which every node has degree 3. 
+\subquestion{Estimate the size of the giant component. The result may look odd at first glance.}
+
+\solution
+We will go in the usual way. Starting from the degree distribution we work out the excess degree distribution and then find $v$ and finally $s$.  
+
+From the question we know that 
+\eq{p_k=\delta_{k,3}}
+we can therefore compute 
+\eq{
+q_k = \frac{(k+1)p_{k+1}}{z} = \delta_{k,2}
+}
+We can now write our equation for $v$,
+\eq{
+v=\sum q_k v^k = v^2
+}
+and hence 
+\eq{
+v=0\quad \mbox{or} \quad v=1
+}
+We know that $v=1$ is the spurious solution that stems from the nature of the self-consistency approach, so we go with $v=0$. This is saying that we are sure that following a link leads us to the giant component.  Hence it is not surprising that,
+\eq{
+s=1-\sum p_k v^k = 1-v^3 = 1.
+}
+So this seems to say that a randomly picked node is in the giant component with probability 1. 
+
+\subquestion{Now imagine the smallest possible component that could exist in this network. Use the results from the previous chapter to estimate how common this motif is in the network, i.e.~in the limit of large network size what is the probability that a randomly picked node is part of such a motif.}
+
+\solution
+If every node has three links, the smallest component that is possible consists of four nodes connected by six links. To estimate how common such motifs are in large networks we can use the equation
+\eq{
+n_{\rm motif} = \frac{1}{s} z^k N^{n-k}  
+}
+where $n$ is the number of nodes in the motif and $k$ is the number of links in the motif. We can see immediately that the number of these motifs scales as 
+\eq{
+n \sim N^{-2}  
+}
+hence the number of these motifs that we find decreases quadratically with network size. This means the probability that such a randomly picked node is part of such a motif is scales as $1/N^3$. So, this is another way of seeing that isolated small components are extremely rare.  
