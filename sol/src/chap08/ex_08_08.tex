@@ -1,0 +1,84 @@
+\exercise{Two faces of heterogeneity}{3}
+Consider a network where half of the nodes have degree 1, whereas the other half follow a Poisson distribution with mean 3. Compare the mean excess degree and the size of the giant component in this network to the network from Ex.~8.3b. 
+
+\solution
+We can write the degree distribution as 
+\eq{
+p_k=\frac{1}{2}\delta_{k,1}+\frac{1}{2}\frac{\exp{-3}3^k}{k!}.
+}
+We can compute the mean degree 
+\eqa{
+ z&=&\sum k p_k \\
+  &=&\sum k \left(\frac{1}{2}\delta_{k,1}+\frac{1}{2}\frac{\exp{-3}3^k}{k!} \right) \\
+  &=& \frac{1}{2} + \frac{1}{2}\exp{-3}  \sum k \frac{3^k}{k!} \\
+  &=& \frac{1}{2} + \frac{1}{2}\exp{-3} \sum_{k=1}^\infty \frac{3^k}{(k-1)!} \\
+  &=& \frac{1}{2} + \frac{1}{2}\exp{-3} \sum_{k=0}^\infty \frac{3^(k+1)}{k!} \\
+  &=& \frac{1}{2} + \frac{3}{2}\exp{-3} \sum \frac{3^k}{k!} \\
+  &=& \frac{1}{2} + \frac{3}{2}\exp{-3} \exp{3} \\
+  &=& \frac{1}{2} + \frac{3}{2} = 2 \\
+}
+OK, we could have just guessed this result, but this was a good opportunity to practice some of the tools in the toolkit in a situation where the result was easy to guess (and hence errors easy to spot). 
+In any case, the next step in our work flow is to construct the excess degree distribution
+\eqa{
+q_k&=&\frac{(k+1)p_{k+1}}{z} \\
+  &=& \frac{1}{2} \left( \frac{k+1}{2}\delta_{k+1,1}+\frac{k+1}{2}\frac{\exp{-3}3^{k+1}}{(k+1)!} \right) \\
+  &=& \frac{1}{2} \left( \frac{1}{2}\delta_{k+1,1}+\frac{1}{2}\frac{\exp{-3}3^{k+1}}{k!} \right) \\
+  &=&  \frac{1}{4}\delta_{k,0}+\frac{3}{4}\frac{\exp{-3}3^{k}}{k!}  
+}
+We can now reach our first goal and compute the mean excess degree 
+\eqa{
+q&=&\sum k q_k \\ 
+ &=&\sum k \left( \frac{1}{4}\delta_{k,0}+\frac{3}{4}\frac{\exp{-3}3^{k}}{k!} \right) \\
+ &=&\frac{1}{4} \left( k\delta_{k,0} \right) +\frac{3}{4}\left( k\frac{\exp{-3}3^{k}}{k!} \right) \\
+ &=& \frac{3}{4}\left( \sum k\frac{\exp{-3}3^{k}}{k!} \right) \\
+ &=& \frac{3}{4}\exp{-3}\left( k\frac{3^{k}}{k!} \right) \\
+ &=& \frac{9}{4} = 2.25 \\
+}
+In the last step we remembered 
+\eq{
+\sum k\frac{3^{k}}{k!} = 3 \exp{3} 
+}
+which we saw in our calculation of the mean degree. (if you don't remember this, just cancel the factor $k$ in the sum with the last $k$ from the factorial, shift the index, pull a factor of 3 out of the sum, use the exponential series definition and you will arrive at the same result.)  
+
+The mean excess degree of this networks turns out to be quite a bit higher than the mean excess degree of $q=1.5$ that we found for the network in Ex.~8.3b. This actually makes sense because the network here is more heterogeneous, and we know that heterogeneity drives the mean excess degree. Now the interesting question is, does this also mean that the heterogeneous network has a larger giant component? High mean excess degree is good for giant, components isn't it? 
+
+To find the giant component size we compute $v$ from 
+\eqa{
+v&=&\sum q_k v^k \\
+ &=& \sum \left(\frac{1}{4}\delta_{k,0}+\frac{3}{4}\frac{\exp{-3}3^{k}}{k!} \right)v^k \\  
+  &=& \left(\frac{1}{4}\sum \delta_{k,0}v^k\right)+\left(\frac{3}{4}\exp{-3}\sum\frac{3^{k}}{k!}v^k \right) \\
+    &=& \left(\frac{1}{4}\sum \delta_{k,0}v^0\right)+\left(\frac{3}{4}\exp{-3}\sum\frac{(3v)^{k}}{k!} \right) \\
+    &=& \frac{1}{4}+\frac{3}{4}\exp{-3}\exp{3v}  \\
+    &=& \frac{1}{4}+\frac{3}{4}\exp{3(v-1)}   
+}
+We solve this equation by iteration. Because we found $v=1/3$ in a very similar network in Ex.~8.3b, we use this as the starting value. This yields the sequence 
+\begin{center}
+    1/3, 0.35150146242, 0.35718728095, 0.35903130571, 0.35963614646, 0.35983526429, 0.35990089436, 0.3599225349, 0.35992967149, 0.35993202508.      
+\end{center}
+At this point I am convinced that the result will be very close to $v=0.36$. So lets use this in the final step. We compute the giant component size as 
+\eqa{
+s&=&1-\sum p_k q^k \\
+ &=&1-\sum \left( \frac{1}{2}\delta_{k,1}+\frac{1}{2}\frac{\exp{-3}3^k}{k!}\right) v^k \\ 
+ &=&1-\frac{1}{2}\left(\sum \delta_{k,1}v^k\right)+\frac{1}{2}\exp{-3}\left(\sum \frac{3^k}{k!}\right) v^k \\ 
+ &=&1-\frac{1}{2}v+\frac{1}{2}\exp{-3}\left(\sum \frac{(3v)^k}{k!}\right) \\ 
+ &=&1-\frac{1}{2}v+\frac{1}{2}\exp{-3}\exp{3v} \\
+ &=&1-\frac{1}{2}v+\frac{1}{2}\exp{3(v-1)} \\
+}
+In principle we could now just substitute $v$ and be done with it, but a more elegant way is to consider our final equation for $v$ before the iteration
+\eq{
+v=\frac{1}{4}+\frac{3}{4}\exp{3(v-1)} 
+}
+we can solve for the exponential 
+\eq{
+\exp{3(v-1)}=\frac{4v-1}{3} 
+}
+substituting back into our equation for $s$ we have
+\eq{
+s=1-\frac{1}{2}v+\frac{1}{2}\frac{4v-1}{3}=1-\frac{7v-1}{6} 
+}
+If you wonder whether we got this right you can quickly check that $v=1$ would result in $s=0$, which it still does. To find the solution we substitute $v=0.36$ which gives us 
+\eq{
+s=0.74\xoverline{6}
+}
+so roughly 75\%. This is a bit smaller than the 84\% that we found 
+in the similar network in Ex.~8.3b. In comparison the network in this exercise is a bit more heterogeneous. This is interesting because it shows heterogeneity is double-edged sword. on the one hand heterogeneous networks have a higher mean excess degree which makes it easier to form a giant component. However, heterogeneity also means that we have a more nodes of low degree and therefore smaller giant component sizes.   

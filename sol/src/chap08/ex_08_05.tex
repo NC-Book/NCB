@@ -1,0 +1,14 @@
+\exercise{Flashback to six degrees}{2}
+The mean degree of the human contact network is about $z=150$. Estimate the proportion of people that are in the giant component.
+(Assume that the contact network is an ER random graph.)
+
+\solution
+We start with an initial guess $s_0=0.5$ and iterate 
+\eq{
+s = 1-\exp{-sz}.
+}
+In this case already the first iteration step yields
+\eq{
+s= 1-\exp{-75}\approx 1 
+}
+At such a high mean degree we can expect everybody to be in the giant component. 
