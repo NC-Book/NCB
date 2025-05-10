@@ -1,0 +1,86 @@
+
+\exercise{Solving series}{3}
+Use generating functions to find the solutions of $\sum c_k$, where
+$c_0=1$ and 
+\eqn{
+\mbox{a) } c_{k+1}=\frac{c_k}{2} \qqq \mbox{b) } c_{k+1}=-c_k/3+1  
+}
+Hint: You might want to use the result of Ex.~9.6
+
+\solution 
+For part (a) we define the generating function
+\eq{
+G=\sum c_k x^k
+}
+We can write the iteration rule in the form 
+\eq{
+c_k=2c_{k+1}. 
+}
+Substitution into $G$ yields 
+\eq{
+G= \sum 2c_{k+1} x^k. 
+}
+We shift the index of the sum, which yields
+\eq{
+G = -\frac{2c_0}{x} + \sum 2 c_k x^{k-1}.
+}
+To make the right-hand side more similar to the definition of $G$ we write it as  
+\eq{
+G=\frac{2}{x}\left(-c_0 + \sum c_k x^k \right).
+}
+We can now use the definition of $G$ and $c_0=1$ to find the self-consistency condition
+\eq{
+G=\frac{2}{x}(G-1),
+}
+which we can solve for
+\eq{
+G=\frac{2}{2-x}.
+}
+We can now evaluate
+\eq{
+\sum c_n = G(1)=\frac{2}{2-1} = 2,
+}
+which is the desired result. 
+
+For part (b) we start again by defining 
+\eq{
+G=\sum c_k x^k 
+}
+and solving the iteration rule for $c_k$,
+\eq{
+c_k=3(1-c_{k+1}).
+}
+Substitution into $G$ yields
+\eq{
+G=\sum 3(1-c_{k+1}) x^k.
+}
+It is useful to split this sum up and pull the factor of 3 out. 
+\eq{
+G= 3 \left( \sum x^k \right) - 3 \left( \sum c_{k+1} x^k \right)
+}
+We know from Ex.~9.8 that the term in the first bracket is the series expansion of $1/(1-x)$. To deal with the second term we start again with the index shift
+\eq{
+G= \frac{3}{1-x} - 3 \left( \sum c_{k} x^{k-1} \right) + \frac{3}{x}c_0. 
+}
+After pulling $1/x$ from the sum we have
+\eq{
+G= \frac{3}{x} \left (\frac{x}{1-x}+c_0 -  \sum c_{k} x^{k} \right) .
+}
+We can now use $c_0=1$ and identify $G$, which yields
+\eq{
+G= \frac{3}{x} \left (\frac{x}{1-x}+1- G \right).
+}
+The 1 actually combines beautifully with the fraction that precedes it, so that 
+\eq{
+G= \frac{3}{x}\left(\frac{1}{1-x}- G \right).
+}
+Isolating $G$, we can write
+\eq{
+(x-3)G=\frac{3}{1-x} 
+}
+and hence the result 
+\eq{
+G=\frac{3}{(x-3)(1-x)}.
+}
+So, $G(1)=\infty$, this is a divergent series. 
+\solutionend
