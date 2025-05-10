@@ -1,0 +1,62 @@
+\exercise{Degree generating functions}{2}
+\label{exGeneratingDegreeGF}
+Derive the generating functions $G$ for the degree distribution of the following networks:  
+
+\subquestion A regular graph where every node has degree 3.
+
+\solution
+For this network the degree distribution is 
+\eq{
+p_k=\delta_{k,3}.
+}
+We can directly write the degree generating function as 
+\eq{
+G=\sum p_k x^k = \sum \delta{k,3}=x^3
+}
+
+\subquestion A network where half the nodes have degree 10 and the other half has degree 20.
+
+\solution
+In this case we have 
+\eq{
+p_k = \frac{1}{2} \delta_{k,10} + \frac{1}{2} \delta_{k,20}
+}
+and hence 
+\eq{
+G=\sum p_k x^k = \frac{1}{2}\sum  (\delta_{k,10} +\delta_{k,20})x^k = \frac{x^{10}+x^{20}}{2}
+}
+
+\subquestion An Erd\H{o}s-R\'enyi random graph with mean degree $z$ (find a nice form for the result). 
+
+\solution
+In this case the degree distribution is 
+\eq{
+p_k=\frac{z^k\exp{-z}}{k!}.
+}
+We can write the generating function as 
+\eq{
+G=\sum p_k x^k = \sum \frac{z^k\exp{-z}}{k!} x^k
+}
+Since we have now a sum over something related to the Poisson distribution our intuition should be to use our knowledge of the exponential series to simplify it. We write 
+\eq{
+G=\exp{-z} \sum \frac{(zx)^k}{k!} = \exp{-z}\exp{zx}, 
+}
+which we can write also write as 
+\eq{
+G=\exp{z(x-1)}.
+}
+\subquestion A network with the degree distribution 
+\eqn{
+p_k = \frac{\exp{-5}5^k}{2k!}+\frac{1}{2}\delta_{5,k} 
+}
+
+\solution
+We define
+\eqa{
+G(x) &=& \sum p_k x^k  \\
+    &=& \sum \left(\frac{\exp{-5}5^k}{2k!}+\frac{1}{2}\delta_{5,k}\right)x^k\\
+    &=& \left(\frac{\exp{-5}}{2}\sum \frac{(5x)^k}{k!}\right) + \frac{x^5}{2} \\
+    &=& \frac{\exp{-5}}{2}\exp{5x} + \frac{x^5}{2}\\
+    &=& \frac{\exp{5(x-1)} + x^5}{2}
+}
+

@@ -1,0 +1,66 @@
+\exercise{Attacks on networks}{4}
+In the next chapter we study attacks on networks. In this exercise we can explore some relevant calculations already. Let us consider a network where every node has initially degree 4. Then an attack removes half the links at random.  
+
+\subquestion Construct the degree distribution after the attack, and use it to compute the mean excess degree after the attack without using generating functions 
+
+\solution
+Without generating functions this is a bit tedious. We have to work out the probabilities for all of the different scenarios: The probability that a node survives with all links intact is $1/16$, the probability that a node loses exactly one link is $4/16$ (see Chap.~7), and so on. This leads to the following degree distribution
+\eq{
+p_k = \frac{1}{16} (\delta_{k,0}+4\delta_{k,1}+6\delta_{k,2}+4\delta_{k,3}+\delta_{k,4})   
+}
+When we remove half the links from the network we expect the degree to halve as well (remember $z=2K/N$? If we reduce $K$, $z$ shrinks proportionally) 
+To verify we can compute
+
+\eqa{
+z&=&\sum k p_k \\
+&=& \sum \frac{1}{16} (k\delta_{k,0}+4k\delta_{k,1}+6k\delta_{k,2}+4k\delta_{k,3}+k\delta_{k,4}) \\
+&=& \frac{1}{16} (4+6\cdot 2+4\cdot 3+4) = \frac{32}{16}=2.  
+}
+We can now compute the excess degree distribution in the usual way 
+\eqa{
+q_k&=&\frac{(k+1)p_{k+1}}{z} \\
+   &=& \frac{1}{2}\frac{1}{16} (4\delta_{k+1,1}+12\delta_{k+1,2}+12\delta_{k+1,3}+4\delta_{k+1,4}) \\
+   &=& \frac{1}{8} (\delta_{k,0}+3\delta_{k,1}+3\delta_{k,2}+1\delta_{k,3}) \\
+}
+Finally, we compute the mean excess degree,
+\eqa{
+q&=&\sum k q_k \\
+ &=&\frac{1}{8} \sum  (k\delta_{k,0}+3k\delta_{k,1}+3k\delta_{k,2}+1k\delta_{k,3}) \\
+ &=&\frac{1}{8} (3+6+3) = \frac{12}{8}= 1.5
+}
+This wasn't horrible, but it certainly wasn't an elegant calculation either. 
+
+\subquestion Now we do the same calculation with generating functions: Write the generating function $G$ of the degree distribution before the attack. Also write the generating function $A$ for a coin flip that gives us a result of 0 or 1 with equal probability. Use $G$ and $A$ to write the generating function $G_{\rm a}$ for the degree distribution after the attack. Finally, use this to construct $Q_{\rm a}$ the generating function for the excess degree distribution after the attack and use it to compute the mean excess degree after the attack. (the calculation will be short)
+
+\solution
+This is sooooo much nicer. The generating function before the attack is 
+\eq{
+G=x^4.
+}
+The generating function for a coin flip that results in 0 or 1 is
+\eq{
+A=\frac{1}{2}+\frac{x}{2}.
+}
+To find the generating function after the attack we can think along the following lines. If we pick a node at random then the number of links that the node had in the original network is described by $G$. However, since some of the links may have been destroyed in the attack we need to flip a coin for each link to see if it still there and then sum over the results of the coin flips. This scenario is covered by our dice-of-dice rule so the result is 
+\eq{
+G_{\rm a}=G(A)=\left(\frac{1}{2}+\frac{x}{2}\right)^4 
+}
+We can now compute the excess degree distribution after the attack using the convenient formula from this chapter
+\eq{
+Q_{\rm a}=\frac{G'_{\rm a}}{G'_{\rm a}(1)} 
+}
+We compute 
+\eq{
+G'_{\rm a}=  4\left(\frac{1}{2}+\frac{x}{2}\right)^3 \frac{1}{2} = 2 \left(\frac{1}{2}+\frac{x}{2}\right)^3
+}
+which reveals the mean degree after the attack $G'_{\rm a}(1)=2$ and furthermore 
+\eq{
+Q_{\rm a}= \left(\frac{1}{2}+\frac{x}{2}\right)^3.
+}
+We can now compute the mean excess degree after the attack
+\eq{
+q=Q_{\rm a}'(1) = 3\left(\frac{1}{2}+\frac{1}{2}\right)^2 \frac{1}{2} = 1.5
+}
+This calculation seems almost magical: At first it is hard to understand why we do these specific steps, but once we have gained this understanding we can do great things with little effort. 
+
+\solutionend
