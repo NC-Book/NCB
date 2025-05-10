@@ -1,0 +1,54 @@
+\exercise{Tangled cables}{3}
+I have a drawer in which I keep charging cables for various devices. 
+In my experience half the cables are tangled up with one other cable, 
+a quarter of the cables is tangled up with two other cables, whereas the final quarter are not tangled up with any other cable. When one pulls on one cable, one usually ends up pulling a big tangle of cables out of the drawer. Translate this situation into a network problem. Use generating function methods to compute $C$, the generating function of component sizes and use it to find the expected number of cables in the tangle that one extracts from the drawer by pulling on one cable. 
+
+\solution
+We think of this as a network in which nodes are cables and links indicate that the linked cables are tangled up. Based on the question the degree distribution is 
+\eq{
+p_k = \frac{1}{4} \delta_{k,0} + \frac{1}{2} \delta_{k,1} + \frac{1}{4} \delta_{k,2}
+}
+Hence the degree generating function is 
+\eq{
+G=\sum p_k x^k = \frac{1+2x+x^2}{4}.
+}
+We compute 
+\eq{
+G'=\frac{1+x}{2}
+}
+We can now compute the mean degree 
+\eq{
+z=G'(1)=1
+}
+and the excess degree generating function 
+\eq{
+Q=\frac{G'}{z} = \frac{1+x}{2}.
+}
+Now that we have $G$ and $Q$ we can find the generating function for branches from
+\eq{Y=xQ(Y)} 
+which we solve as follows:
+\eqa{
+Y&=&x \frac{1+Y}{2} \\
+Y(1-x/2) &=& x/2 \\
+Y(2-x) &=& x \\
+Y &=& \frac{x}{2-x} 
+} 
+Using $Y$ we can now compute $C$, as 
+\eqa{
+C&=&xG(Y)\\
+ &=& x \frac{1+2Y+Y^2}{4} \\
+ &=& x \frac{(2-x)^2+2x(2-x)+x^2}{4(2-x)^2} \\
+ &=& x \frac{(2-x)^2+4x-x^2}{4(2-x)^2} \\
+ &=& x \frac{(4-4x+x^2)+4x-x^2}{4(2-x)^2} \\
+ &=& x \frac{4}{4(2-x)^2} \\
+ &=& \frac{x}{(2-x)^2} 
+}
+To find the expectation value we compute
+\eq{
+C'= \frac{1}{(2-x)^2}+\frac{2x}{(2-x)^3} = \frac{2-x}{(2-x)^3}+\frac{2x}{(2-x)^3} = \frac{2+x}{(2-x)^3}. 
+}
+Hence the expected number of cables that we extract when pulling 
+on one is 
+\eq{
+C'(1) = 3
+}

@@ -1,0 +1,165 @@
+\exercise{Ways and means}{2}
+For the networks from the previous exercise. Use generating functions to...
+\subquestion show that the degree distributions are properly normalized.
+
+\solution 
+To show that a degree distribution is properly normalized we need to check $G(1)=1$. For the regular graph (Ex 9.3 a) 
+\eq{
+G= x^3 
+}
+and hence 
+\eq{
+G(1)=1^3=1
+}
+
+For the heterogeneous network (Ex 9.3 b) 
+\eq{
+G=\frac{x^{10}+x^{20}}{2} 
+}
+and hence 
+\eq{
+G(1) = \frac{1^{10}+1^{20}}{2} = \frac{1+1}{2} = 1
+}
+
+For the ER graph (Ex 9.3 c) the generating function is 
+\eq{
+G=\exp{z(x-1)}
+}
+and hence 
+\eq{
+G(1) = \exp{z(1-1)} = \exp{0} = 1
+}
+
+Finally, for the mixed network (Ex 9.3 d) the generating function was  
+\eq{
+G=\frac{\exp{5(x-1)}+x^5}{2}
+}
+and hence 
+\eq{
+G(1)=\frac{\exp{5(1-1)}+1^5}{2} = \frac{1+1}{2} = 1
+}
+so all of these networks are properly normalized. 
+
+\subquestion compute the mean degree. 
+
+\solution
+We compute the mean degree as $z=G'(1)$. 
+For the regular graph (Ex 9.3 a) 
+\eq{
+G= x^3
+}
+we find 
+\eq{
+G'=3x^2
+}
+and hence 
+\eq{
+z=G'(1)=3
+}
+which is hardly a surprise as every single node in this network has degree 4.
+
+For the heterogeneous network (Ex 9.3 b) 
+\eq{
+G=\frac{x^{10}+x^{20}}{2} 
+}
+We find 
+\eq{
+G'=\frac{10x^9+20x^{19}}{2}
+}
+and hence 
+\eq{
+z=G'(1)=\frac{10+20}{2}=15
+}
+
+For the ER graph (Ex 9.3 c) the generating function is 
+\eq{
+G=\exp{z(x-1)}
+}
+and hence 
+\eq{
+G'= z\exp{z(x-1)}
+}
+and hence 
+\eq{
+z=G'(1)=z\exp{0} = z
+}
+So the ER random graph with mean degree $z$ has indeed mean degree $z$ !
+
+Finally, for the mixed network (Ex 9.3 d) the generating function was  
+\eq{
+G=\frac{\exp{5(x-1)} + x^5}{2}
+}
+In this case 
+\eq{
+G'= \frac{5\exp{5(x-1)} + 5x^4}{2}
+}
+and hence
+\eq{
+z=G'(1)=\frac{5 + 5}{2}=5
+}
+
+\subquestion construct the generating function for the excess degree distribution and use it to compute the mean excess degree. 
+
+\solution
+For the final part of the question we need to construct $Q=G'/z$ and then compute $Q'(1)$.
+
+For the regular graph (Ex 9.3 a) we know 
+\eq{
+G'=3x^4 \qqq  z=3
+}
+hence 
+\eq{
+Q=\frac{G'}{z} = \frac{3x^2}{3} = x^2.
+}
+This generating function is telling us that every node in this network has excess degree 3, so the mean excess degree will be 3 as well. To compute it formally we compute 
+\eq{
+Q'=2x
+}
+and therefore
+\eq{
+q=Q'(1) = 2
+}
+
+For the heterogeneous network (Ex 9.3 b) we know
+\eq{
+G'=\frac{10x^9+20x^{19}}{2} \qqq z=15
+}
+and hence 
+\eq{
+Q=\frac{10x^9+20x^{19}}{30} = frac{x^9+2x^{19}}{3}.
+}
+We compute 
+\eq{
+Q'=\frac{9x^8+38x^{18}}{3}
+}
+and therefore
+\eq{
+q=Q'(1)= \frac{47}{3} \approx 15.67
+}
+
+For the ER graph (Ex 9.3 c) we know 
+\eq{
+G'= z\exp{z(x-1)} \qqq z=z
+}
+and hence 
+\eq{
+Q=\exp{z(x-1)}=G.   
+}
+Note that we have just again shown that in the ER network degree distribution equals excess degree distribution. This time it has happened almost by accident. We now know that the mean excess degree will also be equal to the mean degree. Computing it would be just mean repeating the calculation from part b, so straight away we get $q=z$.
+
+Finally, for the mixed network (Ex 9.3 d) we know  
+\eq{
+G'= \frac{5\exp{5(x-1)} + 5x^4}{2} \qqq z=5
+}
+and hence 
+\eq{
+Q= \frac{\exp{5(x-1)} + x^4}{2}.
+}
+We can now compute
+\eq{
+Q'= \frac{5\exp{5(x-1)} + 4x^3}{2}
+}
+and therefore
+\eq{
+q=Q'(1)=\frac{5 + 4}{2} = 4.5 
+}

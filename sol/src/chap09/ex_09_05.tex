@@ -1,0 +1,33 @@
+
+\exercise{A quick test}{2}
+Consider a network where every node has degree 1. In this network it is not very hard to guess what the distribution of component sizes looks like. 
+
+\subquestion Construct the generating function $G$ of the degree distribution and use it to compute the generating function $Q$ of the excess degree distribution. 
+
+\solution
+The generating function is simply 
+\eq{
+G=x
+}
+We compute the excess degree generating function as
+\eq{
+Q=\frac{G'}{G'(1)}=1
+}
+
+\subquestion Use the equation from the lecture, $Y=xQ(Y)$, to determine the generating function $Y$ that generates the number of nodes in a branch. 
+
+\solution
+We substituting our $Q=1$ into $Y=x(Q(Y))$ gives us 
+\eq{
+Y=x
+}
+This is the generating function's way of telling us that every branch will contain exactly one node. 
+
+\subquestion Use $C=xG(Y)$ to find the function $C$ that generates the component size distribution and explain the the result.
+
+\solution
+We compute 
+\eq{
+C=xG(Y)=x^2
+}
+This is the generating function of a random process that returns the result 2 with 100\% probability. This is the expected result: A network where every node has degree 1 must exist entirely of pairs of two nodes. SO each component has size 2. 

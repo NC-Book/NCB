@@ -1,0 +1,47 @@
+\exercise{Expansion formula}{3}\label{exGeneratingTaylorFormula}Apply the same reasoning that we used to find the Taylor coefficients $c_0$ and $c_1$ for to derive 
+\eqn{
+c_k = \frac{1}{k!} f^{(k)}(0)
+}
+where $f^{(k)}$ is the $k$th derivative of $f$. If this looks too complicated. Try to convince yourself the equation is correct and then check out the solution.  
+
+\solution
+In the Taylor approximation we want to approximate $f(x)$ by 
+\eq{
+g(x)=c_0+c_1x+c_2x^2 + \ldots = \sum_n c_n x^n.
+}
+We get our conditions for $c_n$ by demanding that the derivatives of $g$ and $f$ are identical in 0. We can write this as
+\eq{
+f^{(k)}(0) = g^{(k)}(0)
+}
+When we $k$-times differentiate $g$, all the terms in which $x$ has an exponent of less than $k$ will vanish in the differentiation. Moreover, all terms in which $x$ is raised to more than the exponent $k$ will still have an $x$ left after the differentiation. Those terms will vanish when we substitute $x=0$. Hence, the only term that can contribute to $g^{(k)}(0)$ is the one the term of $g$ that contains exactly $x^k$. We can write 
+\eq{
+g^{(k)}(0) = (\partial_x )^k c_k x^k 
+}
+where we have used $(\partial_x)^k$ as a different way of saying ``differentiate $k$ times.'' We can now explore what happens if we actually do this 
+\eqa{
+g^{(k)}(0) &=& (\partial_x )^k c_k x^k \\
+        &=& (\partial_x )^{k-1} c_k k x^{k-1} \\
+        &=& (\partial_x )^{k-2} c_k (k-1)k x^{k-2} \\ 
+        &=& (\partial_x )^{k-3} c_k (k-2)(k-1)k x^{k-3} \\
+        &=& \ldots \\
+        &=& (\partial_x )^{k-k} c_k (k-(k-1))(k-(k-2))\ldots (k-2)(k-1)k x^{k-k} 
+}
+Now that we have done all the derivatives we can simplify the result a bit
+\eqa{
+g^{(k)}(0) &=& (\partial_x )^{k-k} c_k (k-(k-1))(k-(k-2))\ldots (k-2)(k-1)k x^{k-k} \\
+            &=& (\partial_x )^{0} c_k (1)(2)\ldots(k-2)(k-1)(k) x^0 \\
+            &=& c_k k! 
+}
+Substituting $g^{(k)}(0)$ back into our initial condition yields
+\eq{
+f^{(k)}(0) = g^{(k)}(0) = c_k k!
+}
+and therefore 
+\eq{
+c_k = \frac{1}{k!} f^{(k)}(0)
+}
+which is what we wanted to show. 
+
+A cleaner formal proof can be done using induction (see Ex.~9.8), however, our priority here was to convince ourselves that the formula is correct.  
+
+I expect that for most readers writing down the reasoning in this solution was probably a greater hurdle than spotting the pattern. So if you just convinced yourself of the solution in another way, this is really ok and all we wanted to achieve here. We want to understand where the equation comes from because this gives us trust in it and makes it easier to remember. So if after attempting to do the exercise and reading the solution you are now convinced of this formula, well done. For some advanced work you may find it nevertheless helpful if you can write your reasoning down mathematically, so if you were struggling with this, take a moment to internalize how the reasoning was presented here. (If you managed just fine, even more well done!) 

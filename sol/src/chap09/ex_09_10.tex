@@ -1,0 +1,36 @@
+\exercise{Excess distribution formula \label{exGeneratingExcess}}{3}
+Starting from $q_k=(k+1)p_{k+1}/z$, show that 
+$Q=G'/G'(1)$, where is the generating function for the excess degree distribution and $G=\sum p_k x^k$ is the generating function for the degree distribution.
+
+\solution 
+One could in principle start with the result of the derivation and then backwards prove that the result is true. However, it is more fun to pretend that we are discovering the desired result ourselves. So let's stick to our translation procedure. We start by defining the generating function that we are interested in
+\eq{
+Q=\sum q_k x^k
+}
+In step 2 we substitute what we know about the coefficients, 
+\eq{
+q_k =\frac{ (k+1) p_{k+1} } {z} ,
+}
+which yields 
+\eq{
+Q= \sum \frac{ (k+1) p_{k+1} x^k} {z}.
+}
+We need to bring the right-hand-side into a form that we can express in terms of $G$. For this purpose we pull the $1/z$ out of the sum and shift the index,
+\eq{
+Q=\frac{1}{z} \sum k p_k x^{k-1} 
+}
+Note that there is no edge term from the index shift: Before the shift the sum started with the $p_1$-term. After the shift it starts with the $p_0$-term. So the $p_0$ term has been added, but this term is zero as the it is multiplied by $k$, which is zero in this term. 
+
+We can now also pull a derivative from the sum  
+\eq{
+Q=\frac{1}{z}  \partial_x \sum p_k x^k. 
+}
+We can now substitute $\sum p_k x^k=G$, which yields 
+\eq{
+Q = \frac{1}{z} \partial_x G = \frac{G'}{z}
+}
+Finally, we can remember that $z$ is the mean degree, and hence the mean of the degree distribution, which we can also write as $G'(1)$, hence we can also write 
+\eq{
+Q=\frac{G'}{G'(1)}
+}
+which is the desired result. 
