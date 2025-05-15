@@ -1,0 +1,44 @@
+
+\exercise{Mail worm}{2}\label{exAttackWorm}In a company employees have in average regular email contact to 6 other employees. A survey finds that 50\% of employees are careless when opening email attachments, which may allow mail worms to spread. Assume that the network is an ER graph, if a careless employee receives the mail worm, the employee will open it, becoming infected, and the worm will be sent to all of the employee's contacts. Careful employees will not become infected and will not allow the worm to spread. What is the chance that there is a major outbreak if a random employee receives the worm? How large will the outbreak be? 
+
+\solution
+We start by computing the generating function for the network 
+\eq{
+G=\sum p_k x^k = \sum \frac{z^k\exp{-z}}{z!}x^k = \exp{z(x-1)} 
+}
+which we already know from an earlier exercise. We know $z=6$, so 
+\eq{
+G=\exp{6(x-1)}
+}
+Now we need to remove the nodes that are immune from the worm. Since these are 50\% we have $r=c=0.5$. Assuming that these are random people within the company, we can use our procedure for random node removal. We define the pruning function 
+\eq{
+A=0.5x+0.5
+}
+and substitute it, to find 
+\eq{
+G_{\rm a}=G(A)=\exp{6(0.5x+0.5-1)}=\exp{3(x-1)} 
+}
+this is the generating function of an ER-network with mean degree 3. Removing nodes randomly from an ER network gives us a smaller ER network, which isn't too surprising.
+
+Because this is still an ER graph, $Q=G$, but if you want to be sure 
+\eq{
+Q=\frac{G'}{G(1)}=\frac{3\exp{3(x-1)}}{3}=\exp{3(x-1)}.
+}
+Next we compute $v$ from 
+\eq{
+v=Q(v) 
+}
+Iteration from an initial guess of 0.5 yields 
+\begin{center}
+0.5, 0.2231301601, 0.0972364615, 0.06665064097, 0.06080713912, 0.05975044846, 0.05956133514, 0.0595275532, 0.05952152064, 0.05952044345, 0.0595202511    
+\end{center}
+
+Now we can compute the giant component using 
+\eq{
+s=1-G(v) 
+}
+For the ER graph $G(v)=Q(V)=v$. Hence 
+\eq{
+s=1-v=1-0.0595202511 = 0.9404797907 \approx 94\%
+}
+We have to keep in mind that this is the proportion of our careless employees of our careless employees that are in the giant component. Because only half of the company is careless the giant component spans 47\% of the whole company. So if someone is sent then mail worm then there is a 47\% chance that 47\% of the company will be affected. There is a 50\% chance that nobody is affected. In the remaining 3\% of cases only a few people will be affected.  

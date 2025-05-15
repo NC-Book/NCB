@@ -1,0 +1,47 @@
+
+\exercise{Too big to fail}{3}\label{exAttackBank}Consider a network where nodes are banks and links represent financial relations. If one bank defaults on obligations there is a risk that it's neighbors in the network default as well. Consider a network where 95\% of the nodes have degree 5 while 5\% have degree 25. However, let's assume that only 20\% of links (distributed randomly) transmit defaults to neighboring institutions, whereas the rest of the links are weak enough that a default of the linked banks is not transmitted to its partner. What is the chance that the default of a random bank will lead to many bank failures? Also, how could we make this model more realistic?
+
+\solution
+At first this might sound like another difficult viral attack scenario, however at closer inspection it is actually only need to consider a giant component size after link removal. 
+
+Asking for the probability that one default will trigger a large cascade of failures is the same as asking for the probability that a randomly-picked node is in the giant component. So we need to compute the giant component size in the network of conducting links. So here is the plan: We write the generating functions, prune away the 90\% non-conducting links and then compute the giant component size. 
+
+The degree generating function for the network is 
+\eq{
+G=\frac{19}{20}x^5+\frac{1}{20}x^{25}
+}
+The corresponding excess degree generating function is 
+\eq{
+Q=\frac{9}{14} x^4 + \frac{5}{14} x^{24}. 
+}
+To remove the 90\% of the links that are not conducting the defaults we 
+use the pruning function 
+\eq{
+A=\frac{1}{5}x+\frac{4}{5}
+}
+So the generating functions after removing the links are 
+\eq{
+G_{\rm a}=G(A)= frac{19}{20}\left(\frac{1}{5}x+\frac{4}{5}\right)^5+\frac{1}{20}\left(\frac{1}{5}x+\frac{4}{5}\right)^{25},
+}
+\eq{
+Q_{\rm a}=\frac{9}{14}\left(\frac{1}{5}x+\frac{4}{5}\right)^4+\frac{5}{14}\left(\frac{1}{5}x+\frac{4}{5}\right)^{24}.
+}
+Now that we have $Q_{\rm a}$ we can compute the giant component in the usual way, by first finding $v$, by iterating
+\eq{
+v=Q_{\rm a}(v),
+}
+which starting from 0.5 yields
+\begin{center}
+    0.5, 0.4502665868, 0.4252582212, 0.4135057434  \ldots 0.4038213762
+\end{center}
+Convergence here in this case is relatively slow, we will understand why in a later chapter. Now that we know 
+\eq{
+v\approx 0.4038213762
+}
+We can compute the giant component size
+\eq{
+s=1-G_{\rm a}(v) \approx 0.4943822945
+}
+so the chance that one default causes about half the network to fail is 49\%. 
+
+The question also asks how we could make the model more realistic. We could of course use a more realistic degree distribution for the banking network. Such data is hard to come by, but maybe we could make a reasonable guess. We could also treat this as a directed network as links might only be conducting in one direction. It would actually also be interesting to make the large banks who have many links a bit more resilient, such that it takes either default of another large bank or multiple small ones to topple them. In this case an avalanche would probably have to start among the small banks before it can start taking down big ones. We will study a similar phenomenon in exercise 11.  
