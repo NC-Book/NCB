@@ -10,5 +10,6 @@ Exercise sheets and solutions are available for:
 - [Chap. 7: Random graphs](pdf/chap07/README.md)  -- *(network ensembles, combinatorics, motif counts, poisson distribution)*
 - [Chap. 8: Curse of cows](pdf/chap08/README.md)  -- *(component size, self-consistency, giant component transition)*
 - [Chap. 9: Massively parallel maths](pdf/chap09/README.md)  -- *(generating functions, component sizes, solving series)*
+- [Chap. 10: Attacks on networks](pdf/chap10/README.md)  -- *(infrastructure robustness, vaccinations, social distanceing)*
   
   
