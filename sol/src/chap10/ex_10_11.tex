@@ -1,0 +1,39 @@
+
+\exercise{Messaging App\label{exAttackBootstrap}}{4}
+I have been developing a new messaging app. Of course the last thing everybody needs is another messaging app. However, I think that people will adopt my app if at least one quarter of their friends use the app. I can't really afford advertisement so I will just hope that it spreads on its own. 
+
+\subquestion 
+Consider a configuration model network where the nodes are users and links mean that the users regularly exchange messages. Based on your understanding of random networks what degrees do you expect the initial adopters of the messaging app to have. 
+
+\solution 
+They will all have degrees of 4 or less. The spreading is initially treelike. Every user who adopts the app will have one friend who is also an adopter. However, until our app has spread to a large proportion of the network every adopter will have only one friend using the app by the time they start using it. This implies that the early adopters are all people who have 4 or less friends. 
+
+\subquestion
+Assume that the network is described by a general degree distribution $p_k$.
+Remove all people from the network who are not likely early adopters. Then find the conditions under which there is still a giant component such that the app is able to spread. 
+
+\solution We can treat this as a degree-targeted attack where we remove all users with degree of more than 4. Hence 
+\eq{
+r_k = \left\{ \begin{array}{l l} 0 & \quad k\leq 4 \\ p_k & \quad k>4 \end{array}\right.
+}
+Unfortunately this does not give us a very nice $R$, but if we want it, we can still construct it by noticing that $R$ is $G$ minus the terms that correspond to degree up to 4, so 
+\eq{
+R=G-p_0-p_1x-p_2x^2-p_3x^3-p_4x^4
+}
+To decide if there is a giant component of likely early adopters, we need to compute the mean excess degree after the attack
+\eqa{
+q_{\rm a}&=&q-\delta \\
+  &=& q - \frac{R''(1)}{z} \\
+  &=& q- q + \frac{2 p_2 + 6 p_3 + 12 p_4}{z} \\
+  &=& \frac{2 p_2 + 6 p_3 + 12 p_4}{z} 
+}
+A giant component exists if $q_{\rm a}\geq 1$ hence our app will be successful if 
+\eq{
+2p_2+6p_3+12p_4 \geq z
+}
+This answer also points to an interesting rule. If something can spread only on nodes of a certain degree we can compute the mean excess degree only on those nodes (i.e.~treating all other $p_k$ as zeroes). This even works if we have a certain chance of infecting nodes of a certain degree. For example if we can infect every node but only with 50\% chance then can just divide all the $p_k$ by 2 and then compute the mean excess degree. That such simple rules exists further illustrates the beauty of the mean excess degree. 
+
+Note having mean degree is double edged sword for our messaging app. The mean degree appears in the denominator of the condition, thus a high mean degree makes it less likely that the app can succeed. However, if the mean degree is too low then there might not be a giant component at all in the network, which would also doom our app to fail. 
+
+The calculation in this exercise is the central piece of a highly-cited paper by Duncan Watts 
+(PNAS 99, 5766-5771, 2002). If you managed to get the result yourself, you can be a little bit proud. 

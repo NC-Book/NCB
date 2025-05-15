@@ -1,0 +1,45 @@
+
+\exercise{Some quick calculations  \label{exAttackQuick}}{2} 
+The following questions can be answered with very short calculations:
+
+\subquestion 
+A configuration model network has mean excess degree $q=5$. We attack it by random node removal. What proportion of nodes doe we have to remove to break the giant component?
+
+\solution
+The giant component breaks at $q_{\rm a}=cq=1$, hence the proportion of surviving nodes is $c=1/5$ which implies $r=1-c=4/5$. So, we need to remove 80\% of the network.   
+
+\subquestion 
+A configuration model network has mean degree $3$ and mean excess degree $7$. We attack it by removing nodes of degree 10.  What proportion of nodes do we need to remove to break the giant component?
+
+\solution 
+The attack generating function in this case is 
+\eq{
+R=r_{10}x^{10}
+}
+We also know that the reduction in excess degree is 
+\eq{
+\delta= \frac{R''(1)}{z}= \frac{90}{3} r_{10} = 30 r_{10}
+}
+Since we need to reduce $q$ to 1 to break the giant component, we need $\delta=6$ to break the giant component. Solving 
+\eq{
+6=30r_{10}
+}
+yields 
+\eq{
+r_{10}=\frac{1}{5},
+}
+hence we need to remove 20\% of all nodes (assuming that this many nodes of degree 10 exist in the network)
+
+\subquestion
+Show that removing nodes of degree 0 or 1 from a configuration model network does not change the mean excess degree. 
+
+\solution
+We know from the chapter that the change in the mean excess degree from a targeted attack is 
+\eq{
+\delta=\frac{R''(1)}{z}
+}
+A general attack that removes some nodes of degree 0 or 1 but no other nodes is described by 
+\eq{
+R=r_0+r_1x
+}
+Since there is no quadratic term, computing the second derivative yields  $\delta=0$. 

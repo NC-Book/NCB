@@ -1,0 +1,48 @@
+
+\exercise{Excess degree rule}{2}\label{exAttackExcessReduce}Use a generating function calculation to show that removing a proportion $r$ of the links from a network at random, also decreases the mean excess degree by a proportion $r$. 
+
+\solution
+In analogy to the calculation in the chapter, let $G$ be the network's degree generating function before the attack. We know that we can write the generating function after the attack as 
+\eq{
+G_{\rm a}=G(A), 
+}
+where 
+\eq{
+A=cx+r 
+}
+is the pruning functions and
+\eq{
+c=1-r
+}
+is the proportion of surviving links. 
+
+We also know that we can compute the excess degree generating function as 
+\eq{
+Q=\frac{G'}{G'(1)},
+}
+where 
+\eq{
+G'(1)=z.
+}
+Computing the derivative of the degree generating function after the attack yields  
+\eq{
+G_{\rm a}' =  \partial_x G(A)=G'(A) \partial_x A =G'(A)A'= cG'(A),   
+}
+where we used the chain rule of differentiation in the second step and the definition of $A$ in the last step. Recall that evaluating properly normalized generating functions at $x=1$ yields 1. For example 
+\eq{
+A(1)=r+c=1. 
+}
+We can now write the excess degree generating function after the attack
+\eq{
+Q_{\rm a}=\frac{G_{\rm a}'}{G_{\rm a}'(1)}=\frac{cG'(A)}{cG'(A(1))}=\frac{G'(A)}{G'(1)}=Q(A) 
+}
+This is actually a very useful rule. If we know the excess degree generating function for the original network we can get the excess degree generating function after link removal by substituting the pruning function $A$ into the former function.  
+
+Finally, to compute the mean of the distribution we differentiate again and evaluate at 1,
+\eq{
+q_{\rm a}=Q_{\rm a}'(1) = \left. \partial_x Q(A) \right|_{1} = Q'(A(1))A'(1) = cQ'(1) =cq.
+}
+This shows the excess degree is reduced proportionally to the number of links or, if you like, you could also say that the reduction in excess degree is 
+\eq{
+q-q_{\rm a}=q-cq=(1-c)q = rq.
+}

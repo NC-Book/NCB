@@ -1,0 +1,176 @@
+
+\exercise{Viral attacks in general \label{exAttackViral}}{3}
+Now, we derive some results on the viral attack. Let $G$ be the degree generating function before the attack, and $y$ the proportion of links that are not part of the giant conducting component. 
+
+\subquestion 
+Show that a viral attack starting within the giant conducting component is described by the attack generating function 
+\eqn{
+R=G-G(xy)
+}
+Note that we have omitted the argument $(x)$ behind $R$ and the first $G$, in accordance with our notation. 
+
+\solution
+From the chapter we know that the probability that a randomly picked node has degree $k$ and is subsequently removed in the viral attack is 
+\eq{
+r_k = p_k(1-y^k).
+}
+Furthermore we know the definition of the attack function
+\eq{
+R=\sum r_k x^k.
+}
+Substituting the $r_k$ we can write
+\eqa{
+R &=& \sum p_k (1-y^k) x^k \\
+  &=& \left(\sum k p_k x^k \right) - \left( \sum p_k (xy)^k \right) \\
+  &=& G(x) - G(xy) = G-G(xy)
+}
+where we used $G(x)=sum p_k x^k$ in the last step.
+
+\subquestion
+Now start from $R=G-G(xy)$ and show that the properties of the network after the viral attack are given by 
+\eqn{
+\label{eqAttackViralResStart}
+N_{\rm a}=G(y)N,
+}
+\eqn{
+\label{eqAttackViralResMid}
+z_{\rm a}=y^2\frac{Q(y)}{G(y)}G'(y), \qqq q_{\rm a}=y^2Q'(y),
+}
+\eqn{
+\label{eqAttackViralResEnd}
+G_{\rm a}=\frac{G(\tilde{A}y)}{G(y)}, \qqq Q_{\rm a}=\frac{Q(\tilde{A}y)}{Q(y)},
+}
+where $\tilde{A}=\tilde{c}x+\tilde{r}$ and $\tilde{c}=1-\tilde{r}=yG'(y)/z=yQ(y)$. 
+
+\solution
+{\bf Number of nodes.} To find the equation for $N$ we need to work out what proportion of the network is removed in the attack: 
+\eq{
+r=R(1)=G(1)-G(y) = 1-G(y),  
+}
+where we used $G(1)=1$. The surviving fraction of the nodes is
+\eq{
+c=1-r=G(y).
+}
+Multiplying this surviving fraction with the total number of nodes gives us the desired result 
+\eq{
+N_{\rm a}=cN=G(y)N.
+}
+
+{\bf Mean degree.} To find the result we use the respective result for degree targeted attacks 
+\eq{z_{\rm a}=\frac{z\tilde{c}^2}{c}.} 
+In our calculation of the surviving number of nodes we have just seen $c=G(y)$ and from our analysis of the degree-targeted attack we know
+\eq{
+\tilde{r}=\frac{R'(1)}{z}. 
+}
+Substituting $R=G-G(xy)$ yields
+\eqa{
+\tilde{r}&=&\frac{G'(1)-yG'(y)}{z}\\
+   &=&\frac{z-yG'(y)}{z}\\
+   &=& 1 - \frac{yG'(y)}{z} \\
+   &=& 1 - yQ(y)
+}
+where the factor $y$ appears as the inner derivative from differentiating $G(xy)$ with respect to $x$. We can now find the $\tilde{c}$ as the complement of $\tilde{r}$,
+\eq{
+\tilde{c}=1-\tilde{r}=yQ(y). 
+}
+This gives us all the parts that we need to put the solution together, we start the equation for $z_{\rm a}$ and substitute $c$ and $\tilde{c}$, 
+\eqa{
+z_{\rm a}&=&\frac{z\tilde{c}^2}{c}\\
+&=&\frac{z(yQ(y))^2}{G(y)}\\
+&=&y^2\frac{Q(y)}{G(y)}zQ(y)\\
+&=&y^2\frac{Q(y)}{G(y)}G'(y)
+}
+where we have used $Q=G'/z$ in the last step to make the result a little bit nicer. This form is appealing because $z=G'(1)$, so having a $G'$ appear on the right hand side is neat. 
+
+An alternative way is to first derive
+\eq{
+G_{\rm a} = \frac{G(\tilde{A}y)}{G(y)}
+}
+and then compute $z_{\rm a}$ using the relationship between degree generating function and the mean degree 
+\eq{
+z_{\rm a} = G_{\rm a}'(1)
+}
+In this case we have take care with the derivative as we are differentiating with respect to $x$, which appears as the argument of $\tilde{A}$, (remember $\tilde{A}=\tilde{A}(x)$). We find
+\eqa{
+z_{\rm a} &=& \left.\frac{\partial}{\partial x} \frac{G(\tilde{A}y)}{G(y)} \right|_{x=1} \\
+&=& \left. \frac{G'(\tilde{A}y)\tilde{A}'y}{G(y)} \right|_{x=1} \\
+&=& \frac{G'(\tilde{A}(1)y)\tilde{A}'(1)y}{G(y)} \\
+&=& \frac{G'(y)\tilde{A}'(1)y}{G(y)} \\
+&=& \frac{G'(y)\tilde{c}y}{G(y)} \\
+&=& \frac{G'(y)y^2Q(y)}{G(y)} \\
+&=& y^2\frac{Q(y)}{G(y)}G'(y) 
+}
+where we used $\tilde{A}(1)=1$ and $\tilde{A}'(1)=\tilde{c}$ and $\tilde{c}=yQ(y)$, derived above.
+
+{\bf Excess degree. } As for the mean degree there are two ways to reach the desired result. First, we can use the equation for the excess degree after a degree targeted attack $q_{\rm a}=q-R''(1)/z$. We start by computing the second derivative of $R$,
+\eqa{
+R'' &=& \frac{\partial^2}{{\partial x}^2} (G-G(xy)) \\
+  &=& G''-y^2G''(xy) 
+}
+Substituting into the equation for $q_{\rm a}$ yields
+\eqa{
+q_{\rm a} &=& q-\frac{R''(1)}{z} \\
+  &=& q - \frac{G''(1)-y^2G''(y)}{z} \\
+  &=& q - \frac{G''(1)}{z} + \frac{y^2G''(y)}{z} \\
+  &=& q - q + \frac{y^2G''(y)}{z} \\
+  &=& \frac{y^2G''(y)}{z} \\
+  &=& y^2Q'(y)
+}
+where we used $Q'=G''/z$ in the last step, which follows from $Q=G'/z$. 
+
+Alternatively we can first derive the equation for the excess degree generating function $Q_{\rm a}=Q(\tilde{A}y)/Q(y)$ and then compute the mean excess degree in the usual way,
+\eqa{
+q_{\rm a}&=&Q_{\rm a}'(1) \\
+  &=& \left.\frac{\partial}{\partial x} \frac{Q(\tilde{A}y)}{Q(y)}  \right|_{x=1} \\
+  &=& \left. \frac{Q'(\tilde{A}y)\tilde{A}'y}{Q(y)} \right|_{x=1} \\
+  &=& \frac{Q'(\tilde{A}(1)y)\tilde{A}'(1)y}{Q(y)} \\
+  &=& \frac{Q'(y)\tilde{c}y}{Q(y)} \\
+  &=& \frac{Q'(y)Q(y)y^2}{Q(y)} \\
+  &=& y^2Q'(y) 
+}
+which is again the desired result. 
+
+{\bf Degree generating function.} Here we use the result from degree-targeted attacks, which tells us
+\eqa{ 
+G_{\rm a} &=& \frac{G(\tilde{A})-R(\tilde{A})}{c} \\
+  &=& \frac{G(\tilde{A})-(G(\tilde{A})-G(\tilde{A}y))}{c} \\
+  &=& \frac{G(\tilde{A}y))}{c} \\
+  &=& \frac{G(\tilde{A}y))}{G(y)}. 
+}
+
+{\bf Excess degree generating function.} Here we have again the choice between two different ways. Using the result from degree-targeted attacks we can write
+\eqa{
+Q_{\rm a} &=& \frac{G'(\tilde{A})-R'(\tilde{A})}{z\tilde{c}} \\
+  &=& \frac{G'(\tilde{A})-(G'(\tilde{A})-G'(\tilde{A}y))}{z\tilde{c}} \\
+  &=& \frac{yG'(\tilde{A}y)}{z\tilde{c}} \\
+  &=& \frac{yG'(\tilde{A}y)}{z}\frac{z}{yG'(y)} \\
+  &=& \frac{G'(\tilde{A}y)}{G'(y)}.
+}
+To bring this into the desired form we need to expand the fraction by $1/z$ in order to use $Q=G'/z$, which gives us 
+\eqa{
+Q_{\rm a} &=& \frac{G'(\tilde{A}y)}{G'(y)} \\
+   &=& \frac{G'(\tilde{A}y)/z}{G'(y)/z} \\
+   &=& \frac{Q(\tilde{A}y)}{Q(y)} 
+}
+which is what we wanted. 
+
+The alternative way to construct the excess degree generating function after the attack is to compute it from the degree generating function using $Q=G'/z$ applied to the functions after the attack, so 
+\eq{
+Q_{\rm a} = \frac{G_{\rm a}'}{z_{\rm a}} = \frac{G_{\rm a}'}{G_{\rm a}'(1)} 
+}
+To make use of this relationship, lets start by computing 
+\eqa{
+  G_{\rm a}' &=& \frac{\partial}{\partial x} \frac{G(\tilde{A}y)}{G(y)} \\ 
+  &=& \frac{G'(\tilde{A}y)\tilde{A}y}{G(y)} \\
+  &=& \frac{G'(\tilde{A}y)\tilde{A}'y}{G(y)} \\
+  &=& \frac{G'(\tilde{A}y)\tilde{c}y}{G(y)} 
+}
+It is now tempting to substitute the equation for $\tilde{c}$ that we derived above, but in this case it is unnecessary because this factor is about to get cancelled anyway as we substitute into the equation for $Q_{\rm a}$. Cancel culture, here we come,
+\eqa{
+  Q_{\rm a} &=& \frac{G_{\rm a}'}{G_{\rm a}'(1)}  \\
+    &=& \frac{G'(\tilde{A}y)\tilde{c}y}{G(y)} \frac{G(y)}{G'(\tilde{A}(1)y)\tilde{c}y}  \\
+    &=& \frac{G'(\tilde{A}y)}{G'(\tilde{A}(1)y)}  \\    
+    &=& \frac{G'(\tilde{A}y)}{G'(y)}  \\
+    &=& \frac{G'(\tilde{A}y)/z}{G'(y)/z}  \\
+    &=& \frac{Q(\tilde{A}y)}{Q(y)}  
+}
