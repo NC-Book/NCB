@@ -1,0 +1,76 @@
+
+\exercise{Island Meta-community}{3}
+Consider a system of grassy small islands. Individually each island is too 
+small to sustain animal populations for an extended amount of time, due to inbreeding. However, sometimes, during an especially low tide, animals can cross between certain islands. We can describe this system as a network where nodes are islands and links are possible crossings. Assume that this system is an ER network with mean degree $z=6$.
+
+\subquestion A species of sheep live on these islands, but they can only maintain the necessary genetic diversity on those islands that are in genetic exchange with many other islands (i.e.~those forming a giant component of sheep). Moreover, sheep are not good swimmers so they can cross 20\% of the network links. Compute the proportion of islands on which sheep can persist.  
+
+\solution
+To answer this question we need to compute the giant component size after we have removed 80\% of the links from the original network.
+
+You may have guessed that randomly removing 80\% of the links from a random graph of mean degree $6$ leads to a random graph with mean degree $z_{\rm a}=  1.2$. If not we can show it very quickly. Recall that the generating function for an ER random graph is $G=exp{z(x-1)}$, hence
+\eq{
+G_{\rm a}=G(0.2x+0.8)=\exp{6((0.2x+0.8)-1)}=\exp{1.2(x-1)} 
+}
+which is the generating function for an ER graph with mean degree 1.2. For an ER graph $Q=G$. So to find the giant component size we iterate
+\eq{
+v=Q_{\rm a}(v)=\exp{1.2(v-1)}
+}
+Starting from 0.5 yields
+\begin{center}
+0.5, 0.5488116361, 0.5819178242, 0.6055012746 \ldots 0.686301669 
+\end{center}
+We can now compute the giant component size as
+\eq{
+s=1-G_{\rm a}(v)=1-Q_{\rm a}(v)=1-v\approx 0.313698331
+}
+So we find the sheep on approximately 31\% of the islands.
+
+\subquestion There is also a species of rabbits on the islands. Again they can only survive by forming a giant component of connected populations. They are surprisingly good swimmers so they can use all the paths between islands. However, the rabbits can't colonize any islands where sheep are present. 
+
+\solution 
+From the perspective of rabbits the sheep are a viral attack on their network (weird thought isn't it). So let's work out what degree distribution this viral attack leaves of for the rabbits. 
+
+In this case we already know that the sheep will take up approximately 31\% of the network, and $A_{\rm c}$, the parameter $v_{\rm c}$ is the $v$ that we computed previously and the pruning function that removes the links that are not usable by sheep is 
+\eq{
+A_{\rm c}=0.2x+0.8,
+}
+which we have already used above above. This means that we can jump directly to the third step of the viral attack procedure from the chapter and compute the parameter $y$ of the attack as 
+\eq{
+y=A_{\rm c}(v_{\rm c})=0.2(0.686301669)+0.8 \approx 0.9372603338
+}
+So almost 94\% of the links are not in the giant sheep-conducting component.
+
+To find the generating function of the nodes that are left for the rabbits we compute
+\eq{
+\tilde{c}=yG'(y)/z = \frac{zy\exp{z(y-1)}}{z} = y\exp{6(y-1)} \approx 0.6432433313  
+}
+and its complement
+\eq{
+\tilde{r}=1-\tilde{c}\approx 0.3567566687.
+}
+Next we need the generating functions for the network that is left after the sheep take their toll. We compute 
+\eq{
+G_{\rm a}=\frac{G(\tilde{A}y)}{G(y)} = \frac{\exp{z(\tilde{A}y-1)}}{\exp{z(y-1)}} =
+\exp{zy(\tilde{A}-1)},
+}
+where $\tilde{A}=\tilde{c}x+\tilde{r}$. Using the equation for $Q_{\rm a}$ from the chapter yields the same result
+\eq{
+Q_{\rm a}=\frac{Q(\tilde{A}y)}{Q(y)} = \frac{G(\tilde{A}y)}{G(y)} =
+\exp{zy(\tilde{A}-1)},
+}
+here we used that $G=Q$ because our initial network is ER. As we can see from the result the same still holds after the viral attack $G_{\rm a}=Q_{\rm a}$, this shows that the ER network is still an ER network after a viral attack on it's giant component, albeit with a lower mean degree. 
+
+We can now find the giant component size for rabbits by iterating 
+\eq{
+v_{\rm rab}=Q_{\rm a}(v_{\rm rab}) =  \exp{zy(\tilde{c}v_{\rm rab}+\tilde{r}-1)} 
+}
+where rab stands for rabbit. Starting from 0.5 yields 
+\begin{center}
+    0.5, 0.1638736822, 0.04858038588, 0.03201380652 \ldots 0.02992468237 
+\end{center}
+and then find the giant component size from
+\eq{
+s_{\rm rab}=1-G_{\rm a}(y_{\rm rab})=1-0.02366006026=0.9763399397.
+}
+So in summary we expect to find sheep on approximately 31\% of the islands and rabbits on approximately 98\% of the islands without sheep.   

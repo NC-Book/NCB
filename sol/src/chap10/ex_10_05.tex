@@ -1,0 +1,46 @@
+
+\exercise{Abstract Targeted Attack}{2}\label{exAttackAbsTarg}Consider a ER random graph of $N$ nodes with mean degree $z$. An attack removes all nodes of degree 0, half the nodes of degree 1, a quarter of the nodes of degree 2 and so on. Compute the size of the network $N_{\rm a}$, and the mean excess degree $q_{\rm a}$ after the attack. 
+
+\solution 
+The attack is described by 
+\eqa{
+r_k &=& p_k/2^k
+}
+Substituting the ER degree distribution 
+\eq{
+p_k = \frac{z^k\exp{-z}}{k!} 
+}
+we can write the attack generating function as 
+\eqa{
+R&=&\sum r_k x^k \\
+ &=& \sum \frac{(zx/2)^k\exp{-z}}{k!} \\
+ &=& \exp{-z} \sum \frac{(zx/2)^k}{k!} \\
+ &=& \exp{-z} \exp{zx/2} = \exp{z(x/2-1)}
+}
+Since we know $R$ we can now compute the removed proportion of nodes 
+\eq{
+r=R(1)=\exp{-z/2} 
+}
+and the surviving proportion of nodes 
+\eq{
+c=1-r=1-\exp{-z/2}
+}
+which gives us the number of nodes after the attack
+\eq{
+N_{\rm a} = (1-\exp{-z/2})N
+}
+for example if the network had a mean degree of zero before the attack, the size after the attack is zero, which makes sense. 
+
+To find $q_{\rm a}$ we recall that the mean excess degree of the ER network before the attack is $q=z$. Using a result from the lecture we can compute the reduction of the mean excess degree by the attack as 
+\eqa{
+\delta &=& \frac{R''(1)}{z} \\
+   &=& \left. \frac{1}{z} \frac{\partial^2}{{\partial x}^2}  \exp{z(x/2-1)} \right|_{x=1} \\
+   &=& \left. \frac{1}{z} \frac{\partial}{{\partial x}} \frac{z}{2} \exp{z(x/2-1)} \right|_{x=1} \\
+   &=& \left. \frac{1}{z}  \frac{z^2}{4} \exp{z(x/2-1)} \right|_{x=1} \\
+   &=& \left.  \frac{z^2}{4} \exp{z(x/2-1)} \right|_{x=1} \\
+   &=&  \frac{z}{4} \exp{-z/2} 
+}
+Hence the mean excess degree after then attack is 
+\eq{
+q_{\rm a}= q- \delta = z-\frac{z}{4} \exp{-z/2} = z(1-\exp{-z/2}/4).
+}

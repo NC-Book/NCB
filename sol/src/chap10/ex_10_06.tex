@@ -1,0 +1,64 @@
+
+\exercise{Abstract viral attack}{3}
+Consider a configuration model network with degree distribution $p_k=0.8\delta_{k,2}+0.2 \delta_{k,8}$. A viral attack can spread over 40\% of the links in the network. Is there still a giant component after the nodes affected by the viral attack have been removed? 
+
+\solution 
+We follow the procedure established in the chapter and start by computing some basic network properties. We start by writing the degree generating function 
+\eq{
+G=\sum p_k x^k = 0.8x^2 + 0.2x^8
+}
+and then compute the mean degree 
+\eq{
+z=G'(1)=1.6+1.6=3.2
+}
+We con now compute the excess degree generating function 
+\eq{
+Q=\frac{G'}{z}=\frac{1.6x+1.6x^7}{3.2} = 0.5x+0.5x^7 
+}
+and the mean excess degree 
+\eq{
+q=Q'(1)=4 
+}
+The attack can spread over 40\% of the links so $1-w=0.4$ and hence $w=0.6$.
+
+Before we dive the main part of the calculation, first let's quickly check if there is a giant conducting component at all. We compute 
+\eq{
+q_{\rm c} = (1-w)q = 0.4 \cdot 4 = 1.6>1
+}
+Since the mean excess degree of the conducting network is greater than 1 there is a giant conducting component. 
+
+Now we are ready for step 2 in our viral attack algorithm. To compute the size of the giant conducting component we need to construct pruning function that removes the non-conducting links
+\eq{
+A_{\rm c}=0.4x+0.6
+}
+Now we can compute $v_{\rm c}$ for the giant conducting component by solving 
+\eq{
+v_{\rm{c}} = Q(A_{\rm c}(v_{\rm c}))  
+}
+For the present network this is
+\eq{
+v_{\rm c}= 0.5(0.4x+0.6)+0.5(0.4x+0.6)^7
+}
+Starting from $v_{\rm c}=0.5$ and iterating numerically yields
+\begin{center}
+    0.5, 0.5048576, 0.5076249095 \ldots 0.5113848791 
+\end{center}
+
+In step 3 of the viral attack algorithm we the proportion of all links that are not in the giant conducting component
+\eq{
+y=A_{\rm c}(v_{\rm c})=0.4 v_{\rm c} + 0.6 \approx 0.8045539517
+}
+so only about 20\% of the links are in the gcc. Now that we know this we can compute the size of the gcc, i.e.~the proportion of the links that will be removed if an attack on the giant conducting component occurs as
+\eq{
+r=s_{\rm c}=1-G(y)= 0.8y^2 + 0.2y^8 \approx 0.5529589268
+}
+This tells us that starting the viral attack in a random node has 55\% chance to cause the removal of 55\% of the network. 
+
+If those 55\% of the nodes were chosen randomly then the mean excess degree after the attack would be $(1-r)q\approx 1.788>1$, but the random attack does not chose its targets randomly. So, instead we compute the mean access after the attack as follows 
+\eqa{
+q_{\rm a} &=& y^2 Q'(y)\\
+  &=& y^2 (0.5+3.5y^6) \\
+  &=& 0.5 y^2 + 3.5 y^8 \\
+  &\approx& 0.9381358939 < 1
+}
+which shows that the giant component in the network under consideration would not survive the attack. 
