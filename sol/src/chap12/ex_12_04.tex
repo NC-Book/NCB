@@ -1,0 +1,40 @@
+\exercise{Population growth \label{exGrowPopulation}}{2}
+\label{exGrowthQuadratic}
+Sexual reproduction requires that two individuals of a species meet. If we apply the law of mass action naively we may arrive at a model of the form
+$\dot{x}=x^2$. Solve the initial value problem for $x(0)=1$ and explore what happens. 
+
+\solution
+Starting from 
+\eq{
+\ddt x = x^2
+}
+separation of variables leads to
+\eq{
+   \frac{1}{x^2} \d{x} = \dt.
+}
+Integrating we find 
+\eqa{
+\int \frac{1}{x^2} \d{x} & = & \int \dt \\
+  - \frac{1}{x} &=& t + C
+}
+where $C$ is the constant of integration. Solving for $x$ yields 
+\eq{
+   x(t) = - \frac{1}{t+C}.
+}
+This is already the general solution to the problem. To find the particular solution that solves the initial value problem we use 
+\eq{
+  x(0) = 1 = - \frac{1}{C},
+}
+which we can solve for 
+\eq{
+    C=-1.
+}
+Hence the solution to the initial value problem is 
+\eq{
+    x(t) = - \frac{1}{t-1} = \frac{1}{t-1}.
+}
+From this solution we can see that something interesting is happening here. At $t=1$ the denominator of the fraction is zero and the population size $x$ diverges toward $+\infty$. This is indeed a correct result, quadratic growth leads to an explosion that reaches $\infty$ in finite time. 
+
+We can see from this result that geometric growth ($\dot{x}\sim x^\gamma$ with $\gamma>1$) is much much more violent than exponential growth, which also reaches $\infty$, but only after infinite time. 
+
+For biological populations quadratic growth is a bad model for reasons that we discover in Chap.~17.  

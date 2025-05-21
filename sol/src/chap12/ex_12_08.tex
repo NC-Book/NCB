@@ -1,0 +1,47 @@
+
+\exercise{Iterative integration \label{exGrowIter}}{3}
+Consider the equation
+\eqn{
+\dot{x}=rx
+}
+where $x(0)=x_0=1$. We know that we can't solve this equation by direct integration. However, let's try nevertheless ...
+
+\subquestion
+Assume that x on the right hand side of the equation is a constant and directly integrate the equation. (This will prove the assumption wrong)
+
+\solution
+So we literally assume $x=1$. substituting into the equation yields 
+\eq{
+\dot{x} = r
+}
+Integrating both sides we find 
+\eq{
+x(t)=1+rt.
+}
+
+\subquestion Now take your solution from (a) and use this as a new assumption, for $x$ and integrate again.
+
+\solution 
+So we now assume 
+\eq{
+x(t) = 1+rt
+}
+and hence integrate
+\eq{
+\dot{x}=r(1+rt) = r+r^2t, 
+}
+which yields
+\eq{
+x(t)=1+rt + \frac{r^2t^2}{2}.
+}
+
+\subquestion Iterate this process to find successively better approximations to the solution. Can you spot the pattern that is developing?
+
+\solution
+Integrating a few more times we can see that we are approaching the solution 
+\eqa{
+x(t)&=&1+rt + \frac{r^2t^2}{2} + \frac{r^3t^3}{6} + \ldots \\
+  &=& \sum_n \frac{(rt)^n}{n!} \\
+  &=& \exp{rt}
+}
+which is of course as it should be.

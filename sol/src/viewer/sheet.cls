@@ -20,6 +20,7 @@
 \newcounter{subsubquestion}[subquestion]
 \renewcommand{\thesubquestion}{\alph{subquestion}}
 \renewcommand{\thesubsubquestion}{\alph{subquestion}}
+\renewcommand{\d}{{\rm d}}
 
 \newif{\ifinsolution}
 \newif\ifshowsolutions
