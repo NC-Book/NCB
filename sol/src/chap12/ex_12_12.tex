@@ -1,0 +1,214 @@
+\exercise{Solving SIS and Logistic Growth}{4}
+\label{exGrowSIS}
+Many systems in nature exhibit logistic growth, which is described by the logistic differential equation  $\dot{x}=Ax(K-x)$.
+
+\subquestion Show that the equation for the SIS model can be written in the form of logistic growth and determine the values of $A$ and $K$.
+
+\solution 
+In the logistic differential equation the variable is called $x$ while in the SIS model we called it $I$, so lets start by renaming, $I=x$. In terms of $x$ we can write our SIS model as 
+\eq{
+\dot{x}=p(1-x)x -rx
+}
+To bring it into the form of the logistic differential equation it is usefull to first collect all powers of $x$,
+\eq{
+\dot{x} = (p-r)x - p x^2  
+}
+Now we can isolate one factor of $x$, which gives us
+\eq{
+\dot{x} = x\left((p-r)- p x\right).  
+}
+We have arrived almost at the desired form however, there is still a factor $p$ in front of the $x$ in the bracket, whereas there is only a 1 there in the logistic growth. Pulling this p out yields
+\eq{
+\dot{x} = xp\left(\frac{(p-r)}{p}- x\right).  
+}
+The equation now has the right form. We can identify 
+\eq{
+K=\frac{p-r}{p}\qqq  A=p
+}
+which yields
+\eq{
+\dot{x}=Ax(K-x).
+}
+
+\subquestion
+Show that the logistic differential equation can be solved by separation of variables, identify the two integrals that need to be solved, and solve the simpler one of them.  
+
+\solution 
+We can write the equation in the variational form 
+\eq{
+\frac{1}{x(K-x)} {\rm d}x = A {\rm d} t 
+}
+This leads us to the integral equation 
+\eq{
+\int \frac{1}{x(K-x)} {\rm d}x = \int A {\rm d} t 
+}
+The integral on the right is easy and we can solve it straight away
+\eq{
+\int \frac{1}{x(K-x)} {\rm d}x = At+C 
+}
+
+\subquestion
+We are now left with a more difficult integral to solve. To do this, first show that the term under the integral can be written in the form
+\eqn{
+ \frac{a}{x}+\frac{b}{K-x}  
+}
+where $a$ and $b$ are constants. In other words: Find $a$ and $b$ such that such that the expression above becomes identical to the term under the integral. (Hint: After the first steps, isolate the $x$.)
+
+\solution 
+Consider that the term under our integral was 
+\eqn{
+ \frac{1}{x(K-x)}.
+}
+We want to show that it can be written in the form 
+\eqn{
+ \frac{a}{x}+\frac{b}{K-x}.  
+}
+Hence we demand 
+\eq{
+ \frac{1}{x(K-x)} = \frac{a}{x}+\frac{b}{K-x}.
+}
+To solve this we multiply everything with $x(K-x)$ and take advantage of the resulting cancellations, which yields 
+\eq{
+1 = (K-x)a + xb
+}
+which we can also write as 
+\eq{
+0 = (Ka-1) + (b-a)x
+}
+This condition must be fulfilled for all values of $x$ which is only possible if we chose $a=b$. From the first bracket we see furthermore that $a=1/K$.
+
+Let's do a quick check to see if this is right. 
+\eq{
+\frac{1}{K(K-x)}+\frac{1}{Kx}=\frac{x}{K(K-x)x}+\frac{(K-x)}{K(K-x)x}=\frac{x+K-x}{K(K-x)x}=\frac{1}{x(K-x)}
+}
+OK, this works. This trick of splitting the fraction into multiple simpler fractions is called ``continued fractions'' by the way. It appears in the solution of many difficult problems. 
+
+\subquestion
+Use the result from (c) to split the integral that we still need to solve into two integrals and solve them. 
+
+\solution 
+We rewrite the integral
+\eq{
+\int \frac{1}{x(K-x)} {\rm d}x = \int \left( \frac{1}{K(K-x)} + \frac{1}{Kx}\right) {\rm d} x
+}
+and then split it 
+\eq{
+\int \left( \frac{1}{K(K-x)} + \frac{1}{Kx}\right) {\rm d} x 
+= \int \frac{1}{K(K-x)} {\rm d}x + \int \frac{1}{Kx} {\rm d} x
+}
+This gives us two simpler integrals to solve. We can solve the second one straight away
+\eq{
+\int \frac{1}{Kx} {\rm d} x = \frac{1}{K} \int \frac{1}{x} {\rm d} x = \frac{1}{K} \log(x) 
+}
+Logarithms frequently show up when we integrate fractions. To solve the first of the two integrals, let's just try what happens if we differentiate $log(K-x)$, using the chain rule 
+\eq{
+\frac{{\rm d}}{{\rm d}x} \log(K-x) = \frac{K-x}{-1} 
+}
+where the $-1$ appears due to the inner derivative. If multiply the whole equation and multiply by -1 and then integrate it again we get 
+\eq{
+-\log(K-x) = \int \frac{1}{K-x} {\rm d}x 
+}
+and hence 
+\eq{
+\int \frac{1}{K(K-x)} {\rm d}x = - \frac{\log(K-x)}{K}
+}
+\subquestion Finally put all the parts together and solve for $x$. 
+\solution
+In summary: We started from 
+\eq{
+\dot{x}=Ax(K-x)
+}
+which leads us to the integral equation 
+\eq{
+\int \frac{1}{x(K-x)} {\rm d}x = \int A {\rm d} t 
+}
+We can rewrite the left hand side as two integrals 
+\eq{
+\frac{1}{K} \int \frac{1}{x} {\rm d} x + \frac{1}{K} \int \frac{1}{K-x} {\rm d}x   = \int A {\rm d} t 
+}
+and then solve all the integrals
+\eq{
+\frac{1}{K} \log(x) - \frac{1}{K} \log(K-x) = At+C
+}
+We now need to solve for $x$ to do we fist multiply everything by $K$,
+\eq{
+\log(x) - \log(K-x) = K(At+C) 
+}
+and then apply the exponential function to both sides
+\eq{
+\exp{\log(x)-\log(K-x)} = \exp{K(At+C)}.
+}
+We simplify the left-hand side of this equation 
+\eq{
+\exp{\log(x)-\log(K-x)}=\frac{\exp{\log(x)}}{\exp{\log(K-x)}} = \frac{x}{K-x} 
+}
+so the equation reads now 
+\eq{
+\frac{x}{K-x} = \exp{K(At+C)}.
+}
+We can now multiply both sides by $K-x$, 
+\eq{
+x = (K-x) \exp{K(At+C)},
+}
+and gather all $x$ on the left side, 
+\eq{
+x(1+\exp{K(At+C)}) = K \exp{K(At+C)}, 
+}
+to arrive at the solution 
+\eq{
+x = \frac{K \exp{K(At+C)}}{1+\exp{K(At+C)}}
+}
+At $t=0$ the solution reads 
+\eq{
+x_0 = \frac{K\exp{KC}}{1+\exp{KC}} 
+}
+we can use this to write 
+\eqa{
+x_0(1+\exp{KC}) &=& K \exp{KC} \\
+x_0 &=& \exp{KC}(K-x_0)   \\
+\exp{KC} = \frac{x_0}{K-x_0}
+}
+we can use this to write the solution as 
+\eq{
+x(t) = \frac{K \frac{x_0}{K-x_0} \exp{KAt}}{1+\frac{x_0}{K-x_0}\exp{KAt}}
+}
+... and simplifying a little bit 
+\eq{
+x(t) = \frac{Kx_0\exp{KAt}}{K+x_0(\exp{KAt}-1)}
+}
+This answers the question. 
+
+Bonus: To understand the dynamics, consider that at $t=0$ we have $x=x_0$. Initially, that is, the exponential terms are very close to one. This means we can approximate 
+\eq{
+\exp{KAt}-1 \approx 0
+}
+Hence the bracket in the denominator vanishes and the dynamics looks like 
+\eq{
+x(t) = x_0\exp{KAt} \quad\quad\mbox{for $t\ll 1$} 
+}
+At later times the exponential term becomes much larger than both the $-1$ and the $K$ in the denominator, so the dynamics looks like
+\eq{
+x(t) = \frac{Kx_0\exp{KAt}}{x_0\exp{KAt}} = K \quad\quad\mbox{for $t\gg 1$} 
+}
+So if we wait long enough the growth saturates in the steady state at $x=K$.
+
+\subquestion{Substitute $K$ and $A$ into the solution to find a general solution for the SIS model.}
+
+\solution
+Writing the solution in terms of $I$ we have 
+\eq{
+I(t) = \frac{KI_0\exp{KAt}}{K+I_0(\exp{KAt}-1)}
+}
+We now recall 
+\eq{
+K=\frac{p-r}{p}\qqq  A=p
+}
+It is nice that the solution contains the factors $KA$ which simplify to 
+\eq{
+KA=p-r
+}
+Substituting we can write our solution for the SIS model as
+\eq{
+I(t) = \frac{(p-r)I_0\exp{(p-r)t}}{(p-r)+I_0p(\exp{(p-r)t}-1)}
+}
+where we have multiplied the numerator and denominator of the fraction by $p$ to avoid a fraction inside the fraction. 

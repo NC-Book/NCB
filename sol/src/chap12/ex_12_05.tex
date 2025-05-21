@@ -1,0 +1,21 @@
+
+\exercise{Birth and death \label{exGrowBirth}}{3}
+A population of bacteria X grows by cell division at rate $g$
+\eqn{
+\mbox{X} \xrightarrow{g} 2 \mbox{ X} 
+}
+In addition the bacteria die spontaneously at rate $l$
+\eqn{
+\mbox{X} \xrightarrow{l} \oslash 
+}
+Derive an ODE for the population size $x$ and solve it. 
+
+\solution
+Both processes are proportional to $X$ and increase / reduce the number of bacteria by 1 respectively, hence
+\eq{
+\dot{x} = gx-lx = (g-l)x
+}
+We already solved such a linear equation in the chapter. The solution is 
+\eq{
+x(t)=x_0 \exp{(g-l)t}
+}
