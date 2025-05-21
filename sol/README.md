@@ -12,4 +12,4 @@ Exercise sheets and solutions are available for:
 - [Chap. 9: Massively parallel maths](pdf/chap09/README.md)  -- *(generating functions, component sizes, solving series)*
 - [Chap. 10: Attacks on networks](pdf/chap10/README.md)  -- *(infrastructure robustness, vaccinations, social distanceing)*
   
-  
+- [Chap. 12: Models of growth](pdf/chap12/README.md)  -- *(mollding with ODEs, mass action laws, scale-free networks)*
