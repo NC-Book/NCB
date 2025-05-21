@@ -1,4 +1,4 @@
-# Exercises for Chapter 9: Massively Parallel Maths
+# Exercises for Chapter 10: Attacks on Networks
 
 ## Exercise Sheet
 - [Exercise Sheet 10](ex_10.pdf)
