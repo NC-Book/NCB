@@ -1,0 +1,47 @@
+\exercise{Change of variables \label{exGrowVarchange}}{3}
+Consider a system of differential equations where 
+\eqan{
+\dot{x} &=& y  \\ 
+\dot{y} &=& -x
+}
+We want to transform these equations into polar coordinates, where 
+\eqan{
+r&=&\sqrt{x^2+y^2} \\
+\phi&=&\arctan(y/x) 
+}
+Find (closed) differential equation for $\phi$ and $r$. Simplify where possible. Then solve the differential equations. 
+
+\solution
+Computing the time derivative of $r$ we find 
+\eqa{
+\dot{r} &=&  \frac{1}{2}\frac{1}{\sqrt{x^2+y^2}} (2x\dot{x}+2y\dot{y}) \\
+&=&  \frac{x\dot{x}+y\dot{y}}{\sqrt{x^2+y^2}}
+}
+Now substituting the equations for $x$ and $y$ we find 
+\eq{
+\dot{r} =  \frac{xy-yx}{\sqrt{x^2+y^2}} = 0
+}
+That is nice. Now consider $\phi$.
+\eqa{
+\dot{\phi} &=& \frac{{\rm d}}{{\rm d}t} \arctan(y/x) \\
+&=& \frac{1}{1+y^/x^2} \left(\frac{{\rm d}}{{\rm d}t} \frac{y}{x} \right) \\
+&=& \frac{1}{1+y^/x^2} \left( \frac{\dot{y}}{x} - \frac{\dot{x}y}{x^2}  \right) \\
+&=& \frac{1}{1+y^2/x^2} \left( -1 - \frac{y^2}{x^2}  \right) \\
+&=& -\frac{1+y^2/x^2}{1+y^2/x^2}  \\
+&=& -1
+}
+So it turns out that $r$ is actually a conserved quantity. It is thus a parameter of our system and not a variable. We only need to integrate the equation for $\phi$ which we can do by direct integration 
+\eq{
+\phi(t) = \int -1 \dt = -t + C
+}
+To translate back into our original coordinates we need the inverse coordinate transformation, which is 
+\eqa{
+x&=& r \sin{\phi} \\
+y&=& r \cos{\phi}.
+}
+Substituting our solution for $\phi$ yields
+\eqa{
+x(t)&=& r \sin (C-t) \\
+y(t)&=& r \cos (C-t)
+}
+so the system is going in a circle. We have found a periodic solution. 

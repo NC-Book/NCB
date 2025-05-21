@@ -1,0 +1,66 @@
+\exercise{Price's model \label{exGrowPrize}}{3}
+\label{exGrowthPrice}
+When a scientific paper is published it cites $m$ other papers. Papers that have already been cited more often have higher visibility and hence attract new citations at a higher rate. We assume that a paper with $k$ citations has the visibility $v=a+k$, where $a$ represents an intrinsic visibility the paper has even without citations. 
+
+\subquestion Let $p_k$ be the in-degree distribution of the papers, i.e.~$p_k$ is the proportion of papers that have been cited $k$ times. Consider a single citation from a new paper. Assume that the chance that a paper is cited is proportional to its visibility. Show that the probability $v_k$ that a single new citation cites a paper that has previously had $k$ citations is 
+\eqn{
+v_k = p_k\frac{a+k}{a+z}
+}
+
+\solution
+From the question we know that the probability is proportional to the visibility $a+k$ is should also be proportional to the proportion of target nodes with the respective degree. So we can use the Ansatz
+\eq{
+V_k = A p_k (a+k)
+}
+where $A$ is a factor that we have to pick such that the distribution is normalized, i.e.
+\eq{
+1=\sum v_k = \sum A p_k (a+k) = A (a+z) 
+}
+where $z$ is the mean in-degree. We can now read off 
+\eq{
+A=\frac{1}{a+z}
+}
+This means  
+\eq{
+v_k = p_k\frac{a+k}{a+z}
+}
+
+\subquestion{Show that in the long run the in-degree distribution $p_k$ approaches a power-law for $k\gg 1$, Also determine the power-law exponent.}
+
+\solution
+Following the same reasoning as for the BA-model in the lecture yields the ODE
+\eq{
+\dot{c}_k= \frac{1}{N}\left(-c_k + \frac{mp_k(a+k)}{a+z} \right) 
+}
+Here we need to be careful because the mean in-degree will only approach 
+$z=m$ instead of $z=2m$ for the undirected network. Therefore, 
+\eq{
+\dot{c}_k= \frac{1}{N}\left(-c_k + \frac{mp_k(a+k)}{a+m} \right) 
+}
+In the steady state
+\eq{
+c_k = \frac{mp_k(a+k)}{a+m}.
+}
+and hence
+\eq{
+p_k = c_k\frac{a+m}{m(a+k)}
+}
+which together with $\partial_k c_k =-p_k$ yields
+\eq{
+\partial_k c_k = - c_k\frac{a+m}{m(a+k)}.
+}
+We integrate 
+\eqa{
+\int \frac{1}{c_k} {\rm d}c_k &=& - \frac{a+2m}{m}\int \frac{1}{a+k} {\rm d}k \\
+\ln(c_k) &=& -\frac{a+m}{m} \ln(a+k) + C \\
+c_k &=& A(a+k)^{-1-a/m}
+}
+where $A=\exp{C}$. Hence we can compute 
+\eq{
+p_k = - \partial_k c_k = B (a+k)^{-2-a/m} 
+}
+where $B=A(1+a/m)$ is another prefactor. In the limit $k\gg a$ we get the power law
+\eq{
+p_k \sim k^{-2-a/m} 
+}
+So, distribution of citations that we get from Price's model follows a power law with exponent $\gamma=-2-a/m$.

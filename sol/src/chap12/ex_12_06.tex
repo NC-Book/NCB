@@ -1,0 +1,129 @@
+\exercise{The leaky sink \label{exGrowSink}}{3}
+Water is flowing into a sink at a rate $a$ liters per second. But the stopper that is supposed to plug the outflow at the bottom does not fit well such that a little bit of water can leaks out. The rate at which water is proportional to the water pressure at the bottom of the sink. Hence the outflow is $b$ liters per second for every liter of water that is currently in the sink. 
+
+\subquestion Write a differential equation for $x$, the volume of water that is in the sink. 
+
+\solution
+Using the information from the question gives us 
+\eq{
+\dot{x} = a-bx.
+}
+
+\subquestion Find the steady state.
+
+\solution
+we solve 
+\eq{0=a-bx^*},
+which yields 
+\eq{
+x^* = \frac{a}{b}
+}
+At this point it is good to check that we get the dimensions right. The parameter $a$ is in liters per second, whereas $b$ is in liters per second per liter -- so the dimension of $b$ is `per second'. Dividing l/s by 1/s gives us a result in liters, which is as it should be.   
+
+\subquestion Find the general solution to the differential equation. (Hint: If stuck consider the variable $\delta=x^*-x$)
+
+\solution
+We can integrate this system using separation of variables. Starting from 
+\eqa{
+    \ddt x = a-bx
+}
+we separate the variables, which yields 
+\eq{
+    \frac{1}{a-bx} \d{x} = \dt.
+}
+We can now integrate
+\eqa{
+    \int \frac{1}{a-bx} \d{x} &=& \int \dt \\
+    \frac{\ln{a-bx}}{-b} &=& t+C \\    
+}
+where $C$ is the constant of integration. We now need to solve for $x$ so we multiply $-b$ to find
+\eq{
+\ln{a-bx} = -b(t+C)
+}
+which we can now exponentiate on both sides, yielding
+\eq{
+a-bx = \exp{-b(t+C)} 
+}
+which we can solve for our general solution
+\eq{
+x(t) =\frac{a - \exp{-b(t+C)}}{b}
+}
+It is very reassuring to see that if we consider this solution after a very long time, $t\to \infty$, the exponential term will become vanishingly small and we are left with $x=a/b$, the steady state. 
+
+The problem with this solution is that you need to be able to integrate $1/(a-bx)$. This is not an insurmountable hurdle as you might just remember this integral, find it by trial an error (we get fractions from differentiating logs so differentiating some promising logs quickly leads to the right solution), or you could just look it up in a table of known integrals (you find them online these days, but having an integral table as a printed book is still valuable). 
+
+If none of the options above works for you, you can always try to find a more insightful solution. In this case the differential equation is almost linear, just with an offset $a$. We know that linear equations lead to exponential solutions, but in this case it cannot be a simple exponential because in the long run it needs to go to $a/b$ and not to zero.  
+
+So we could just try a solution of the form 
+\eq{
+x(t)=\frac{a}{b} + r \exp{st}
+}
+where $r$ and $s$ are free parameters that we introduced here. We can find the right values for these parameters by substituting it into the differential equation 
+\eqa{
+  \dot{x} &=& a - bx \\
+  rs \exp{st} &=& a - b \left(\frac{a}{b} + r \exp{st}\right) \\
+  rs \exp{st} &=& a - a - br \exp{st} \\
+  rs \exp{st} &=& - br \exp{st} \\
+  s &=& b \\
+}
+which gives us the general solution in the form 
+\eq{
+x(t)=\frac{a}{b} + r \exp{-bt}
+}
+this is the same solution that we also found using the separation of variables. It is actually a bit nicer as the free parameter $r$ enters in a cleaner way. If you are not convinced that these solutions are actually the same consider that the previous solution can be written as   
+\eq{
+x(t) =\frac{a}{b} - \frac{\exp{-bC}}{b} \exp{-bt}
+}
+because $C$ is a free parameter, also $\exp{-bC}/b$ can still take an arbitrary value so we might as well call it $r$. 
+
+So far we have seen two solutions of which the first needed knowledge and the second needed insight. If we have some knowledge and some insight we can also go a middle way. This time we start with the intuition that this will probably approach the steady state in the long run, so it makes sense to work with a variable that described the distance from the steady state. So we define 
+\eq{
+\delta = x^*-x
+}
+We can rewrite our differential equation in terms of $\delta$ by differentiating 
+\eq{
+\dot{\delta} = -\dot{x}  
+}
+where we used that the steady state is constant in time. Now substituting the old differential equation we find 
+\eq{
+\dot{\delta} = - a + bx 
+}
+to also remove the $x$ from the right hand side we use the defining the definition of $\delta$ in the form $x=x^*-\delta$ which yields 
+\eq{
+\dot{\delta} = -a + b (x^* - \delta) 
+}
+If we now substitute $x^*=a/b$ this become 
+\eq{
+\dot{\delta} = -a + b (a/b - \delta) = -a+a-b\delta 
+}
+Cleaning up we find that this has become a linear differential equation 
+\eq{
+\dot{\delta} = -b\delta.
+}
+As we have seen in the chapter the general solution for this differential equation is 
+\eq{
+\delta(t) = r \exp{-bt}
+}
+where $r$ is again an arbitrary constant. To find a solution in terms of $x$ we use the definition of $\delta$ again in the from $x=x^*-\delta$ which yields 
+\eq{
+x(t) = \frac{a}{b} - r\exp{-bt},
+}
+so again the same solution as before. 
+
+
+\subquestion Solve the initial value problem for a sink that is initially empty. 
+
+\solution 
+
+In one way or the other we have arrived at a general solution of the form 
+\eq{
+x(t) = \frac{a}{b} - r \exp{-bt}.
+}
+Substituting $x(0)=0$ yields
+\eq{
+0 = \frac{a}{b} - r, 
+}
+where we used $\exp{0}=1$. We can now solve for $r=a/b$ which gives us the particular solution 
+\eq{
+x(t) = \frac{a}{b} \left(1-\exp{-bt}\right).
+}

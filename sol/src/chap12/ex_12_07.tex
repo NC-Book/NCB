@@ -1,0 +1,49 @@
+\exercise{Condensation \label{exGrowCondensation}}{3}
+\label{exGrowthCondensation}Imagine a bathroom mirror. When you take a shower drops of condensation begin to form on the cold surface. The drops grow by absorbing water vapor through their surface. Hence the rate at which volume is absorbed is proportional to the radius $r$ of the droplet squared. Because the droplet is a three-dimensional object its volume scales as the $r^3$. Hence it is reasonable to model the growth of the droplet by    
+\eq{
+\dot{v}=ar^2 = bv^{2/3}  
+}
+where $a$ and $b$ are parameters and $v$ is the volume. Solve the initial value problem with $v(0)=0$. Is this the only solution? (more about this in the solutions).  
+
+\solution 
+At first glance this looks pretty straight forward. We can separate the variables
+\eq{
+v^{-2/3} \d{v} = b \dt.
+}
+Integrating yields
+\eqa{
+\int v^{-2/3} \d{v} &=& \int b \dt \\
+3v^{1/3} &=& bt + C 
+}
+Solving for $v$ yields 
+\eq{
+v(t)= \left(\frac{bt+C}{3}\right)^3
+}
+So the volume grows like the cube of time, what is interesting however is that the constant of integration adds to $t$ so it moves the function back and forth in time. 
+
+Let's now consider the initial value problem for with $v(0)=0$ substituting yields 
+\eq{
+0 = \left(\frac{C}{3}\right)^3
+}
+which implies $C=0$. So one solution is so we have found a nice solution. 
+\eq{
+v(t)= \left(\frac{bt}{3}\right)^3
+}
+However, this is odd when you think of it. If the droplets can just spontaneously grow like that, why did you get isolated droplets in the first place, i.e.~why doesn't this happen in every place on the mirror at the same time. It turns out there is another solution, 
+\eq{
+v(t)=0
+}
+Substituting into the differential equation yields $0=0$ so this is a valid solution and also solves the initial value problem. 
+
+So we now already have two solutions. One where a droplet forms, and one where it doesn't. However, if we have these two possibilities we can construct even more! If there is the possibility that a droplet starts forming now, but instead nothing happens, then also nothing changes in the system so there should still be the possibility that a droplet starts forming after some time.
+SO for example we can piece together a solution where a droplet starts forming at time 5. For this we set $C=-5b$ to shift the onset of the growth by 5 time units and then combine the two solutions like this 
+\eq{
+v(t) = \left\{ \begin{array}{l l} 
+0 & \quad \mbox{for $t<5$} \\
+(b(t-5)/3)^3 & \quad \mbox{for $t\geq 5$} \\
+\end{array}
+\right. 
+}
+This is also a valid solution to the differential equation and solves the initial value problem (check!). 
+
+Of course we can also write a solution where the droplet starts forming at any other time. This spontaneous growth of droplets is an example of a differential equation is where the solution is not unique. The conditions under which a differential equation permits multiple solutions in such a way are given by the theorem of Picard and Lindel\"of. Look it up if this interests you.   
