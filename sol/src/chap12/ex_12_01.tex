@@ -1,0 +1,39 @@
+\exercise{Integration \label{exGrowIntegration}}{1}
+Find the general solutions for the following differential equations:
+\begin{enumerate}
+\item \eqn{\dot{x} = 4x} 
+\item \eqn{\dot{x} = \frac{1}{2nx}}
+\item \eqn{\dot{x} = \frac{x}{a+t}}
+\item \eqn{\frac{\d{c}_k}{\d{k}} = - \frac{2c_k}{k}}
+\end{enumerate}
+
+\solution
+All of these can be integrated by separation of variables
+\begin{enumerate}
+\item 
+\eqa{
+\frac{\d{x}}{\dt} &=&  4x \\
+\frac{1}{x} \dx  &=& 4 \dt \\
+\int \frac{1}{x} \dx  &=& \int 4 \dt \\
+\log x &=& 4t + C \\
+x &=& x_0 \exp{4t}
+}
+where $x_0=\exp{C}$.
+
+\item
+\eqa{
+\frac{\d{x}}{\dt} &=& \frac{1}{2x} \\
+\int 2x \dx &=& \int \dt \\
+x^2 &=& t + C  \\
+x &=& \pm \sqrt{t+C}
+}
+
+\item
+\eqa{
+\frac{\dx}{\dt} &=& \frac{x}{a+t} \\
+\int \frac{1}{x} \dx &=& \int \frac{1}{a+t} \dt \\
+\log (x) &=& \log(a+t) + C \\
+x &=& \exp{\log(a+t) + C} \\
+x &=& A (a+t)
+}
+\end{enumerate}

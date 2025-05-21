@@ -1,0 +1,20 @@
+\exercise{Mass action laws \label{xGrowMassAction}}{1}
+Write the differential equations for $x$, $y$ and $z$ that correspond to the reaction diagram
+\eqan{
+  \mbox{X}+2\mbox{Y} &\xrightarrow{r}& \mbox{Z} \\
+  2 \mbox{Z} &\xrightarrow{s}& \oslash
+}
+
+\solution
+The first reaction occurs proportional to $r$, $x$ and $y^2$. It decreases $x$ by one unit, $y$ by two units and increases $z$ by one unit. So taking only this reaction into account would give us 
+\eqa{
+\dot{x}&=&-rxy^2 \\
+\dot{y}&=&-2rxy^2 \\
+\dot{z}&=&rxy^2
+}
+The second reaction occurs proportional to $s$ and $z^2$ and reduces $z$ by two units. Adding the term from this reaction we find the final result
+\eqa{
+\dot{x}&=&-rxy^2 \\
+\dot{y}&=&-2rxy^2 \\
+\dot{z}&=&rxy^2-2sz^2
+}

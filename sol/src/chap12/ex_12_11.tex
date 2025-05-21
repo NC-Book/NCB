@@ -1,0 +1,74 @@
+\exercise{Box of bolts \label{exGrowBolts}}{4}
+In a factory there is a big box of bolts, some of which are broken. At a rate $r$ a worker takes a bolt that is not broken out of the box. 
+
+\subquestion
+Write a differential equation for the number of bolts $N$ that are in the box.
+
+\solution
+By now we can write the equation for $N$ straight forwardly 
+\begin{equation}
+ \dot{N}=-r
+\end{equation}
+
+\subquestion
+Express the proportion of broken bolts $x$ as a function of $N$ and the number of broken bolts $B$.  
+
+\solution
+\eq{
+x=\frac{B}{N} 
+}
+
+\subquestion 
+Differentiate the equation from part (b) with respect to time to find a differential equation for the number of broken bolts. (Note that $B$ is constant in time). Then use substitution to express the right hand side of the differential equation in terms of $x$ (There can be a $B$ on the right hand side because $B$ is a constant but we want to replace the dynamical variable $N$)
+
+\solution
+Differentiating with respect to time yield
+\eq{
+\dot{x}=-\frac{B}{N^2} \dot{N} 
+}
+We substitute $\dot{N}=-r$ and $N=B/x$ to find 
+\eq{
+\dot{x}=r\frac{x^2}{B}
+}
+
+\subquestion
+Solve the differential equation for $x$.
+
+\solution
+We use separation of variables to write 
+\eq{
+\int \frac{1}{x^2} {\rm d}x = \int \frac{r}{B} {\rm d}t
+}
+Integrating we find
+\eq{
+-\frac{1}{x} = \frac{rt}{B}+C
+}
+which we can solve to find 
+\eq{
+x = \frac{1}{-C-\frac{rt}{B}}
+}
+By considering $t=0$ we find that $-C=1/x_0$, hence
+\eq{
+x(t) = \frac{1}{\frac{1}{x_0}-\frac{rt}{B}}
+}
+
+\subquestion
+Bonus: Check your result by computing $x(t)$ in a different way.
+
+\solution 
+We can define the number of  functional (non-broken bolts as $F$). Straightforwardly the number of functional bolts is 
+\eq{
+F=F_0-rt
+}
+Now we write $x$ as 
+\eq{
+x= \frac{B}{N} = \frac{B}{B+F} 
+}
+and substituting $F$ we find 
+\eq{
+x(t)= \frac{B}{B+F_0-rt} 
+}
+We can write this as 
+\eq{
+x(t)=\frac{1}{\frac{B+F_0}{B} -\frac{rt}{B}} = \frac{1}{\frac{1}{x_0}-\frac{rt}{B}}
+}
