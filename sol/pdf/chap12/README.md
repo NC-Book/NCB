@@ -1,7 +1,7 @@
 # Exercises for Chapter 12: Models of Growth
 
 ## Exercise Sheet
-- [Exercise Sheet 10](ex_10.pdf)
+- [Exercise Sheet 12](ex_12.pdf)
 
 ## Solutions
 - [Exercise 01: Integration](ex_12_01.pdf)
