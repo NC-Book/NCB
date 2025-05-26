@@ -13,3 +13,4 @@ Exercise sheets and solutions are available for:
 - [Chap. 10: Attacks on networks](pdf/chap10/README.md)  -- *(infrastructure robustness, vaccinations, social distanceing)*
   
 - [Chap. 12: Models of growth](pdf/chap12/README.md)  -- *(mollding with ODEs, mass action laws, scale-free networks)*
+- [Chap. 13: A secret of bees](pdf/chap13/README.md)  -- *(linear maps, and linear ODEs, Fibonacci, eigendecomposition)*
