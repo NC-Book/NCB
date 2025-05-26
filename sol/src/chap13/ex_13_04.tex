@@ -1,0 +1,124 @@
+
+\exercise{Abstract two-dimensional map}{2}
+Consider the following system: 
+\eqan{
+X_{i+1} &=& -X_i + Y_i \\ 
+Y_{i+1} &=& X_i-Y_i
+}
+\subquestion Write the system in matrix form.
+
+\solution
+We write
+\eqn{
+\vec{x_{i+1}} = {\bf J} \vec{x_i} 
+}
+where 
+\eqn{
+{\bf J}=\avecc{-1 & 1 \\ 1 & -1}
+}
+and $\vec{x_i}=(X_i,Y_i)^{\rm T}$. 
+
+\subquestion
+Compute the eigenvalues of the matrix that appears in (a).
+
+\solution
+We write the characteristic polynomial 
+\eqan{
+0&=&(-\lambda-1)(-\lambda-1)-1 \\
+0&=&(\lambda+1)(\lambda+1)-1 \\
+0&=&\lambda^2+2\lambda 
+}
+At this point we can see that $\lambda_1=0$ and $\lambda_2=-2$. 
+
+\subquestion 
+Find the corresponding eigenvectors and write the initial state $X_0=2$, $Y_0=0$ as a linear combination of eigenvectors. 
+
+\solution
+For the first eigenvector we consider the first line of the matrix which leads 
+to the condition 
+\eqn{
+ \avecc{-1 & 1 \\ 1 & -1} \avec{X\\ Y} = 0 \avec{X\\ Y} 
+}
+considering either line leads to 
+\eqn{
+X=Y
+}
+and hence eigenvectors the eigenvector
+\eqn{
+\vec{v_1} = \avec{1\\1}
+}
+The second eigenvector must obey the condition
+\eqn{
+ \avecc{-1 & 1 \\ 1 & -1} \avec{X\\ Y} = -2 \avec{X\\ Y} 
+}
+Considering the first line leads to 
+\eqn{
+-X+Y=-2X
+}
+or in other words $Y=-X$ and hence to
+\eqn{
+\vec{v_2}=\avec{1\\ -1}
+}
+or multiples thereof. With these eigenvectors it is straight fornward to expand the initial state as
+\eqn{
+\avec{2 \\ 0} = \avec{1 \\ 1} + \avec{1 \\ -1}
+}
+(If you don't see this immediately, try the ansatz $\vec{x_0}=c_1 \vec{v_1}+c_2 \vec{v_2}$ then consider the lines separately. They will say $c_2=c_1$ and $c_1+c_2=2$ respectively which leads to $c_1=c_2=1$.)
+
+\subquestion
+Hence, solve the initial value problem (i.e.~find $X_i$, $Y_i$ for all $i>0$).
+
+\solution
+For $i>0$ we can write 
+\eqan{
+\vec{x_i} &=& {\rm J}^i \vec{x_0} \\ 
+    &=& {\rm J}^i (\vec{v_1}+\vec{v_2}) \\
+    &=& {\rm J}^i\vec{v_1}+{\rm J}^i\vec{v_2} \\
+    &=& {\lambda_1}^i\vec{v_1}+{\lambda_2}^i\vec{v_2} \\
+    &=& (-2)^i \vec{v_2} \\
+}
+Hence, the solution is 
+\eqn{
+X_i = (-2)^i  \hspace{1cm} Y_i = -(-2)^i 
+}
+\subquestion 
+Verify your solution by computing the first $X_1$, $Y_1$, $X_2$, $Y_2$ by hand.
+
+\solution
+Using the formula from the question
+\eqn{
+X_1 = -X_0 + Y_0 = -2 = (-2)^1
+}
+\eqn{
+Y_1 = X_0 - Y_0 = 2 = -(-2)^1
+}
+\eqn{
+X_2 = -X_1 + Y_1 = 2+2 = 4 = (-2)^2 
+}
+\eqn{
+Y_2 = X_1 - Y_1 = -2-2 = -4 = -(-2)^2 
+}
+So, this works. 
+
+\subquestion
+Bonus: Using matrix methods, show that for any initial condition $X_i=-Y_i$ must hold for all $i\geq 1$.
+
+\solution
+For a given initial state $\vec{x_0}$ we can find $c_1$ and $c_2$ such that
+\eq{
+\vec{x_0} = c_1 \vec{v_1} + c_2 \vec{v_2}
+}
+Starting from this state the general solution is 
+\eq{
+\vec{x_i} = {\bf J}^i \vec{x_0} = c_1 {\lambda_1}^i \vec{v_1} + c_2 {\lambda_2}^i\vec{v_2}
+}
+Because $\lambda_1=0$ this simplifies to 
+\eq{
+\vec{x_i} = c_2 {\lambda_2}^i\vec{v_2}
+}
+which means
+\eqa{
+X_i &=& c_2 (-2)^i \\
+Y_i &=& -c_2 (-2)^i
+}
+And hence $X_i=-Y_i$.

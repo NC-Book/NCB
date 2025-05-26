@@ -1,0 +1,57 @@
+\exercise{Fixed points and the logistic map}{3}
+A famous map, is the so-called logistic map 
+\eqn{
+x_{i+1}=px_i(1-x_i)
+}
+where $p$ is a parameter. This is a nonlinear map, so we can't just solve it like the bee system. However, we can compute \emph{fixed points}, i.e.~points which remain stationary under the action of the map, analogous to the steady states in differential equations. 
+
+\subquestion 
+For a general map $\vec{x_{i+1}}=f(\vec{x_i})$ formulate the condition 
+that a value $\vec{x^*}$ has to meet to be be considered a stationary solution (Hint: It's not $f(\vec{x^*}) = \vec{0}$.)
+
+\solution
+We want the point not to change when the map is applied, so 
+\eqn{f(\vec{x^*}) = \vec{x^*}.}
+
+\subquestion
+Compute the fixed points of the logistic map. Verify your result by showing that if you substitute the fixed points into the map you get the same result back. 
+
+\solution
+We need to solve 
+\eqn{
+x^* = p x^* (1-x^*) 
+}
+Since every term contains a factor of $x^*$, one solution is 
+\eqn{
+x_1^* = 0. 
+}
+To search for other solutions we divide the equation by $x^*$, which yields
+\eqan{
+1 &=& p (1-x^*) \\
+1/p &=& 1-x^* \\
+1/p-1 &=& -x^* \\
+(p-1)/p &=& x^*
+}
+hence the second fixed point is 
+\eqn{
+x_2^* = \frac{p-1}{p}
+}
+
+We check these results by substituting them into the map. For the first fixed point we find 
+\eqn{
+f(x_1^*)=p\cdot 0 \cdot (1-0) = 0 = x_1^*  
+}
+so we have shown that $x_1^*=0$ remains stationary under the action of the map. It is indeed a fixed point. 
+
+Similarly, for the second fixed point we check
+\eqan{
+f(x_2^*)&=&p\frac{p-1}{p}\left(1-\frac{p-1}{p}\right) \\
+   &=& (p-1)\left(1-\frac{p-1}{p}\right) \\
+   &=& (p-1)-\frac{(p-1)^2}{p} \\
+   &=& \frac{p(p-1)-(p-1)^2}{p} \\
+   &=& \frac{(p-1)(p-(p-1))}{p} \\
+   &=& \frac{(p-1)}{p}(p-p+1)) \\
+   &=& \frac{(p-1)}{p} = x_2^* 
+}
+which confirms that also $x_2^*$ is indeed a fixed point.
+
