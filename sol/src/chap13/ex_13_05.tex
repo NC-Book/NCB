@@ -1,0 +1,95 @@
+
+\exercise{Abstract linear differential equation system}{2}
+Consider the dynamical system 
+\eqan{
+\dot{x}&=&2x-9y\\
+\dot{y}&=&-x+2y
+}
+where the initial state is $x=y=1$.
+
+\subquestion
+Write the system in matrix form. 
+
+\subquestion 
+Write the initial state as a linear combination of the eigenvectors of the matrix that appears in (a). 
+
+\subquestion
+Solve the system (i.e.~compute $x(t)$ and $y(t)$).
+
+\solution
+We write the system in the form 
+\eqn{
+\dot{\vec{x}} = \avecc{2 & -9 \\ -1 & 2} \vec{x}
+}
+where $\vec{x}=(x,y)^T$. We write the characteristic polynomial 
+\eqan{
+0&=&(2-\lambda)^2-9 \\
+\lambda&=&2\pm 3
+}
+We find the first eigenvector from 
+\eqn{
+\avecc{2 & -9 \\ -1 & 2}\avec{1 \\ a} = 5 \avec{1 \\ a} 
+}
+the first line reads 
+\eq{
+2-9a = 5
+}
+which means $a=-1/3$ so the eigenvector for the $\lambda_1=5$ is 
+\eqn{
+\vec{v}_1 = \avec{1 \\ -1/3}  
+}
+Because an eigenvector stays an eigenvector if we rescale it we can multiply it by 3 which gives a nicer version of the same eigenvector
+\eqn{
+\avec{3 \\ -1}  
+}
+but for the purpose of this exercise we will stick with the $\vec{v}_1$ that we found above. 
+
+For the second eigenvector we write 
+\eqn{
+\avecc{2 & -9 \\ -1 & 2}\avec{1 \\ a} = -1 \avec{1 \\ a} 
+}
+the first line reads 
+\eqn{
+2-9a = -1
+}
+and hence $a=1/3$. So the eigenvector for $\lambda_2=-1$ is 
+\eqn{
+\vec{v}_2 = \avec{1 \\ 1/3}  
+}
+
+We now need to write the initial condititon as a combination of eigenvectors. We are looking for $c_1$ and $c_2$ such that
+\eqn{
+\avecc{1\\ 1} = c_1 \avec{1 \\ -1/3} +c_2 \avec{1\\ 1/3}
+}
+Form the first row we can see that 
+\eqn{c_1+c_2=1}.
+and hence 
+\eqn{c_2=1-c_1}
+From the second row we get 
+\eqn{
+\frac{1}{3} c_2 - \frac{1}{3} c_1 = 1
+}
+We multiply the equation by 3 which gives
+\eqn{
+ c_2 - c_1 = 3
+}
+Substituting $c_2=1-c_1$ from above yields
+\eqn{
+1 - 2c_1 = 3
+}
+Solving this we find 
+\eqn{
+c_1 = -1 
+}
+And using either of the relations above 
+\eqn{
+c_2 = 2
+}
+We know from the lecture that the solution has the form
+\eqn{
+\vec{x}(t) = c_1 \exp{\lambda_1 t} \vec{v}_1 + c_2 \exp{\lambda_2 t} \vec{v}_2 
+}
+so in this case 
+\eqn{
+\vec{x}(t)= - \exp{5t} \avec{1 \\ -1/3} + 2 \exp{-t} \avec{1 \\ 1/3} 
+}

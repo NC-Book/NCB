@@ -1,0 +1,32 @@
+\exercise{Mothers and fathers}{3} 
+In the chapter we modeled human ancestors in terms of people while for bees we differentiated between drones and queens. 
+Do the calculation for humans again but this time differentiate between the number of men $m_i$, and women $w_i$ in generation $i$. Confirm that you get the expected result. 
+(Bonus: Is there an intuitive interpretation of the eigenvectors and the corresponding expansion coefficients $c_1,c_2$ that appear.) 
+
+\solution 
+Okay, male humans have a mother and a father, female humans also have a mother and a father. Hence we can write the dynamical system like this 
+\eq{
+\avec{m_{t+1} \\ f_{t+1}} = \avecc{1 & 1 \\ 1 & 1} \avec{m_t \\ f_t} 
+}
+where $m_t$ and $f_t$ are respectively the number of male and female humans in generation $t$ (counting backwards). To solve the system using the procedure from the chapter, we need to compute the eigenvectors and eigenvalues. So let's solve 
+\eq{
+\avecc{1 & 1 \\ 1 & 1} \vec{1\\ b} = \lambda \vec{1 \\ b} 
+}
+where we already set the first element of the vector to 1. In components the equations read
+\eqa{
+  1+b &=& \lambda  \\
+  1+b &=& \lambda b 
+}
+And hence $\lambda = \lambda b$. One solution to this equation is $b=1$, another is $\lambda=0$. In the first case $b=1$ our system of equations tells us straight away $\lambda=2$. So one eigenvalue is $\lambda_1=1$ with the corresponding eigenvector $\vec{v_1}=(1,1)^{\rm T}$. 
+
+In second case, $\lambda=0$ the system reads $1+b=0$ so $b=-1$, and hence we have an eigenvalue $\lambda=0$ with the corresponding eigenvector $\vec{v_2} = (1,-1)^{\rm T}$. 
+
+We can now write the general solution
+\eq{
+\avec{m_t\\ f_t} = c_1 2^t \avec{1 \\ 1} + c_2 0^t \avec{1\\ -1}. 
+}
+The $c_1$ and $c_2$ depend on your initial generation ($t=0$) and are $c_1=c_2=1/2$ if you start with one male individual, and $C_1=1/2,$ $c_2=-1/2$ if you start with one female individual.
+
+It is interesting to note how the eigenvalue of 2 doubles the number of people in each generation that we go back. But perhaps even nicer is how the eigenvalue of 0 erases the information if we started with a man or a woman as soon as we take one step into the past. Unless we look at the starting generation, the second term will always be zero. 
+
+

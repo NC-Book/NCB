@@ -1,0 +1,33 @@
+\exercise{General solution for linear maps}{4}
+In this chapter we derived a general solution for linear differential equations, but for linear maps we have only solved examples. Find a general solution for linear discrete-time maps, 
+i.e.~systems of the form $\vec{x}_{i+1}={\bf U}\vec{x}_i$.
+
+\solution
+
+Any linear map can be written in the form 
+\eq{
+\vec{x}_{t+1} = {\bf J} \vec{x}_t.
+}
+Since $\bf J$ advances the time by one step we can also write 
+\eq{
+\vec{x}_{t} = {\bf J}^t \vec{x}_0
+}
+We now decompose $\vec{x}_0$ into eigenvectors of $\bf J$, that is we determine $c_n$ such that  
+\eq{
+\vec{x}_0 = \sum c_n \vec{v_n} 
+}
+where 
+\eq{
+{\bf J}\vec{v_n} = \lambda_n \vec{v_n}.
+}
+The time dependent solution is now 
+\eqa{
+\vec{x}_{t} &=& {\bf J}^t \vec{x}_0 \\
+   &=&  {\bf J}^t \sum c_n \vec{v_n} \\  
+   &=&  \sum c_n  {\bf J}^t \vec{v_n} \\  
+   &=&  \sum c_n  {\lambda_n}^t \vec{v_n} \\ 
+}
+So the general solution for linear maps is 
+\eq{
+\vec{x}_{t} = \sum c_n  {\lambda_n}^t \vec{v_n}. 
+}
