@@ -1,0 +1,160 @@
+
+\exercise{Touch down}{4}
+After a successful scientific mission a spacecraft lands on earth. The moment its legs touch the ground the pilot shuts off the thrusters
+and the full weight of the spacecraft settles on the legs. The legs aren't rigid though, but are designed to absorb the shock of the landing by compressing gas filled cylinders. These cylinders act as springs such that the net force by that they generate is $F=-cx-bv$, where $b$ and $c$ are  constants, and $x$ is the length of the leg relative to the rest position into which it eventually settles, and $v=\dot{x}$ is the velocity at which the leg is currently contracting or extending. The spacecraft obeys Newton's law $F=ma$ where $a$ is the acceleration and hence $a=\ddot{x}$. 
+
+\subquestion
+Write the equation of motion for a system in the form of two first-order differential equations for the change of $x$ and $v$. 
+
+\solution 
+The first equation that we are looking for is given directly in the question,
+\eqn{
+\dot{x} = v. 
+}
+Additionally we need a differential equation for $v$. We know
+\eqn{
+\dot{v}=a=\frac{F}{m} = -\frac{cx+bv}{m}.
+}
+Hence we have the two-dimensional system 
+\eqan{
+\dot{x}&=&v,\\ 
+\dot{v}&=&-(cx+bv)/m. 
+}
+\subquestion 
+Define $\vec{x}=(x,v)^{\rm T}$ to write the two-dimensional dynamical systems from (a) in matrix form.
+
+\solution
+We write 
+\eqn{
+\dot{\vec{x}}= \avecc{ 0 & 1 \\ -c/m & -b/m} \vec{x}
+}
+
+\subquestion 
+Compute the eigenvectors and eigenvalues of the matrix and then state the general solution for this system. (Introduce new parameters such as $\tilde{b}=b/2m$ and $\tilde{c}=c/m$ if this saves you work).
+
+\solution 
+We need to solve 
+\eqn{
+\avecc{ 0 & 1 \\ -c/m & -b/m} \avec{A\\ B} = \lambda \avec{A\\ B} 
+}
+As we can renormalize the eigenvectors, we can set $A=1$. Then the first row reads 
+\eqn{
+B = \lambda   
+}
+Substituting this into the second row, we get the condition 
+\eqn{
+-\frac{c}{m}-\frac{b}{m}\lambda = \lambda^2    
+}
+We can then solve 
+\eqan{
+\lambda^2+b\lambda/m + c/m &=& 0  \\
+(\lambda+b/2m)^2 + c/m &=& b^2/4m^2  \\
+(\lambda+b/2m)^2 &=& b^2/4m^2 - c/m  \\
+\lambda+b/2m &=& \pm \sqrt{b^2/4m^2 - c/m}  \\
+\lambda &=& -b/2m \pm \sqrt{b^2/4m^2 - c/m}.  
+} 
+So the two eigenvalues are 
+\eqan{
+\lambda_1 &=& -\frac{b}{2m} + \sqrt{\frac{b^2-4cm}{4m^2}},\\
+\lambda_2 &=& -\frac{b}{2m} - \sqrt{\frac{b^2-4cm}{4m^2}},
+}
+and the corresponding eigenvectors are 
+\eqn{
+\vec{v_1} = \avec{1 \\ \lambda_1}, \qqq \vec{v_2} = \avec{1 \\ \lambda_2},
+}
+and the general solution is 
+\eqn{
+\vec{x}(t)=c_1 \avec{1\\ \lambda_1} \exp{\lambda_1 t} + c_2 \avec{1\\ \lambda_2} \exp{\lambda_2 t}
+}
+
+\subquestion 
+Find the particular solutions for the initial conditions $v(0)=0$, $x(0)=1$,
+and the parameters $m=1/2$, $b=1$ and $c=5$. What does this solution look like? (If this is too tedious, consider the initial condition $v(0)=1$, $x(0)=0$ instead.)
+
+\solution 
+With the parameters given, the eigenvalues are 
+\eqan{
+\lambda_1 &=& -1 + \sqrt{-9}=-1+3i,\\
+\lambda_2 &=& -1 - \sqrt{-9}=-1-3i,
+}
+where $i=\sqrt{-1}$ is the imaginary number. To put our initial condition together from eigenvectors we substitute everything into the general solution at $t=0$:
+\eqn{
+\avec{1\\ 0} = c_1 \avec{1 \\ -1+3i} + c_2 \avec{1\\ -1-3i}    
+}
+The first row gives us the condition 
+\eqn{
+c_2 = 1-c_1
+}
+which we can substitute into the equation for the second row
+\eqan{
+0 &=& c_1 (-1+3i) + c_2 (-1-3i) \\
+0 &=& c_1 (-1+3i) + (1-c_1) (-1-3i) \\
+0 &=& c_1 (-1+3i+1+3i) + (-1-3i) \\
+1+3i &=& c_1 (6i) \\
+c_1 &=& (1+3i)/6i,
+}
+and hence
+\eqn{
+c_1 = \frac{1}{2} - \frac{1}{6}i  \qqq c_2 = \frac{1}{2} + \frac{1}{6}i.    
+}
+so the full solution is 
+\eqn{
+\avec{x(t)\\ v(t) } = \left(\frac{1}{2}-\frac{1}{6}i\right)\avec{1 \\ -1+3i} \exp{(-1+3i)t} + \left(\frac{1}{2}+\frac{1}{6}i\right)\avec{1\\ -1-3i} \exp{(-1-3i)t}  
+}
+But what does this solution actually look like? Let's first consider the equation for $x$:
+\eqn{
+x(t) =  \left(\frac{1}{2}-\frac{1}{6}i\right) \exp{(-1+3i)t} + \left(\frac{1}{2}+\frac{1}{6}i\right) \exp{(-1-3i)t} 
+}
+The exponential functions with complex arguments that appear here are nice for calculating but not so intuitive, therefore our goal is now to replace them with trigonometric functions. So we want to use the relationships
+\eqn{
+  \cos(at) = \frac{\exp{iat}+\exp{-iat}}{2} \qqq \cos(at) = \frac{\exp{iat}-\exp{-iat}}{2i}
+}
+To do this let's group the terms in a different way, 
+\eqan{
+x(t) &=&  \frac{1}{2}\left(\exp{(-1+3i)t}+\exp{(-1-3i)t}\right)-\frac{1}{6}i\left(\exp{(-1+3i)t}-\exp{(-1-3i)t}\right)  \\ 
+  &=& \exp{-t}\frac{\exp{3it}+\exp{-3it}}{2}+\exp{-t}\frac{2}{6}\frac{\exp{3it}-\exp{-3it}}{2i} \\
+  &=& \exp{-t}\left( \cos(3t)+\frac{1}{3}\sin(3t) \right).    
+}
+We can now also consider $v(t)$ in the same way, but it is simpler to recall
+\eqan{
+v(t) &=& \frac{\partial}{\partial t} x(t) \\
+  &=& \exp{-t}\left(-\cos(3t)-\frac{1}{3}\sin(3t)-3\sin(3t)+\cos(3t) \right) \\
+  &=& \exp{-t} \left(-\frac{10}{3}\sin(3t) \right)
+}
+
+With the alternative initial conditions this calculation becomes a bit either. Our equation for the expansion coefficients now reads
+\eqn{
+\avec{0\\ 1} = c_1 \avec{1 \\ -1+3i} + c_2 \avec{1\\ -1-3i}    
+}
+From the first line it is evident that $c_1=-c_2$. If we substitute this into the second line we find 
+\eqan{
+1 &=& c_1 (-1+3i) - c_1 \avec(-1-3i) \\
+1 &=& (-1+1+3i+3i ) c_1 (-1+3i) \\
+1 &=& (6i) c_1 (-1+3i) \\
+}
+
+\subquestion
+In the particular solution the spacecraft bounces up and down--we don't want that. Consider again the general solution and determine how the damping $b$ has to be chosen such that the spacecraft settles to the resting position as quickly as possible without bouncing. 
+
+\solution 
+So how can we keep the spacecraft from bouncing? In (d) the trigonometric functions appeared because of the imaginary parts of the eigenvalues, and even generally the imaginary parts of eigenvalues are related to oscillations. The way to avoid these imaginary parts is to keep the expression under the square root positive. Hence we want a large value of $b$. The eigenvalues will be real numbers whenever 
+\eqn{b^2-4cm>0}
+so should we chose $b$ as large as possible? Our other condition is that we want to settle to down to the resting position as fast as possible. For this purpose we want the largest eigenvalue to be as negative as possible. This eigenvalue is 
+\eqn{
+\lambda_1 = -\frac{b}{2m} + \sqrt{\frac{b^2-4cm}{4m^2}},
+}
+Now before we think about this in greater detail, let's quickly consider what happens for an infinitely large $b$. In this limit We can neglect the 
+the term $-4cm$ in comparison to the infinitely large $b^2$ and 
+\eqn{
+\lambda_1 = -\frac{b}{2m} + \sqrt{\frac{b^2}{4m^2}} = -\frac{b}{2m} + \frac{b}{2m} = 0.
+}
+So in this case the eigenvalue becomes zero and the systems doesn't move at all, so it's not settling down to the resting position fast, but infinitely slowly. This result makes sense as $b$ acts as a friction and if we turn the friction up to infinity then nothing moves anymore. 
+
+\subquestion 
+Check the solution for some more information on this case and its applications.
+
+\solution 
+The case where the spacecraft settles most quickly without bouncing is called the aperiodic limiting case. For many applications this is the case we want to hit. Of course this does not only apply to spacecraft but also to any other shock absorbing system such as the suspension of a car or the landing gear of a plane. 
+
+In such systems the damping will typically be designed to be in the aperiodic limiting case under normal load conditions. However wear on the dampers typically causes $b$ to decrease in time and the system can start to bounce. You can test this by pressing down on a corner of your car if it bounces when it comes back up you might want to see a mechanic. 
+

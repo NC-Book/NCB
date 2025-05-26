@@ -1,0 +1,60 @@
+\exercise{Generating Bees}{4}
+We can also write the construction rule of the Fibonacci sequence as $F_{n+2} = F_{n+1} + F_{n}$ starting from $F_0=0,\,F_1=1$. 
+Define a generating function $F$ for the sequence $F_0,F_1\ldots$, then use the construction rule to find an equation for the generating function. Use this to solve for the generating function and finally find a closed form for the sequence.
+
+(Hints: This one requires more mathematical technique than most exercises. Mind the edge terms when shifting indices, don't forget to use the initial condition. Once you can express the generating function as a fraction try factorizing the denominator, use partial fractions, also recall $\sum x^n = 1/(1-x)$ and note $\phi=-1/\bar{\phi}$.)
+
+\solution
+We define 
+\eq{F=\sum_{n=0}^\infty F_n x^n}
+Multiplying the equation from the question by $x^n$ and summing both sides up yields
+\eqa{
+\sum F_{n+2} x^n &=& \sum F_{n+1} x^n + \sum F_{n} x^n  \\
+-F_0/x^2 - F_1/x + \sum F_{n} x^{n-2} &=& -F_0/x + \sum F_{n} x^{n-1} + F  \\
+- 1/x + \sum F_{n} x^{n-2} &=& \sum F_{n} x^{n-1} + F  \\
+- 1/x + F/x^2 &=& F/x + F  \\
+- x + F &=& Fx + Fx^2  \\
+- x &=& F(x + x^2 -1)  \\
+F &=& \frac{x}{1-x-x^2} 
+}
+Factorizing the polynomial in the denominator yields two solutions 
+\eq{
+\phi = -\frac{1}{2} (1+\sqrt{5})\hspace{1cm} \bar{\phi{}} = -\frac{1}{2} (1-\sqrt{5})
+}
+Here the golden ratios appear. We can therefore write 
+\eq{
+F = \frac{x}{(x-\phi)(x-\bar{\phi{}})}.
+}
+Using partial fractions we can write this as 
+\eq{
+F=\frac{\phi}{(\phi-\bar{\phi{}})(x-\phi)} - \frac{\bar{\phi{}}}{(\phi-\bar{\phi{}})(x-\bar{\phi{}})} = \frac{\phi}{\sqrt{5}(x-\phi)} - \frac{\bar{\phi{}}}{\sqrt{5}(x-\bar{\phi{}})}
+}
+And hence
+\eqa{
+F &=& \frac{1}{\sqrt{5}} \frac{\phi}{x-\phi} - \frac{1}{\sqrt{5}} \frac{\bar{\phi{}}}{x-\bar{\phi{}}} \\
+&=& \frac{1}{\sqrt{5}} \left( \frac{1}{x/\phi-1} -  \frac{1}{x/\bar{\phi{}}-1} \right) \\
+&=& -\frac{1}{\sqrt{5}} \left( \frac{1}{1-x/\phi} -  \frac{1}{1-x/\bar{\phi{}}} \right) 
+}
+We can use 
+\eq{
+\frac{1}{1-x} = \sum x^n
+}
+and thus
+\eqa{
+F &=& -\frac{1}{\sqrt{5}} \left[ \left(\sum \frac{x^n}{{\phi}^n} \right)  -  \left(\sum \frac{x^n}{{\phi}^n} \right) \right] \\
+  &=& -\frac{1}{\sqrt{5}} \sum  ({\phi}^{-n} + {\bar{\phi{}}}^{-n}) x^n.
+}
+Comparing the last expression to $F=\sum F_n x^n$ allows us to identify
+\eq{
+F_n =  -\frac{1}{\sqrt{5}} ({\phi}^{-n} - {\bar{\phi{}}}^{-n})
+}
+Now all is good except for the negative exponents, recall that 
+\eq{
+\phi^{-1} = -\bar{\phi} \hspace{1cm} \bar{\phi}^{-1} = -\phi  
+}
+Hence 
+\eq{
+F_n =  \frac{1}{\sqrt{5}} ({\phi}^{n} - {\bar{\phi{}}}^{n})
+}
+which is the closed form for the Fibonacci sequence.
+
