@@ -14,3 +14,4 @@ Exercise sheets and solutions are available for:
   
 - [Chap. 12: Models of growth](pdf/chap12/README.md)  -- *(mollding with ODEs, mass action laws, scale-free networks)*
 - [Chap. 13: A secret of bees](pdf/chap13/README.md)  -- *(linear maps, and linear ODEs, Fibonacci, eigendecomposition)*
+- [Chap. 14: Complexity-stability debate](pdf/chap14/README.md)  -- *(stability analysis, Gershgorin, eigenfacts)*
