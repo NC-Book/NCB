@@ -1,0 +1,59 @@
+\exercise{The mechanical hydra}{5}
+This exercise proposes a hypothetical mechanical device. The first subquestions should be easy to solve. The final one is unsolved but probably solvable. We consider the ODE system
+\eqan{
+\dot{x}&=&2x-4y \\
+\dot{y}&=&3x-5y.
+}
+
+\subquestion 
+Determine the stability of the steady state at $x=y=0$.
+\solution
+We compute the Jacobian matrix
+\eqn{
+{\bf J}=\avecc{2 & -4\\ 3 & -5}. 
+}
+We compute the characteristic polynomial as 
+\eqn{
+\left| \avecc{2 - \lambda & -4 \\ 3 & -5 - \lambda} \right| = \lambda^2 +3 \lambda +2
+}
+Then, we solve 
+\eqan{
+0&=&\lambda^2 +3 \lambda +2 \\
+0&=&(\lambda+3/2)^2 +2 - 9/4 \\ 
+1/4 &=& (\lambda+3/2)^2 \\
+\pm 1/2 &=& \lambda+3/2 \\
+\lambda &=& -3/2 \pm 1/2
+}
+So, we have two eigenvalues 
+\eqn{
+\lambda_1 = -1 \qqq \lambda_2=-2. 
+}
+Since both eigenvalues are negative the steady state is stable. 
+
+\subquestion
+Now imagine that we changed this system by clamping some part in place. As a result $y$ becomes fixed at $y=0$ and cannot change anymore, which removes it as a variable. Write the differential equation that describes the dynamics of the remaining system after $y$ has been fixed. 
+
+\solution
+As the value of $y$ is not prescribed by the algebraic equation $y=0$ we don't need a differential equation for $y$ anymore. In the differential equation for $x$ we can substitute $y=0$ to remove the remaining $y$, which leaves us with 
+\eqn{
+\dot{x}=2x
+}
+\subquestion 
+Determine the stability of the steady state in the resulting system. Is the result surprising?
+
+\solution
+The system still has a steady state at $x=0$, which isn't very surprising. However if we compute the Jacobian of the new system we find
+\eqn{
+{\bf J}=2,
+}
+hence
+\eq{
+\lambda=2 
+}
+which shows that the system is now unstable. This result is surprising: We started with a system were $x$ and $y$ sat stably at 0, but if we try to hold $y$ there, then the stability is lost. 
+
+\subquestion
+This system exhibits the so-called \emph{hydra effect}. If left alone it settles into a stable steady state, but if we try to hold a certain part in place in this state, then the rest of the system becomes unstable. Your task is to design a mechanical system that exhibits this effect. 
+
+\solution
+This is an unsolved question. But there doesn't seem to be a fundamental reason that would make such a system impossible. It would be really interesting to have a mechanical toy that is stable if it isn't held in place.

@@ -1,1 +1,31 @@
 
+\exercise{Trace and determinant}{1}
+Compute the trace and determinant of the following matrices: 
+\eqn{
+{\bf A}=\avecc{1 & 2 \\ 3 & 4}\quad {\bf B}=\aveccc{B_{11} & B_{12} & B_{13}\\  
+B_{21} & B_{22} & B_{23}\\
+B_{31} & B_{32} & B_{33}}
+\quad
+{\bf C}=\avecccc{1 &1 & 1 & 1 \\ 1 & 0 & 1 & 0 \\ 0 & 1 & 0 & 1 \\  1 & 0 & 1 & 1 \\ }
+}
+
+\solution
+
+The trace is just the sum of diagonal elements, so
+\eq{{\rm Tr}({\bf A}) = 1 + 4 = 5 } 
+\eq{{\rm Tr}({\bf B}) = B_{11} + B_{22}+B_{33} } 
+\eq{{\rm Tr}({\bf C}) = 1 + 0 + 0 + 1 = 2 } 
+
+We express the determinant we express it as a sum over smaller determinats until we find the result 
+\eq{|{\bf A}| = 1\cdot4 - 3 \cdot 2 = 4-6 = -2 }
+\eqa{|{\bf B}| &=& B_{11} \left| \avecc{B_{22} & B_{23} \\ B_{32} & B_{33}}\right| - B_{12} \left| \avecc{B_{21} & B_{23} \\ B_{31} & B_{33}}\right| + B_{13} \left| \avecc{B_{21} & B_{22} \\ B_{31} & B_{32}}\right| \\
+&=& B_{11}B_{22}B_{33}-B_{11}B_{23}B_{32} - B_{12}B_{21}B_{33} + B_{12}B_{31}B_{23} + B_{13}B_{21}B_{32} - B_{13}B_{11}B_{22}
+}  
+For ${\bf C}$ we start our expansion into smaller determinants by going along the second row. Starting in a row with as many zeros as possible saves a bit of work. 
+\eqa{
+|{\bf C}| &=& - \left|\aveccc{1 & 1 & 1 \\ 1 & 0  & 1 \\ 0 & 1 & 1 } \right| - \left|\aveccc{1 & 1 & 1 \\ 0 & 1  & 1 \\ 1 & 0 & 1 } \right| \\
+&=& - \left(  \left|\avecc{0 & 1 \\ 1 & 1}\right| - \left|\avecc{1 & 1 \\ 0 & 1}\right| + \left|\avecc{1 & 0 \\ 0 & 1}\right|  \right) \\
+& & - \left(  \left|\avecc{1 & 1 \\ 0 & 1}\right| - \left|\avecc{0 & 1 \\ 1 & 1}\right| + \left|\avecc{0 & 1 \\ 1 & 0}\right|  \right) \\
+& = & - (-1 -1 +1) - (1 + 1 - 1 ) = 1 - 1 = 0
+}
+So the determinant is zero in this case. Could we have figured this out more quickly? Sure. Note that the sum of the second and the third row is the first row, so the rows are not linear independent. If this happens there always has to be zero eigenvalue and hence a zero determinant. 

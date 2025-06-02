@@ -1,1 +1,59 @@
 
+\exercise{Stability analysis in one dimension}{2}
+Find the steady states of the following one-dimensional systems:
+\subquestion
+\eqn{\dot{x}=5-3x}
+
+\solution
+We start with the stationarity condition 
+\eq{
+0=5-3x^*,
+}
+and solve for the steady state 
+\eq{
+x^*=5/3.
+}
+To determine the stability we need to evaluate the derivative in the steady state
+\eq{
+\lambda = \left. \frac{\partial}{\partial x} (5-3x) \right|_* = -3
+}
+as the derivative is negative, the steady state is stable. 
+
+\subquestion
+\eqn{\dot{x}=(3-x)(x+5)(x-9)(x-1)}
+
+\solution
+This is equation is already factorized, we could multiply it out, which would give us the warm fuzzy feeling of applying a well-known procedure, but would take us actually farther away from the solution. As it is we can just read off the steady states. They are 
+\eqn{
+X_1^* = -5,\quad X_2^* = 1,\quad X_3^* = 3,\quad X_1^* = 9.
+}
+For the stability analysis, we could now differentiate this differential equation by applying the product rule (a lot). But this calculation becomes much more convenient, if we know where to stop. For the first steady state we evaluate the derivative 
+\eqa{
+\lambda &=& \left. \frac{\partial}{\partial x} (3-x)(x+5)(x-9)(x-1) \right|_{x=-5} \\
+   &=& \left( (x+5) \frac{\partial}{\partial x} (3-x)(x-9)(x-1) \right)_x=-5  +  \left( (3-x)(x-9)(x-1) \frac{\partial}{\partial x} (x+5) \right)_x=-5 
+}
+Instead of product-ruling on, we can now see that the prefactor in front of the first term, $x+5$ will be zero once we put the $x=-5$ in. So the whole term will be zero and we can safely ignore it. In the second term the derivative evaluates to 1 and we are left with $(3+5)(-5-9)(-5-1)$, which is $8\cdot 14 \cdot 6$, which is positive. So the steady state is unstable.
+
+It is now foreseeable what the result for the other steady states will be for example for the next steady state $x=1$ we can the product rule in such a way that we get two terms, one where we differentiate the factor $(x-1)$ and keep the others, $(3-x)(x+5)(x-9)$, as they are. And one term where we keep the $(x-1)$ and differentiate the rest. However, in the second term the factor $(x-1)$ will become zero as soon as we substitute the steady state, and hence the entire second term will vanish. So we only have to evaluate the first term 
+\eq{
+\lambda=(3-1)(1+5)(1-9) <0 
+}
+Hence the second steady state is stable. We could have guessed it would be, here is how: The right hand side of the equation of motion $(3-x)(x+5)(x-9)(x-1)$ is a polynomial, which also means it has no poles. This in turn implies that the only way it can change its sign is by going through zero, i.e. through a steady state. In the first steady state at -5 we had a positive slope so for $x>-5$ the function is initially positive. The only way it can get back to zero to create the steady state at 1 is then to have a downward slope. Hence the derivative in one must be negative, and the steady state is stable. 
+
+The right-hand-side is then negative util it crosses zero again in the steady state at 3 where it becomes positive again. We can see that the slope at this point must be positive so 3 is an unstable steady state. At 9 we cross for a final time, becoming negative again, so the slope in 9 must be negative marking it as a stable steady state. 
+
+Unfortunately this easy logic does not have an equivalent in multi-dimensional dynamics. 
+
+\subquestion
+\eqn{\dot{x}=\sin(x)}
+
+\solution
+In this case we get a steady state whereever the sin function becomes zero. So the steady states are.  
+\eq{
+x_n^* = n\pi 
+}
+where $n$ is any integer. 
+
+To evalueate the stability we consider the derivative in the steady states which is $\cos(n\pi)$ so this derivate is positive if $n$ is even and negative if $n$ is odd. Hence the steady states corresponding to odd values of $n$ are stable and steady states corresponding to even values of $n$ are unstable. 
+
+

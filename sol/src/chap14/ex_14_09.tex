@@ -1,0 +1,49 @@
+\exercise{A puzzle}{4} 
+Determine which of the following Jacobians corresponds to a stable steady state (you won't need a computer):
+\eqn{
+{\bf J_1}=\aveccccc{
+7 & 0 & 3 & 0 & 9 \\
+0 & -3 & 0 & -4 & 4 \\
+1 & -2 & -1 & 4 & 4 \\
+0 & -3 & 2 & -1 & 2 \\
+-1 & -2 & 1 & 1 & -1 \\
+},\quad
+{\bf J_2}=\aveccccc{
+-4 & 0 & 0  & 1  & 0 \\
+5 & 1   & 0  & 2  & 0 \\
+1 & -2  & -2 & 4  & 4 \\
+6 & 0  & 0  & -1 & 0 \\
+-1 & -2 & 0  & 1  & -1 \\
+}
+}
+\eqn{
+{\bf J_3}=\aveccccc{
+-9 & -1 & 2 & 0 & 1 \\
+0 & -5 & 0 & 1 & 0 \\
+1 & 1 & -4 & 0 & 0 \\
+4 & 1 & 0 & -3 & 0 \\
+3 & 1 & 1 & 1 & -2 \\
+},\quad
+{\bf J_4}=\aveccccc{
+-2 & 1 & 1  & -4  & 3 \\
+0 & -9 & 1  & 1 & 0 \\
+0 &  0 & -9 & 1  & 0 \\
+0 & 0 & 0  & -9 & 0 \\
+3 & -2 & 2  & 1  & -2 \\
+}
+}
+
+\solution 
+In $\bf J_1$ the trace of the matrix is 1. Since the trace is positive at least one of the eigenvalues must be positive so this is unstable.
+
+In $\bf J_2$ we can see that there must be an eigenvalue of -2. Because the -2 stands alone in the third column. When we then remove the third column and third row, it leaves -1 as the only element in the last column so we can also remove the last column and the last row. Now we have a 1 that is alone in the second column, so there must be an eigenvalue of 1 and hence the system is unstable. 
+
+If we apply Gershgorin's theorem to the columns of $\bf J_3$ we see that all eigenvalues lie in a set of disks that are fully on the negative side of the complex plane, so all eigenvalues must be negative. 
+
+In $\bf J_4$ the variables 2, 3, and 4 decouple from variables 1 and 5. So we can treat these parts separately. Variables 2,3,4 have three eigenvalues of -9, which is evident from the triangular form of the central block (we can isolate one -9 then the next, and finally the third one). Once the central variables are removed, we are left with a much smaller matrix for variables 1 and 5, 
+\eq{
+\avecc{-2 & 3 \\ 3 & -2}
+}
+The corresponding eigenvalue problem can be easily solved in various ways. For example the characteristic polynomial is very easy to factorize for this matrix. Alternatively, note that the two variables are only coupled by a positive feedback loop, so the eigenvalues are real. Moreover the determinant is $4-9=-5$. Since the determinant is the product of eigenvalues we might ask, how the product of two real eigenvalues gives can give a  negative result. Clearly one eigenvalue must be positive, and one negative which proves that this is an unstable case. 
+
+Alternatively we could have guessed the eigenvectors based on the symmetry of this matrix, but we will leave that for a later chapter.

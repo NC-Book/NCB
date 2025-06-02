@@ -1,0 +1,114 @@
+
+\exercise{Allee effect}{3}
+The change in the population size $x$ of an ecological population is described by the differential equation
+\eqn{\dot{x}=\frac{x^2}{1+x^2}-\frac{m}{2}x,}
+where $m$ is a mortality rate.
+
+\subquestion Compute the three branches of steady states of this system. 
+
+\solution
+We start with 
+\eqn{0=\frac{x^2}{1+x^2}-\frac{m}{2}x}
+and note that each of these terms contains a factor of $x$, so $x_1^*=0$ is a solution. Now that we know this, we can divide the equation by $x$ to search for other solutions.
+\eqn{0=\frac{x}{1+x^2}-\frac{m}{2}}
+Now we multiply this by $1+x^2$ to turn it into a polynomial, which yields
+\eqn{0=x-\frac{m(1+x^2)}{2}.}
+It is convenient to also divide this equation by $-m/2$, to obtain 
+\eqn{
+0=x^2-\frac{2x}{m}+1.
+}
+Then we solve the quadratic polynomial in the usual way
+\eqan{
+0&=&x^2-2x/m+1 \\
+0&=&(x-1/m)^2 - 1/m^2 +1 \\
+1/m^2-1 &=&(x-1/m)^2 \\
+\pm \sqrt{1/m^2-1} &=&x-1/m 
+}
+Hence we find the other two steady states 
+\eqn{
+x_{2,3}^* = \frac{1}{m} \pm \sqrt{\frac{1}{m^2}-1} = \frac{1\pm \sqrt{1-m^2}}{m}
+}
+These branches of steady states are interesting because they are only real solutions if $m<1$. As we increase $m$ beyond 1 the steady states become complex. Unlike complex eigenvalues which combine to give us oscillations, complex steady states are unreachable for a system that starts out real. 
+
+\subquestion 
+Determine the stability of the steady states. (This requires a bit more mathematical technique than most exercises in this book. Give it a try, if you get tangled up in too many square roots check the solution and see what you could have done differently.)
+
+\solution
+Since this is a one-dimensional system, we only need the derivative 
+\eqan{
+\lambda(x)&=&\frac{\partial}{\partial x} \left(\frac{x^2}{1+x^2}-\frac{m}{2}x\right) \\
+  &=& \frac{2x}{1+x^2} - \frac{x^2}{(1+x^2)^2} (2x) - \frac{m}{2} \\
+  &=& \frac{2x(1+x^2)}{(1+x^2)^2} - \frac{2x(x^2)}{(1+x^2)^2} - \frac{m}{2} \\
+  &=& \frac{2x}{(1+x^2)^2}  - \frac{m}{2} 
+}
+We can now substitute the steady states. For $x_1^*=0$ we get 
+\eqn{
+  \lambda(x_1^*)=-\frac{m}{2}, 
+}
+hence for a positive mortality rate $m$ this state is always stable. 
+
+For the second and third state we could similarly substitute the steady state values and that does indeed lead to the right result. However, we can already see that this will lead to some quite tedious expressions. 
+So let's try to get as much done as we can before turning to these states. 
+
+We continue with 
+\eqn{
+\lambda(x) = \frac{2x}{(1+x^2)^2}  - \frac{m}{2} 
+}
+This expression will be negative if 
+\eqan{
+ \frac{m}{2} &>&  \frac{2x}{(1+x^2)^2} \\
+ (1+x^2)^2 &>&  \frac{4}{m}x \\
+ (m^2+m^2x^2)^2 &>&  4m^3x \\
+}
+where we multiplied the $m^4$ because
+\eqn{ x_{2}^* =\frac{1 + \sqrt{1-m^2}}{m} }
+so square of the steady state value is 
+\eqn{
+\left(x_{2}^*\right)^2=\frac{1 + 2\sqrt{1-m^2}+ 1 -m^2 }{m^2} = \frac{2 + 2\sqrt{1-m^2} -m^2 }{m^2}
+}
+so now when we substitute the these into the conditions we get 
+\eqan{
+(m^2+2 + 2\sqrt{1-m^2} -m^2)^2 &>&  4m^2 (1 + \sqrt{1-m^2}) \\
+(2+2\sqrt{1-m^2})^2 &>&  4m^2 (1 + \sqrt{1-m^2}) \\
+4(1+\sqrt{1-m^2})^2 &>&  4m^2 (1 + \sqrt{1-m^2}) \\
+(1+\sqrt{1-m^2})^2 &>&  m^2 (1 + \sqrt{1-m^2}) \\
+1+\sqrt{1-m^2} &>&  m^2  \\
+\sqrt{1-m^2} &>&  m^2-1  
+}
+Since the steady state only exists for $m<1$ the right-hand-side of the inequality is now negative while the left-hand-side is positive, so the inequality will always be fulfilled, which means that the second steady state is stable.
+
+For the third steady state 
+\eqn{ x_{3}^* =\frac{1 - \sqrt{1-m^2}}{m} }
+the square of the value is 
+\eqn{
+\left(x_{3}^*\right)^2=\frac{1 - 2\sqrt{1-m^2}+ 1 -m^2 }{m^2} = \frac{2 - 2\sqrt{1-m^2} -m^2 }{m^2}
+}
+so substituting into our condition we find 
+\eqan{
+ (m^2+m^2x^2)^2 &>&  4m^3x \\
+ (m^2+2 - 2\sqrt{1-m^2} -m^2 )^2 &>&  4m^2(1 - \sqrt{1-m^2}) \\
+ (2 - 2\sqrt{1-m^2})^2 &>&  4m^2(1 - \sqrt{1-m^2}) \\
+ (1 - \sqrt{1-m^2})^2 &>&  m^2(1 - \sqrt{1-m^2}) \\
+ 1 - \sqrt{1-m^2} &>&  m^2 \\ 
+ -\sqrt{1-m^2} &>&  m^2-1 \\ 
+ \sqrt{1-m^2} &<&  1-m^2 \\ 
+ 1 &<&  \sqrt{1-m^2}  
+}
+This condition can never be met, so this steady state is always unstable. 
+
+Alternatively, we coudl have used the idea from Ex.~1b to arrive at the results for the second and third state without any calculation. However, in this case I have decided to include the calculations here since they provide a nice example of how to deal with a somewhat messier case.  
+
+\subquestion
+Draw a bifurcation diagram: Plot the steady states as a function of $m$ between $m=0.5$ and $m=1.5$ ($m$ should be the x-axis and $x$ the y-axis). Indicate the stability of the steady states in the diagram. Also color the area between the branches of steady states according to wether the population size $x$ is increasing or decreasing in the respective areas.   
+
+\subquestion
+Now assume we start the system at $m=0.5$ in a stable steady state with $x^*>0$. What happens if we slowly increase $m$? Once the population goes extinct can we bring it back by decreasing $m$? (This is the so-called Allee effect, an example of a tipping point in an ecological system.)
+
+\solution
+WHen we reach the tipping point the non-trivial solution where the population was able to persist is destroyed. The only solution left is the trivial steady state. So now the population goes extinct. Turning the parameter back does not bring the population back as the trivial steady state remains stable. 
+
+This is an example of a system in which a population needs to remain above a certain minimum population size to survive. This is a so-called Allee effect. For example pine trees need to maintain soil acidity to have an advantage over other trees, so a large pine forest may be stable, but a single pine tree standing in the same place might not be able to maintain acidity and is then overgrown by deciduous trees.
+
+
+
+

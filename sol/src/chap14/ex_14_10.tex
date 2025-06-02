@@ -1,0 +1,105 @@
+\exercise{Glycolysis}{4}
+Glycolysis is a process by which your cells turn sugar into energy. The essence of glycolysis can be captured in the following conceptual model: 
+\eqan{
+\mbox{A} &\xrightarrow{r}& B \\
+\mbox{B} &\xrightarrow{s}& 2A \\
+\mbox{A} &\xrightarrow{v}& \oslash
+}
+Here, A describes the amount of available energy, which the cell stores in form of a molecule, adenosine-triphosphate, or, for short, ATP.
+The first of these reactions captures that energy is needed to start the process. In the second reaction more energy is produced as a result of the process, while the final reaction represents energy being used in the body. By measuring all rates in multiples of the energy consumption rate $v$ we can fix $v=1$. 
+
+\subquestion 
+Define $a$ as the amount of A, and $b$ as the amount of B in the system. Then, write the ODE system that captures the dynamics of these variables, and show that there's in general no steady state in which $a>0$. 
+
+\solution
+Using the mass action laws we write 
+\eqan{
+\dot{a}&=&2sb-(r+1)a \\
+\dot{b}&=&ar-sb
+}
+This is a linear system and every linear system only has exactly one steady state where all variables are zero. To show this explicitely we compute the steady state. From the second equation we get the steady state condition
+\eqn{
+b=\frac{r}{s}a 
+}
+and substituting this into the first differential equation gives us the condition
+\eqn{
+0=2ra-(r+1)a = (r-1)a
+}
+So except in the exceptional (i.e.~degenerate) state, where the parameters are chosen such that $r=1$, the only steady state is $a=0$.
+
+\subquestion 
+The absence of a steady state where we have a constant level of stored energy, is a problem. Your cells solve this problem by making the enzyme that catalyzes the first reaction dependent on the concentration of its substrate $a$. So let's assume that $r=a^p$. Show that this leads to a steady state with $a>0$.
+
+\solution 
+We can proceed as before until we reach the steady state condition
+\eqn{
+0= (r-1)a.
+}
+We are no longer interested in steady states where $a=0$, therefore we can now divide by $a$, which leads us to the familiar condition 
+\eqn{
+r=1
+}
+but now we use $r=a^p$ and hence 
+\eqn{
+a^p=1
+}
+and taking the $p$'s root on both sides
+\eqn{
+a=\sqrt[p]{1}=1.
+}
+When dealing with roots it's good to remember that there can be multiple solutions, but the root of a positive number only ever has one positive realv-alued solution, and as $a$ represents the concentration of substance (ATP) it should be positive and real. So, unless $p=0$ there is a steady state in which we have a constant level of energy available in the cell.  
+
+\subquestion 
+Show that the steady state is unstable for $p>0$. (This leads up to a nice biological insight, check the solution).
+
+\solution
+When computing the Jacobian we have to keep in mind that $r=a^p$ such that
+\eqan{
+\dot{a}&=&2sb-a^{p+1}-a \\
+\dot{b}&=&a^{p+1}-sb
+}
+We compute the derivatives 
+\eqn{
+J_{11} = \left. \left.\frac{\partial}{\partial a} 2sb-a^{p+1}-a \right|_* =   -(p+1)a^p-1  \right|_* = -(p+1)-1=-(p+2)   
+}
+\eqn{
+J_{12} = \left. \frac{\partial}{\partial b} 2sb-a^{p+1}-a \right|_* = 2s 
+}
+\eqn{
+J_{21} = \left. \frac{\partial}{\partial a} a^{p+1}-sb \right|_*  = p+1  
+}
+\eqn{
+J_{22} = \left. \frac{\partial}{\partial b} a^{p+1}-sb \right|_* = -s  
+}
+Hence the Jacobian is 
+\eqn{
+{\bf J} = \avecc{ -(p+2) & 2s \\ p+1 & -s }.
+}
+We compute the characteristic polynomial
+\eqan{
+\left|\avecc{ -(p+2)- \lambda & 2s \\ p+1 & -s-\lambda }\right| &=& \lambda^2 + (p+2+s)\lambda+s(p+2)-2s(p+1) \\
+&=& \lambda^2 + (p+2+s)\lambda-sp
+}
+and solve 
+\eqan{
+0 &=& \lambda^2 + (p+2+s)\lambda-sp \\
+0  &=& (\lambda+(p+2+s)/2)^2-(p+2+s)^2/4-sp \\
+(\lambda+(p+2+s)/2)^2  &=& (p+2+s)^2/4 + sp \\  
+\lambda+(p+2+s)/2  &=& \pm \sqrt{(p+2+s)^2/4 + sp} \\  
+}
+So the leading eigenvalue is   
+\eqn{
+\lambda_1 =  - \frac{p+2+s}{2} + \sqrt{\left(\frac{p+2+s}{2}\right)^2 +sp }. 
+}
+for $p>0$ the expression under the sum is positive hence the eigenvalues are real. Thus the system is stable if (and only if)
+\eqn{
+\frac{p+2+s}{2} > \sqrt{\left(\frac{p+2+s}{2}\right)^2 +sp }
+}
+For $p>0$ this condition is always false. If you don't see this immediately consider that bot sides of the inequality are positive for $p>0$, so we can square both sides
+\eqan{
+\left(\frac{p+2+s}{2}\right)^2 &>& \left(\frac{p+2+s}{2}\right)^2 +sp \\
+                            0 &>& sp
+}
+which isn't possible if $p>0$, since $s$ is a rate, so $s>0$. 
+
+So $p$ needs to be negative for a stable steady state in which the cell has a positive sully of energy, which means the the enzyme that catalysis the A $\rightarrow$ B stem must act more slowly if the is a lot of A around. In biochemical terms we can say it is inhibited by its own substrate. This `substrate inhibition' is quite rare in enzymes, but our model suggests that substrate inhibition is needed to keep glycholysis stable. Analyzing a simple model has given us a biological hypothesis that could be tested in experiments. If we did we would find it to be true (with $p\approx -1$)

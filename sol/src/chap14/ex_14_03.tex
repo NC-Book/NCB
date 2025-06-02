@@ -1,0 +1,22 @@
+
+
+\exercise{Stability of the SIS system}{2}
+In the text of this chapter we studied the stability of our one-dimensional version of the SIS model
+\eqn{\dot{I}=p(N-I)I-rI}
+specifically we studied the stability of the trivial steady state $I^*=0$ and found that this state is stable if $pN<r$ and unstable otherwise. Now consider the non-trivial steady state and determine when it is stability.
+
+\solution 
+We already know that the non-trivial steady state is at 
+\eq{
+I^* = N-\frac{r}{p}
+}
+We nod compute the derivative 
+\eq{
+\lambda = \left. \frac{\partial {\dot{I}}}{\partial I} \right|_* = pN-2pI^*-r. 
+}
+Substituting the steady state we find 
+\eqa{
+\lambda &=& pN - 2p (N-r/p) -r  \\
+        &=& -pN + r
+}
+So the non-trivial steady state is stable when $r>pN$ and stable otherwise. So the nontirivial state is stable when the trivial steady state is unstable and vice versa. In $r=pN$ the two states meet and exchange their stability. 
