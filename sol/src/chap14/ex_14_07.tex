@@ -1,0 +1,191 @@
+
+\exercise{Paradox of Enrichment}{3}
+A fundamental building block of theoretical ecology is the study of predator-prey interaction. A simple model of this interaction is 
+provided by the Rosenzweig-Mac-Arthur system \cite{Rosenzweig}:
+\eqan{
+\dot{x}&=&5x\left(1-\frac{x}{K}\right)-\frac{25xy}{2+3x} \\ 
+\dot{y}&=&\frac{5xy}{2+3x}-y  
+}
+where $x$ is the population size of the prey population, $y$ is a population size of the predator population and $K$ is the co-called 
+carrying capacity. It is the maximum population size that which can be interpreted as an indicator for the amount of nutrients of available to the prey. All three of these quantitites are measured in some arbitrary units (e.g.~tonnes of biomass, not number of individuals).
+
+\subquestion 
+Show that there is one steady state, where neither predator nor-prey survives in the system, and another one where only the prey survives. Then find the steady state in which predator and prey coexist in the system.  
+
+\solution 
+The condition for stationarity are 
+\eqan{
+0&=&5x\left(1-\frac{x}{K}\right)-\frac{25xy}{2+3x} \\ 
+0&=&\frac{5xy}{2+3x}-y  
+}
+Since this is an ecological system, if there is no prey, not much will be happening. Indeed we can verify that $x_1^*=y_1^*=0$ is a trivial steady state by substituting this state into the stationarity condition.
+
+Furthermore if the predator is not in the system $(y_2^*=0)$ then the second condition is trivially satisfied and the first condition becomes 
+\eqn{
+0=5x\left(1-\frac{x}{K}\right)  
+}
+hence the system is stationary if $x_1^*=K$. This gives us another interpretation of the carrying capacity $K$: It is the stationary population size that the prey can reach in the absence of the predator.
+
+Now that we have dealt with the states where one of both of the populations are extinct, we are allowed to divide the stationarity conditions by $x$ and $y$, respectively, to look for non-trivial steady states. This yields
+\eqan{
+0&=&5\left(1-\frac{x}{K}\right)-\frac{25y}{2+3x} \\ 
+0&=&\frac{5x}{2+3x}-1  
+}
+The second equation doesn't contain $y$ anymore, so it straight-forwardly gives us a condition for $x$. This is ecologically interesting as it shows that the predator, controls the prey population size. For example if we give more nutrients to the prey (increasing $K$) the prey population size in the steady state won't change as it is fixed by the second condition, in any case let's compute the prey population size from the second condition. We solve
+\eqan{
+0&=&\frac{5x}{2+3x}-1  \\ 
+0&=&5x-2-3x \\ 
+0&=&2x-2
+}
+and hence 
+\eqan{x_3^*=1.}
+Nice! (OK admittedly, I normalized the system such that this would happen, so now you know what the units are at least for the prey. Everything is measured with respect to the population size that the prey can reach if the predator is present.)
+
+Let's compute the the population size of the predator in the steady state. Substituting $x=1$ into the first condition yields 
+\eqan{
+0&=&5\left(1-\frac{1}{K}\right)-\frac{25y}{2+3} \\ 
+}
+we solve for $y$,
+\eqan{
+0&=&5(1-1/K)-5y \\
+0&=&(1-1/K)-y \\
+y&=&1-1/K  
+}
+which we can also write as 
+\eq{
+y_3^* = \frac{K-1}{K}
+}
+This shows again that the predator, not the prey, profits if we increase the supply of nutrients to the prey. We can now also see how the prey population size of the predator was normalized. In the limit $K\to \infty$ the population size of the predator approaches 1. So the population size of the predator is measured with respect to the maximum possible stationary population size that it could reach in the hypothetical case of infinite nutrient supply to the system. 
+
+\subquestion
+Show that for $0<K<1$, the state where the prey is present in the system but the predator is extinct, is the only relevant stable steady state. 
+
+\solution
+For $K<1$ the state in which both species coexists has a negative population size for the predator, so clearly it is not a relevant steady state, i.e.~it is unphysical, or, to use an ecological term, infeasible. 
+
+To show that the state in which only the prey persists in the system is stable we need to compute the Jacobian. We compute 
+\eqan{
+J_{11} &=& \left. \frac{\partial \dot{x}}{\partial x}\right|_* \\
+ &=& \frac{\partial}{\partial x} \left(\left(5x\left(1-\frac{x}{K}\right)-\frac{25xy}{2+3x}\right)\right)_*  \\ 
+&=& \left(5 - \frac{10x}{K} - \frac{25y}{2+3x}+   \frac{3\cdot 25xy}{(2+3x)^2} \right)_* \\
+&=& \left(5 - \frac{10x}{K} - \frac{25y(2+3x)}{(2+3x)^2}+   \frac{3\cdot 25xy}{(2+3x)^2} \right)_* \\
+&=& \left(5 - \frac{10x}{K} - \frac{50y}{(2+3x)^2} \right)_* \\
+&=& 5 - \frac{10x^*}{K} - \frac{50y^*}{(2+3x^*)^2} \\
+J_{12} &=& \left. \frac{\partial \dot{x}}{\partial y}\right|_*\\
+  &=& 
+\frac{\partial}{\partial y} \left(5x\left(1-\frac{x}{K}\right)-\frac{25xy}{2+3x}\right)_*  \\
+     &=& -\frac{25x^*}{2+3x^*} \\
+J_{21} &=& \left. \frac{\partial \dot{y}}{\partial y}\right|_* \\
+  &=&  \frac{\partial}{\partial x} \left(\frac{5xy}{2+3x}-y  \right)_*  \\
+&=& \left( \frac{5y}{2+3x} - \frac{3\cdot 5xy}{(2+3x)^2}  \right)_*  \\
+&=& \left( \frac{5y(2+3x)}{(2+3x)^2} - \frac{3\cdot 5xy}{(2+3x)^2}  \right)_*  \\
+&=& \frac{10y^*}{(2+3x^*)^2}  \\
+J_{22} &=& \left. \frac{\partial \dot{y}}{\partial y} \right|_* \\
+  &=& \frac{\partial}{\partial y} \left( \frac{5xy}{2+3x}-y  \right)_* \\
+  &=& \left(\frac{5x}{2+3x}-1 \right)_* \\
+  &=& \left(\frac{5x-2-3x}{2+3x} \right)_* \\
+  &=& \frac{2x^*-2}{2+3x^*}  \\
+}
+Fortunately these Jacobian matrix elements simplify considerably. If we substitute the steady states. For now we consider the first steady state 
+$x_1^*=K$ , $y_1^*=0$. Substituting these values yields 
+\eqan{
+J_{11}&=& 5 - \frac{10K}{K} = -5 \\
+J_{12}&=& - \frac{25 K} {2+3K} \\ 
+J_{21}&=& 0 \\
+J_{22}&=& \frac{2K-2}{2+3K}
+}
+such that we have the Jacobian 
+\eqn{
+{\bf J} = \avecc{ -5 & -25 K/(2+3 K) \\ 0 & \frac{2K-2}{2+3K}}. 
+}
+Fortunately we can read off the eigenvalues straight away using our 
+off-diagonal rule; they are
+\eqn{
+\lambda_1 = -1,\quad\quad\quad \lambda_2=\frac{2K-2}{2+3K},
+}
+For $0<K<1$ the numerator of the second eigenvalue is negative and the denominator is positive. Hence both eigenvalues are negative and the 
+steady state is stable.
+
+For completeness we can also check the steady state where neither species survives. For the steady state $x_1^*=y_1^*=0$ the Jacobian is    
+\eqn{
+{\bf J} = \avecc{5 & 0 \\ 0 & -1}  
+}
+So we can directly read off the eigenvalues 
+\eqn{
+\lambda_1 = 5,\quad\quad\quad \lambda_2=-1.
+}
+This shows that the steady state is unstable. In fact, the corresponding eigenvectors for such a diagonal matrix are $\vec{v_1}=(1,0)^{\rm T}$ and $\vec{v_2}=(0,1)^{\rm T}$. The second of these eigenvectors corresponds to a perturbation of the state where we try to introduce predators. The system is stable against this perturbation (eigenvalue -1), showing that such an attempt will not work, which is hardly a surprise as there is no prey for the predators. Conversely, the first eigenvectors corresponds to an attempt to introduce the prey to the empty system. The state is unstable with respect to this perturbation (eigenvalue 5) and thus the perturbation will succeed in launching the system away from the steady state where the system is empty. We might guess that it will then approach steady state 2 where the prey persists in the system without the predator (this is indeed what would happen, but further work is necessary to actually prove this.)
+
+\subquestion
+If we add nutrients to increase $K$ above 1 then the predator can enter the system. Show that the steady state in which both species coexist, becomes unstable if we raise $K$ beyond a critical point $K^*$. (This is the paradox of enrichment: Too many nutrients destabilize the system.) 
+
+\solution 
+We now consider the steady state 
+\eqan{
+x_3^*&=&1 \\
+y_3^*&=& (K-1)/K
+}
+We can quickly confirm that for $K>1$ the population sizes of both prey and predator are positive such that this steady state is feasible. 
+But is it stable?
+
+We substitute this steady state into the Jacobian elements computed above. We start with 
+\eqan{
+J_{11}&=&5 - \frac{10x^*}{K} - \frac{50y^*}{(2+3x^*)^2} \\
+  &=&5 - \frac{10}{K} - \frac{50(K-1)}{K(2+3)^2} \\
+  &=&5 - \frac{10}{K} - \frac{50(K-1)}{25K} \\
+  &=&5 - \frac{10}{K} - \frac{2(K-1)}{K} \\
+  &=&5 - \frac{10}{K} - 2+\frac{2}{K} \\
+  &=&3 - \frac{8}{K}  \\
+  &=&\frac{3K-8}{K}.  
+}
+Here we can already see that this diagonal element becomes positive when 
+$K>8/3$ this is our first indication that high $K$ can be bad for stability, but lets carry on. 
+
+The only other element that we need to show that high $K$ will cause instability is 
+\eqn{
+J_{22}=\frac{2-2}{2+3}=0.
+}
+We can then compute the trace of the Jacobian 
+\eqan{
+{\rm Tr}({\bf J})= J_{11} + J_{22} = \frac{3K-8}{K}
+}
+so for $K>8/3$ the trace is positive. We recall that the trace is also the sum of the eigenvalues and if the sum of the eigenvalues is positive at least one of the eigenvalues must be positive, so the system must be unstable. At this point we have already done what the question asked of us. So we can stop here.
+
+...but of course it is interesting to find the point at which the destabilization occurs, so lets find the rest of the Jacobian. 
+\eqan{
+J_{12} &=& -\frac{25x^*}{2+3x^*} = -\frac{25}{2+3} = -5 \\
+J_{21} &=& \frac{10y^*}{(2+3x^*)^2} = \frac{10(K-1)}{K(2+3)^2} = \frac{2(K-1)}{5K} 
+}
+So in summary 
+\eqn{
+{\bf J} = \avecc{ (3K-8)/K & -5 \\ 2(K-1)/5K & 0}.
+}
+We compute the characteristic polynomial 
+\eqn{
+\left| \avecc{ (3K-8)/K-\lambda & -5 \\ 2(K-1)/5K & -\lambda} \right| = \lambda^2 -(3K-8)\lambda/K + 2(K-1)/K =0
+}
+ant then solve 
+\eqan{
+0&=&\lambda^2 -\frac{(3K-8)\lambda}{K} + \frac{2(K-1)}{K} \\
+\frac{(3K-8)^2}{4K^2} &=& \left(\lambda -\frac{(3K-8)}{2K}\right)^2 + \frac{2(K-1)}{K} \\ 
+\frac{(3K-8)^2}{4K^2}- \frac{2(K-1)}{K} &=& \left(\lambda -\frac{3K-8}{2K}\right)^2  \\ 
+\pm\sqrt{\frac{(3K-8)^2}{4K^2}- \frac{2(K-1)}{K}} &=& \lambda-\frac{3K-8}{2K}  
+}
+and hence
+\eqn{
+\lambda_{1,2}=\frac{3K-8}{2K} \pm\sqrt{\frac{(3K-8)^2}{4K^2}- \frac{2(K-1)}{K}}.
+}
+Note that something interesting happens here. Before we showed that for $K>8/3$ the steady state must be certainly unstable. That is we found a sufficient condition for instability. However, now that we have the actual eigenvalues the term before the square root becomes positive at the same point, $K=8/3$. If the term under the square root was negative the eigenvalues would be be complex and this first term would be the real part, which would show that $K=8/3$ is the exact point where the instability occurs. 
+
+Let's check 
+\eqn{
+0>\frac{(3K-8)^2}{4K^2} - \frac{2(K-1)}{K}  
+}
+If we put in the value of interest $K=8/3$ this simplifies considerably and we obtain the condition 
+\eqn{
+0> -\frac{2(8/3-1)}{8/3} =  -\frac{2(8-3)}{8} = - \frac{10}{8} = - 5/4  
+}
+which is certainly true. Therefore 
+\eqn{K^*=\frac{8}{3}}
+
+At this point we have a pair of complex eigenvalues that cross the imaginary axis. As their real parts become positive the steady state in which both species coexist becomes unstable. Beyond this point all steady states of the system are unstable, we will explore what happens there in the next chapter.  

@@ -1,0 +1,71 @@
+\exercise{A simple controller}{4}
+Consider the following system:
+\eqan{
+\dot{x}=&f(x,y)&=x-2y \\
+\dot{y}=&g(x,y)&=2x+y 
+}
+\subquestion 
+Show that the system has a single unstable steady state.
+
+\solution  
+We see almost straight away that $(0,0)$ must be a steady state, and because the system is linear it's the only steady state. if we want to show this mathematically setting the equation for the change of $x$ to zero gives us $x=y$ and substituting into the equations for the change of $y$ then yields $2y=0$ so $x=y=0$ is the only steady state. 
+
+The Jacobian in the steady state is 
+\eqn{
+{\bf J} = \avecc{1 & -2 \\ 2 & 1 } 
+}
+There are different ways in which we can show that the steady state is unstable. But the quickest way to show the instability is to compute the trace, which is two. So the sum of the two eigenvalues must be two and if two numbers sum to 2 at least one of them must be positive. 
+
+\subquestion 
+We now want to stabilize the system for this purpose we will modify the system by adding a feedback onto the equation for y. In the simplest case this feedback acts instantaneously and directly such that the equations become
+\eqan{
+\dot{x}&=&f(x,y) \\
+\dot{y}&=&g(x,y)+h(y),
+}
+where $g$ and $y$ are as above but $h$ describes the newly added feedback. Find a function $h(y)$ such that $h(0)=0$ and the steady state at $(0,0)$ is stable. 
+
+\solution 
+With the new term the Jacobian is 
+\eqan{
+{\bf J} = \avecc{1 & -2 \\ 2 & 1+\kappa} 
+}
+By checking the trace we can see that we will need $\kappa<-2$ for a chance at stability. But, let's compute the eigenvalues. The tediousness of the eigenvalue computation can be reduced by first using the spectral shift trick to remove the 1s from the diagonal. But if you spotted this, you probably don't even need this solution. So, let's do it the hard way. We start with the characteristic polynomial
+\eqan{
+\left|\avecc{1-\lambda & -2 \\ 2 & 1-\lambda+\kappa}\right| &=& (1-\lambda)(1-\lambda+\kappa)+2 \\
+&=& \lambda^2 -(2+\kappa)\lambda +2.
+}
+Now we can solve for $\lambda$
+\eqan{
+0 &=& \lambda^2 -(2+\kappa)\lambda +2 \\
+0 &=& (\lambda -1-\kappa/2)^2 -(-1-\kappa/2)^2  +2 \\
+0 &=& (\lambda -1-\kappa/2)^2 -(1+\kappa+\kappa^2/4)  +2 \\
+0 &=& (\lambda -1-\kappa/2)^2 -(\kappa+\kappa^2/4-1)  \\
+(\lambda -1-\kappa/2)^2 &=& \kappa+\kappa^2/4-1   \\
+\lambda -1-\kappa/2 &=& \pm \sqrt{\kappa+\kappa^2/4-1}   
+}
+and hence 
+\eqn{
+\lambda_{1,2} = 1 + \frac{\kappa}{2} \pm \sqrt{\frac{4\kappa+\kappa^2-4}{4}}
+}
+Now we need to find out when the eigenvalues are real. The quadratic term under the square root so for extreme positive or negative values of $\kappa$ we will always have real eigenvalues. But for $\kappa=0$ the term under the square root is -1 so eigenvalues will be complex. To find out how large the region of complex eigenvalues is we compute the points where the term under the square root becomes zero 
+\eqan{
+  0&=&4\kappa+\kappa^2-4 \\ 
+  0&=&(\kappa+2)^2-8 \\
+  8&=&(\kappa+2)^2 \\
+  \kappa+2&=& \pm \sqrt{8}.
+}
+So the term under the square root becomes zero at
+\eqn{
+  \kappa = -2\pm -\sqrt{8}. 
+}
+Above we had the idea that somewhere around $\kappa=-2$ the system might become stable. So let's try this. In this region the eigenvalues are complex so the real part of the eigenvalues is 
+\eqn{
+{\rm Re}(\lambda)=1+\frac{\kappa}{2}
+}
+So yes, in the range $-2-\sqrt{8}\kappa<-2$ the eigenvalues are complex but the real parts are negative so the system is stable.
+
+So we could for example pick $\kappa=-3$. Then we only need a function $h(y)$ for which $h(0)=0$ and $h'(0)=-3$, so for example 
+\eqn{
+h(y)=-3y.
+}
+You by considering the real eigenvalues one can verify that the eigenvalues stay negative also for $\kappa<-2-\sqrt{8}$.
