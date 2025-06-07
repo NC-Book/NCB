@@ -1,0 +1,11 @@
+
+\exercise{Voter model mean field}{2}
+Consider a network with $N$ nodes and $K$ links, where nodes represent agents and links represent social contacts. Each agent is in either of two states, say favoring one of two political parties. We call these states A and B. Further we say a link is an active link if it connects agents with different opinions, i.e.~it is an AB-link. Active links get updated at rate $r$. In an update one of the two agents connected by the link is chosen at random and that agent's opinion is copied to the other agent. Use a mean field approximation to derive a system of differential equations for this model. (The result may be surprising)  
+
+\solution
+Deriving the differential equations along the lines of the lecture yields
+\eqa{
+\dot{[A]}&=&\frac12 [AB]-\frac12 [AB] = 0 \\ 
+\dot{[B]}&=&\frac12 [AB]-\frac12 [AB] = 0 \\ 
+}
+If an update occurs the number of nodes of opinion A is increased by 1 (probability 50\%) or it is decreased by 1 (also probability 50\%). These two processes cancel so the that the net change of the number of nodes in state A (or B) is zero. The voter model is actually a very fair model. 

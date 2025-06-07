@@ -1,0 +1,106 @@
+\exercise{Adaptive Voter Model}{3}
+We now continue the adaptive voter model. In this model the nodes represent agents, each of whom holds one of two possible opinions, A or B. Links represent social interaction and a link is considered active if it connects agents holding different opinions. At rate 1 these AB-links 
+are updated. In the update, with probability $p$,  one of the agents copies the others opinion. Otherwise, with probability $\bar{p}=1-p$, the link is rewired. In the former case (opinion update) one of the agents is chosen at random who will keep their opinion, which the respectively other agent now copies. In the latter event (rewiring) the link connecting the agents is cut. A new link is then made from one of the two agents (chosen randomly) to a new partner picked randomly from all agents holding the same opinion (e.g. If an agent of opinion A gets to create a new link, they always link to a random agent who holds also opinion A)  
+
+\subquestion 
+As in the non-adaptive voter model, it is easy to show that the number of agents holding a certain opinion, does not change deterministically ($[\dot{A}]=[\dot{B}]=0$). However there is interesting dynamics of the links. Dervie differential equations for $[\dot{AA}]$ and $[\dot{BB}]$ and close them. (Don't use the conservation law yet.)
+
+\solution
+Following the reasoning from the lecture we find 
+\eqa{
+[ \dot{AA} ]  &=& \frac{[AB]}{2} + \bar{p}\frac{[AB]}{2}\left( \frac{[AB]}{[B]} -2\frac{[AA]}{[A]} \right) \\{}    
+[ \dot{BB} ] &=& \frac{[AB]}{2} + \bar{p}\frac{[AB]}{2}\left(\frac{[AB]}{[A]}  -2\frac{[BB]}{[B]} \right)
+}
+
+\subquestion
+Find the steady states of the system. (Hint: You will need to use a conservation law, but delay this as long as possible to preserve the symmetry)
+
+\solution
+Setting the rate of change to zero yields 
+\eqa{
+0 &=& \frac{[AB]}{2} + \bar{p}\frac{[AB]}{2}\left( \frac{[AB]}{[B]} -2\frac{[AA]}{[A]} \right) \\
+0 &=& \frac{[AB]}{2} + \bar{p}\frac{[AB]}{2}\left(\frac{[AB]}{[A]}  -2\frac{[BB]}{[B]} \right)
+}
+We can see straight away that a solution is $[AB]=0$, i.e. the fragmented state where there are no more links between nodes with different opinions.
+
+To find other steady states we divide by $[AB]$ and multiply by $2[A][B]$ to avoid the fractions
+\eqa{
+0 &=& [A][B] + \bar{p}\left([AB][A] -2 [AA][B] \right) \\
+0 &=& [A][B] + \bar{p}\left([AB][B] -2 [BB][A] \right)
+}
+This is a bit tricky because we are interested in $[AB]$ but at the same time we want to use the conservation law to remove one of the variables and it is quite intuitive to use it to remove $[AB]$ as removing either $[AA]$ or $[BB]$ would break the symmetry. My feeling here is that it is a good idea to move to variables that for the sum and the difference of the $[AA]$ and $[BB]$ links. So let's introduce
+\eqa{
+x&=&[AA]+[BB] \\
+y&=&[AA]-[BB]
+}
+This allows us to write $2[AA]$ as $x+y$ and $2[BB]$ as $x-y$, hence
+\eqa{
+0 &=& [A][B] + \bar{p}\left([AB][A] -(x+y)[B] \right) \\
+0 &=& [A][B] + \bar{p}\left([AB][B] -(x-y)[A] \right)
+}
+We can now use the link conservation law in the form 
+\eq{
+x=z/2-[AB]
+}
+to eliminate one variable in a symmetric fashion
+\eqa{
+0 &=& [A][B] + \bar{p}\left([AB][A] -(z/2-[AB]+y)[B] \right) \\
+0 &=& [A][B] + \bar{p}\left([AB][B] -(z/2-[AB]-y)[A] \right)
+}
+We can now collect the $[AB]$ in each equation and take advantage of the conservation law for nodes, $[A]+[B]=1$.
+\eqa{
+0 &=& [A][B] + \bar{p}\left([AB] -(z/2+y)[B] \right) \\
+0 &=& [A][B] + \bar{p}\left([AB] -(z/2-y)[A] \right)
+}
+Having preserved the symmetry now seems a good moment to take advantage of it by forming the sum and the difference of the two equations
+\eqa{
+0 &=& 2[A][B] + \bar{p} \left(2[AB]-z/2+y([A]-[B])\right)  \\
+0 &=& -\bar{p} \left((z/2)([B]-[A])+y \right)
+}
+From the second equation we can now compute 
+\eq{
+y=\frac{z}{2}([A]-[B])
+}
+Substituting into the first equation yields
+\eq{
+0 = 2[A][B] + \bar{p} \left(2[AB]-z/2+([A]-[B])^2z/2\right)  
+}
+We divide everything by 2 and $\bar{p}$ 
+\eq{
+0 = \frac{[A][B]}{\bar{p}} +[AB]-z/4+([A]-[B])^2z/4  
+}
+And then solve for 
+\eq{
+[AB] = z/4(1-([A]-[B])^2)-\frac{[A][B]}{\bar{p}}   
+}
+This isn't too bad but we can make it a bit nicer. Consider that 
+\eq{
+([A]-[B])^2 = [A]^2-2[A][B]+[B]^2 = ([A]+[B])^2-4[A][B] = 1- 4[A][B]
+}
+Hence
+\eq{
+[AB] = z[A][B]-\frac{[A][B]}{\bar{p}}   
+}
+which we can write as 
+\eq{
+[AB] = [A][B]\left(z-\frac{1}{\bar{p}}\right)   
+}
+The first two factors ($[A][B]$) give us the parabola shape that we observed in the simulations from the lecture. The last factor is the height of the parabola. 
+
+\subquestion
+Find an estimate for the value of $p$ at which the network fragments.
+
+\solution
+From the previous equation we can see that fragmentation occurs when 
+\eq{
+\bar{p}=\frac{1}{z}
+}
+To find the value of $p$ at which the network fragments we substitute $\bar{p}=1-p$,
+\eq{
+1-p=\frac{1}{z}
+} 
+and solve for $p$, which yields
+\eq{
+p=1-\frac{1}{z}
+}
+One nice property of this result is that we recover the fragmentation transition of the giant component: for $p=0$ the network fragments at $z=1$.
