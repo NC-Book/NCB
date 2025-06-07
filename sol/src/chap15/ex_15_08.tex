@@ -1,0 +1,34 @@
+\exercise{SIS percolation}{}
+In this exercise we find the epidemic threshold of the SIS model using a different approach:
+
+\subquestion Consider a single infected node in a large network where every other node is susceptible. How long do you expect the infected node to stay infected until it returns to the susceptible state?
+
+\solution
+Since we recover with rate $r$ the expected time to recovery is $1/r$.
+
+\subquestion While the initial node is infected it can infect other nodes. Estimate the initial rate at which it causes such infections. 
+
+\solution
+We can assume that the initial node has $z$ links. Since the disease is transmitted along every link at rate $p$ the initial rate of infections caused is $pz$.
+
+\subquestion 
+Now estimate the basic reproductive number $R_0$, i.e.~the number of infections that are directly caused by our initial infected node by multiplying the time that the initial node is infected with the rate at which it causes infections. 
+
+\solution
+Multiplying the two previous results we get 
+\eq{
+R_0= \frac{zp}{r}
+}
+
+\subquestion The disease can invade the population when $R_0>1$, hence $R_0=1$ is the epidemic threshold. Use this to find the critical value of $p$ where the epidemic threshold occurs. 
+
+\solution 
+We solve 
+\eq{
+1= \frac{zp}{r}
+}
+which yields
+\eq{
+p=\frac{r}{z}.
+}
+Note that is the same result that we previously derived in a more complicated way. 

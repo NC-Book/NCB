@@ -1,0 +1,31 @@
+
+\exercise{Minority game}{2}
+Consider a network of agents which can be in either of two states A, or B. No agent wants to be in the same state as its neighbors. Links in the network are checked at rate $r$. When a link is checked, the agents connected by the link compare their state. If they are in the same state, one of them chosen randomly switches to the respectively other state. For example if an AA-link is checked one of the agents would switch to state B. Write a mean field model, find its steady state and check the stability. 
+
+\solution
+
+We write the mean field equation
+\eq{
+[\dot{A}] = -r[AA]+r[BB]. 
+}
+Closing with a mean field approximation yields
+\eq{
+[\dot{A}] = -rz[A][A]+rz[B][B]
+}
+Now using the conservation law $[A]+[B]=1$ we get 
+\eqa{
+[\dot{A}] &=& -rz[A]^2+rz(1-[A])^2  \\{}
+[\dot{A}] &=& rz(1-2[A])  
+}
+To compute the steady state we set the rate of change to zero
+\eqa{
+0 &=& rz(1-2[A])  \\{}
+[A] &=& 1/2
+}
+So the symmetric case $[A]=[B]=1/2$ is a stationary state. To explore its stability 
+we have to compute the Jacobian, which in this case is a 1$\times$1-matrix ($[B]$ acts as a 
+auxiliary variable). We compute
+\eq{
+\lambda =  -2rz
+}
+so for reasonable parameters $r>0$, $z>0$ the steady state is stable.

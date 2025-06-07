@@ -1,0 +1,29 @@
+\exercise{SIS ISI ODE TLA}{4}
+For the aSIS model from above. Derive a differential equation for $[ISI]$ the density of ISI-chains. (Hint, you might need symbols of the form $[ABCD]$, density of four node chains with states A,B,C,and D, and $[^BA^C_D]$, density of nodes in state A with neighbors in state B, C and D.)  
+
+\solution
+To make sure we don't forget any terms lets go through the processes that occur systematically. The rewiring process occurs at a total rate $w[SI]$ the probability that a rewiring even will destroy an ISI-chain is $2[ISI]/[SI]$. Rewiring cannot create ISI-chains, so the total impact of rewiring is 
+\eq{
+a_{\rm rew.} = w[SI]\left( \frac{2[ISI]}{[SI]} \right) = 2w[ISI] 
+}
+Let's do recovery next. Recovery events occur at a total rate of $r[I]$. A recovery event can create an ISI-chain if the recovering node is the central I in an III chain. The probability that the recovering node is such a central I is $[III]/[I]$. (Note that there is no factor of 2 or 3: the III-chain contains three I but we need the central I to recover and not one of the peripheral ones to make an ISI, so only one chance not 3). 
+
+Recovery can also destroy an ISI chain if the recovering node was one of the I-nodes in an ISI chain, and the probability of that being the case is $2[ISI]/[I]$. In summary the impact of recovery is 
+\eq{
+a_{\rm rec.} = r[I]\left(\frac{[III]}{[I]}-\frac{2[ISI]}{[I]} \right) = r [III] - 2r[ISI]  
+}
+
+The most complex process is infection. Infection events happen at the total rate $p[SI]$. An infection can destroy ISI-chains if the SI-link on which it occurs is part of an ISI-chain. The probability of this happening is $2[ISI]/[SI]$ (factor of 2 because the SIS contains two $[SI]$-links), it destroys an additional SSI chains if the SI-link was actually part of a star with an S in the center and 3 peripheral nodes (probability $3[^IS_I^I]/[SI]$) 
+
+Infection can also create an ISI-chain if it happens to turn an SSI-chain into an ISI-chain because the first S-node got infected from somewhere else. This happens whenever the infection event occurs in  an ISSI-chain and the probability of this happening is $2[ISSI]/[SI]$.
+In summary the impact of infection is 
+\eq{
+a_{\rm inf} = p[SI]\left(2\frac{[ISSI]}{[SI]}-2\frac{[ISI]}{[SI]}-3\frac{[^IS^I_I]}{[SI]} \right) = 2p[ISSI]-2p[ISI]-3p[^IS^I_I] 
+}
+Taking all terms into account, the differential equation for the ISI-chains is 
+\eqa{
+[\dot{ISI}] &=& a_{\rm rew}+a_{\rm rec}+a_{\rm inf} \\
+  &=& -2w[ISI]+r[III]-2r[ISI]+2p[ISSI]-2p[ISI]-3p[^IS^I_I] \\
+  &=& r[III]+2p[ISSI]-2(w+r+p)[ISI]-3p[^IS^I_I]
+}
+(Getting the prefactors right is admittedly difficult, if you use this in the real world, always do a quick numerical check then continue analytically)
