@@ -1,0 +1,22 @@
+\exercise{Competing epidemics}{3}
+Consider two competing SIS diseases I and J, which spread at different rates $p_1\neq p_2$ but from which people recover at the same rate $r$. Assume that being infected with one of the diseases gives the infected person immunity to the other disease (This is actually the case for many pairs of diseases, e.g. tuberculosis and leprosy). Use a mean field approximation to show that the system cannot be in a stationary state where both diseases persist.  
+
+\solution
+Let us call  the diseases I and J. We write the mean field equations for the proportion of nodes that are infected with I or J respectively.
+\eqa{
+[\dot{I}]&=&p_1[I][S]-r[I] \\{}
+[\dot{J}]&=&p_2[J][S]-r[J]
+}
+where $[S]=1-[I]-[J]$. A steady state needs to obey the conditions
+\eqa{
+0&=&p_1[I][S]-r[I] \\{}
+0&=&p_2[J][S]-r[J]
+}
+and because we are interested in nonzero solutions we can divide by $[I]$ and $[J]$ respectively, so 
+\eqa{
+0&=&p_1[S]-r \\
+0&=&p_2[S]-r.
+}
+Now we can see that there is no value of $[S]$ where both of these conditions can be met simultaneously, unless $p_1=p_2$. Hence for $p_1\neq p_2$ there isn't a steady state where both diseases coexist. 
+
+This outcome is an example for the competitive-exclusion principle. The number of species in a system cannot be greater than the number of niches. 

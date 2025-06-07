@@ -1,0 +1,144 @@
+\exercise{A Meta-community}{3}
+Consider an archipelago containing many islands. Some islands are Barren (B), on some islands there is grass (G), and some islands there is not only grass, but even some sheep (S). We can think of the islands as a network with $N$ nodes and $K$ links. The links are actually routes of human travel, and from time seeds of grass stuck to human shoes and clothing allow the grass from one island to colonize a neighboring barren island. Thus grass can spread from one island where it is present (type G or S) to a neighboring barren island at rate $c$.  
+
+Sometimes humans also carry sheep from one island to the another. Thus sheep can spread from an island of type S to a neighboring island of type G at a low rate $l$.
+
+However life on the islands is dangerous and at a rate $m$ the grass on an island of type G or S goes extinct and if there is a population of sheep on the island they also go extinct. 
+
+\subquestion 
+Write differential equations that govern the variables $[B]$, $[G]$, ${S}$, denoting the proportion of barren, grassy and sheep islands as a function of link densities, 
+e.g.~[BG]
+
+\solution
+Using the mass action laws we can write immediately
+\eqa{
+\dot{[B]}&=&m[G]+m[S]-c[BG]-c[BS]\\
+\dot{[G]}&=&c[BG]+c[BS]-l[GS]-m[G]\\
+\dot{[S]}&=&l[GS]-m[S]
+}
+
+\subquestion 
+Use a meanfield approximation to replace the link densities in your equations with functions of the node densities. 
+
+\solution
+We use approximations of the form  
+\eq{
+[BG] = z[B][G]
+}
+where $z=2K/N$ is the mean degree to write 
+\eqa{
+\dot{[B]}&=&m[G]+m[S]-cz[B][G]-cz[B][S]\\
+\dot{[G]}&=&cz[B][G]+cz[B][S]-lz[G][S]-m[G]\\
+\dot{[S]}&=&lz[G][S]-m[S]
+}
+
+\subquestion
+Now identify a suitable conservation law to remove the variable $[B]$ from the system.
+
+\solution
+A suitable conservation law is 
+\eq{
+1=[B]+[G]+[S]
+}
+hence we can use 
+\eq{
+[B]=1-[G]-[S]
+}
+to remove $[B]$ which yields
+\eqa{
+\dot{[G]}&=&cz(1-[G]-[S])[G]+cz(1-[G]-[S])[S]-lz[G][S]-m[G]\\
+\dot{[S]}&=&lz[G][S]-m[S]
+}
+which we can write a bit more nicely as 
+\eqa{
+\dot{[G]}&=&cz (1-[G]-[S])([G]+[S])-lz[G][S]-m[G]\\
+\dot{[S]}&=&lz[G][S]-m[S]
+}
+
+\subquestion
+You may have noted that $[G]+[S]$ appears quite a lot. This makes sense since $[G]+[S]$ is the proportion of all islands with grass. Let's define a new variable $[T]=[G]+[S]$. Derive a differential equation for this variable, and use it to replace the differential equation for $[G]$.
+
+\solution
+We derive a differential equation for $[T]$ by differentiating the defining equation 
+\eqa{
+\dot{[T]}&=&\dot{[G]}+\dot{[S]} \\
+  &=& cz (1-[G]-[S])([G]+[S])-lz[G][S]-m[G] + lz[G][S]-m[S]\\
+  &=& cz (1-[T])[T]-m[T]
+}
+Since we have a new equation we can use it to replace one of the old ones. So the system now reads
+\eqa{
+\dot{[T]}&=&cz (1-[T])[T]-m[T]\\
+\dot{[S]}&=&lz([T]-[S])[S]-m[S]
+}
+where we have used $[G]=[T]-[S]$ to remove the $[T]$ from the second equation. 
+
+\subquestion
+We now want to find the steady states of the system. Ecological intuition tells us that there should be at least three of them, which we can call ``no grass'', ``no sheep'' and ``grass and sheep''. Compute these steady states. 
+
+\solution
+The no-grass state is $[T]=[S]=0$. We can quickly confirm that this is a steady state by substituting into the differential equations.
+
+To compute the no-sheep state we set $[S]=0$. In this case the differential equation for $[S]$ is automatically stationary which leaves with the condition
+\eq{
+0=cz (1-[T])[T]-m[T]
+}
+Because we are no longer interested in solutions where $[T]=0$ we can divide by $[T]$ which yields 
+\eq{
+m=cz (1-[T])
+}
+which we can solve for 
+\eq{
+[T]=1-\frac{m}{cz}
+}
+
+Now we still have to find the sheep-and-grass steady state. Fortunately the condition for $[T]$ remains the same as before so that 
+\eq{
+[T]=1-\frac{m}{cz}
+}
+is still a solution for $[T]$. To determine $[S]$ we look at the second equation which yields the condition
+\eq{
+0=lz([T]-[S])[S]-m[S]
+}
+We can divide by $[S]$ 
+\eq{
+0=lz([T]-[S])-m
+}
+and solve for 
+\eq{
+[S]=[T]-\frac{m}{lz}
+}
+Substituting the solution $[T]$ we get the stationary sheep density 
+\eq{
+[S]=1-\frac{m}{cz}-\frac{m}{lz}
+}
+Thus there are three steady states 
+\eq{
+[T]_1=0 \quad\quad\quad  [S]_1=0 
+}
+\eq{
+[T]_2=1-\frac{m}{cz} \quad\quad\quad  [S]_2=0 
+}
+\eq{
+[T]_3=1-\frac{m}{cz} \quad\quad\quad [S]_3=1-\frac{m}{cz}-\frac{m}{lz} 
+}
+
+\subquestion
+Find the minimal connectivity $z_g$ from which on grass can persist in the archipelago and the also the minimal connectivity $z_s$ from which on sheep can persist.
+
+\solution
+For grass to persist the grass steady state must have positive density this is the case if 
+\eq{
+1>\frac{m}{cz} 
+}
+and hence
+\eq{
+z_g = \frac{m}{c}
+}
+Similarly sheep can persist if 
+\eq{
+1>\frac{m}{cz}+\frac{m}{lz}.
+}
+Multiplying by $z$ we find the threshold
+\eq{
+z_s=\frac{m}{c}+\frac{m}{l}
+}

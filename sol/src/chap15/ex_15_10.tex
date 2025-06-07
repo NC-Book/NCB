@@ -1,0 +1,33 @@
+\exercise{Triplets!}{4}
+Derive a differential equation for $[ABA]$ in the adaptive voter model. (you do not need to close the expansion)
+
+\solution
+
+We have derived equations for 3 node chains before. In order to avoid too much overlap, especially with the derivation of the ODE for the ISI-chain, let me use the shortcut method that we briefly mentioned in the lecture. 
+
+Instead of going through the processes and estimating their impact on the different motifs, we go instead through the motifs that can play a role. The first one is the ABA-chain itself. If an update happens in this chain then it is destroyed, the total rate at which AB-links in ABA-chains are selected in the voter model is 
+$2(\bar{p}+p)=2$. So the contribution of this motif to our differential equation is 
+\eq{
+-2 [ABA]
+}
+The next motif that can play a role is the BABA-chain. The effect of any rewiring or copying events between the last 3 nodes of the chain (ABA) are already accounted for by the term above. However, in this motif the ABA-part can also be destroyed if the leading B is copied onto the A that is in second place. As this happens at the rate $\bar{p}/2$ and copying in the other infection or rewiring ha no effect on the ABA the total rate impact is 
+\eq{
+-\frac{\bar{p}}{2}[BABA]
+}
+Next consider the ABBA-chain. Rewiring or copying of a B to an A have no effect. However copying either of the two A onto a B creates an ABA-chain. The net impact is 
+\eq{
++\bar{p}[ABBA]
+}
+There are also two star-motifs that have an impact. The first is a chain of three A with a B connected to the middle A, i.e.~$[^AA_B^A]$. Since this motif does not contain an ABA-chain non can be destroyed, but an ABA-chain can be created if the B is copied onto the central A. This occurs at rate $\bar{p}/2$ such that the contribution to the ODE is
+\eq{
++\frac{\bar{p}}{2}[^AA_B^A] 
+}
+The most tricky motif is a B.node surrounded by three A-nodes, $[^AB^A_A]$. In this motif we can't create any new ABA-chains, but there are three ABA-chains that could be destroyed. In principle these chains could be destroyed if a rewiring event occurs, but we have already accounted for the affect of rewiring happing inside an ABA-chain in the first term above, so this does not create an extra contribution. Moreover, ABA-chains are destroyed if the central B-node is copied onto one of the A-nodes. This would destroy the two ABA-chains which contain the link in which the copying occurs. However the effect of this \emph{internal} copying has already been accounted for in the first term. Finally all three ABA-chains are destroyed if the state of one of the A-nodes is copied onto the central B (which happens at rate $3\bar{p}/2$). For the two chains that contain the link on which the copying occurs this is an internal process which we have already accounted for, but the third ABA-chain is destroyed due to a copying process that is external to the chain and this creates an extra term
+\eq{
+-\frac{3}{2}\bar{p}[^AB^A_A]
+}
+Because no other motifs have of up to size 4 have an impact on ABA-chains we are now done. In summary the differential equation we are looking for is 
+\eq{
+[\dot{ABA}]=-2 [ABA]-\frac{\bar{p}}{2}[BABA]+\bar{p}[ABBA]+\frac{\bar{p}}{2}[^AA_B^A]-\frac{3}{2}\bar{p}[^AB^A_A] 
+}
+In practice this shortcut procedure is faster than the process-by-process derivation, and it makes it even a bit easier to get the prefactors right. Its main drawback is that it is very easy to forget terms, particular when the motif under consideration can also be created in rewiring events. 

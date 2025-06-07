@@ -1,0 +1,23 @@
+
+\exercise{Rock-paper-scissors}{2}
+Consider a network of agents playing the rock-paper-scissors game. Each agent has a state which can be either rock (R), paper (P), or scissors (S). At some rate we pick a random link and the game is played by the two agents that the link connects: If both players are in the same state the game is a draw and nothing happens. Otherwise R wins against S, S wins against P, and P wins against R. Whoever is the loser then changes it's state to the strategy that would have won the game. For example if R plays against P, R loses and switches to S. Write mean field equations for the proportion of players with a given strategy, $[R]$, $[P]$, $[S]$, and find the steady states.
+
+\solution
+The mean field equations before closure are 
+\eqa{
+ [\dot{R}]&=&[SP]-[RP]\\{}
+ [\dot{S}]&=&[PR]-[SR]\\{}
+ [\dot{P}]&=&[RS]-[PS]
+}
+We close the system using a mean field approximation of the form $[AB]=z[A][B]$ which yields 
+\eqa{
+ [\dot{R}]&=&z[P]([S]-[R])\\{}
+ [\dot{S}]&=&z[R]([P]-[S])\\{}
+ [\dot{P}]&=&z[S]([R]-[P])
+}
+There are a number of different steady states:
+\begin{enumerate}
+\item $[R]=[P]=[S]=0$
+\item $[R]=c$, $[P]=[S]=0$ and related states where the types are exchanged
+\item $[R]=[P]=[S]$
+\end{enumerate}
