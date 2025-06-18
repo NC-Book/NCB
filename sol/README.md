@@ -16,3 +16,5 @@ Exercise sheets and solutions are available for:
 - [Chap. 13: A secret of bees](pdf/chap13/README.md)  -- *(linear maps, and linear ODEs, Fibonacci, eigendecomposition)*
 - [Chap. 14: Complexity-stability debate](pdf/chap14/README.md)  -- *(stability analysis, Gershgorin, eigenfacts)*
 - [Chap. 15: Social distancing](pdf/chap15/README.md)  -- *(moment expansions, more eigenvalues and bifurcations)*
+- [Chap. 16: The critical brain](pdf/chap16/README.md)  -- *(critical slowing down, normal forms)*
+- [Chap. 17: Coarse-graining](pdf/chap17/README.md)  -- *(dimensionality reduction, manifolds)*
