@@ -1,0 +1,51 @@
+
+
+
+\exercise{Abstract sensitivity example}{2}
+The following model is quite complicated:
+\eqn{
+\dot{x} = -x^4 + 2px^3 + 2p^2x - px^2 + x - 2p
+}
+It would be a pain to compute the steady states by hand. However, 
+suppose that based on your understanding of the system you suspect that 
+for $p^*=1$ there is a steady state at $x^*=2$. 
+\subquestion
+Verify that $x^*=2$ is indeed a steady state at $p^*=1$.
+\solution
+Substituting $p=1$ yields
+\eq{
+\dot{x} = - x^4 + 2x^3 + 2x  - x^2 + x - 2
+}
+and then substituting $x=2$ we find
+\eqn{
+\dot{x} = -2^4 + 2\cdot 2^3 + 2\cdot 2 - 2^2 + 2 - 2 = 0
+}
+so this is indeed a steady state. 
+
+\subquestion
+Use the equation for the sensitivity of steady states from the \vs{chapter}{lecture} to compute how the steady state is affected if we change $p$ a little bit. 
+
+\solution
+We need 
+\eqa{
+f_{\rm x}(x^*,p^*)&=& \left. \frac{\partial}{\partial x} (-x^4 + 2px^3 + 2p^2x  - px^2 + x-2p)\right|_* \\
+   &=& \left. (-4x^3 + 6px^2 + 2p^2  - 2px + 1)\right|_* \\
+   &=&  -4\cdot 2^3 + 6\cdot 1 \cdot 2^2 + 2\cdot 1^2  - 2\cdot 1 \cdot 2 + 1 \\
+   &=&  -32 + 24 + 2  - 4 + 1  \\
+   &=&  -9
+}
+and also 
+\eqa{
+f_{\rm p}(x^*,p^*)&=& \left. \frac{\partial}{\partial p} (-x^4 + 2px^3 + 2p^2x  - px^2 + x - 2p)\right|_* \\
+&=& \left. ( 2x^3 + 4px  - x^2 - 2)\right|_* \\
+&=&  2\cdot 2^3 + 4\cdot 1\cdot 2  - 2^2 - 2 \\
+&=&  16 + 8  - 4 - 2 \\
+&=& 18
+}
+We can now compute 
+\eq{
+\left.\frac{{\rm d} x^*}{{\rm d} p} \right|_* = -\frac{f_{\rm p}}{f_{\rm x}} = -\frac{18}{-9} = 2  
+}
+In words: If we start from the steady state at $p^*=1$, $x^*=2$ and then change $p$ by a small amount $\rho$ we expect the steady state to shift by $2\rho$.
+
+[Bonus: Notice anything funny about the calculations in this exercise. There is a little bit more to discover here.]

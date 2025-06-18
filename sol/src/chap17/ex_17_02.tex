@@ -1,0 +1,28 @@
+\exercise{Simple  timescale renormalization}{1}
+In the system
+\eqn{\dot{x}=k(x-x^2)}
+renormalize the timescale to make the parameter $k$ disappear.
+(Hint: If you are not sure how to do it, renomalise time by a factor $a$ and then decide how you need to chose this factor.)
+
+\solution 
+We define 
+\eq{
+\tau = a t
+}
+Hence
+\eq{
+\frac{\partial t}{\partial \tau} = \frac{1}{a}.
+}
+Therefore
+\eq{
+\frac{{\rm d}x}{{\rm d}\tau} = \frac{\partial t}{\partial \tau} \frac{{\rm d}x}{{\rm d}t} =\frac{1}{a} k(x-x^2)
+}
+This in the new units of time we can write 
+\eq{
+\dot{x}=\frac{k}{a} (x-x^2)
+}
+Chosing $a=k$, yields the desired equation
+\eq{
+\dot{x}= (x-x^2)
+}
+Note we can always set one of the rates in the system to one by means of a timescale renormalization. 
