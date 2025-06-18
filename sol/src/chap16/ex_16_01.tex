@@ -1,0 +1,32 @@
+
+\exercise{A fancy derivative}{1}
+Consider the equation 
+\eqn{
+  a = bc + \sqrt{b} 
+}
+where 
+\eqn{ 
+  b=3c+1 
+}
+Compute $\d a / \d c$ at $c=1$.
+
+\solution 
+To do this we first compute 
+\eq{
+\frac{\d b}{\d c} = 3 
+} 
+\eq{
+\frac{\partial a}{\partial c} = b  
+}
+\eq{
+\frac{\partial a}{\partial b} = c - \frac{1}{\sqrt{b}}  
+}
+and then write 
+\eqa{
+\frac{\d a}{\d c} &=& \frac{\partial a}{\partial c} + \frac{\partial a}{\partial b} \frac{\d b}{\d c} \\
+  &=& b + 3\left(c - \frac{1}{\sqrt{b}}\right ) 
+}
+at $c=1$, we find $b=4$ and thus 
+\eq{
+\left. \frac{\d a}{\d c}\right|_{c=1} = 4 + 3(1 - 1/2) = 5.5
+}

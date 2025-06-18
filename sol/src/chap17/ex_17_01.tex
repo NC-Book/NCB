@@ -1,0 +1,41 @@
+
+\exercise{Simple change of variables}{1}
+Consider the system 
+\eqan{
+\dot{x}&=&2x-3y \\
+\dot{y}&=&xy
+}
+Rewrite the system in terms of $x$ and the new variable $s=x+y$
+
+\solution
+We start with
+\eq{
+s=x+y 
+}
+Differentiating with respect to time yields
+\eq{
+\dot{s}=\dot{x}+\dot{y}
+}
+Substituting the equations for the time derivatives we find
+\eq{
+\dot{s}=2x-3y+xy
+}
+Do the system is now
+\eqa{
+\dot{x}&=&2x-3y \\
+\dot{s}&=&2x-3y+xy
+}
+To replace the instances of $y$ we solve $s=x+y$ for 
+\eq{
+y=s-x
+}
+Substituting into the system we find
+\eqa{
+\dot{x}&=&2x-3(s-x) \\
+\dot{s}&=&2x-3(s-x)+x(s-x)
+}
+which we can simplify to 
+\eqa{
+\dot{x}&=&5x-3s \\
+\dot{s}&=&5x-3s+xs-x^2
+}

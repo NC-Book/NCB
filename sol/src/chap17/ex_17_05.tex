@@ -1,0 +1,112 @@
+\exercise{Michaelis-Menten kinetics}{3}
+The Holling type-II functional response in ecology has an equivalent in biochemistry that is called the  Michaelis-Menten kinetics:
+In both cases reaction rates involve the factor
+\eqn{
+   \frac{Ax}{B+x}   
+}
+where $x$ is a variable. This is the so-called
+At first glance the appearance of these terms is surprising because they are not mass action terms and neither do such fractions commonly appear in physical laws. So where do they come from?
+
+Let's consider a chemical reaction where an enzyme binds to a substrate to turn it into a product. We will call the substrate X, the product Y , the enzymes that are not bound to substrate E and the complex that is formed if the enzyme is bound to the reactant C. The dynamics are then described by the following reaction system:
+\eqan{
+\mbox{E}+\mbox{X} &\xrightarrow{r}& \mbox{C}  \\
+\mbox{C} &\xrightarrow{s}& \mbox{Y}
+}
+In a big biochemical reaction system both X and Y will participate in many other chemical reactions, however the binding and unbinding of the enzyme is a very fast process. 
+
+\subquestion
+Denote the concentrations of X, C, Y, and E by the variables $x,c,y,e$, respectively. Write ODEs for these variables using mass action. In the ODEs for X and Y include addtional terms $o_x(x)$ and $o_y(y)$ as a placeholder for other reactions that X and Y may be involved in.
+
+\solution
+\eqa{
+\dot{x}&=& -rex + o_x(x) \\
+\dot{y}&=& sc + o_y(y) \\
+\dot{c}&=& rex-sc \\ 
+\dot{e}&=& sc-rex 
+}
+
+\subquestion
+The equations contain a conservation law. What is the conserved quantity? Call the conserved quantity $a$, state the conservation law mathematically and prove it by showing $\dot{a}=0$.
+
+\solution
+The total amount of enzyme (C+E) is conserved.
+\eq{
+c+e=a
+}
+We can show
+\eq{
+\dot{a}=\cot{c}+\dot{e} = (rex-sc) + (sc-rex) = 0
+}
+
+\subquestion
+We now consider the fast subsystem. In these systems the concentrations of the enzyme are many magnitudes smaller than the concentration of substrate or product. Every enzyme needs to bind to and process many substrate molecules before a there is a significant percentage change in $x$ or $y$. This justifies considering the variables $c$ and $e$ in isolation for a moment. 
+
+Consider only the ODEs for $c$ and $e$ and find their steady state value $e^*$ of $e$. Use the conservation law to eliminate all instances of $c$.  (Hint: $x$ is a constant in the fast system, so the solution should be a function $e^*(x,s,r,a)$)
+
+\solution
+We start with 
+\eq{
+\dot{e}= sc-rex
+}
+and use $c=a-e$ which yields  
+\eq{
+\dot{e}= s(a-e)-rex = sa-e(s+rx)
+}
+We can now compute the steady state 
+\eq{
+e^* = \frac{sa}{s+rx}
+}
+this is our slow manifold. 
+
+\subquestion
+Show that in the fast system the steady state $e^*$ is stable. (hint: all you need to consider is a one-dimensional ODE)
+
+\solution
+We consider the ODE 
+\eq{
+\dot{e}=sa-e(s+rx) 
+}
+that we derived previously. Differentiating by $e$ we find the `eigenvalue'
+\eq{
+\lambda=-(s+rx)
+}
+Because $s$ and $r$ are positive rates and $x$ is a positive concentration this eigenvalue is always negative and hence the slow manifold is stable unconditionally. 
+
+\subquestion
+We have now shown that the slow manifold is stable is unconditionally stable, which means the system will just collapse to the slow manifold. So to understand the dynamics of the bigger reaction system that we would normally be interested in we only need to consider the dynamics on the slow manifold. 
+
+Rewrite your differential equation system from part a. Use your insights on the slow manifold to eliminate $e$ and $c$ from the equations for $x$ and $y$ such that these equations only depend on $a$, $r$, $s$ and the placeholders $o_x(x)$ and $o_y(y)$. Because $c$ and $e$ no longer appear, you can drop the corresponding equations, so that the result is a 2-dimensional ODE. Show that the Michaelis-Menten kinetics appears and express the parameters $A$ and $B$ of the general form in terms of our parameters $a,r,s$.   
+
+\solution
+We start from 
+\eqa{
+\dot{x}&=& -rex + o_x \\
+\dot{y}&=& sc + o_y 
+}
+In the equation for $x$ we can substitute the slow manifold $e=sa/(s+rx)$ which yields \eq{
+\dot{x}= -\frac{rsax}{sa+rx} + o_x(x)
+}
+For the second equation we use 
+\eqa{
+sc&=&s(a-e) \\
+  &=&s\left(a-\frac{sa}{s+rx}\right)  \\
+  &=&s\left(\frac{a(s+rx)}{s+rx}-\frac{sa}{s+rx}\right)  \\
+  &=&s\frac{arx}{s+rx}  \\
+  &=& \frac{rsax}{sa+rx}
+}
+In summary that means we can write the equations as 
+\eqa{
+\dot{x} &=& o_x - \frac{Ax}{B+x}  \\ 
+\dot{y} &=& \frac{Ax}{B+x} + o_y
+}
+where
+\eqa{
+A&=&sa \\
+B&=&sa/r
+}
+This is one of the most beautiful applications of the theory of slow-fast systems in model reduction. The importance of resulting Michaelis-Menten equation is hard to overstate as it is ubiquitous in biochemistry. 
+
+The ecological derivation is exactly analogous. Here the predator is the enzyme that binds to the prey. The time that the predator needs to handle the prey (i.e. eat and digest it) causes the nonlinearity in the functional response. 
+
+Most ecologist and  biochemist only learn this kinetic `by-the-book' without understanding its roots in slow-fast theory.
+But, understanding these roots allows you to do similar reductions also for other systems. For me personally this has paid off (big time) as it gave me the idea for a project showing that a whole range of different models in ecology, epidemiology and parasitology are all shadows of a single `supermodel' that is reduced in different ways as the timescale separation works differently in different species. The resulting paper, Lafferty et al.~Science 349, 2015, is one of very very few papers that were accepted for publication in Science without reporting new experiments. With what you learned in the lecture you should now be able to understand the derivations in this paper (they are in the supporting online material)

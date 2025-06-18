@@ -1,0 +1,52 @@
+\exercise{Fast prey}{2}
+Consider the predator-prey system 
+\eqan{
+\dot{X}&=&rX-aXY-X^2 \\
+\dot{Y}&=&caXY-dY
+}
+\subquestion Look at the system and decide who is the predator. 
+
+\solution 
+It is $Y$, the species that profits from the interaction (the XY-term)
+
+\subquestion
+Assume that the dynamics of the predator is much slower than the dynamics of the prey, while the predator still inflicts significant losses on the prey losses on the prey. Which parameter have to be small for this to be the case?
+
+\solution 
+The parameters are $c$ and $d$. We can think of $c$ as an conversion efficiency from prey to predator biomass and of $d$ as a death rate of the predator. 
+
+\subquestion
+Now use time-scale separation coarse-graining to remove the fast prey variable from the system. (There are two cases to consider)
+
+\solution 
+We start by fining the steady states of the fast dynamics. 
+\eq{
+0=rX-aXY-X^2 
+}
+where $Y$ is now a parameter. The possible steady states are 
+\eq{
+X=0
+}
+and
+\eq{
+X=r-aY
+}
+We can guess (or show) that the second steady state is stable if 
+\eq{
+Y<\frac{r}{a}
+}
+otherwise the first steady state is stable. 
+
+We can now substitute into the slow dynamics  
+\eq{
+\dot{Y}=caXY-dY
+}
+which yields 
+\eq{
+\dot{Y}=-dY
+}
+if $Y>r/a$ and
+\eq{
+\dot{Y}=caY(r-aY)-dY 
+}
+otherwise. Note that in the latter case we get a logistic growth term for the predator. 
