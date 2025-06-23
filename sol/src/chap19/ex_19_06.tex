@@ -1,0 +1,59 @@
+\exercise{Traffic: Closeness centrality}{3}
+Consider the traffic network again, but this time compute the closeness centrality. (You can consider the length of each link to be one.) Is the result reasonable?
+
+\solution 
+For this one we need to find the shortest paths in the network. For this small example visual inspection is easier than Dijkstra. We find 
+\begin{center}
+\begin{tabular}{ c c c | c c c }
+Trip & Distance & Intermediate nodes & Trip & Distance & Intermediate nodes \\\hline
+A-B & 1 & - &
+A-C & 1 & - \\
+A-D & 2 & B &
+A-E & 2 & C \\
+A-F & 3 & B,G / C,E &
+A-G & 2 & B \\
+A-H & 3 & B,D / C,E &
+A-X & 1 & - \\
+B-C & 1 & - &
+B-D & 1 & - \\
+B-E & 2 & C &
+B-F & 2 & G \\
+B-G & 1 & - &
+B-H & 2 & D \\
+B-X & 2 & A &
+C-D & 2 & B \\
+C-E & 1 & - &
+C-F & 2 & E \\
+C-G & 2 & B &
+C-H & 2 & E \\
+C-X & 2 & A &
+D-E & 2 & H \\
+D-F & 2 & H / G &
+D-G & 1 & - \\
+D-H & 1 & - &
+D-X & 3 & A,B \\
+E-F & 1 & - &
+E-G & 2 & F \\
+E-H & 1 & - &
+E-X & 3 & C,A \\
+F-G & 1 & - &
+F-H & 1 & - \\
+F-X & 4 & E,C,A / G,B,A &
+G-H & 2 & F / D \\
+G-X & 3 & A,B &
+H-X & 4 & A,B,D / A,C,E
+\end{tabular}
+\end{center}
+We can now compute the centralities
+\eqa{
+c_{\rm A}&=&\frac{8}{1+1+2+2+3+2+3+1}=\frac{8}{15}\approx 0.53 \\
+c_{\rm B}&=&\frac{8}{1+1+1+2+2+1+2+2}=\frac{8}{12}= 0.75 \\
+c_{\rm C}&=&\frac{8}{1+1+2+1+2+2+2+2}=\frac{8}{13}\approx 0.61 \\
+c_{\rm D}&=&\frac{8}{2+1+2+2+2+1+1+3}=\frac{8}{13}\approx 0.61 \\
+c_{\rm E}&=&\frac{8}{2+2+1+2+1+2+1+3}=\frac{8}{14}\approx 0.57\\
+c_{\rm F}&=&\frac{8}{3+2+2+2+1+1+1+4}=\frac{8}{16}= 0.50\\
+c_{\rm G}&=&\frac{8}{2+1+2+1+2+1+2+3}=\frac{8}{14}\approx 0.57\\
+c_{\rm H}&=&\frac{8}{3+2+2+1+1+1+2+4}=\frac{8}{16}= 0.50\\
+c_{\rm X}&=&\frac{8}{1+2+2+3+3+4+3+4}=\frac{8}{22}\approx 0.36 
+}
+This was soo much more work than the spectral centrality! Note that again X lands in last place which is reasonable. In contrast to the spectral centrality B is now the most important node. This is partly because the closeness completely ignores the many double links that exist around E and F. For traffic this might be what we want, dependenig on details of the question. (Closing down B seems like it might create a headache for driver. By contrast if police is looking for somebody hanging around at F, the intersection with the highest spectral centrality might be a good idea.)

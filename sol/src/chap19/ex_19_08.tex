@@ -1,0 +1,11 @@
+\exercise{Traffic: Summary}{3}
+In the past exercises we have computed several different types of centralities. For each of these state a context where the respective type of centrality of the road network would be relevant. 
+
+\solution
+Spectral centrality mimics a spreading process, where importance spreads across the links. Thus it is relevant for things that spread across the network such as Zombie outbreaks, or traffic congestion. 
+
+Degree centrality is based on the notion that important nodes have many links. Indeed in a traffic network this idea of centrality might highlight major squares or roundabouts. So this might be good metric where to prioritise traffic infrastructure. High degree also means that there are many ways in which these places are connected to the giant component -- they are hard to cut off the network. So they could be good bases for emergency services. Finally we know that high degree nodes are good places for attacks on networks. So for example if the police are looking for a suspicious vehicle, it would be a good idea to place teams at nodes of high degree centrality, as this is likely to lead to the greatest reduction of nodes that the vehicle can access without being spotted.  
+
+Closeness centrality finds the node that is closest to all others, so this could be the best location for the base of your pizza delivery service, a hospital etc.  
+
+Betweeness centrality is based on the notion that places are important when many shortest paths cross there. If we assume that people go on random journeys and then chose the shortest path then the betweenness centrality will indicate the traffic at each node. High traffic nodes could be great places for a retail business, advertising, etc.   
