@@ -18,3 +18,7 @@ Exercise sheets and solutions are available for:
 - [Chap. 15: Social distancing](pdf/chap15/README.md)  -- *(moment expansions, more eigenvalues and bifurcations)*
 - [Chap. 16: The critical brain](pdf/chap16/README.md)  -- *(critical slowing down, normal forms)*
 - [Chap. 17: Coarse-graining](pdf/chap17/README.md)  -- *(dimensionality reduction, manifolds)*
+
+- [Chap. 19: The most important node](pdf/chap19/README.md)  -- *(centralities, spectral methods, Perron-Frobenius theorem)*
+
+  
