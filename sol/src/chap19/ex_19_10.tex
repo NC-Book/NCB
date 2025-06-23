@@ -1,0 +1,61 @@
+
+\exercise{Five star}{4}
+Consider a 5-star, a single central node of degree 5 that is connected to 5 nodes of degree 1. Start using the procedure from the lecture to start compute the leading eigenvector. After a few steps use the insight gained to compute the eigenvector exactly. (This might be very hard or very easy)  
+
+\solution
+The adjacency matrix of the star network depends on the ordering of the nodes. But, if we make the central node number 1 the adjacency matrix is 
+\eq{
+{\bf A} = \left(\begin{array}{c c c c c c} 
+0 & 1 & 1 & 1 & 1 & 1 \\
+1 & 0 & 0 & 0 & 0 & 0 \\
+1 & 0 & 0 & 0 & 0 & 0 \\
+1 & 0 & 0 & 0 & 0 & 0 \\
+1 & 0 & 0 & 0 & 0 & 0 \\
+1 & 0 & 0 & 0 & 0 & 0 
+\end{array}\right) 
+}
+
+We now start with a vector containing only ones $\vec{v_0} = (1,1,1,1,1,1)^{\rm T}$. And do one multiplication
+\eq{
+\vec{v_1} = {\bf A}\vec{v_0} = \left(\begin{array}{c c c c c c} 
+0 & 1 & 1 & 1 & 1 & 1 \\
+1 & 0 & 0 & 0 & 0 & 0 \\
+1 & 0 & 0 & 0 & 0 & 0 \\
+1 & 0 & 0 & 0 & 0 & 0 \\
+1 & 0 & 0 & 0 & 0 & 0 \\
+1 & 0 & 0 & 0 & 0 & 0 
+\end{array}\right)\avec{1\\ 1 \\ 1 \\ 1 \\ 1 \\ 1} = \avec{5\\ 1 \\ 1 \\ 1 \\ 1 \\ 1} 
+}
+If we do this again we get 
+\eq{
+\vec{v_2} = {\bf A}\vec{v_1} = \left(\begin{array}{c c c c c c} 
+0 & 1 & 1 & 1 & 1 & 1 \\
+1 & 0 & 0 & 0 & 0 & 0 \\
+1 & 0 & 0 & 0 & 0 & 0 \\
+1 & 0 & 0 & 0 & 0 & 0 \\
+1 & 0 & 0 & 0 & 0 & 0 \\
+1 & 0 & 0 & 0 & 0 & 0 
+\end{array}\right)\avec{5\\ 1 \\ 1 \\ 1 \\ 1 \\ 1} = \avec{5\\ 5 \\ 5 \\ 5 \\ 5 \\ 5} 
+}
+We can already see that in the next step the first value will become 25, then it will remain at 25 for one step and thenit will become 125. In fact it seems as if all of the values increase by a factor of five every second of step. SO if it takes in average two multiplications to stretch the vector by a factor of 5 then the eigenvalue is probably 
+\eq{\lambda=\sqrt{5}}. 
+
+It is interesting to think about this a bit more carefully: What the adjacency matrix does is to copy the first element to all others in every step. This implies that even if they are not initially the same, those other elements will be the same after the first multiplication. From this point on each multiplication sets the value of the first element to five times the value of any the other element.
+
+We can capture this by the matrix
+\eq{
+{\bf B} = \avecc{0 & 5 \\ 1 & 0}
+}
+where the first row now represents what happens to the node 1 of our network, and the second row represents what happens to each of the other nodes. It is easy to confirm that $\lambda_{1,6} = \pm \sqrt{5}$. These are smallest and the largest eigenvalue of $\bf A$, respectively.   
+
+
+
+
+
+
+
+
+
+
+
+
