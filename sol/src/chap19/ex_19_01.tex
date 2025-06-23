@@ -1,0 +1,27 @@
+
+\exercise{Spectral shift}{1} 
+We claimed that adding the identity matrix $\bf I$ to a matrix $\bf A$ shifts the spectrum of $\bf A$ by 1. 
+More generally we can say the following: Assume we have two matrices  $\bf K$ and ${\bf L}$, such that 
+\eq{{\bf L}={\bf K}+c {\bf I}.} 
+Then for every eigenvalue $\lambda$ of $\bf K$ there is an eigenvalue $\lambda+c$ of $\bf L$. The eigenvectors corresponding to these to eigenvalues are identical. 
+
+Can you actually prove this?
+(Hint: You want to show ${\bf K}\vec{v}=\kappa \vec{v}$, where $\kappa=\lambda+c$. You define $\vec{v}$ as an eigenvector of $\bf L$ with eigenvalue $\lambda$.)
+
+\solution
+Let $\vec{v}$ be an eigenvector of $\bf L$ with eigenvalue $\lambda$, ie.~${\bf L}\vec{v}=\lambda \vec{v}$ 
+We now write 
+\eqa{
+{\bf K}\vec{v} &=& ({\bf L} + c {\bf I})\vec{v} \\
+   &=& {\bf L}\vec{v} + c {\bf I}\vec{v} \\
+   &=& \lambda\vec{v} + c \vec{v} \\
+   &=& (\lambda + c) \vec{v} \\
+   &=& \kappa \vec{v}
+}
+We have shown 
+\eq{
+{\bf B}\vec{v} = (\lambda + \alpha) \vec{v} 
+}
+which means that $\vec{v}$ is an eigenvector of $\bf K$ with eigenvalue $\lambda+c$. So every eigenvector of $\bf L$ is also an eigenvector of $\bf K$ with the eigenvalue shifted by $c$.
+
+
