@@ -1,0 +1,13 @@
+
+
+\exercise{Problem with multiple components}{}
+If our network has multiple components it is hard to compare the importance of nodes in different components. When the iterative eigensolver from the lecture is applied then the result that we get for the spectral centrality can depend on the initial vector that we use to start the iteration. Construct an example to illustrate this. 
+
+\solution
+A simple example is just to pairs (1-2 3-4). After shifting the adjacency matrix becomes 
+\eq{
+\left(\begin{array}{c c c c} 1 & 1 & 0 & 0 \\
+1 & 1 & 0 & 0 \\ 0 & 0 & 1 & 1 \\ 0 & 0 & 1 & 1 \end{array} \right)
+}
+If we start for example with the vector $(1,2,3,6)$ and apply the multiplication procedure we find the relative importance $(1,1,3,3)$, i.e.~the method tells us that the one of the pairs is 3 times more important than the other. This happens because our initial vector $(1,2,3,6)$ put three times more ``weight'' in one component than in the other, and on the disconnected network this cannot equilibrate. Fortunately, in practice this type of problem occurs only in disconnected networks. 
+

@@ -1,0 +1,165 @@
+
+
+\exercise{Epidemic Centrality}{3}
+Let's find the most important node for a spreading process.
+
+\subquestion Consider an SIS epidemic on a network described by an adjacency matrix $\bf A$. Explain why $x_i(t)$, the probability that node $i$ is infected at time $t$ can be modelled by 
+\eq{
+\dot{x}_i = -rx_i + p(1-x_i) \sum_j A_{ij} x_j
+}
+
+\solution
+In the SIS model infected nodes recover at rate $r$, and become infected at the rate $p$ per infected neighbor. The probability that node $i$ is currently infected is $x_i$. Multiplying this probability that the node is till infected with the recovery rate gives us a loss rate for the probability to be in the infected state, which gives us the $-rx_i$ term.
+
+The probability that node $i$ is currently susceptible is $1-x_i$. We can estimate the number of infected neighbors of $i$ by the sum $\sum A_{ij} x_j$ for each of these neighbors infection occurs at rate $p$. Multiplying these factors leads to $p(1-x_i)\sum A_{ij}x_j$, which is the second term. 
+
+\subquestion
+So far the equation is non-linear. To use spectral methods we need to linearize it. Consider the limit in which only a small proportion of nodes is infected at any time and use it to find a linear approximation to the differential equations.
+(There are two ways to do this, if you see only one check the solution for the other.)
+
+\solution
+The physicists way to do this is to use the assumption of rare infection in the form  
+\eq{
+x_i\ll 1
+}
+to justify
+\eq{
+1- x_i \approx 1.
+}
+This linearizes the differential equation to
+\eq{
+\dot{x}_i = -rx_i + p \sum_j A_{ij} x_j.
+}
+which is a linear equation. 
+
+The more formal mathematical way is to use a Taylor approximation of the equation system around zero. To do this we introduce the vector $\vec{x}=(x_1,x_2,\ldots)^{\rm T}$ already at this point. 
+
+We know that the linear-order Taylor approximation is
+\eq{
+\dot{\vec{x}} = f(\vec{x}) \approx f(\vec{0}) + {\bf J}\vec{x} 
+}
+In our system the $i$th element of $f$ is
+\eq{
+f_i (\vec{x}) =  -rx_i + p(1-x_i) \sum_j A_{ij} x_j.  
+}
+So at $x_i=x_j=0$ we have $f_i(\vec{x})=0$, and because this true for all 
+all elements
+\eq{
+f({\vec{0}}) = \vec{0}
+}
+Hence we are left with 
+\eq{
+\vec{x} = {\bf J} \vec{x}
+}
+where $\bf J$ is the Jacobian in $\vec{x}=\vec{0}$. Technically this is a linear system, so we are done already. But is this the same result that we got using the first way? Indeed it is, as we will see in the next sub-question. 
+
+\subquestion 
+Show that the system can now be written in the matrix form $\dot{\vec{x}}={\bf J} \vec{x}$. Find a way to express the matrix $\bf J$ that appears as a function of $\bf A$. 
+
+\solution 
+If we used the physical route in the previous subquestion we have 
+\eq{
+\dot{x}_i = -rx_i + p \sum_j A_{ij} x_j.
+}
+So we now have to transform this to matrix form. We know that $\sum_j A_{ij} x_j$ is the formula for the $i$th element of ${\bf A}\vec{x}$ so we can write 
+\eq{
+\dot{x} = -r \vec{x} + p {\bf A} \vec{x} 
+}
+We are already close to the desired result. All that is left to do now is to write the transformations on the right hand side as one matrix. So we want to isolate the factor $\vec{x}$ from both terms but $-r+p{\bf A}$ would not be a meaningful mathematical expression as we don't know how to add $-r$ to a matrix. Instead we can just multiply the identity matrix, 
+\eqa{
+\dot{x} &=& -r \vec{x} + p {\bf A} \vec{x}  \\ 
+  &=& -r {\bf I} \vec{x} + p {\bf A} \vec{x} \\
+  &=& (-r{\bf I} + p {\bf A}) \vec{x}
+}
+We can now write the system as 
+\eq{
+\dot{\vec{x}} = {\bf J} \vec{x} 
+}
+where 
+\eq{
+{\bf J} = p{\bf A}-r{\bf I}  
+}
+
+If we went the mathematical route we already know
+\eq{
+\dot{\vec{x}} = {\bf J} \vec{x} 
+}
+but we still have to find out what $\bf J$ is. For this purpose we use the definition 
+\eq{
+J_{ij} = \left.\frac{\partial \dot{x}_i}{\partial x_j}\right|_{\vec{x}=\vec{0}}.
+}
+To substitute the present system we change the index of the summation to $k$ to avoid having to deal with two different $j$ in the same equation, which means our system is now
+\eq{
+\dot{x}_i = -rx_i + p(1-x_i) \sum A_{ik} x_k
+}
+Substituting into the definition of the Jacobian yields
+\eq{
+J_{ij} = -r \delta_{ij} + p A_{ij}    
+}
+There is quite a lot to explain here: First, the $\delta$ that appears in the first term on the right is the Kronecker delta
+\eq{
+\delta_{ij} = \left\{ \begin{array}{l} 1 \quad \mbox{if $i=j$}\\ 0 \quad \mbox{if $i\neq j$}\end{array} \right.
+}
+This delta appears because 
+\eq{
+\frac{\partial x_i}{\partial x_j} = \delta_{ij}.
+}
+Second, the term  
+\eqn{p(1-x_i)\sum A_{ik} x_k} 
+is a product so we should differentiate it using a product rule. However we can make our life a bit easier by multiplying it out 
+\eq{
+p(1-x_i)\sum A_{ik} x_k = \left(p\sum A_{ik} x_k \right) - \left( p\sum A_{ik} x_i x_k \right)  
+} 
+We can now see that every term in the second sum on the right contains a product of variables $x_ix_k$ when we differentiate this with respect to $x_j$ this will leave us with terms that all contain $x_i$. Since we set $x_i=0$ in the next step all these terms vanish. 
+
+This leaves only the derivative of $p\sum A_{ik} x_k$ to worry about. 
+If we differentiate sum all the derivatives are zero except for the term that contains an $x_j$, i.e.~the only term that survives the derivative is the term where $k=j$. Setting $x_i=0$ after differentiating yields the term $pA_{ij}$. 
+
+So far we arrived at the equation 
+\eq{
+J_{ij} = -r \delta_{ij} + p A_{ij}    
+}
+Note that $\delta_{ij}$ also describes the elements of an identity matrix
+\eq{
+I_{ij} = \delta_{ij}
+}
+Hence we can translate the equation for the elements of $\bf J$ into the matrix equation 
+\eq{
+{\bf J} = p {\bf A} -r {\bf I}
+}
+so we get the same result that we arrived at via the physical route.
+
+If we wanted to we could even translate this result back into a linearized differential equation for the individual components. We know 
+\eq{
+\dot{\vec{x}} = {\bf J} \vec{x} 
+}
+Hence,
+\eqa{
+\dot{x}_i &=& \sum J_{ij} x_j \\
+  &=& \sum (p A_{ij}-r I_{ij}) x_j \\
+  &=&  \left(-r \sum I_{ij} x_j \right) + \left(p \sum A_{ij} x_j \right) \\
+  &=&  \left(-r \sum \delta_{ij} x_j \right) + \left(p \sum A_{ij} x_j \right) \\
+  &=& -r x_i + p \sum A_{ij} x_j 
+}
+which takes us all the way back to the equation we guessed as our first step on the physical way.  
+
+In summary the physical approach is a bit faster and easier, but it requires a bit more insight as we have to spot the right way to lineraize the system. The more formal mathematical approach needs a little bit more work, but it can be always applied to linearize systems even if we don't have the right insight, hence it is often what we use for more complicated systems. 
+
+\subquestion 
+The elements of the leading eigenvector of $\bf J$ now indicate who is most at risk in the epidemic. Explore how the largest eigenvalue $\lambda$ and the corresponding eigenvector $\vec{v}$ is linked to the adjacency matrix $\bf A$. 
+
+\solution Using the spectral shift property the we can write the eigenvalues of $\bf J$ as
+\eq{
+\lambda_n = p \kappa_n -r 
+}
+where $\kappa_n$ is the $n$th eigenvalue of the adjacency matrix. Moreover, 
+\eq{
+\vec{v_n} = \vec{w_n} 
+}
+where $\vec{w_n}$ is the $n$th eigenvalue of the adjacency matrix. 
+So to identify the nodes that are most at risk of being infected we only need to compute the leading eigenvector of the adjacency matrix. In other words epidemic centrality is spectral centrality. 
+
+\subquestion Bonus questions: In an epidemic the nodes who are most at risk also poses the greatest risk to others. This may be intuitive but how can we see it mathematically? 
+
+\solution 
+We know that the left eigenvectors of the Jacobian indicate sensitivity to perturbations whereas the right eigenvectors indicate impact on the rest of the network. The right eigenvectors of a matrix are are also the left eigenvectors of the transpose of the matrix. However, in the epidemic example the Jacobian is a symmetric matrix, ${\bf J}-{\bf J}^{\rm T}$ and hence the left and right eigenvectors are identical: whoever is likely to get infected is also likely to spread the disease to others. 

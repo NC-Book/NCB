@@ -1,0 +1,21 @@
+\exercise{Traffic: Betweenness centrality}{}
+Consider the traffic a final time, and this time rank the nodes by betweenness centrality. (If there is multiple alternative shortest paths between nodes assign importance proportionally, e.g.~half a point if there are two paths.)  Is the result reasonable?
+
+\solution
+Thankfully, we can reuse the table from (c). We just need to count occurrences of intermediate nodes. The challenge is to not let the bookkeeping get out of hand. For this purpose I made another table
+
+\begin{center}
+\begin{tabular}{c c c c}
+Node & On Paths (no alternative) & On Path (one alternative) & Centrality \\\hline
+A & B-X,C-X,D-X,E-X,F-X,G-X,H-X & - & 7 \\
+B & A-D,A-G,C-D,C-G,D-X,G-X & A-F,A-H,F-X,H-X & 8 \\
+C & A-E,B-E,E-X & A-F,A-H,F-X,H-X & 5 \\
+D & B-H & A-H,F-X,G-H,H-X & 3 \\
+E & C-F,C-H & A-F,A-H,F-X,H-X & 4 \\
+F & E-G & G-H & 1.5 \\
+G & B-F & A-F,D-F & 2   \\
+H & D-E & D-F & 1.5 \\
+X & - & - & 0 \\  
+\end{tabular}
+\end{center}
+Again we end up with B as the most important node and X as the least important which makes sense. A surprise is maybe the relatively high value for A. This highlights A as a bottleneck. Generally, betweenness centrality is used when we are interested in finding such bottlenecks. 
