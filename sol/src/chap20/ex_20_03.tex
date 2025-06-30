@@ -1,0 +1,70 @@
+
+\exercise{Exploitative Competition}{3}
+We consider two species of predators, $X_1$, $X_2$, and a resource $R$, which are part of of much larger ecological food web. The dyanamics of the three variables are described by the differential equations
+\eqan{
+\dot{X}_1 &=& g_1(R)X_1 - m_1 X_1 \\
+\dot{X}_2 &=& g_2(R)X_2 - m_2 X_2 \\
+\dot{R} &=& s(R) -g_1(R)X_1 - g_2(R)X_2 + \ldots
+}
+where $g_1$, $g_2$ and $s$ are arbitrary functions, $m_1$ and $m_2$ are arbitrary mortality rates for the two predator species and `$\ldots$' represents further terms that connect $R$ to other variables of a large dynamical system. 
+
+\subquestion Formally compute the $3\times 3$-block of the Jacobian that describes the interaction between $X_1$, $X_2$, and $R$. Use the stationarity condition for $X_1$ and $X_2$ to simplify your matrix. 
+
+\solution
+The block from the Jacobian has the form
+\eq{
+{\bf J} = \aveccc{g_1(R^*)-m_1 & 0 & g_1'(R^*)X_1^* \\
+0 & g_2(R^*)-m_2 & g_2'(R^*)X_2^* \\ 
+-g_1(R^*) & -g_2(R^*) & Z  
+}
+}
+where $Z$ has been used as a placeholder for the derivative of $\dot{R}$ with respect to $R$, while we could compute two of the terms in $Z$ there are likely further terms from the omitted ($\ldots$) terms. Without further information, we'll just hope that the value of $Z$ doesn't matter for what we want to show.  
+
+Now we look att eh stationarity conditions for the two predators, they read
+\eqa{
+0 &=& g_1(R^*)X_1^* - m_1 X_1^* \\
+0 &=& g_2(R^*)X_2^* - m_2 X_2^* 
+}
+Dividing both equations by the respective predator variable yields
+\eqa{
+0 &=& g_1(R^*) - m_1 \\
+0 &=& g_2(R^*) - m_2 
+}
+which shows that in the Jacobian the two diagonal elements for the predators are zero.  Hence we can simplify the Jacobian block to  
+\eq{
+{\bf J} = \aveccc{0 & 0 & g_1'(R^*)X_1^* \\
+0 & 0 & g_2'(R^*)X_2^* \\ 
+-m_1 & -m_2 & Z  
+}
+}
+
+\subquestion Show that in any large ODE system that contains the exploitative competition motif studied here, one eigenvalue of the Jacobian for the entire system will be zero.
+
+\solution
+We do not know the Jacobian from the entire system. So our only hope to get the job done is that the zero eigenvalue arises from an eigenvector that is localized within the motif, and hence is independent of the rest of the network. 
+
+For this idea to work we need to find a vector that is an eigenvector with eigenvalue 0 of our $3 \times 3$ block, and has a zero element in the row that corresponds to the resource to keep the eigenvector from spilling out in to the wider network. 
+
+So we are looking for a solution to 
+\eq{
+\aveccc{0 & 0 & g_1'(R^*)X_1^* \\
+0 & 0 & g_2'(R^*)X_2^* \\ 
+-m_1 & -m_2 & Z  
+}
+\avec{ v_1 \\ v_2 \\ 0} = \lambda \avec{ v_1 \\ v_2 \\ 0}, 
+}
+where $\lambda=0$. We now have to ask if there is a way in which $v_1$ and $v_2$ can be chosen to satisfy this equation. Fortunately the first two rows equate to $0=0$ straight away, so let's focus on the third row. After multiplying the matrix with the vector it reads
+\eq{
+-m_1 v_1 -m_2 v_2 =0
+}
+We can satisfy this condition for example by choosing $v_1=m_2$ and $v_2=-m_1$.
+
+So we can say whenever a large population dynamical system contains a the exploitative competition motif studied here. Then the Jacobian will always have a zero eigenvalue corresponding to the eigenvector $(m_2,-m_1,0,\ldots)^{\rm T}$, where `$\ldots$' are further zeros corresponding to other system variables.
+
+The presence of the zero eigenvalue means that no such system can be asymptotically stable (Unless we chose the parameters very carefully there isn't even a steady state that we could converge to, but this is a different, though related, matter.) This insight is one form of the comptetitive exclusion principle, which is a very valuable in ecology: It means that if we see observe two species competing for a single resource in nature, their must be some additional regulation going on in the background, leading to further nonlinearities not captured by the present model. If such additional regulations were absent the two species could not coexist. In the past searching for hidden regulation that makes the coexistence of such competitors possible has led to some exciting discoveries. 
+
+
+
+
+
+
