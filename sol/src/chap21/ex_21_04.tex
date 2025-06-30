@@ -1,0 +1,192 @@
+\exercise{Discrete-time diffusion}{4}
+In the lecture we introduced the Laplacian matrix that describes continuous-time diffusion. However, the diffusion map typically uses a normalized Laplacian matrix that describes discrete-time diffusion. In this exercise we derive the normalized Laplacian from a discrete-time diffusion model. Throughout let $x_i(t)$ be the number of walkers that are at node $i$ in timestep $t$. 
+
+\subquestion
+To get an intuition consider the a three node chain (1)-(2)-(3). Where $n\gg 1$  walkers start in node 1. That is $x_1(0)=n$, $x_2(0)=x_3(0)=0$. 
+In each timestep every walker uses one of the links available to them and makes exactly one step. Use this information to work out $x_1$, $x_2$, $x_3$ for the first few steps. Then spot the pattern and state how the walkers will be distributed at time $t=1001$.
+
+\solution
+In the first step only the link 1-2 is available to walkers so they will all move to node 2 
+\eq{
+x_1(1)=0,\quad x_2(1)=n,\quad x_3(1)=0.
+}
+In the next step we have two links available so half the walkers will use the link 2-3 whereas the other half will use the link 1-2, hence 
+\eq{
+x_1(2)=\frac{n}2,\quad x_2(2)=0,\quad x_3(1)=\frac{2}2.
+}
+Now the walkers are distributed among two nodes, but in each of the two nodes they only have one link available to them. In the next step every walker uses the respectively available link which leads them all back to node 2. 
+\eq{
+x_1(3)=0,\quad x_2(3)=n,\quad x_3(3)=0.
+}
+We are back at the configuration from step 1. So at time four the network will have the same state that it had at time $2$ and in step $5$ we will once again see the same configuration we found at time $1$. This shows that we will go through the same cycle for all eternity. Because 1001 is odd the configuration at $t=1001$, will be 
+\eq{
+x_1(1001)=0,\quad x_2(1001)=n,\quad x_3(1001)=0.
+}
+Discrete time diffusion, like many discrete-time models can produce seemingly artifical results. This is one of the reasons why continuous time models are often preferable. However, on other networks this wont be a problem and for the purpose of data analysis continuous time diffusion works well. 
+
+\subquestion
+Now consider a network consisting of three nodes that form a triangle. Write a general formulas for $x_1(t+1)$, $x_2(t+1)$, $x_3(t+1)$, given 
+$x_1(t)$, $x_2(t)$, and $x_3(t)$.
+
+\solution 
+In every step a walker has two links available to them, so in every step each of the nodes received half the walkers of its two neighbors. 
+\eqa{
+x_1(t+1) &=& \frac{x_2(t)}{2} + \frac{x_3(t)}{2} \\
+x_2(t+1) &=& \frac{x_1(t)}{2} + \frac{x_3(t)}{2} \\
+x_3(t+1) &=& \frac{x_1(t)}{2} + \frac{x_2(t)}{2} 
+}
+
+\subquestion
+Next we consider a network with $N$ nodes and a topology described by an adjacency matrix $\bf A$. We denote the degree of a node $i$ as $k_i$. 
+For this general case write an equation for $x_i(t+1)$ given $x_1(t),\ldots,x_N(t)$.
+
+\solution 
+In each time step all the walkers who have previously been in node $i$ leave, so we don't have to consider them at all. However node $i$ receives walkers from all it's neighbors. In a neighbor $j$ of degree $k_j$ the walkers have $K_j$ choices and thus we expect a proportion $1/k_j$ to go to node $i$. Summing over all of $i$'s neighbors ($\sum A_{ij}$) we write
+\eq{
+x_i(t+1) = \sum A_{ij} \frac{x_j}{k_j}
+}
+
+\subquestion
+We now define $\vec{x}(t)=(x_1(t),\ldots ,x_N(t))^{\rm T}$ and write the dynamics in matrix form 
+\eq{
+\vec{x}(t+1) = {\bf M}\vec{x}(t)
+}
+where $\bf L$ is the discrete-time Laplacian matrix.
+From this equation, identify a formula for the elements $L_{ij}$. (Bonus: also write $\bf M$ as a function of $\bf A$ and the degree matrix $\bf D$ as a matrix equation.) 
+
+\solution
+By comparing the coefficients we find 
+\eq{
+M_{ij}=\frac{A_{ij}}{k_j}
+}
+To answer the bonus question we note that the Laplacian is almost the adjacency matrix except for the minus sign and the division by $k_j$. Because the degree matrix is a diagonal matrix, it's inverse is a diagonal matrix that has the inverse of the degree's that is $1/k_j$ on the diagonal. To $\bf L$ we need to multiply every column $k$ of the adjacency martix with $1/k_j$ which we can do by writing 
+\eq{
+{\bf M}={\bf A}{\bf D}^{-1}
+}
+
+\subquestion
+Consider again the triangle of three nodes from (b). Write the matrix $\bf M$ for this network and compute its eigenvalues and eigenvectors. Then, use an eigenvector decomposition to find the general solution for the discrete time diffusion problem on this network. 
+
+\solution
+We already know the adjacency matrix from above and all nodes have degree 2. We use this to write
+\eq{
+{\bf M} = \aveccc{0 & 1/2 & 1/2 \\ 1/2 & 0 & 1/2 \\ 1/2 & 1/2 & 0  }
+}
+The three nodes are symmetric, so there must be an eigenvector of the form $\vec{v_1}=(1,1,1)^{\rm T}$. Let's try
+\eq{
+\aveccc{0 & 1/2 & 1/2 \\ 1/2 & 0 & 1/2 \\ 1/2 & 1/2 & 0  }\avec{1\\ 1\\ 1} = \avec{1\\ 1\\ 1}, 
+}
+so $\lambda_1=1$. For the other two eigenvectors the elements must sum to zero, so we can try the following 
+\eq{
+\aveccc{0 & 1/2 & 1/2 \\ 1/2 & 0 & 1/2 \\ 1/2 & 1/2 & 0  }\avec{1\\ -1\\ 0} = \avec{-1/2 \\ 1/2\\ 0}
+}
+\eq{
+\aveccc{0 & 1/2 & 1/2 \\ 1/2 & 0 & 1/2 \\ 1/2 & 1/2 & 0  }\avec{0 \\ 1\\ -1} = \avec{0 \\ -1/2\\ 1/2}
+}
+In summary the eigenvectors are 
+\eq{
+\vec{v_1}=\avec{1\\ 1 \\ 1},\quad
+\vec{v_2}=\avec{1\\ -1 \\ 0}, \quad
+\vec{v_3}=\avec{0\\ 1 \\ -1}
+}
+and the eigenvalues are 
+\eq{
+\lambda_1 = 1, \quad \lambda_2=-\frac{1}{2}, \quad \lambda_2=-\frac{1}{2}
+}
+We can now solve the dynamics using eigenvector decomposition. 
+We start by writing
+\eq{
+ \vec{x}(t)={\bf M}\vec{x}(t-1) = {\bf M}^t \vec{x}(0)
+}
+we can always find $c_1$, $c_2$, $c_3$ such that 
+\eq{
+\vec{x}(0)=c_1 \vec{v_1} + c_2 \vec{v_2} + c_3 \vec{v_3}
+}
+For example for the special case where we start $n$ walkers in node 1 and none elsewhere we have 
+\eq{
+\avec{n \\ 0 \\ 0 }=c_1 \avec{1\\ 1\\ 1} + c_2 \avec{1\\ -1 \\0 } + c_3 \avec{0 \\ 1 \\ -1}
+}
+Solving this we find $c_1=n/3$, $c_2=2n/3$ and $c_3=1/3$.
+
+For the moment we won't focus on this specific case but rather write the general solution
+\eqa{
+ \vec{x}(t) &=& {\bf M}^t \vec{x}(0) \\
+     &=& {\bf M}^t (c_1\vec{v_1})+c_2\vec{v_2}+c_3\vec{v_3}) \\
+     &=& {\lambda_1}^t c_1\vec{v_1})+ {\lambda_2}^t c_2 \vec{v_2}+ {\lambda_2}^t c_3\vec{v_3}) 
+}
+Substituting the eigenvalues and eigenvectors we can also write the result as 
+\eq{
+\vec{x}(t)=c_1 \avec{1\\ 1\\ 1} + \frac{1}{2^t} \avecc{c_2 \\ c_3 -c_2 \\ -c_3 }   
+}
+From this solution we can see that in the long run ($t\to \inf$) the number of walkers on the three nodes will quickly equalize.
+
+\subquestion
+Also solve the dynamics for the three-node-chain from (a) and show that we find the same result. 
+
+\solution
+In this case we have
+\eq{
+{\bf M}=\aveccc{0 & 1/2 & 0 \\ 1 & 0 & 1 \\ 0 & 1/2 & 0 }
+}
+Here only node 1 and 3 are symmetric. There must be an eigenvector that has identical entries on the symmetric nodes. So we can try 
+\eq{
+\aveccc{0 & 1/2 & 0 \\ 1 & 0 & 1 \\ 0 & 1/2 & 0 }\avec{1\\ A \\ 1} = \avec{A/2 \\ 2 \\ A/2} 
+}
+This is an eigenvector if 
+\eq{
+\avec{A/2 \\ 2 \\ A/2}= \lambda \avec{1\\ A \\ 1}
+}
+The first and the last line lead to identical conditions, thanks to symmetry, hence we have to solve the equations
+\eqa{
+A/2&=&\lambda 1 \\
+2&=&\lambda A
+}
+The first equation implies $\lambda=A/2$. Substituting into the second conditions gives us $A^2=4$ which has the solutions $A=\pm 2$. So we have found the eigenvectors 
+\eq{
+\vec{v_1} = \avec{1\\ 2\\ 1}, \quad \vec{v_2} = \avec{1 \\ -2 \\ 1}
+}
+and the corresponding eigenvalues 
+\eq{
+\lambda_1=1 \quad \lambda_2=-1
+}
+We are still missing the third eigenvector. The other type of eigenvectors of symmetric networks sums to zero on every set of symmetric nodes. This also means that the element of such a vector corresponding to node 2 must be 0. So we try 
+\eq{
+\aveccc{0 & 1/2 & 0 \\ 1 & 0 & 1 \\ 0 & 1/2 & 0 }\avec{1\\ 0 \\ -1}  = \avec{0 \\ 0 \\ 0}
+}
+hence the vector 
+\eq{
+\vec{v_3} = \avec{1\\ 0 \\ -1} 
+}
+is an eigenvector with eigenvalue 
+\eq{
+\lambda_3=0
+}
+As above, the general solution is 
+\eq{
+\vec{x}(t) = c_1 {\lambda_1}^t \vec{v_1} + c_2 {\lambda_2}^t \vec{v_2} + c_3 {\lambda_3}^t \vec{v_3}
+}
+Because $\lambda_3=0$ the third term disappears for $t>0$ (note that $0^0=1$ by definition). So for $t>0$ we can write
+\eq{
+\vec{x}(t) = c_1  \avec{1\\ 1 \\ 1} + c_2 {-1}^t \avec{1\\ -1 \\ 1} 
+}
+
+In the specific case where we start $n$ walkers in node 1, the $c$'s must obey the condition
+\eq{
+\avec{n \\ 0 \\ 0} = c_1 \avec{1\\ 2 \\ 1} + c_2 \avec{1\\ -2 \\ 1} + c_3 \avec{1 \\ 0 \\ -1}
+}
+From the second line we can see that $c_1=c_2$. and from the last line that $c_1+c_2=c_3$ and therefor 
+\eq{
+c_1=c_2=\frac{n}{4}\, c_3=\frac{n}{2}
+}
+Substituting into the general solution for $t>0$ we find
+\eq{
+\vec{x}(t) = \frac{n}{4}  \left(  \avec{1\\ 2 \\ 1} +  {-1}^t \avec{1\\ -2 \\ 1} \right)
+}
+This means, if $t$ is even 
+\eq{
+\vec{x}({\rm even}) = \frac{n}{2}   \avec{1\\ 0 \\ 1} 
+}
+and if $t$ is odd 
+\eq{
+\vec{x}({\rm even}) = n   \avec{0\\ 1 \\ 0} 
+}

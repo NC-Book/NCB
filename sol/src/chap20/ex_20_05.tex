@@ -1,0 +1,53 @@
+
+\exercise{Square proof}{5}
+If $\lambda_1,\ldots,\lambda_N$ are the eigenvalues of an adjacency matrix of a network containing $N$ nodes and $K$ links then 
+\eq{
+\frac{1}{2}\sum_n {\lambda_n}^2 = K.
+}
+
+\subquestion
+Check that the statement above is correct for some networks of your choice. 
+
+\solution
+Let me first try this for a network containing a single node and no links. The adjacency matrix is 
+\eq{
+{\bf A} = (0)
+}
+Clearly the only eigenvalue is 0 and the statement is trivially true. I can now see that the same would happen without links. So lets try a linked pair next. The adjacency matrix is 
+\eq{
+{\bf A}=\avecc{ 0  & 1 \\ 1 & 0 } 
+}
+which has the eigenvalues $\lambda_1=1$ and $\lambda_2=-1$ and hence 
+\eq{
+\frac{1^2+-(-1)^2}{2} = 1 
+}
+which is the number of links in the network. We can also try a three-node chain. The eigenvalues in this case are $\sqrt{2}$, $-\sqrt{2}$, and $0$, and hence
+\eq{
+\frac{0+2+2}{2} = 2,
+}
+so this seems to work!
+
+\subquestion 
+Prove that the statement holds for any simple graph. 
+
+\solution
+This is very easy once we have the right idea (and hard otherwise). We know form the lecture that the degrees of the nodes appear on the diagonal of ${\bf A}^2$. The trace is the sum of the diagonal terms and hence 
+\eq{
+{\rm Tr}( {\bf A}^2) =2K
+}
+We also know that the trace of a matrix is the sum of its eigenvalues. So let's see if we can express the eigenvalues of ${\bf A}^2$ as a function of the eigenvalues of $\lambda_n$ of $\bf A$. If $\lambda_n$ is an eigenvalue of $\bf A$ there must be a vector $\vec{n_n}$ such that 
+\eq{
+{\bf A}\vec{v_n} = \lambda_n \vec{V_n}
+}
+We might have the suspicion that this vector is also an eigenvector of ${\bf A}^2$. Let's try 
+\eq{
+{\bf A^2}\vec{v_n}={\bf AA}\vec{v_n} = {\bf A}\lambda_n \vec{v_n}={\lambda_n}^2\vec{v_n}
+}
+Since we can do this for every eigenvector the eigenvalues of $\kappa_n$ of ${\bf A}^2$ are
+\eq{
+\kappa_n = {\lambda_n}^2
+}
+Thus we can write
+\eq{
+2K = {\rm Tr}({\bf A}^2) = \sum_n \kappa_n = \sum_n \lambda_n
+}
