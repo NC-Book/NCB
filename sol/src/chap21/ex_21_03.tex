@@ -1,0 +1,55 @@
+
+\exercise{Weighted Laplacian}{3}
+Consider a number of walkers diffusion on the following network: 
+\picxs{weightdir}{}
+where the arrows are directed links. The numbers indicate the rates at which walkers at the respective source use the link.
+
+\subquestion
+Write the weighted adjacency and Laplacian matrices for this system. (Recall that $A_{ij}$ is the weight of the link to $i$ from $j$)
+
+\solution
+\eq{
+{\bf A}=\aveccc{0 & 0 & 0.2\\ 0 & 0 & 4.2 \\ 5.7 & 4.2 & 0}
+}
+\eq{
+{\bf L}=\aveccc{5.7 & 0 & -0.2\\ 0 & 4.2 & -4.2 \\ -5.7 & -4.2 & 4.4}
+}
+
+
+\subquestion
+Write a system of differential equations that governs $x_i$, the proportion of walkers in node $i$. Compute the Jacobian matrix $\bf J$ and verify ${\bf J} = -{\bf L}$. 
+
+\solution
+We write the equation system
+\eqa{
+\dot{x}_1&=&-5.7x_1 + 0.2 x_3\\
+\dot{x}_2&=& -4.2x_2 +4.2 x_3\\
+\dot{x}_3&=& -4.4 x_3 + 4.2 x_2 + 5.7x_1
+}
+The Jacobian is 
+\eq{
+{\bf J} = \aveccc{-5.7 & 0 & 0.2\\ 0 & -4.2 & 4.2 \\ 5.7 & 4.2 & -4.4} = - {\bf L}
+}
+
+\subquestion
+Find the steady state distribution of walkers with a method of your choice.
+
+\solution
+An easy way to do this is to solve for the steady state of the dynamical system. From the second equation we can see that 
+\eq{
+x_2=x_3
+}
+and from the first equation we see that 
+\eq{
+5.7 x_1 = 0.2 x_3
+}
+which means 
+\eq{
+x_3=28.5 x_1
+}
+So a possible solution would be $x_1=1$, $x_2=x_3=28.5$, however the question asks for the proportion of walkers so we normalize these numbers such that they add up to 1. The result is. 
+\eqa{
+x_1&=& 0.01724 \\
+x_2&=& 0.49137 \\
+x_3&=& 0.49137 
+}
