@@ -20,5 +20,6 @@ Exercise sheets and solutions are available for:
 - [Chap. 17: Coarse-graining](pdf/chap17/README.md)  -- *(dimensionality reduction, manifolds)*
 
 - [Chap. 19: The most important node](pdf/chap19/README.md)  -- *(centralities, spectral methods, Perron-Frobenius theorem)*
-
+- [Chap. 20: Motifs and symmetry](pdf/chap20/README.md)  -- *(eigenvalues intuition, motifs, Anderson localization)*
+- [Chap. 21: The vibe of a city](pdf/chap21/README.md)  -- *(diffusion, Laplacians, Curse of dimensionality)*
   
