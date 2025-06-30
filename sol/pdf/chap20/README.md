@@ -1,7 +1,7 @@
 # Exercises for Chapter 20: Motifs and Symmetry
 
 ## Exercise Sheet
-- [Exercise Sheet 20](ex_29.pdf)
+- [Exercise Sheet 20](ex_20.pdf)
 
 ## Solutions
 - [Exercise 01: Symmetry](ex_20_01.pdf)
