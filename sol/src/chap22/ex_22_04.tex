@@ -1,0 +1,136 @@
+\exercise{A different Predator-Prey model}{3}
+This exercise is good to practice mathematical technique. The challenge in the later subquestions is to follow the right path. Without being distracted by details of expressions. Try to keep your notation simple, it will make it easier. 
+
+A predator-prey system is described by
+\eqan{
+\dot{X}&=& X-2XY \\
+\dot{Y}&=& \frac{XY}{1+X} - Y^2 
+}
+
+\subquestion Compute the nontrivial steady state of the system.
+
+\solution
+From the first equation we see immediately that $Y=1/2$. Multiplying the second equation by $Y$ and substituting the solution yields $X=1$.
+
+\subquestion  Compute the Jacobian matrix $\bf P$ of the non-trivial steady state.
+
+\solution
+\eq{
+{\bf P} = \avecc{-2Y+1 & -2X \\ \frac{Y}{(1+X)^2} & \frac{X}{1+X}-2Y } = \avecc{0 & -2 \\ 1/8 & -1/2} 
+}
+
+\subquestion  Now consider that the system is placed in the nodes of a network, where links represent diffusive coupling between nodes with a coupling matrix 
+\eqn{
+{\bf C} = \avecc{1 & 0 \\ 0 & 1/2}
+}
+Compute ${\bf P}-\kappa {\bf C}$ and determine when the eigenvalues $\lambda$ of this matrix are real.
+
+\solution
+The relevant matrix in this case is 
+\eq{
+{\bf P}-\kappa {\bf C} = \avecc{0-\kappa & -2 \\ 1/8 & -1/2-\kappa/2} 
+}
+We solve the characteristic polynomial
+\eqa{
+0&=&(\lambda+\kappa)(1/2+\kappa/2+\lambda)+1/4 \\
+&=& \lambda^2 + (1/2+3\kappa/2)\lambda+1/4+\kappa/2+\kappa^2/2 \\
+&=& \lambda^2 + 2D\lambda +T \\
+&=& (\lambda+D)^2-D^2+T 
+}
+In the penultimate step we have introduced
+\eqa{
+D&=& \frac{1+3\kappa}{4}\\
+T&=& \frac14 +\frac{\kappa}2 + \frac{\kappa^2}{2}
+}
+in order to keep the equations from becoming to cumbersome. We can now easily solve \eqa{
+0&=& (\lambda+D)^2-D^2+T \\
+\lambda &=& -D \pm \sqrt{D^2-T}  
+}
+For such equations we have to ask ourselves whether the eigenvalues are real or complex. So, lets look at the term under the square root. 
+\eqa{
+D^2-T &=& \left(\frac{1+3\kappa}{4}\right)^2 - \left(\frac14 +\frac{\kappa}2 + \frac{\kappa^2}{2}\right) \\
+&=& \left(\frac9{16} - \frac12 \right) \kappa^2 + \left(\frac{6}{16}-\frac{1}{2}\right)\kappa + \left(\frac{1}{16}-\frac14\right) \\
+&=& \frac1{16}  \kappa^2 -\frac{1}{8}\kappa -\frac{3}{16}
+}
+So this is a parabola in $\kappa$. It crosses zero at 
+\eqa{
+0&=& \frac1{16}  \kappa^2 -\frac{1}{8}\kappa -\frac{3}{16} \\
+0&=&  \kappa^2 -2\kappa -3 \\
+0&=&  (\kappa-1)^2  -4 \\
+4&=&  (\kappa-1)^2 \\
+\kappa &=& 1\pm 2
+}
+of these two solutions we are only interested in $\kappa=3$. So the eigenvalues are real if $\kappa>3$.
+
+\subquestion
+For the case when eigenvalues are complex, compute the real part of the largest eigenvalue, and show that the system is always stable in this range of $\kappa$.
+
+\solution
+This is the simple case. If the eigenvalue
+\eq{ \lambda = -D \pm \sqrt{D^2-T} } 
+is complex then the square root must be purely imaginary, hence
+\eq{
+{\rm Re}(\lambda)=-D = -\frac{1+3\kappa}{4}
+}
+So the leading eigenvalue has negative real part and hence the system is stable.
+
+\subquestion
+Now consider the case where the eigenvalues are real. Can the system become unstable for certain values of $\kappa$ in this range?
+
+\solution
+In this case the leading eigenvalue is
+\eq{ \lambda = -D +\sqrt{D^2-T} } 
+The question is now whether the $D$ is a point where the square root becomes greater than $D$ such that the eigenvalue becomes positive. With the equation written in this form, we can see that this will happen when $T<0$. Recalling 
+\eq{
+T=\frac14 +\frac{\kappa}2 + \frac{\kappa^2}{2}
+}
+we can see that $T>0$ hence the system is always stable.
+
+
+\exercise{Flight response?}{}
+Let us consider again the predator-prey system above. Again we place the system on a network but in this case the coupling between patches is a bit different. After placing the system on a network the dynamics on a node $i$ are 
+\eqa{
+\dot{X}_i&=& X_i-2X_iY_i + \sum_j A_{ij} (Y_i-Y_j)  \\
+\dot{Y}_i&=& \frac{X_iY_i}{1+X_i} - {Y_i}^2 
+}
+Show that the nontrivial steady state from the predator-prey exercise above is still a steady state, and compute the master stability function. Which condition must a network meet for this steady state to be stable?
+
+\solution
+We can show that $X=1$, $Y=1/2$ is still a steady state by direct substitution, which yields $\dot{X}=\dot{Y}=0$.
+
+The Jacobian $\bf J$ now contains the following entries
+\eqa{
+\frac{\partial}{\partial X_i} \dot{X}_i &=& P_{11} \\
+\frac{\partial}{\partial Y_i} \dot{X}_i &=& P_{12}+k_i \\
+\frac{\partial}{\partial X_i} \dot{Y}_i &=& P_{21} \\
+\frac{\partial}{\partial Y_i} \dot{Y}_i &=& P_{22} \\
+\frac{\partial}{\partial X_i} \dot{X}_j &=& 0 \\
+\frac{\partial}{\partial Y_i} \dot{X}_j &=& -A_{ij} \\
+\frac{\partial}{\partial X_i} \dot{Y}_j &=& 0 \\
+\frac{\partial}{\partial Y_i} \dot{Y}_j &=& 0 
+}
+where $i\neq j$, $k_i$ is the degree of node $i$ and $\bf P$ is the Jacobian of the non-spatial system. This shows that we can still write the Jacobian as 
+\eq{
+{\bf J} ) = {\bf I} \otimes {\bf P} - {\bf L} \otimes {\bf C}
+}
+where 
+\eq{
+{\bf C}=\avecc{0 & -1 \\ 0 & 0}
+}
+(If you are confused at this stage write out the Jacobian for a small network such as a pair (o-o) or a three nodes chain (o-o-o), you will see the pattern).
+
+So, this is just a different form of coupling. We can still use our result from the lecture: The eigenvalues of $\bf J$ can be computed as the eigenvalues of  
+\eq{
+{\bf P}-\kappa {\bf C} = \avecc{0 & -2+\kappa \\ 1/8 & -1/2}
+}
+Computing these eigenvalues yields 
+\eq{
+\lambda = - \frac{1}{4} \pm \frac{\sqrt{2\kappa-3}}{4}
+}
+For the master stability function we need the real part of the greater eigenvalue. If $\kappa<3/2$ the eigenvalues are complex and the real part is just -1/4. For $\kappa>3/2$ the eigenvalues are real and the greater one is just the positive case from the equation above. Hence we can write the master stability function
+\eq{
+M(\kappa) = \left\{ \begin{array}{l l} -\frac{1}{4} & \,\,\,\mbox{for $0 \leq \kappa \leq 3/2 $} \\
+- \frac{1}{4}+\frac{\sqrt{2\kappa-3}}{4} & \,\,\,\mbox{for $\kappa>3/2$}
+\end{array}\right.
+}
+We now note that $M(\kappa)$ is positive when $2\kappa-3>1$. Hence the steady state is unstable if the network has any Laplacian eigenvalue $\kappa>2$. 
