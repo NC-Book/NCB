@@ -1,0 +1,28 @@
+
+\exercise{Product Formula}{3}
+Consider the Kronecker product
+\eq{
+{\bf J}={\bf A}\otimes {\bf B}
+}
+where $\bf A$ and $\bf B$ are matrices. Find a formula that relates the eigenvalues of $\bf J$ to the eigenvalues of $\bf A$ and $\bf B$. (This is very similar, but simpler than the derivation in the lecture. Formulate an Ansatz for the eigenvector $\vec{v}$, then show that it works and find the eigenvalue on the way).
+
+\solution
+We use the Ansatz 
+\eq{
+\vec{v} = \vec{a} \otimes \vec{b}  
+}
+We now show that (under suitable assumptions) this is an eigenvector of $\bf J$. We write
+\eqa{
+{\bf J}\vec{v} &=& ({\bf A}\otimes {\bf B}) (\vec{a} \otimes \vec{b}) \\
+ &=& {\bf A}\vec{a}\otimes {\bf B}\vec{b} \\
+ &=& \alpha\vec{a}\otimes \beta \vec{b} \\
+ &=& \alpha\beta (\vec{a}\otimes \vec{b}) \\
+ &=& \alpha\beta \vec{v} 
+}
+Where we had to assume that $\vec{a}$ is an eigenvector of $\bf A$ with eigenvalue $\alpha$ (i.e.~$\vec{a}{\bf A}=\alpha \vec{a}$) and similarly $\vec{b}{\bf B}=\beta \vec{b}$.
+
+The calculation above shows that if $\bf J$ is a Kronecker product of 2 matrices and we know the eigenvectors of these matrices, then the Kronecker product of two a pair of eigenvectors is an eigenvector of $\bf J$ and the corresponding eigenvalue is the product of the two eigenvalues. 
+
+We can see that the number of eigenvalues we can construct in this way is 
+\eq{{\rm dim }({\bf A})\cdot {\rm dim }({\bf B}) = {\rm dim }({\bf J})}
+hence we can find all eigenvalues and eigenvectors of $\bf J$ in this way.
