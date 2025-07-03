@@ -21,5 +21,6 @@ Exercise sheets and solutions are available for:
 
 - [Chap. 19: The most important node](pdf/chap19/README.md)  -- *(centralities, spectral methods, Perron-Frobenius theorem)*
 - [Chap. 20: Motifs and symmetry](pdf/chap20/README.md)  -- *(eigenvalues intuition, motifs, Anderson localization)*
-- [Chap. 21: The vibe of a city](pdf/chap21/README.md)  -- *(diffusion, Laplacians, Curse of dimensionality)*
-  
+- [Chap. 21: The vibe of a city](pdf/chap21/README.md)  -- *(diffusion, Laplacians, curse of dimensionality)*
+- [Chap. 22: Stripes on a tiger](pdf/chap22/README.md)  -- *(Kronecker products, Turing instability, master stability functions)*
+ 
