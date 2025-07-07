@@ -1,0 +1,40 @@
+\exercise{Weighted Graph}{2}
+Consider particles diffusing on the following network: 
+\picxs{weightdir}
+
+\subquestion Use Kirchhoffs's theorem to find the proportion of particles in each of the nodes in the steady state. 
+
+\solution
+The system is described by the Laplacian matrix
+\eq{
+{\bf L}=\aveccc{5.7 & 0 & -0.2\\ 0 & 4.2 & -4.2 \\ -5.7 & -4.2 & 4.4 } 
+}
+We can now compute 
+\eq{
+S_1 = \left|  \begin{array}{c c} 4.2 & -4.2 \\   -4.2 & 4.4 \end{array} \right| = 0.84 
+}
+\eq{
+S_2 = \left| \begin{array}{c c}5.7 & -0.2\\ -5.7 & 4.4 \end{array} \right| = 23.94 
+}
+\eq{
+S_3 = \left| \begin{array}{c c} 5.7 & 0 \\ 0 & 4.2 \end{array} \right| = 23.94 
+}
+We compute 
+\eq{
+S=0.84+23.94+23.94=48.72
+}
+and hence 
+\eqa{
+p_1&=& 0.84 / 48.72 \approx 0.02 \\
+p_2&=& 23.94/48.72 \approx 0.49 \\
+p_3&=& 23.94/48.72 \approx 0.49 
+}
+
+\subquestion Is the system in equilibrium in the steady state? 
+
+\solution
+Yes, if the network of states is a tree it always reaches equilibrium. 
+The network from this exercise is still a tree in this sense despite the 
+directed links. 
+
+We can verify the equilibrium explicitly by checking the detailed balance on the links. There is no flow between node 1 and 2 and the balance on the link 2-3 is immediately obvious. So we need to test the balance on the link 1-3. The flow from 1 to 3 is $0.02\cdot 5.7 \approx 0.1$ and the flow from 3 to 1 is $0.49\cdot0.2 \approx 0.1$. 

@@ -1,0 +1,105 @@
+\exercise{Paper supply}{2}
+In an office the copier paper is stored in a cabinet. At an average rate of once a week an employee takes paper out of the cabinet and loads it into the copier. There is a 50\% chance that the employee tries to load only one packet of paper, and a 50\% chance that the employee tries to load two packets of paper. If the cabinet is empty, the office manager immediately orders 4 new packets of paper which arrive in average within 2 weeks. 
+
+\subquestion Consider this system as a network of states, numbered 0 to 4. The system is in state $i$ if there are $i$ packets of paper in the cabinet. Write a system of differential equations for the variables $x_0,\ldots,x_4$,
+where $x_i$ is the probability that the system is in state $i$.
+
+\solution
+The system of equations is 
+\eqa{
+\dot{x}_0 &=& - 0.5 x_0 + x_1 + 0.5 x_2 \\
+\dot{x}_1 &=& - x_1 + 0.5 x_2 + 0.5 x_3 \\
+\dot{x}_2 &=& - x_2 + 0.5 x_3 + 0.5 x_4 \\
+\dot{x}_3 &=& - x_3 + 0.5 x_4 \\
+\dot{x}_4 &=& - x_4 + 0.5 x_0
+}
+
+\subquestion Write the differential equation system in the form 
+\eq{
+\dot{\vec{x}}= -{\bf L} \vec{x}  
+}
+where $\vec{x}=(x_0,\ldots,x_4)^{\rm T}$. Compute the entries of the matrix $\bf L$. 
+
+\solution
+We find 
+\eq{
+{\bf L} = \left(\begin{array}{c c c c c} 
+0.5  & -1 & -0.5 & 0 & 0 \\
+0    &  1 & -0.5 & -0.5 & 0 \\
+0    &  0 & 1    & -0.5 & -0.5 \\
+0    &  0 & 0    & 1 & -0.5 \\
+-0.5 &  0 & 0    & 0 & 1 
+\end{array} \right)
+}
+
+\subquestion Use Kirchhoff's theorem to compute the probability that there isn't any paper in the cabinet. (i.e.~compute $x_0$ in the steady state).
+
+\solution 
+The easiest solution is to use Kirchhoff together with the matrix-tree theorem. This yields
+
+\eq{
+S_1 = \left|\begin{array}{c c c c} 
+  1 & -0.5 & -0.5 & 0 \\
+  0 & 1    & -0.5 & -0.5 \\
+  0 & 0    & 1 & -0.5 \\
+  0 & 0    & 0 & 1 
+\end{array} \right| 
+=1
+}
+where we have used that the determinant is the product of the eigenvalues, and in this case we can see immediately that all the eigenvalues are 1 due to the upper triangular form of the matrix.
+
+\eqa{
+S_2 &=& \left|\begin{array}{c c c c} 
+0.5  & -0.5 & 0 & 0 \\
+0    & 1    & -0.5 & -0.5 \\
+0    & 0    & 1 & -0.5 \\
+-0.5 & 0    & 0 & 1 
+\end{array} \right| \\
+&=& 0.5 \left|\begin{array}{c c c} 
+ 1    & -0.5 & -0.5 \\
+  0    & 1 & -0.5 \\
+    0    & 0 & 1 
+\end{array} \right| + 0.5
+\left|\begin{array}{c c c} 
+0.5  & -0.5 & 0 \\
+0    & 1    & -0.5 \\
+0    & 0    & 1 
+\end{array} \right| = 0.75
+}
+
+\eq{
+S_3 = \left|\begin{array}{c c c c} 
+0.5  & -1 & 0 & 0 \\
+0    &  1 & -0.5 & 0 \\
+0    &  0 & 1 & -0.5 \\
+-0.5 &  0 & 0 & 1 
+\end{array} \right| = 0.75 \\
+}
+\eq{
+S_4 = \left|\begin{array}{c c c c} 
+0.5  & -1 & -0.5 & 0 \\
+0    &  1 & -0.5 & 0 \\
+0    &  0 & 1    & -0.5 \\
+-0.5 &  0 & 0    & 1 
+\end{array} \right| = 0.75
+}
+\eq{
+S_5 = \left|\begin{array}{c c c c} 
+0.5  & -1 & -0.5 & 0  \\
+0    &  1 & -0.5 & -0.5  \\
+0    &  0 & 1    & -0.5  \\
+0    &  0 & 0    & 1  
+\end{array} \right| = 0.5 
+}
+In summary we have 
+\eq{
+S_1=\frac{4}{4} \quad S_2=S_3=S_4=\frac34 \quad S_5=\frac24
+}
+hence
+\eq{
+\sum S_i = \frac{15}{4}
+}
+so we can find the steady state
+\eq{
+X^*_1=\frac{4}{15} \quad X^*_2=X^*_3=X^*_4=\frac15 \quad X^*_5=\frac{2}{15}.
+}
