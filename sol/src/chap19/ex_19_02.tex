@@ -1,0 +1,62 @@
+
+
+\exercise{When things go wrong}{2}
+We discovered that the iterative procedure for the leading eigenvalue fails in bipartite networks. Let's try it nevertheless.
+
+\subquestion
+Consider
+\eqn{
+{\bf A}=\avecc{0& 1 \\ 1 & 0}
+}
+and the initial vector
+\eqn{
+\vec{v}_0 = \avec{1\\2}
+}
+Use the iteration 
+\eqn{
+\vec{v}_{i+1} = {\bf A}\vec{v}_i
+}
+a few times and see what happens.
+
+\solution
+Starting from 
+\eq{
+\vec{v}_0 = \avec{1\\2}
+}
+we multiply by $\bf A$ to get  
+\eq{
+\vec{v}_1 = {\bf A} \vec{v}_0 = \avecc{0& 1 \\ 1 & 0}\avec{1\\2} = \avec{2\\1} 
+}
+and after another multiplication, we are back to 
+\eq{
+\vec{v}_2 = {\bf A} \vec{v}_1 = \avecc{0& 1 \\ 1 & 0}\avec{2\\1} = \avec{1\\2} = \vec{v}_0 
+}
+So, this won't get us anywhere. 
+
+\subquestion
+Define the shifted matrix ${\bf B}={\bf A}+{\bf I}$ and try again.
+
+\solution
+We start again with 
+\eq{
+\vec{v}_0 = \avec{ 1 \\ 2}  
+}
+and multiply $\bf B$ to find 
+\eq{
+\vec{v}_1 = \avec{ 3 \\ 3} \quad \vec{v}_2 = \avec{ 6 \\ 6} 
+}
+Form now on the entries will just double with every further multiplication. 
+
+\subquestion
+Based on the result from (b) state the largest eigenvalue and the eigenvector of $\bf A$. 
+
+\solution
+The eigenvector is $\vec{v}=(1,1)^{\rm T}$ or any multiple thereof. We can see from the iterative procedure that the eigenvector gets stretched by a factor two 
+in every iteration. So the largest eigenvalue of $\bf B$ is 2, which means that the largest eigenvalue of $\bf A$ is 1.
+
+\subquestion
+Bonus: This one is more tricky, but note that in this case the iteration lands us exactly on the eigenvalue in the first step. This actually tells us what the second eigenvalue of $\bf A$ is. Explain!
+
+\solution
+Our initial vector was not the leading eigenvector, so it contained some component in the direction of the second eigenvector. But whatever, this component was it vanished in the first multiplication, which means it was multiplied by zero. So zero must be the second eigenvalue of $\bf B$, which means that the second eigenvalue of $\bf A$ is -1. 
+
