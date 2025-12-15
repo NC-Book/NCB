@@ -1,7 +1,7 @@
 # Further Reading for Chapter 02
 *If something is missing that should be listed here, contribute it via a pull request*
 
-**The shortest darkest path**
+**The darkest path**
 
 ## Shortest path algorithms
 Dijkstra's algorithm is not the only shortest path algorithsm, but a very prominent one. 
