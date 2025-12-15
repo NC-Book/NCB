@@ -5,6 +5,10 @@
 
 ## Computational Complexity
 
+## Side Channel Attacks
+
+## MergeSort
+
 ## Searching 
 
 ## Some other network algorithms
