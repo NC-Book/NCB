@@ -3,6 +3,13 @@
 
 **Friends of Friends**
 
+## Precursors to excess degree
+
+## Origin of the Mean Excess Degree
+
+## Longer ranges correlations
+
+
 # References
 
 Biggs (1999) -- N.L. Biggs, E.K. Lloyd, R.J. Wilson: *Graph Theory 1736-1936*, Clarendon Press. 
