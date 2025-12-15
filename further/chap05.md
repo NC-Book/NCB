@@ -3,14 +3,15 @@
 
 **The small world**
 
+## Chemical roots of the small world
 
-
-## Lessons from the Watts-Strogatz model
+## Watts-Strogatz model
 
 ## Navigating Worlds
 
 ## Better estimates of diameter
 
+## Strength of weak Ties
 
 
 # References
