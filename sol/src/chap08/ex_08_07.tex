@@ -1,12 +1,11 @@
 \exercise{Astrobiochemistry\label{exCowsAstro}}{3}
-Researchers want to estimate the density of the atmosphere of an extrasolar planet. They know that the atmosphere consists of 6\% carbon and 94\% Hydrogen. It is assumed that basically all of the atoms in the atmosphere are bound in molecules. Each carbon atom binds to four other atoms and each hydrogen atom binds to one other atom. Assume that the binding strength is irrelevant (the planet is quite hot). Use the method from the chapter to determine the size of the molecule we find typical Atoms in. 
-
+Researchers want to estimate the density of the atmosphere of an extrasolar planet. They know that the atmosphere consists of 6\% carbon and 94\% Hydrogen. It is assumed that basically all of the atoms in the atmosphere are bound in molecules. Each carbon atom binds to four other atoms and each hydrogen atom binds to one other atom. Assume that the binding strength is irrelevant. What is the typical size of a molecule in the atmosphere.
 \solution
-Let's start by making a plan. It seems unlikely that a finite fraction of the atmosphere is bound up in one giant molecule. So we can guess we that this question is about small components, not giant components. This suggests we are ultimately going to find the answer via the equation for small component sizes
+\paragraph{General idea.}Let's start by making a plan. It seems unlikely that a finite fraction of the atmosphere is bound up in one giant molecule. So we can guess we that this question is about small components, not giant components. This suggests we are ultimately going to find the answer via the equation for small component sizes
 \eq{
 S=1+\frac{z}{1-q}
 }
-To make this work, we need the mean degree $z$ and the mean excess degree $q$. From the past chapters we know how to find those quantities. So we will construct the degree distribution, then compute the mean degree, construct the excess degree distribution, find the mean excess degree and then use the equation above to estimate $S$. Let's go.
+\paragraph{Calculating the mean degree and the mean excess degree.}To make this work, we need the mean degree $z$ and the mean excess degree $q$. From the past chapters we know how to find those quantities. So we will construct the degree distribution, then compute the mean degree, construct the excess degree distribution, find the mean excess degree and then use the equation above to estimate $S$. Let's go.
 
 The first step is the degree distribution, it is 
 \eq{
@@ -30,7 +29,7 @@ q=\sum k q_k = 3 \cdot \frac{0.24}{1.18} = \frac{3\cdot 24}{118} =
 }
 It is good to see that the mean excess degree is less than 1. Otherwise we would get some giant molecule. 
 
-Step five. All that is left to do now is to apply the component size formula
+\paragraph{Solution.}Step five. All that is left to do now is to apply the component size formula
 \eq{
 S= 1 + \frac{z}{1-q} = 1 + \frac{1.18}{1-36/59} = 1 + \frac{1.18}{23/59} \approx 4
 }

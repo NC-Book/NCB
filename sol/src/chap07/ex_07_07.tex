@@ -1,8 +1,9 @@
 \exercise{The most common cycle}{3}
-We know our random graphs are locally treelike, but we also know that if $z>1$ then there must be some cycles. To explore this, consider an ER graph with $N=101$ nodes and mean degree $z=2$. Find out what the most common length $l$ for a cycle is. 
+We know that large random graphs with $z\ll N$ are locally treelike, but we also know that if $z>1$ then there must be some cycles. To explore this, consider an ER graph with $N=101$ nodes and mean degree $z=2$. Find out what the most common length $l$ for a cycle is. 
 
 \solution 
-So we expect that there few very short cycles because the network is locally tree-like. We also expect that there are few very long cycles because the network isn't actually that large. So there must be some kind of optimum in the middle. For a first rry we can use the approximate formula 
+So we expect that there are few very short cycles because the network is locally tree-like. We also expect that there are few very long cycles because the network isn't actually that large. So there must be some kind of optimum in the middle. 
+\paragraph{Approximate formula.}For a first try we can use the approximate formula 
 \eq{
 n_{\rm motif} = \frac{1}{s} z^k N{n-k}
 }
@@ -10,7 +11,8 @@ We have already figured out above that for a cycle of length $l$ (an $l$-cycle) 
 \eq{
 n_{\mbox{$l$-cycle}} = \frac{1}{2l} z^l 
 }
-This is a weird result. If we increase $l$ we find ever more numerous cycles. But this makes no sense because there can't be any cycles that have a length greater than 101. OK, here is an idea. The error of the approximate formula grows for large motifs. Likely this makes our estimates for long cycles inaccurate. So let's use the statistically exact formula instead.  
+This is a weird result. If we increase $l$ we find ever more numerous cycles. But this makes no sense because there can't be any cycles that have a length greater than 101. 
+\paragraph{Statistically exact formula.} OK, here is an idea. The error of the approximate formula grows for large motifs. Likely this makes our estimates for long cycles inaccurate. So let's use the statistically exact formula instead.  
 \eq{
 n_{\rm motif}=\frac{n!}{s} p^k B(N,n)
 }
@@ -18,11 +20,12 @@ we know $N=101$ which allows us to $p=z/(N-1)=2\cdot 10^{-2}$. We can now for ex
 \eq{
 n_{\rm 3-cycle}=\frac{3!}{6} (2\cdot 10^{-2})^3 \frac{99\cdot 100 \cdot 101}{1 \cdot 2 \cdot 3} =  8 \cdot 10^{-6}  \frac{999900}{6} = \frac{8}{6} 0.9999 
 }
-so that's just 1 or two three-cycles. However, maybe we have learned something from this calculation. Notice that the $n!$ enters from the denominator of the Binomial Formula will always cancel with the $n!$ that is in the front of the motif equation. we can thus use
+so that's just 1 or two three-cycles. However, maybe we have learned something from this calculation. 
+\paragraph{Finding the most common cycle.}Notice that the $n!$ enters from the denominator of the Binomial Formula will always cancel with the $n!$ that is in the front of the motif equation. we can thus use
 \eq{
 n_{\mbox{$l$-cycle}} = \frac{1}{2l} p^l 101\cdot 100 \cdots 101-l
 }
-Now consider what happens when we increase $l$ we we multiply one more factor of $p$ the denominator of the fraction in the beginning increases by 2 and we multiply a factor of $101-l$ in the end. Does this mean there are more or less $l+1$-cycles than $l$-cycles? Let's consider the ratio 
+Now consider what happens when we increase $l$ we multiply one more factor of $p$ the denominator of the fraction in the beginning increases by 2 and we multiply a factor of $101-l$ in the end. Does this mean there are more or less $l+1$-cycles than $l$-cycles? Let's consider the ratio 
 \eq{
 \frac{n_{\mbox{$l+1$-cycle}}}{n_{\mbox{$l$-cycle}}} =  \frac{\frac{1}{2l+2} p^{l+1} 101\cdot 100 \dots 101-l \cdot 101-l-1}{\frac{1}{2l} p^l 101\cdot 100 \dots 101-l} = \frac{l+1}{l} p (100 -l)
 }
@@ -40,7 +43,7 @@ so there are just a tiny bit more cycles of length 51 than of length 50. Let's t
 }
 So there are fewer cycles of length 52 than 51. So the cycle of length 51 is actually the most common cycle in the network. So the most common length of cycle is one that visits half the nodes if the network. The number of these cycles that we expect is very high, because there are so many ways in which we can select 51 nodes from 101 nodes.  
 
-OK we are really done with this exercise, but if we wanted to we could write
+\paragraph{Additional insights.}OK we are really done with this exercise, but if we wanted to we could write
 \eq{
 \frac{n_{\mbox{$l+1$-cycle}}}{n_{\mbox{$l$-cycle}}} \approx  \frac{z}{N} (N -l)
 }

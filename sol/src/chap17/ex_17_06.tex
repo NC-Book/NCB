@@ -1,5 +1,51 @@
-\exercise{Timescale separation in the SIS model}{5}
-Use timescale separation coarse-graining to find better moment expansions/closures for the SIS model or the adaptive voter model. 
+
+\exercise{Abstract quasi-steady state \label{exManifoldCycle}}{2}
+Use a quasi-steady state approximation to analyze the dynamics of the system
+\eqan{
+\dot{x}&=&-x^3+x+y \\
+\dot{y}&=&-\alpha x
+}
+where $0<\alpha\ll 1$. (The result may be surprising). 
 
 \solution
-This one seems to be quite doable, but nobody has actually explicitly done it yet.
+Because the entires equation for $y$ is slow, we can use the easier version of the coarse-graining procedure. In this case the fast dynamics is 
+\eq{
+\dot{x}=-x^3+x+y 
+}
+where $y$ now acts as a parameter. We solve for the steady state
+\eqa{
+0&=&-x^3+x+y \\
+y&=&x^3-x 
+}
+Normally we would solve for $x(y)$ rather than $y(x)$ but the third root makes this quite horrible, so we use our trick of solving for the parameter instead of the variable. The solution in the form $y(x)$ allows us to draw the solution branches.
+
+\includegraphics[width=0.8\textwidth]{slowfastcycle1}
+
+Is this slow manifold stable? Or rather, which parts of it are stable? 
+To check the stability mathematically we need the Jacobian
+\eq{
+{\bf J}= \frac{\partial \dot{x}}{\partial x} = -3x^2+1 
+}
+Even without knowing the steady states, we know that stability requires
+\eq{
+0 > -3x^2+1 
+}
+in the steady state. We find the bifurcations by solving 
+\eqa{
+0 &=& -3x^2+1  \\
+x &=& \pm \sqrt{\frac{1}{3}} 
+}
+So we can see that the slow manifold is unstable for $\sqrt{-1/3}\leq x \leq \sqrt{1/3}$ and stable otherwise. Let's plot that.
+
+\includegraphics[width=0.8\textwidth]{slowfastcycle2}
+
+Now we also have to consider the slow dynamics. This follows
+\eq{
+\dot{y}=-\alpha x
+}
+Because $\alpha>0$ this means that $y$ will slowly increase if $x<0$ and $y$ will slowly decrease if $x>0$. So if we are on the stable branch of the slow manifold at $x>0$ we move slowly downwards along the manifold until we hit the fold bifurcation. At this point our branch of the slow manifold is destroyed, so fast dynamics sets in and takes us rapidly to the other branch. Now we are at $x<0$ so $y$ slowly increases until we hit the other fold bifurcation. 
+This sends us back to the initial branch, thus completing a slow-fast cycle. 
+
+\includegraphics[width=0.8\textwidth]{slowfastcycle3}
+
+The system will spend all eternity going through this cycle. 

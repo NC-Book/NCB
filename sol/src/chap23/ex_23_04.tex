@@ -1,3 +1,68 @@
+\exercise{Customers}{3}
+In a shop customers arrive at an average rate of $a$ customers per minute. Customers in the shop leave at a rate of $b$ customers per customer per minute. Use detailed balance to compute $x_n$ the probability that there are $n$ customers in the shop, in the stationary state.  
 
-\exercise{Kirchhoff proof}{5}
-Find a `forward' proof for Kirchhoff's theorem, the matrix-tree theorem for weighted directed matrices. (By forward proof we mean a line of reasoning that leads to the result, rather than postulating the result and then proving that it is true.)
+\solution 
+We define $x_i$ as the probability that there are $i$ customers in the shop starting from $i=0$. In principle there is now an infinity of microstates, which makes it complicates using Kirchhoff's approach. However, since the number of customers only changes by one in each event, the microstates form a chain, (0)-(1)-..., so that we can use detailed balance. 
+
+Let's start by considering the link between 0 and 1 customers in the shop. If there is just one customer in the shop it will leave at rate $b$, if there are no customers in the shop one will arrive at rate $a$ hence the detailed balance condition between states 0 and 1 is 
+\eq{
+ax_0  = bx_1
+}
+and hence 
+\eq{
+x_1 = \frac{a}{b} x_0 
+}
+Now consider the detailed balance condition between the states 1 and 2. If there is one customer in the shop a second will arrive at rate $a$, and if there are two customers each of them will leave at rate $b$, such that the rate of one of them leaving is actually $2b$. So the detailed balance condition is 
+\eq{
+a x_1 = 2b x_2  
+}
+and hence 
+\eq{
+x_2 = \frac{a}{2b} x_1 = \frac{a^2}{2b^2} x_0 
+}
+For the link between microstate 2 and 3 we have the detailed balance condition 
+\eq{
+a x_2 = 3b x_3
+}
+and hence 
+\eq{
+x_3 = \frac{a}{3b} x_2 = \frac{a^3}{6b^3} x_0
+}
+Let's generalize to state $x_n$. The detailed balance condition between $n$ and $n-1$ is 
+\eq{
+a x_{n-1} = ib x_n 
+}
+and hence 
+\eqa{
+x_n &=& \frac{a}{nb} x_{n-1}  \\
+    &=& \frac{a}{nb} \frac{a}{(n-1)b} x_{n-2}  \\
+    &=& \left(\prod_{m=1}^i \frac{a}{mb} \right) x_0 \\
+    &=& \frac{a^n}{b^n n!}  x_0
+}
+Let's define
+\eq{
+r= \frac{a}{b}
+}
+This allows us to write 
+\eq{
+x_n = \frac{r^n}{n!} x_0  
+}
+To find the value of $x_0$ we need to check the normalization. 
+We check
+\eq{
+1 = \sum_{n=1}^\infty \frac{r^n}{n!} x_0 = x_0 sum_{n=1}^\infty \frac{r^n}{n!} = x_0 \exp{r}
+}
+OK, that's convenient, so 
+\eq{
+x_0 = \exp{-r}
+}
+and
+\eq{
+x_n = \frac{\exp{-r}r^n}{n!}
+}
+Wait a minute, does this remind you of something. (Say, $p_k = \exp{-z} z^k /k!$).
+
+Alright yes this a Poisson distribution. So the number of customers in the shop will be Poisson distributed with a mean $r=a/b$. 
+
+Finally, did you notice that we already solved the same model with generating functions in Ex.~XXX. 
+

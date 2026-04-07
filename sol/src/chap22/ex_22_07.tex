@@ -1,0 +1,93 @@
+\exercise{Flight response\label{exStripesFlight}}{3}
+Consider again the predator-prey system from the previous exercise. But now the predator, $y$, does not diffuse, while the prey $x$ tries to avoid the predators. Assume that the departure rate of prey individuals from a patch is $axy$, where $a$ is a parameter. 
+
+\subquestion Consider the system on the linked-pair network. Write the differential equations and show that the steady state from the previous exercise is still stationary.
+
+\solution 
+We consider two patches, 1 and 2, connected by a link of weight one. The differential equations for the two patch system are 
+\eqa{
+\dot{x}_1&=& (4{x_1}^2+{x_1})/5 -x_1y_1 - ax_1y_1 + ax_2y_2 \\
+\dot{y}_1&=& x_1y_1 - {y_1}^2 \\
+\dot{x}_2&=& (4{x_2}^2+x_2)/5 -x_2y_2 - ax_2y_2 + ax_1y_1 \\
+\dot{y}_2&=& x_2y_2 - {y_2}^2 
+}
+If we substitute in our previous steady state $x=y=1$ we find 
+\eqa{
+\dot{x}_1&=& (4+1)/5 -1 - a + a = 0 \\
+\dot{y}_1&=& 1 - 1 = 0\\
+\dot{x}_2&=& (4+1)/5 - 1 - a + a = 0\\
+\dot{y}_2&=& 1 - 1 = 0
+}
+so our previous steady state is still a steady state. 
+
+\subquestion 
+Show that the Jacobian for the linked pair can still be written in the form ${\bf J}={\bf I}\otimes{\bf P}-{\bf L}\otimes {\bf C}$, albeit with a different matrix $\bf C$. 
+
+\solution
+The Jacobian is 
+\eqa{
+{\bf J} = \avecccc{
+4/5-a & -1 -a & a      & a \\
+1     & -1    & 0      & 0 \\
+a     & a     & 4/5-a  & -1-a \\ 
+0     & 0     & 1      & -1
+}
+}
+Compare this with the Jacobian of a single isolated note (where there is nowhere to go and hence also no departures) 
+\eq{
+{\bf P} = \avecc{4/5 & -1 \\ 1 & -1 }.
+}
+We can see now that the single-node Jacobian still appears in blocks on the diagonal. Hence we can write tht Jacobian of the linked pair as 
+\eq{
+{\bf J} = \avecc{{\bf P} & 0 \\ 0 & {\bf P}} + \avecccc{
+-a & -a &  a & a \\
+0  &  0 &  0 & 0 \\
+a  &  a & -a & -a \\ 
+0  &  0 &  0 & 0
+}
+}
+We can now see that the rest in the second term prominently contains the block 
+\eq{
+{\bf C} = \avecc{a & a \\ 0 & 0}
+}
+this is the new coupling matrix. Using it the Jacobian can be written as 
+\eq{
+{\bf J} = \avecc{{\bf P} & 0 \\ 0 & {\bf P}} + \avecc{ -{\bf C} & {\bf C} \\ {\bf C} & -{\bf C}}
+}
+or equivalently 
+\eq{
+{\bf J} = {\bf I} \otimes {\bf P} - {\bf L} \otimes {\bf C}
+}
+where 
+\eq{
+{\bf L} = \avecc{1 & -1 \\ -1 & 1 }
+}
+is the Laplacian of the unweighted linked pair. 
+
+\subquestion
+Is the homogeneous state stable in this case?
+
+\solution 
+Because we have the structure ${\bf J}={\bf I}\otimes{\bf P}-{\bf L}\otimes {\bf C}$ we know that we can compute the eigenvalues from 
+${\bf P}-\kappa {\bf C}$. We could now substitute the eigenvalues
+$\kappa_1=0$ and $\kappa_2=2$ for the linked pair, but using our master stability function trick we can as well explore the general case for arbitrary $\kappa$. 
+
+The relevant matrix in this case is 
+\eq{
+{\bf P}-\kappa {\bf C} = \avecc{4/5-\kappa a & -1 - \kappa a \\ 1 & -1} 
+}
+Note that $\kappa$ and $a$ appear only together as a product, so only their product can matter and specifying either of them would not save us any work.
+
+We already know from the previous exercise that at $\kappa a =0$ the system is stable. So instead of solving another quadratic polynomial to compute the eigenvalues, let's just check if there are any bifurcations in which the stability is lost. 
+
+Hopf like bifurcations can only occur if the trace of the Jacobian vanishes, but in this case
+\eq{
+{\rm Tr} ({\bf P}-\kappa {\bf C}) = 4/5 -1 -\kappa a = -1/5 -\kappa a
+}
+We know $\kappa\geq 0$ (Laplacians have non-negative eigenvalues) and $a>0$ (a negative departure rate would not make sense). Therefore $a\kappa\geq 0$, the trace is always negative and Hopf-like bifurcations cannot occur. 
+
+To check for fold-like bifurcations we check the determinant
+\eq{
+0 = -(4/5-\kappa a) + (1+\kappa a) = 1/5 
+}
+so there are no fold-like bifurcations either. Hence this sort of flight response won't destabilize the stationary state. However, generally cross-diffusion (i.e.~diffusion where the departure rate of one variable depends on other variables) is likely to cause diffusion-driven instabilities.

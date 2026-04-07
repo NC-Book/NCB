@@ -1,0 +1,112 @@
+\exercise{Pitchfork normal form\label{exBrainPitchfork}}{3}
+Consider a system $\dot{x}=f(x,p)$ with mirror anti-symmetry such that $f(x,p)=-f(-x,p)$. Show that there is a steady state at $x^*=0$, then consider a bifurcation of this steady state that occurs at $p^*$. Follow the steps from \exref{exBrainTranscritical} to derive the normal form of this bifurcation and analyze it.   
+
+\solution
+As already hinted in the text we note substituting $x=0$ into the symmetry relation yields 
+\eq{
+f(0,p)=-f(0,p)
+}
+which implies
+\eq{
+f(0,p)=0 \qqq \mbox{(Stationarity condition)}
+}
+which proves that $x^*=0$ is a steady state. Moreover the same argument can be repeated with every derivative that is of even order in $x$. For example differentiating the symmetry relation twice with respect to $x$ and once with respect to $p$ yields 
+\eq{
+f_{\rm xxp}(x,p) = -f_{\rm xxp}(-x,p)
+}
+such that 
+\eq{
+f_{\rm xxp}(0,p) = -f_{\rm xxp}(0,p)
+}
+which again implies 
+\eq{
+f_{\rm xxp}(0,p) = 0.
+}
+
+We now focus on a bifurcation of the steady state at $x^*=0$ and define the parameter value where the bifurcation occurs as $p^*$. Since this is one dimensional system the only way in which a bifurcation can occur is when the first derivative of the equation of motion becomes zero, so 
+\eq{
+f_(\rm x)(x^*,p^*) = 0 \qqq \mbox{(Bifurcation condition)}
+}
+We can now write 
+\eq{
+x= x^* + \delta \qqq p = p^* + \rho
+}
+which defines $\rho$ as the distance from the bifurcation and $\delta$ as the deviation from the steady state. For this bifurcation we could have just used $x$ instead of $\delta$ as $x^*=0$, but we will use $\delta$ anyway to maintain consistency with the previous derivations.
+
+We can now write the following differential equation for the deviation:
+\eq{
+\dot{\delta}=f(x^*+\delta, p^* + \rho)
+}
+We are interested in the behavior close to the bifurcation where $\delta$ and $\rho$ are small. Hence we Taylor expand and arrive at
+\eq{
+\dot{\delta} = f + f_{\rm x}\delta + f_{\rm p} \rho + f_{\rm px}\delta\rho + O(\delta^2) + O(\rho^2),
+}
+where we have again dropped the argument $(x^*,p^*)$. In the expansion, the first term $f(x^*,p^*)$ is zero due to the stationarity condition. The second term is zero because it is an even (0) order derivative with respect to $x$, however, the third term will in general be non-zero. Hence we assume 
+\eq{
+f_{\rm px}(x^*,p^*) \neq 0 \qqq \mbox{(Genericity Condition 1)}.
+}
+At this point we have 
+\eq{
+\dot{\delta} = f_{\rm xp}\delta \rho + O(\delta^2) + O(\rho^2). 
+}
+Among the further terms ($O(\delta^2) + O(\rho^2)$) we can ignore all the terms that contain at least one $\delta$ and at least one $\rho$ as these are negligible in comparison to $f_{\rm xp}\delta \rho$. This means we now only have to deal with the `pure' terms that contain either derivatives with respect to $\delta$ or $\rho$ but not both. Fortunately all terms that only contain derivatives with respect to $\rho$ are forbidden by the symmetry condition. This leaves us with 
+\eq{
+\dot{\delta} = f_{\rm xp}\delta \rho + O(\delta^2). 
+}
+Expanding the next order of $O(\delta^2)$ gives us 
+\eq{
+\dot{\delta} = f_{\rm xp}\delta \rho + \frac{1}{2} f_{\rm xx} \delta^2 + O(\delta^3),
+}
+but $f_{\rm xx}=0$ due to symmetry, so we need to consider one more order to arrive at 
+\eq{
+\dot{\delta} = f_{\rm xp}\delta \rho + \frac{1}{6} f_{\rm xxx} \delta^3 + O(\delta^4).
+}
+In general 
+\eq{
+f_{\rm xxx}(x^*,p^*) \neq 0 \qqq (Genericity condition 2) 
+}
+Therefore we can now argue that all terms in $O(\delta^4)$ are negligible in comparison to $ f_{\rm xxx} \delta^3 / 6$, leaving us with 
+\eq{
+\dot{\delta} = f_{\rm xp}\delta \rho + \frac{1}{6} f_{\rm xxx} \delta^3.
+}
+To hide away the unknown constants we now define 
+\eqa{
+p&=& f_{\rm xp}(x^*,p^*) \rho \\
+a&=& f_{xxx}(x^*,p^*)/6 
+}
+which allows us to write the desired normal form as 
+\eq{
+\dot{x} = px + ax^3.  
+}
+Here I've switched back to $x$ to make the dynamical system look more harmless. Normally this would require defining a `new' $x$, but not in this case as $x=\delta$ anyway due to $x*=0$. 
+
+Now that we have the normal form we only need to analyze it. To find the steady states we set the equation of motion to zero which gives us 
+\eq{
+0=px+ax^3.
+}
+We already know that there is a steady state at $x^*_1=0$, and dividing this steady state out of the equation leaves us with 
+\eq{
+0=p+ax^2.
+}
+which we can solve for 
+\eq{
+x^*_{2,3} = \pm \sqrt{- \frac{p}{a}}.
+}
+So there are two additional branches of steady states that only exist for $-p/a>0$. 
+
+Next we consider the stability of the steady states. In the one-dimensional system a steady state is stable if the derivative of the equation of motion with respect to $x$ is negative in the steady state, so when 
+\eq{
+p+3ax^2 <0 
+}
+Therefore the trivial steady $x_1^* = 0 $ is stable if $p<0$ and unstable otherwise. Substituting the other two steady states into the condition is a bit tricky as we have to be careful with the sign of the second term. However we know that the steady states only exist when $-p/a>0$. In this case substituting the steady states makes the square and the square root cancel and we get the positive term $-p/a$ back (including the minus). So substituting the steady states into the stability condition yields 
+\eq{
+p+3a(-p/a) = -2p < 0.
+}
+Therefore the nontrivial steady states $x_{2,3}^*$ are stable when they occur at $p>0$.
+
+Considering again the condition for the existence of the steady states $-a/p>0$ we note that we can meet the condition if either $a<0$ or $p<0$ but not both. Hence we distinguish two cases. If $a<0$ then the nontrivial steady states exist when $p>0$. In this case the nontrivial steady states are stable (supercritical case). Conversely, if $a>0$ then the nontrivial steady states exist if $p<0$ and they are unstable (subcritical case).    
+
+We can now draw the bifurcation diagrams from the chapter, which depict the cases $a=1$ and $a=-1$. 
+\begin{center}
+\includegraphics[width=0.8\textwidth]{pitchfork_landscape}
+\end{center}

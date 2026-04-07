@@ -1,0 +1,127 @@
+\exercise{Press perturbation}{4} 
+A dynamical system resides in a state $\vec{x}^*$. Your goal is to reduce the the value of the first variable in the steady state, $x_1^*$. You can add a small constant term $\epsilon$ to one of the functions $f$ on the right-hand side of your equation of motion. You recal the implicit function theorem 
+\eqn{
+\frac{\d \vec{x}^*}{\d p} = -{\bf J}^{-1} \frac{\partial f}{\partial p} 
+}
+where $p$ is a parameter and ${\bf J}^{-1}$ is the inverse of the Jacobian $\bf J$ such that ${\bf J}{\bf J}^{-1}={\bf J}^{-1}{\bf J}={\bf I}$. 
+ 
+\subquestion 
+Show that ${\bf J}^{-1}$ has the same left eigenvectors $\vec{w_n}^\dag$ and right eigenvectors $\vec{v_n}$ as $\bf J$. 
+
+\solution 
+We can write the eigenvector equation for $\bf J$ as 
+\eq{
+{\bf J}\vec{v_n} =  \lambda_n \vec{v_n} 
+}
+Let's multiply this equation by ${\bf J}^{-1}$ from the left. 
+\eqa{
+{\bf J}^{-1} {\bf J}\vec{v_n} &=& {\bf J}^{-1} \lambda_n \vec{v_n} \\
+ {\bf I}\vec{v_n} &=&  \lambda_n {\bf J}^{-1} \vec{v_n} \\
+   \vec{v_n}      &=&  \lambda_n {\bf J}^{-1} \vec{v_n} 
+}
+hence we can write 
+\eq{
+     {\bf J}^{-1} \vec{v_n} = \frac{1}{\lambda_n}\vec{v_n}
+}
+which shows that $\vec{v_n}$ is a right eigenvector of ${\bf J}^{-1}$ and the eigenvalue is $1/\lambda_n$. So the right eigenvectors of the Jacobian are also right eigenvectors for the inverse Jacobian, and the eigenvalues of the inverse Jacobian are the inverse of the corresponding eigenvalues for the Jacobian. 
+
+We can proceed in the same way for the left eigenvalues 
+\eqa{
+    \vec{w_n}^\dag {\bf J} &=& \lambda_n  \vec{w_n}^\dag \\
+    \vec{w_n}^\dag {\bf J}{\bf J}^{-1} &=& \lambda_n  \vec{w_n}^\dag {\bf J}^{-1} \\
+    \vec{w_n}^\dag  &=& \lambda_n  \vec{w_n}^\dag {\bf J}^{-1} \\
+    \vec{w_n}^\dag/\lambda_n  &=& \vec{w_n}^\dag {\bf J}^{-1} \\    
+}
+which shows that the left eigenvector of the Jacobian is also the left eigenvector of the inverse Jacobian, and the corresponding eigenvalue of the 
+inverse Jacobian is still the inverse of the Jacobian eigenvalue. 
+
+\subquestion Show that with orthonormal eigenvectors, the inverse of the Jacobian can be written as 
+\eqn{
+{\bf J}^{-1} = \sum_n \frac{\vec{v_n}\vec{w_n}^\dag }{\lambda_n}.
+}
+You can do this by showing that multiplying an arbitrary vector $\vec{a}$ from the right yields the same result on both sides of the equation. 
+
+\solution 
+We follow the advice and multiply an arbitrary vector $\vec{a}$
+\eq{
+{\bf J}^{-1}\vec{a} = \sum_n \frac{\vec{v_n}\vec{w_n}^\dag }{\lambda_n} \vec{a}.
+}
+To make progress we have to decompose $\vec{a}$ into right eigenvectors 
+\eq{
+\vec{a} = \sum_m c_m \vec{v_m}
+}
+where we used an $m$ as summation index because there is already an $n$ in the equation above, into which we now substitute. On the left hand side of the equation we have 
+\eqa{
+{\bf J}^{-1}\vec{a} &=& {\bf J}^{-1} \sum_m c_m \vec{v_m} \\
+    &=&  \sum_m c_m {\bf J}^{-1} \vec{v_m} \\
+    &=&  \sum_m \frac{c_m}{\lambda_m}   \vec{v_m} 
+}
+where we used that the eigenvalues of the inverse Jacobian are the inverse of the eigenvalues of the Jacobian, which we showed in the previous subquestion.
+We now only need to show that this is the same as the right-hand side of the equation above so 
+\eqa{
+\sum_m \frac{c_m}{\lambda_m} \vec{v_m} &=& \sum_n \frac{\vec{v_n}\vec{w_n}^\dag }{\lambda_n} \sum_m c_m \vec{v_m} \\
+&=& \sum_{n,m} \frac{c_m\vec{v_n}\vec{w_n}^\dag \vec{v_m}}{\lambda_n} \\
+&=& \sum_{n,m} \frac{c_m\vec{v_n} \delta_{n,m}}{\lambda_n} \\
+&=& \sum_{m} \frac{c_m}{\lambda_m}\vec{v_m} 
+}
+
+\subquestion 
+Now determine how the the first coordinate of steady state $x_1^*$ changes as we changes when we add a small constant term $\epsilon$ to $x_j$'s equation of motion  $f_j(\vec{x})$. Does this give you an idea for another centrality?  
+
+\solution 
+We start with the implicit function theorem, now written with $\epsilon$ instead of the generic parameter $p$ 
+\eq{
+\frac{\d \vec{x}^*}{\d \epsilon} = -{\bf J}^{-1} \frac{\partial f}{\partial \epsilon} 
+}
+We know that the right hand sides of our equation of motion $f$ only contain one $\epsilon$ that is added to the $j$-th equation. Therefore 
+\eq{
+\frac{\partial f}{\partial \epsilon} = \vec{e_j}
+}
+where $e_j$ is the $j$th coordinate vector, i.e.~the vector that is zero except for a 1 in element $j$. What happens when we multiply this vector with another vector is that only the $j$'s element form the other vector is left. 
+If you don't see this immediately let's compute $\vec{w_n^\dag}\vec{e_j}$. 
+We can write this inner product as 
+\eq{
+\vec{w_n^\dag}\vec{e_j}= \sum_i w_{n,i}^\dag e_{j,i} 
+}
+Moreover the $i$th element of $\vec{e_j}$ is 0 unless $i=j$ for which it is one, so 
+\eq{
+e_{j,i} = \delta_{i,j}
+}
+Substituting into the equation above we find 
+\eq{
+ \sum_i w_{n,i}^\dag e_{j,i} =  \sum_i w_{n,i}^\dag \delta_{i,j} = w_{n,j}^\dag
+}
+Returning to our implicit function theorem we can now write 
+\eqa{
+\frac{\d \vec{x}^*}{\d \epsilon} &=& -{\bf J}^{-1} \frac{\partial f}{\partial \epsilon}  \\
+  &=&  -{\bf J}^{-1} \vec{e_j} \\
+  &=&  -\sum_n \frac{\vec{v_n}\vec{w_n}^\dag }{\lambda_n} \vec{e_j} \\
+  &=&  -\sum_n \frac{ w_{n,j}^\dag}{\lambda_n} \vec{v_n} \\ 
+}
+On the right hand side there is now only one vector left $\vec{v_n}$, which means this equation actually equates two vectors, which is what we wanted. If we now consider the $i$th component we find 
+\eq{
+\frac{\d {x_i}^*}{\d \epsilon} = -\sum_n \frac{v_{n,i}w_{n,j}^\dag}{\lambda_n}  
+}
+This expression now tells us how the steady state of ${x_i}^*$ is affected when we add a small term $\epsilon$ to the equation of motion of component $x_j$. Since our goal was to reduce the steady state value of $x_1$ we can set $i=1$, 
+\eq{
+\frac{\d {x_1}^*}{\d \epsilon} = -\sum_n \frac{v_{n,1}w_{n,j}^\dag}{\lambda_n}  
+}
+
+Does this give us an idea for another centrality? We could consider how much the steady state is shifted in total if we add our small term to equation $j$. 
+
+Lets define the shift of the steady state
+\eq{
+\vec{s}= \frac{\d \vec{x}^*}{\d \epsilon}.
+}
+Our goal is to compute the total length of the shift as $\sqrt{\vec{s}^\dag\vec{s}}$. We start by computing 
+\eqa{
+\vec{s}^\dag\vec{s} &=& \left(-\sum_n \frac{\vec{v_{n}}w_{n,j}^\dag}{\lambda_n} \right)^\dag \left(-\sum_n \frac{\vec{v_{n}}w_{n,j}^\dag}{\lambda_n} \right) \\
+&=& \left(\sum_n \frac{\vec{v_{n}}w_{n,j}^\dag}{\lambda_n} \right)^\dag \left(\sum_m \frac{\vec{v_{m}}w_{m,j}^\dag}{\lambda_m} \right) \\
+&=& \sum_{n,m}\left( \frac{\vec{v_{n}^\dag}w_{n,j}}{\lambda_n^\dag} \right) \left(\frac{\vec{v_{m}}w_{m,j}^\dag}{\lambda_m} \right) \\
+&=& \sum_{n,m} \frac{\vec{v_{n}^\dag}\vec{v_{m}} w_{m,j}^\dag w_{n,j} }{\lambda_n^\dag \lambda_m}
+}
+Hence, the total shift in the steady state is 
+\eq{
+|s| = \sqrt{\sum_{n,m} \frac{ (\vec{v_{n}^\dag}\vec{v_{m}}) (w_{m,j}^\dag w_{n,j}) }{|\lambda_n|^2}}
+}
+so this is a kind press perturbation sensitivity. Similar to our other centralities we can exchange $\vec{w}$ and $\vec{v}$ in the equation in we want an indicator for sensitivity to press perturbations instead. 

@@ -1,165 +1,133 @@
-
-\exercise{Reactivity}{4}
-Reactivity was introduced by Neubert and Caswell in 1997 to measure the initial response of a dynamical system to perturbations. Specifically, reactivity is defined as the initial amplification of a perturbation by the dynamics. In this exercise we will re-derive reactivity, interpret it as a bespoke centrality for a given question and also discuss its role in motifs. 
-
-\subquestion
-We are interested in the relative rate of growth $a$ of the size of small perturbation $\vec{\delta}$ to a steady state, that is 
-\eqn{
-a = \frac{1}{|\vec{\delta}|} \frac{{\rm d}}{{\rm d} t} |\vec{\delta}|
-}
-Recall that $|\vec{\delta}|=\sqrt{\vec{\delta}^{\rm T}\vec{\delta}}$, and $\dot{\vec{\delta}}={\bf J}\vec{\delta}$. Then show 
-\eqn{
-  a = \frac{\vec{\delta}^{\rm T} {\bf H} \vec{\delta}}{\vec{\delta}^{\rm T}\vec{\delta}},
-}
-where ${\bf H} = ({\bf J}+{\bf J}^{\rm T})/2$ is the symmetric part of the Jacobian. 
-
-\solution
-We will need the transposed version of our lineraized dynamics
-\eq{
-   \dot{\vec{\delta}}^{\rm T} = {\vec{\delta}}^{\rm T} {\bf J}^{\rm T},
-}
-then we compute
-\eqa{
-\frac{1}{|\vec{\delta}|} \frac{{\rm d}}{{\rm d} t} |\vec{\delta}| &=& \frac{1}{|\vec{\delta}|} \frac{{\rm d}}{{\rm d} t} \sqrt{\vec{\delta}^{\rm T}\vec{\delta}} \\
-&=& \frac{1}{|\vec{\delta}|} \frac{1}{2\sqrt{\vec{\delta}^{\rm T}\vec{\delta}}} \frac{\rm d}{{\rm d} t} \vec{\delta}^{\rm T}\vec{\delta} \\
-&=& \frac{1}{2|\vec{\delta}|^2} \left( \dot{\vec{\delta}}^{\rm T}\vec{\delta} + \vec{\delta}^{\rm T}\dot{\vec{\delta}} \right) \\
-&=& \frac{1}{2|\vec{\delta}|^2} \left( \vec{\delta}^{\rm T} {\bf J}^{\rm T} \vec{\delta} + \vec{\delta}^{\rm T}{\bf J}\vec{\delta} \right) \\
-&=& \frac{\vec{\delta}^{\rm T} {\bf H} \vec{\delta}}{\vec{\delta}^{\rm T}\vec{\delta}},
-}
-which is the desired result. This type of function is also called a Rayleigh quotient.
-
-\subquestion 
-Consider the predator prey system 
-\eqan{
-\dot{X} &=& X - XY/(3+X) \\
-\dot{Y} &=& 2XY/(3+X) - Y.
-}
-Compute $\bf J$ and $\bf H$ in the nontrivial steady state.
-
-\solution
-The second equation gives us the steady state condition
-\eq{
-0 = \frac{XY}{3+X} - Y \\
-}
-dividing by $Y$ yields 
-\eqa{
-0 &=& 2X/(3+X) -1 \\
-3+X &=& 2X \\
-3 &=& X.
-}
-So now that we know that $X=3$, we can compute $Y$ from the first row:
-\eqa{
- 0 &=& X(4-X) - 2XY/(3+X) \\
- 0 &=& 3 - Y\\
- Y &=& 3.
-}
-So the non-trivial steady state is at $(X^*,Y*)=(3,3).$ Now we compute 
-\eqa{
-J_{11} &=& \left.\frac{\partial}{\partial X} \dot{X} \right|_* = \left. 4-2X - \frac{2Y}{3+X} + \frac{2XY}{(3+X)^2}\right|_* =  4-6 -1+ 18/36 = -2.5  \\
-J_{12} &=& \left.\frac{\partial}{\partial Y} \dot{X} \right|_* = \left. - \frac{X}{3+X} \right|_* = -0.5 \\
-J_{21} &=& \left.\frac{\partial}{\partial X} \dot{Y} \right|_* = \left.  \frac{2Y}{3+X} - \frac{2XY}{(3+X)^2}  \right|_*  = 1 - 18/36 = 0.5 \\
-J_{22} &=& \left.\frac{\partial}{\partial Y} \dot{Y} \right|_* = \left. \frac{2X}{3+X} - 1 \right|_* = 6/6-1 = 0  
-}
-Hence the Jacobian is 
-\eq{
-{\bf J} = \avecc{-2.5 & -0.5\\ 0.5 & 0}  
-}
-and we can compute 
-\eq{
-{\bf H} = \frac{\avecc{-2.5 & -0.5\\ 0.5 & 0} + \avecc{-2.5 & 0.5\\ -0.5 & 0}}{2} = \avecc{-2.5 & 0 \\ 0 & 0}
-}
-
-\subquestion 
-We define the reactivity of the system as the largest amplification $a$ that can be observed in response to any small perturbation. Because $\bf H$ is a symmetric (hermitian) matrix, it's eigenvectors are orthogonal. Hence they can be normalized such that $\vec{v_n}^{T}\vec{v_m} = \delta_{nm}$, where $\delta$ is the Kronecker delta. Use this to show that the maximal value of $a$ is observed when the perturbation is in the direction of the eigenvector of $\vec{v}$ with the largest eigenvalue.  
+\exercise{From the tip of the tail\label{exMotifTail}}{2}
+Consider the following network:
+\begin{center}
+\includegraphics[width=0.4\textwidth]{branch}
+\end{center}
+\subquestion Suppose the adjacency matrix has an eigenvalue $\vec{v}$ with eigenvalue $\lambda$. Normalize the first element of this eigenvector to $v_1=1$, then determine the eigenvector elements $v_2$, $v_3$ and $v_4$. For which values of $\lambda$ is $v_3>0$? 
 
 \solution 
-we start with 
+We start from the eigenvector equation 
 \eq{
-  a = \frac{\vec{\delta}^{\rm T} {\bf H} \vec{\delta}}{\vec{\delta}^{\rm T}\vec{\delta}}
+{\bf A} \vec{v} = \lambda \vec{v}.
 }
-and then decompose $\vec{\delta}$ into eigenvectors such that 
+Node 1 has only one neighbor, node 2, hence the first row of $\bf A$ only contains one non-zero element, $A_{1,2}=1$. Hence, the first row of the eigenvector equation reads
 \eq{
-\vec{\delta} = \sum c_n \vec{v_n}, 
+A_{1,2} v_2 = \lambda v_1. 
 }
-where the $C_n$ are coefficients, chosen such that the equation is satisfied for the $\vec{\delta}$ under consideration. Likewise, 
+Using $A_{1,2}=1$ we can write this as 
 \eq{
-\vec{\delta}^{\rm T} = \sum c_n \vec{v_n}^{\rm T}, 
+v_2 = \lambda v_1 = \lambda.
 }
-Substituting the expansion we find 
+The second row of the eigenvector equation has the form 
 \eq{
-  a = \frac{\left(\sum c_n \vec{v_n}^{\rm T}\right)  {\bf H} \left(\sum c_n \vec{v_n}\right)}{\left(\sum c_n \vec{v_n}^{\rm T}\right)\left(\sum c_n \vec{v_n}\right)}. 
+A_{2,1}v_1 + A_{2,4} v_4 = \lambda v_2, 
 }
-Pulling the $\bf H$ into the sum on it's right and using the eigenvector equation simplifies this to 
+and hence 
 \eq{
-  a = \frac{\left(\sum c_n \vec{v_n}^{\rm T}\right) \left(\sum \lambda_n c_n \vec{v_n}\right)}{\left(\sum c_n \vec{v_n}^{\rm T}\right)\left(\sum c_n \vec{v_n}\right)}. 
+v_1 + v_4 = \lambda v_2
 }
-Now let's consider the denominator of this fraction. To avoid confusion, we now call index in the second sum $m$. Then the denominator reads
+Substituting $v_1=1$ and $v_2=\lambda$ yields 
 \eq{
-\left(\sum_n c_n \vec{v_n}^{\rm T}\right)\left(\sum_m c_m \vec{v_m}\right) = \sum_{n,m} c_n c_m  \vec{v_n}^{\rm T} \vec{v_m} = \sum_{n,m} c_n c_m \delta_{nm} 
+1 + v_4 = \lambda^2   
 }
-Clearly the only non-zero terms in the sum will now be the ones where $n=m$ so we can use our vanishing-act summation rule to simplify the denominator to 
-\eq{
-\sum_{n,m} c_n c_m \delta_{nm}  = \sum (c_n)^2
-}
-Doing the same for the numerator yields 
-\eq{
-\left(\sum c_n \vec{v_n}^{\rm T}\right) \left(\sum \lambda_n c_n \vec{v_n}\right) = \sum (c_n)^2 \lambda_n. 
-}
-Substituting back we arrive at 
-\eq{
-a = \frac{\sum (c_n)^2 \lambda_n }{\sum (c_n)^2}
-}
-This equation has the form of a weighted average over the $\lambda_n$, we can write it as 
-\eq{
-a = \sum w_n \lambda_n 
-}
-where the weights are 
-\eq{
-w_n=\frac{{c_n}^2}{\sum_m {c_m}^2}.
-}
-As is all proper weighted averages the weights are positive and sum to 1.  To maximize the a weighted average, the entire weight must be placed on the highest term that we average over. Since we average over the $\lambda_n$ in this case. The highest term is the highest eigenvalue, let's call it $\lambda_1$. Hence we set the corresponding $c_1=1$ and $c_n=0$ for all $n\neq 1$. Now the amplification simplifies to  
-\eq{
-a = \lambda_1. 
-}
-We have shown that the reactivity of a system is identical to the largest eigenvalue of the symmetric (hermitian) part of it's Jacobian matrix. 
+and hence 
+\eq{v_4=\lambda^2-1}
 
-\subquestion
-A system is said to be reactive if it has positive reactivity, $a>0$. Is our predator-prey system from above reactive. Furthermore, would a system with the following Jacobian be reactive:
-\eqn{
-{\bf J} = \avecc{-8 & -8 \\ 2 & 0}.
-}
-
-\solution
-For the predator-prey example we already know the matrix $\bf H$. We now need to solve the eigenvector equation 
+To find $v_3$ we consider the third row of the Eigenvector equation
 \eq{
-\avecc{-2.5 & 0 \\ 0 & 0} \vec{v_n} = \lambda_n \vec{v_n}. 
+A_{3,4}v_4 = \lambda v_3.
 }
-Because the matrix is diagonal we can directly read off the eigenvalues,
+Solving for $v_3$ we find
 \eq{
-\lambda_1 = 0, \qqq \lambda_2 = -2.5 .
+v_3 = \frac{v_4}{\lambda} = \frac{\lambda^2 - 1}{\lambda} 
 }
-So the largest eigenvalue is 0, if we interpret the statement from the question strictly that makes the system non-reactive. Not even the worst possible perturbations grows initially exponentially. As the zero is just on the edge of what we consider reactive, we could also decide that we want to be more careful and check the next order of the Taylor expansion around the steady state for potential non-exponential growth of perturbations. 
-
-For the second example we compute the symmetric part of the Jacobian
+The element $v_3$ is positive when 
 \eq{
-{\bf H} = \avecc{-8 & 3 \\ 3 & 0}
+\frac{\lambda^2 - 1}{\lambda} > 0
 }
-and solve the characteristic polynomial
+If $\lambda$ is positive this yields the condition
+\eq{
+\lambda>1
+}
+For the case $\lambda<0$ we multiply both sides with $\lambda$, 
 \eqa{
-\lambda^2+8\lambda -9 &=& 0 \\
-(\lambda+4)^2 -9 - 16 &=& 0 \\
-(\lambda+4)^2 &=& 25 \\
-\lambda+4 &=& \pm \sqrt{25} \\
-\lambda &=& -4 \pm 5. \\
+\lambda^2 -1 &<& \lambda \\
+\lambda^2 -\lambda -1 &<& 0 \\
+(\lambda -1/2)^2 &<& 5/4 
 }
-Hence the eigenvalues are $\lambda_1=1$ and $\lambda_2=-9$. Since $\lambda_1>0$, the system is reactive. The worst possible small perturbation will initially grow like $\exp{\lambda_1 t}=\exp{t}$. 
+Since we are looking for negative values of $\lambda$ we only need to consider the negative square root, which leads us to the golden ratio's little brother
+\eq{
+\lambda  > \frac{1-\sqrt{5}}{2}. 
+}
+In summary, if $\lambda>1$ then $v_3>0$ and in this case all of the elements of our four nodes are positive. The nodes in this sparsely connected branch find it difficult to sustain large eigenvalues, if other parts of the network want a large eigenvalue our four nodes have to pull all in the same direction to keep up.  
+
+If $0<\lambda<1$ then $v_3<0$. Checking the other nodes reveals that the sign change occurs between node 3 and node 4. 
+
+If $(1-\sqrt{5})/2< \lambda < 0$ then $v_3>0$, but $v_2<0$ and $v_4<0$.  
+
+If $\lambda<(1-\sqrt{5})/2$ then then $v_3<0$. Now a sign chain occurs in every link of the branch. Since the branch is bipartite, alternating the signs in every step is a way to sustain relatively large negative eigenvalues. 
 
 \subquestion
-The reactivity of a system is at least as large as the reactivity found in any motif within the system. Explain why. 
+Consider also the case where instead of the branch a chain of 10 nodes is attached to the rest of the network. Compute the eigenvector elements for the nodes in the chain for the case $\lambda=9$. 
 
-\solution
-Suppose we have a large system, with a correspondingly large Jacobian matrix. To compute reactivity we need the symmetric part of the Jacobian $\bf H$. To compute the reactivity we within a motif we then consider the sub-matrix (the minor) $\bf S$ corresponding to set of nodes within the motif. Because $\bf H$ is symmetric Cauchy's interlacing theorem implies that the largest eigenvalue of $\bf H$ is greater or equal to the largest eigenvalues of $\bf S$. Hence the system's reactivity must be greater or equal to the reactivity computed within $\bf S$. 
+\solution 
+Let's number the nodes consecutively from the tip (node 1) to end that is attached to the rest of the network (node 10). We start by choosing the normalization so that 
+\eq{
+v_1=1.
+} 
 
-This is a very useful insight because it allows to obtain bounds for the reactivity of systems observed in nature, without monitoring all of their variables.  
+Node one only has one neighbor, node 2, and hence the first row of the eigenvector equation for this system reads 
+\eq{
+v_2 = \lambda v_1 = 9 
+}
+The eigenvector equation for the second row reads 
+\eqa{
+v_1 + V_3 &=& \lambda v_2 \\
+1 + v_3 &=& 81
+}
+so 
+\eq{
+v_3=80
+}
+From row three we get 
+\eq{
+v_2 + v_4 = \lambda v_2 
+}
+which we can write as 
+\eq{
+v_4 = 9 v_3 - v_2 
+}
+and generally 
+\eq{
+v_{i+1} = 9 v_i - v_{i-1} 
+}
+so 
+\eqa{
+v_4 &=& 9 v_3 - v_2 = 720 - 9 = 711 \\
+v_5 &=& 9 v_4 - v_3 = 6399 - 80 = 6319  \\
+v_6 &=& 9 v_5 - V_4 = 56871 - 711 = 56160 \\
+v_7 &=& 9 v_6 - v_5 = 505440 - 6319 = 499121 \\
+v_8 &=& 9 v_7 - v_6 = 4492089 - 56160 = 4435929\\
+v_9 &=& 9 v_8 - v_7 = 39923361 - 499121 = 39424240\\
+v_{10} &=& 9 v_9 - v_8 = 354818160 - 4435929 = 350382231 \\
+v_{11} &=& 9 v_{10} - v_9 = 3153440079 - 39424240 = 3114015839  
+}
+I have gone to 11 (the first node in the rest of the network) because now we can normalize the eigenvector so that it that $v_{11}=1$.
 
+Using this normalization we have 
+\eqa{
+v_1 &=& 3.2112875e-10 \\
+v_2 &=& 2.89015871e-9 \\
+v_3 &=& 2.56902996e-8 \\ 
+v_4 &=& 2.28322538e-7 \\
+v_5 &=& 0.00000202921 \\
+v_6 &=& 0.00001803459 \\ 
+v_7 &=& 0.0001602821 \\ 
+v_8 &=& 0.00142450431 \\ 
+v_9 &=& 0.01266025673 \\ 
+v_{10} &=& 0.1125178063 \\ 
+v_{11} &=& 1.0
+}
+So the eigenvector stays very well confined to the rest of the network. 
 
+Fun fact: One eigenvalue of the network is very close to the golden ratio. Networks that contain long chains typically have such an eigenvalue. 

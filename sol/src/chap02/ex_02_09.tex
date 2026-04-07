@@ -1,12 +1,12 @@
 
 \exercise{Writing large numbers}{4}
-In the previous lecture I wrote out the number $10^{317}$. This is the kind of task that makes a lazy person wonder how it can be done most efficiently.
+In the previous lecture I wrote out the number $10^{368}$. This is the kind of task that makes a lazy person wonder how it can be done most efficiently.
 Let's focus on the simpler example of writing a number with 23 zeros. Suppose I have only two operations at my disposal: a) write a zero, which takes 1 second b) copy and paste to double the number of zeros, which takes 2 seconds. Use Dijkstra's algorithm to find the fastest way of writing 23 zeros. (This may seem be a silly question but very similar optimization problems occur in Engineering.) 
 
 \solution
 This is an  example where the journey we are planning is not between different physical places but between states of a system. That means the places we visit will be states in which we have written different numbers of zeros. For example node 1 is a state where we have written written `0', while node 4 is a state where we have written `0000'. Now we can use Dijkstra's algorithm as usual. The solution is shown on the next page.
 
-It takes 11s to write the 23 zeroes, Using the pathfinding step we can see that the number of zeros (in reverse order of time is)
+It takes 11 s to write the 23 zeroes, Using the pathfinding step we can see that the number of zeros (in reverse order of time is)
 \begin{center}
 23,22,11,10,5,4,3,2,1 
 \end{center}

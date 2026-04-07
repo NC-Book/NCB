@@ -43,7 +43,7 @@ G_{\rm a}=\frac{G(\tilde{A}y)}{G(y)}, \qqq Q_{\rm a}=\frac{Q(\tilde{A}y)}{Q(y)},
 where $\tilde{A}=\tilde{c}x+\tilde{r}$ and $\tilde{c}=1-\tilde{r}=yG'(y)/z=yQ(y)$. 
 
 \solution
-{\bf Number of nodes.} To find the equation for $N$ we need to work out what proportion of the network is removed in the attack: 
+\paragraph{Number of nodes.} To find the equation for $N$ we need to work out what proportion of the network is removed in the attack: 
 \eq{
 r=R(1)=G(1)-G(y) = 1-G(y),  
 }
@@ -56,7 +56,7 @@ Multiplying this surviving fraction with the total number of nodes gives us the 
 N_{\rm a}=cN=G(y)N.
 }
 
-{\bf Mean degree.} To find the result we use the respective result for degree targeted attacks 
+\paragraph{Mean degree.} To find the result we use the respective result for degree targeted attacks 
 \eq{z_{\rm a}=\frac{z\tilde{c}^2}{c}.} 
 In our calculation of the surviving number of nodes we have just seen $c=G(y)$ and from our analysis of the degree-targeted attack we know
 \eq{
@@ -102,7 +102,7 @@ z_{\rm a} &=& \left.\frac{\partial}{\partial x} \frac{G(\tilde{A}y)}{G(y)} \righ
 }
 where we used $\tilde{A}(1)=1$ and $\tilde{A}'(1)=\tilde{c}$ and $\tilde{c}=yQ(y)$, derived above.
 
-{\bf Excess degree. } As for the mean degree there are two ways to reach the desired result. First, we can use the equation for the excess degree after a degree targeted attack $q_{\rm a}=q-R''(1)/z$. We start by computing the second derivative of $R$,
+\paragraph{Excess degree.} As for the mean degree there are two ways to reach the desired result. First, we can use the equation for the excess degree after a degree targeted attack $q_{\rm a}=q-R''(1)/z$. We start by computing the second derivative of $R$,
 \eqa{
 R'' &=& \frac{\partial^2}{{\partial x}^2} (G-G(xy)) \\
   &=& G''-y^2G''(xy) 
@@ -118,7 +118,7 @@ q_{\rm a} &=& q-\frac{R''(1)}{z} \\
 }
 where we used $Q'=G''/z$ in the last step, which follows from $Q=G'/z$. 
 
-Alternatively we can first derive the equation for the excess degree generating function $Q_{\rm a}=Q(\tilde{A}y)/Q(y)$ and then compute the mean excess degree in the usual way,
+Alternatively, we can first derive the equation for the excess degree generating function $Q_{\rm a}=Q(\tilde{A}y)/Q(y)$ and then compute the mean excess degree in the usual way,
 \eqa{
 q_{\rm a}&=&Q_{\rm a}'(1) \\
   &=& \left.\frac{\partial}{\partial x} \frac{Q(\tilde{A}y)}{Q(y)}  \right|_{x=1} \\
@@ -130,7 +130,7 @@ q_{\rm a}&=&Q_{\rm a}'(1) \\
 }
 which is again the desired result. 
 
-{\bf Degree generating function.} Here we use the result from degree-targeted attacks, which tells us
+\paragraph{Degree generating function.} Here we use the result from degree-targeted attacks, which tells us
 \eqa{ 
 G_{\rm a} &=& \frac{G(\tilde{A})-R(\tilde{A})}{c} \\
   &=& \frac{G(\tilde{A})-(G(\tilde{A})-G(\tilde{A}y))}{c} \\
@@ -138,7 +138,7 @@ G_{\rm a} &=& \frac{G(\tilde{A})-R(\tilde{A})}{c} \\
   &=& \frac{G(\tilde{A}y))}{G(y)}. 
 }
 
-{\bf Excess degree generating function.} Here we have again the choice between two different ways. Using the result from degree-targeted attacks we can write
+\paragraph{Excess degree generating function.} Here we have again the choice between two different ways. Using the result from degree-targeted attacks we can write
 \eqa{
 Q_{\rm a} &=& \frac{G'(\tilde{A})-R'(\tilde{A})}{z\tilde{c}} \\
   &=& \frac{G'(\tilde{A})-(G'(\tilde{A})-G'(\tilde{A}y))}{z\tilde{c}} \\

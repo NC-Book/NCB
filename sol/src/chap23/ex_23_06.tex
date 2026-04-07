@@ -1,0 +1,78 @@
+
+
+\exercise{Cat model}{3}
+A cat roams freely in the flat shown below. At rate $1$ the cat becomes bored of the room she is currently in, then she picks one of the doors of the current room at random and walks through it. Determine the probability $x_n$ that the cat is in room $n$ in the stationary state. 
+\begin{center}
+\includegraphics[width=0.4\textwidth]{flat}
+\end{center}
+
+\solution 
+Note that the cat does not follow our physical diffusion process. 
+The differential equations are 
+\eqa{
+\dot{x}_1 &=& -x_1 + x_2/2 + x_5/3 \\
+\dot{x}_2 &=& -x_2 + x_1/2 + x_6/3 \\
+\dot{x}_3 &=& -x_3 + x_6/3 \\
+\dot{x}_4 &=& -x_4 + x_5/3 \\
+\dot{x}_5 &=& -x_5 + x_1/2 + x_4 + x_6/3 \\
+\dot{x}_6 &=& -x_6 + x_2/2 + x_3 + x_5/3 
+}
+So the Jacobian is 
+\eq{
+{\bf J} = \avecccccc{
+  -1 & 1/2 & 0  &  0 & 1/3 & 0   \\
+ 1/2 & -1  & 0  &  0 & 0   & 1/3 \\
+ 0   &  0  & -1 &  0 & 0   & 1/3 \\
+ 0   &  0  & 0  & -1 & 1/3 & 0 \\
+ 1/2 &  0  & 0  &  1 & -1  & 1/3 \\
+ 0   & 1/2 & 1  &  0 & 1/3 & -1 }
+}
+Because the number of walkers (1 cat) is conserved this is still a Laplacian matrix. (You can see that the columns sum to zero and all off-diagonal elements have the same sign, which are the characteristics we need.) 
+
+Now how do we solve the system. Note that although the system has a cycle the our cat does not have a preference for walking clockwise or counter-clockwise around the flat. So we suspect that the system still has detailed balance in the stationary state. Let's use this. 
+
+The detailed balance condition between room 1 and 2 is 
+\eq{
+\frac12 x_1 = \frac12 x_2
+}
+and hence 
+\eq{
+x_1=x_2
+}
+Between 2 and 6 we have the condition 
+\eq{
+\frac12 x_2 = \frac13 x_6 
+}
+so 
+\eq{
+x_6 = \frac{3}{2} x_2 = \frac{3}{2} x_1
+}
+Between 6 and 3 we have 
+\eq{
+x_3 = \frac13 x_6 = \frac{1}{2} x_1
+}
+Between 5 and 6 the condition is 
+\eq{
+\frac13 x_5 = \frac13 x_6 
+}
+and hence 
+\eq{
+x_5=x_6 = \frac{3}{2} x_1
+}
+If we were right about the detailed balance the condition between 5 and 1 should now be met automatically. Let's check 
+\eq{
+\frac13 x_5 = \frac12 x_1 
+}
+substituting our previous result reveals that this is true, so yes, the detailed balance assumption works out. Now we only have one room left to go we consider the link between 4 and 5, 
+\eq{
+x_4 = \frac13 x_5 = \frac{1}{2} x_1
+}
+The probabilities for the individual rooms should add up to 1 so 
+\eq{
+1 = \left(1+1+\frac12+\frac12+\frac32+\frac32\right) x_1 = 6x_1  
+}
+which tells us 
+\eq{
+x_1=x_2 = \frac16,\quad x_3=x_4=\frac{1}{12},\quad x_5=x_6=\frac14  
+}
+To verify these results you could substitute them into the differential equation or multiply the Jacobian with the vector $\vec{x}$.

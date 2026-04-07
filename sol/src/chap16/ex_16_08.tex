@@ -1,0 +1,48 @@
+\exercise{Spruce Budworm\label{xsBrainBudworm}}{4}
+The spruce budworm is a moth that feeds on the needles of spruce trees, and can occur in large outbreaks. The dynamics is modeled by 
+\eqn{
+\dot{x} = x(1-x/K) - x^2/(1+x^2)
+}
+where $K$ is a parameter that indicates the mass of spruce needles in the area. 
+Analyze this system to determine whether this model can explain the sudden outbreaks. 
+
+\solution
+A good way to start is to compute the steady states. We can immediately spot $x_1^*=0$. Dividing this steady state out of the equation leaves us with the condition
+\eq{
+0 = 1- \frac{x}{K} - \frac{x}{1+x^2}
+}
+We can multiply the denominator, but this leaves us with 
+\eq{
+0 = (1+x^2) - \frac{x(1+x^2)}{K} -x 
+}
+or equivalently 
+\eq{
+0= (x^2 -x + 1) K - (x^3+x) 
+}
+We have created a third order polynomial. In principle this can be factorized, but this is not fun. So let's try something else we can start by analyzing the stability of the trivial steady state. 
+
+We compute the derivative of the equation of motion
+\eqa{
+f_{\rm x} &=& \left. \partial_x  \left( x-\frac{x^2}{K} - \frac{x^2}{1+x^2} \right)\right|_{x=0} \\
+&=& \left.   \left(  1-\frac{2x}{K} - \frac{2x}{1+x^2} + \frac{2x^3}{(1+x^2)^2}  \right)\right|_{x=0} \\
+&=& \left.   \left(  1-\frac{2x}{K}  - \frac{2x(1+x^2)}{(1+x^2)^2} + \frac{2x^3}{(1+x^2)^2}  \right)\right|_{x=0} \\
+&=& \left.   \left( 1-\frac{2x}{K}  - \frac{2x}{(1+x^2)^2}   \right)\right|_{x=0} \\
+&=& 1 \\
+}
+Of course it would have been quicker to substitute the zero without first simplifying the remaining fractions, but I was thinking that we might need the term again. 
+
+So there are no bifurcations of the trivial steady state, it is always unstable. (Our hope here was that a subcritical loss of stability of the budworm-free state could explain the outbreaks, but no luck.)
+
+OK, let's return to our cubic equation for the steady states. Here it is again:
+\eq{
+0= (x^2 -x + 1) K - (x^3+x) 
+}
+We can easily solve this for $K$, which results in 
+\eq{
+K=\frac{x^3+x}{x^2 -x + 1}
+}
+
+
+
+
+FINISH ....

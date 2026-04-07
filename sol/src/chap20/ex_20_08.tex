@@ -1,0 +1,175 @@
+\exercise{The star and the snowflake}{3}
+Consider a node of degree 100, whose neighbors have degree 1.  
+
+\subquestion  
+Find the eigenvalues and eigenvectors of the network's adjacency matrix. 
+
+
+\solution 
+The main difficulty in this exercise is that the $101 \times 101$ adjacency matrix, $\bf A$, does not fit well on a page. So we follow the advice and first consider the smaller system of 4 nodes. Also let's give names to the nodes: We call the node of degree 3 the `hub', and we call nodes of degree 1 the `spokes'.
+
+The adjacency matrix for the four node system is 
+\eq{
+{\bf A} = \avecccc{ 0 & 1 & 1 & 1 \\ 1 & 0 & 0 & 0 \\ 1 & 0 & 0 & 0 \\ 1 & 0 & 0 & 0  }
+}
+Where we have chosen the hub to be node 1 (It'S the most important one, of course it is node 1 ;o)  
+
+An elegant way to work out the eigenvalues is as follows: We note that the network is bipartite, which suggests that it is a good idea to consider the two-step adjacency matrix, 
+\eq{
+{\bf A_2} = {\bf A}^2 = \avecccc{ 3 & 0 & 0 & 0 \\ 0 & 1 & 1 & 1 \\ 0 & 1 & 1 & 1 \\ 0 & 1 & 1 & 1  }
+}
+I have not actually computed this matrix as a matrix product, but rather used an intuitive understanding of the walks. If we go on a walk of length 2 from the hub, we have the choice of three spokes to walk to but all walks will lead us back to the hub, so there are 3 ways to get back to the hub, and no way to end up elsewhere. If we start our two step walk from a spoke there is exactly one walk to takes us to every spoke, but no way to end up in the hub. Because we have a lone diagonal element in the first row we see that one eigenvalue must of the two step adjacency must by 3. So this gives us the eigenvalues 
+\eq{
+\lambda_1=\sqrt{3} \qqq \lambda_4=-\sqrt{3}
+} 
+We could also work out the other eigenvalues from the two-step network but there is an easier way. Let's delete the hub from our network. In this case we are left with three spokes which are now isolated. So after removing the hub the network has 3 zero eigenvalues, so by the interlacing theorem the original network with the hub must have had two zero eigenvalues. Which were the two eigenvalues that we were missing: 
+\eq{
+\lambda_2=\lambda_3=0 
+}
+Now the eigenvalues for the full star with 100 spokes is very easy. It's two step matrix will have a  diagonal element of 100 that is alone in a row. This gives us an eigenvalue of 100 for the two-step matrix and hence eigenvalues 
+\eq{
+\lambda_1=10 \qqq \lambda_{101} = -10 
+}
+for the adjacency. If we remove the hub from our star we have 100 isolated nodes so 100 times an eigenvalue of 0 which implies that our original network must have had 99 zeros, which are the eigenvalues 2 to 100 that we are still missing. 
+
+Of course we could have guessed the 99 zeros also in another way: Consider a pair of spokes and the hub. Together they form a 3-chain, where the rest of the network only attaches to the center node, in other words every pair of spokes together with the hub form a cherry motif. We know that cherry motifs have an eigenvalue $\lambda=0$ with the corresponding eigenvectors such as $\vec{v}=(0,1,-1)^{\rm T}$ on the cherry, and zero eigenvalue elements in the rest of the network.
+
+In the 101-node star it is not immediately obvious how many of these zero eigenvalues we get from the cherries. While we can form 4950 distinct cherry motifs they can't all give us linearly independent eigenvectors. Fortunately we know already from our interlacing argument that there must be 99 independent eigenvectors of this type. Alternatively, we could consider these eigenvectors first in the 4-node star, which would put us immediately on the right track. 
+
+At this point we know all 101 eigenvalues, and 99 of the eigenvectors. only the two even symmetry eigenvectors are missing. Because of the even symmetry we already know that we must have identical eigenvector elements on all the spokes.
+
+So in the four node network we could use the Ansatz 
+\eq{
+\avecccc{ 0 & 1 & 1 & 1 \\ 1 & 0 & 0 & 0 \\ 1 & 0 & 0 & 0 \\ 1 & 0 & 0 & 0  } \avec{a \\ b \\ b \\ b} = \lambda \avec{a \\ b \\ b \\ b}
+}
+each of the four rows in these equation gives us a condition, but we have only two unknowns $a$, $b$. Still there is a solution because the conditions from row 2 to 4 are identical. So we are left with the conditions 
+\eqa{
+3b &=& \lambda a, \\
+a &=& \lambda b.
+}
+By the same logic the 101-node star yields the conditions 
+\eqa{
+100b &=& \lambda a, \\
+a &=& \lambda b.
+}
+We can set the spoke element $b=1$ and then the hub element will be $a=10$ for $\lambda=10$ and $a=-10$ for $\lambda=-10$. So the two even symmetry eigenvectors are
+\eqa{
+\vec{v_1} = (10,1,1,\ldots)^{\rm T} \\
+\vec{v_1101} = (-10,1,1,\ldots)^{\rm T} 
+}
+
+\subquestion 
+Bonus: Take the 100 nodes of degree 1 and attach two nodes of degree 1 to each of them. Find all eigenvalues and eigenvectors. 
+
+\solution
+Since we know all the tricks we can do this now. We continue to call the node of degree 100 the hub. The nodes of degree 3 are the spokes. And the nodes of degree 1 are the rim. 
+
+If we remove the hub we are left a network that consists of 100 3-chains. We know that the eigenvalues of a single 3-chain are $0$, $\sqrt{2}$, and $-\sqrt{2}$. So our network of 100 3-chains has 100 eigenvalues that are zero, 100 eigenvalues that are $\sqrt{2}$, and 100 eigenvalues this are $-\sqrt{2}$. So by the interlacing theorem our original network has 99 eigenvalues that are 0, 99 eigenvalues that are $\sqrt{2}$ and 99 eigenvalues that are -$\sqrt{2}$. So we know 297 eigenvalues already. 
+
+The 99 eigenvalues of zero originate from the odd-symmetry eigenvector of three-chain and we know that odd-symmetry eigenvectors stay confined in their motifs. Hence we can just take eigenvector elements from one of the three chains and fill the rest of the eigenvector up with zeros. For example 
+\eqa{
+\vec{v_{102}}&=&(0,-1,0,1,0,0,0,0,0,0,0,\ldots)^{\rm T} \\
+\vec{v_{103}}&=&(0,0,0,0,-1,0,1,0,0,0,0,\ldots)^{\rm T} \\
+\vec{v_{104}}&=&(0,0,0,0,0,0,0,-1,0,1,0,\ldots)^{\rm T} \\
+  &\vdots& 
+}
+where I have assumed that node 1 is the hub, node 3 is the first spoke, and node 2 and 4 are the rim nodes attached to the first spoke, so that (2)-(3)-(4) is a 3-chain where (3) attaches to the hub, and so on. I have also anticipated that the 99 eigenvalues of 0 will be the middle 99 of our 301 eigenvalues so that the first of them is eigenvalue number 102. 
+
+Thinking of these eigenvectors that are localized in the branches we might notice something interesting. We have 100 branches in total, and in every one of them we can construct a localized eigenvector with eigenvalue 0. This actually gives us 100 eigenvalues of 0 and not just 99. So, let's add one more 
+\eq{
+\lambda_{204} = 0 \qqq \vec{v_{204}} = (0,\ldots,0,-1,0,1)^{\rm T}
+}
+
+Before we go on with eigenvectors, let's find our 3 eigenvalues that we are still missing. At this point I suspect that we are missing even-symmetry eigenvectors, so let's try to find some eigenvectors where all the rim nodes have an eigenvector element of 1, all the spokes have an eigenvector element of $a$ and the hub has an eigenvector element of $b$. We could use this to make an ansatz where we multiply a 301-element vector with a $301 \times 301$ matrix. But we already know that most of the conditions will be redundant, so let's not go there. Instead we write only one condition for every type of node.
+
+So let's look at the row of the eigenvector equation for the hub. On one side of the equation we find the $\lambda$ times the eigenvector element of the hub, which we called $b$. On the other side we have a sum we have a sum over the hubs neighbors which are the 100 spokes with their elements $a$. Hence,
+\eq{
+100 a = \lambda b 
+}
+If we look at a spoke node, we have $\lambda a$ on one side of the equation and the sum of all the neighbors--one hub element $b$ and two rim elements of 1--on the other side. Hence,
+\eq{
+b+2= \lambda a 
+}
+If we look at a rim element we have $\lambda$ on one side of the equation, since the rim's own elements are ones,  and the sum over neighbors--only one spoke element, $a$--on the other. Hence, 
+\eq{
+a=\lambda 
+}
+In summary 
+\eqa{
+100 a &=& \lambda b \\
+b+2 &=& \lambda a \\
+a &=& \lambda
+}
+We can even write this in matrix form 
+\eq{
+\aveccc{0 & 100 & 0 \\ 1 & 0 & 2 \\ 0 & 1 & 0 } \avec{b \\ a \\ 1}  = \lambda \avec{b \\ a \\ 1}
+}
+Actually, we can interpret the matrix that appears here as a an adjacency matrix of an new reduced network. This network has only three nodes (one representative of every of the three classes) and it is a directed graph. However, it is still bipartite, so we expect symmetric eigenvalues. We could just solve the quadratic polynomial from the system of three equations, but it is more fun to do this with networks insight. 
+
+Because od the bipartiteness we expect an eigenvalue of zero. Looking at the matrix we see that $a=0$ will ensure the first and last element of the vector are zero after multiplication. We have already set the last element to 1, this leaves only $b$. To make also the central element zero after the multiplication we must meet the condition $b+2=0$ so $b=-2$. Hence $(0,-2,1)^{\rm T}$ is an eigenvector of the reduced network. and the corresponding eigenvalue is 0. For the full network that means we have 
+\eq{
+\lambda_{201} = 0 \qqq \vec{v_{101}}=(-2,1,0,1,1,0,1,1,0,1,\ldots)
+}
+where the sequence 1,0,1 repeats for the rest of the vector. All rim nodes have the element 1, all spokes 0 and the hub -2.
+
+The other two remaining eigenvalues of our directed 3-chain have squares that add up to the combined wight of walks of length two. The walk between node 1 and node two has weight $1\cdot100=100$ and the walk between 2 and three has weight $2\times 1$ and hence 
+\eq{
+2 \lambda^2 = 2 \cdot (100+2) 
+}
+hence the two eigenvalues are 
+\eq{
+\lambda_1 = \sqrt{102} \qqq \lambda_{301} = -\sqrt{102}
+}
+Because we still have a hub of degree 100 it is not surprising to get a largest eigenvalue that is slightly larger than 10. 
+
+From our equation system above we can see that $a=\lambda$ so \eq{
+a= \pm \sqrt{102}
+}
+and also
+\eq{
+b+2 = a \lambda = \lambda^2 = 102
+}
+so $b=100$ for both eigenvectors. Hence the eigenvectors are 
+\eqa{
+\vec{v_1} &=& (100,1,\sqrt{102},1,1,\sqrt{102},1,\ldots)^{\rm T} \\
+\vec{v_301} &=& (100,1,-\sqrt{102},1,1,-\sqrt{102},1,\ldots)^{\rm T} \\
+}
+We are still missing the eigenvectors for the 99 eigenvalues of $\sqrt{2}$ and 99 eigenvalues of $-\sqrt{2}$. These eigenvectors stem from the even-symmetry eigenvectors in the 3-chains that we obtained when we deleted the central node.
+Within the branches these eigenvectors have the form $(1,\pm \sqrt{2},1)^{\rm T}$, so within the branch these already obey the eigenvector equation. But normally these even-symmetry eigenvectors should spill outside their motif if we connect other nodes. We also know that the eigenvectors we are looking for must be an odd-symmetry eigenvector because we have found all even-symmetry eigenvectors already. Any odd-symmetry eigenvector must have a zero element on the hub.
+
+So here is a plan: We pick one branch and assign it the eigenvector elements $1,\sqrt{2},1$, where the ones go on the rim nodes. Then we pick another branch and assign $-1,-\sqrt{2},-1$ to it's three nodes. All other branches and the hub are set to zero. That the two branches will obey the eigenvector equation with eigenvalue $\sqrt{2}$ and on the hub node whatever spills out of one branch will be canceled by what spills out the other. So after mutliplication we the hub will have an element of 0, which is what we want. For example if we picking the first branch and the second one gives us the eigenvector 
+\eq{
+\vec{v_2} = (0,1,\sqrt{2},1,-1,-\sqrt{2},-1,0,\ldots)^{\rm T}
+}
+where all further elements are zero. Because there are 100 branches we can for example always pick the first branch to put the positive elements and one of the other 99 to put the negative elements which gives us 99 independent eigenvectors. 
+
+We can then repeat the same procedure for the for the eigenvector $-\sqrt{2}$, which gives us the last 99 eigenvectors. The results are summarized in the table below. 
+
+\makeatletter
+
+\begin{tabular}{r l l}
+$i$ & $\lambda_i$ & $\vec{v_i}$ \\\hline
+$1$ & $\sqrt{102}$ & $(100; 1,\sqrt{102},1; 1,\sqrt{102},1; \ldots; 1,\sqrt{102},1)^{\rm T}$ \\
+$2$ & $\sqrt{2}$ & $(0; 1,\sqrt{2},1; -1,-\sqrt{2},-1; 0,0,0; \ldots)^{\rm T}$ \\
+\vdots & \vdots & \vdots \\
+$100$ & $\sqrt{2}$ & $(0; 1,\sqrt{2},1; 0,0,0; \ldots; -1,-\sqrt{2},-1)^{\rm T}$ \\
+$101$ & $0$ & $(0; 1,0,-1; 0,0,0; \ldots; 0,0,0)^{\rm T}$ \\
+\vdots & \vdots & \vdots \\
+$200$ & $0$ & $(0; 0,0,0; \ldots; 0,0,0; 1,0,-1)^{\rm T}$ \\
+$201$ & $0$ & $(-2; 1,0,1; 1,0,1; \ldots; 1,0,1)^{\rm T}$ \\
+$202$ & $\sqrt{2}$ & $(0; 1,-\sqrt{2},1; -1,\sqrt{2},-1; 0,0,0; \ldots)^{\rm T}$ \\
+\vdots & \vdots & \vdots \\
+$300$ & $\sqrt{2}$ & $(0; 1,-\sqrt{2},1; 0,0,0; \ldots; -1,\sqrt{2},-1)^{\rm T}$ \\
+$301$ & $-\sqrt{102}$ & $(100; 1,-\sqrt{102},1; 1,-\sqrt{102},1; \ldots;1,-\sqrt{102},1)^{\rm T}$
+\end{tabular}
+
+As a final little test we can check that the eigenvalues add up correctly. 
+Adding the eigenvalues yields 
+\eq{
+\sqrt{102}+99\cdot \sqrt{2}+101 \cdot 0 - 99 \cdot (\sqrt{2}) - \sqrt{102} = 0
+}
+as it should be, and if we add the squares of eigenvalues
+\eq{
+102 + 99 \cdot 2 + 101 \cdot 0 + 99 \cdot 2 + 102 = 600
+}
+which is twice the number of links, as expected.

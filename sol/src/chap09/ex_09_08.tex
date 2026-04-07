@@ -8,7 +8,7 @@ a) $\exp{x}$\qqq  b) $1/(1+x)$\qqq c) $1/(1-x)$
 \solution
 To find the series expansion we need to find all the Taylor coefficients. There is an infinite number of them, but because maths is so nicely (and massively) parallel we can find all of them in one go. 
 
-Let's start with part (a). As ingredients for the solution we need the derivatives of the function 
+\paragraph{Part (a).}Let's start with part (a). As ingredients for the solution we need the derivatives of the function 
 \eq{
 f(x)=\exp{x}
 }
@@ -36,7 +36,7 @@ Hence the series expansion is
 }
 of course, by now, this expansion should be an old friend of yours, but good to know that we can just derive again should we ever forget it. 
 
-For part (b) the derivatives are a little bit more complicated. We compute the first few to get an idea. The easiest way to do this is to write the function as 
+\paragraph{Part (b).}For part (b) the derivatives are a little bit more complicated. We compute the first few to get an idea. The easiest way to do this is to write the function as 
 \eq{
 f(x)=\frac{1}{1+x} = (1+x)^{-1}.
 }
@@ -52,7 +52,7 @@ So what's happening here? Every time we differentiate the exponent on $(1+x)$ de
 f^{(k)}(x)= (-1)^k k! (1+x)^{-(k+1)}
 }
 
-For the purpose of this exercise spotting the pattern in this way is all we need. If we were doing proper maths, we would also want to prove that this is indeed correct. So just in case you want to do this, you can do a proof by induction. (If not just skip ahead to the next paragraph.) We start by proving that our identified pattern is correct for $n=0$, which is straight forward
+\paragraph{Proof by induction.}For the purpose of this exercise spotting the pattern in this way is all we need. If we were doing proper maths, we would also want to prove that this is indeed correct. So just in case you want to do this, you can do a proof by induction. (If not just skip ahead to the next paragraph.) We start by proving that our identified pattern is correct for $n=0$, which is straight forward
 \eq{
 f^{0}(x)=(-1)^0 0! (1+x)^{-(0+1)} = (1+x)^{-1}
 }
@@ -74,7 +74,7 @@ f^{(\hat{h})} = (-1)^{\hat{k}} \hat{k}! (1+x)^{-(\hat{k}+1)}.
 }
 So, what have we actually shown? We know that our pattern is correct for $k=0$. We also proved that if it is correct for some $k$ it is also correct for $k+1$, so the fact that it's correct for $k=0$ implies that it must also be correct for $k=1$, and that in turn implies that it must be correct for $k=2$. and so on. The whole chain unravels to infinity. We have proved that the identified pattern is correct. 
 
-If you skipped the previous paragraph, welcome back. If not I hope you enjoyed this little excursion. In any case we now know the pattern that the derivatives of $f$ follow and we can plug them into our coefficient formula,
+\paragraph{Conclusion part (b).}If you skipped the previous paragraph, welcome back. If not I hope you enjoyed this little excursion. In any case we now know the pattern that the derivatives of $f$ follow and we can plug them into our coefficient formula,
 \eq{
 c_k = \frac{1}{k!}f^{(k)}(0) = \frac{1}{k!} (-1)^k k! (1+0)^{-(k+1)} = (-1)^k 
 }
@@ -84,7 +84,7 @@ f(x)=\frac{1}{1+x}=\sum c_k x^k = \sum (-1)^k x^k = 1-x+x^2-x^3+\ldots
 }
 as we claimed in the chapter text.
 
-Finally part (c) is very similar to part (b), we write 
+\paragraph{Part (c).}Finally part (c) is very similar to part (b), we write 
 \eq{
 f(x)=\frac{1}{1-x} = (1-x)^{-1}.
 }

@@ -1,0 +1,59 @@
+
+\exercise{An unusual case\label{exBrainUnusual}}{4}
+Determine the type of the bifurcation that occurs in the system
+\eqn{
+\dot{x}=(x-1-p)(2p-x)
+}
+Check your answer carefully.
+
+\solution 
+First we need to find the bifurcation. In this case this is very easy as the equation of motion is already factorized. Hence the steady states are 
+\eqa{
+x_1^* &=& 1+p \\
+x_2^* &=& 2p
+}
+Because we don't see any square roots the bifurcation probably won't be fold. Also since we only have one variable it can't be a Hopf. Moreover considering the steady states we see that the two branches cross in $p=1$, $x^=2$. This sort of crossing looks very much like a transcritical bifurcation, except for one small issue: neither of the two steady states remains pinned at a particular value. 
+
+In this chapter we have shown that pinning of a steady state to a particular value leads to transcritical bifurcations, but is the reverse true as well? Does the transcritical bifurcation actually require the pinning. 
+
+Let's check this carefully. the right side of our differential equation is 
+\eq{
+f(x,p) = (x-1-p)(2p-x)
+}
+We claim that at $p=1$, $x^*=2$ is a steady state. Indeed, 
+\eq{
+f(2,1) = (2-1-1)(2\cdot 1 -2) = (0)(0) = 0. \quad \mbox{(Stationarity Condition)}
+}
+Moreover we check
+\eqa{
+f_{\rm x}(2,1) &=& \left. \partial_x (x-1-p)(2p-x) \right|_{x=2,p=1} \\
+  &=& \left. (2p-x)-(x-1-p) \right|_{x=2,p=1} \\
+  &=& 0-0 = 0
+}
+which confirms that $p=1$ is a bifurcation. Normally we would expect this to indicate a fold bifurcation, so let's show that one of the generaicity conditions of the fold is broken. We compute
+\eqa{
+f_{\rm p} &=&   \left. \partial_p (x-1-p)(2p-x) \right|_{x=2,p=1} \\ 
+  &=&   \left. -(2p-x)+2(x-1-p) \right|_{x=2,p=1} \\
+  &=&  -0+2(0) = 0
+}
+Hence the genericity condition of the fold bifurcation $f_{\rm p}\neq 0$ is broken. As we already suspected, this proves that this in not the fold. The two conditions 
+\eq{
+   f_{\rm p}=0 \qqq f_{\rm x}=0 
+}
+are the bifurcation conditions of the transcritical bifurcation, but is it really a transcritical or something more special? We can find out by testing the genericity conditions of the transcritical bifurcation, $f_{\rm xp}\neq 0$ and $f_{xx}\neq 0$. 
+
+We already computed 
+\eq{
+\partial_xf = (2p-x)-(x-1-p)
+}
+which we can now use to compute 
+\eqa{
+f_{\rm xx} &=& \left. \partial_x (2p-x)-(x-1-p) \right|_{x=2,p=1} \\
+  &=& -2 \neq 0
+}
+and also 
+\eqa{
+f_{\rm xp} &=& \left. \partial_p (2p-x)-(x-1-p) \right|_{x=2,p=1} \\
+  &=& 2-1 = 1 \neq 0
+}
+as the two genericity conditions are met, this really is a transcritical bifurcation, albeit an unusual one. 

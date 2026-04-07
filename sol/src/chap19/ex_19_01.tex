@@ -1,27 +1,101 @@
-
-\exercise{Spectral shift}{1} 
-We claimed that adding the identity matrix $\bf I$ to a matrix $\bf A$ shifts the spectrum of $\bf A$ by 1. 
-More generally we can say the following: Assume we have two matrices  $\bf K$ and ${\bf L}$, such that 
-\eq{{\bf L}={\bf K}+c {\bf I}.} 
-Then for every eigenvalue $\lambda$ of $\bf K$ there is an eigenvalue $\lambda+c$ of $\bf L$. The eigenvectors corresponding to these to eigenvalues are identical. 
-
-Can you actually prove this?
-(Hint: You want to show ${\bf K}\vec{v}=\kappa \vec{v}$, where $\kappa=\lambda+c$. You define $\vec{v}$ as an eigenvector of $\bf L$ with eigenvalue $\lambda$.)
-
-\solution
-Let $\vec{v}$ be an eigenvector of $\bf L$ with eigenvalue $\lambda$, ie.~${\bf L}\vec{v}=\lambda \vec{v}$ 
-We now write 
-\eqa{
-{\bf K}\vec{v} &=& ({\bf L} + c {\bf I})\vec{v} \\
-   &=& {\bf L}\vec{v} + c {\bf I}\vec{v} \\
-   &=& \lambda\vec{v} + c \vec{v} \\
-   &=& (\lambda + c) \vec{v} \\
-   &=& \kappa \vec{v}
+\exercise{Eigenvectors}{1}
+For the Jacobian below, compute the eigenvalues $\lambda_n$, left eigenvectors $\vec{w_n}^\dag$ and right eigenvectors $\vec{v_n}$, such that $\vec{w_n}^{\dag}\vec{v_m}=\delta_{n,m}$. Then express the $\vec{x}=(0,1)^{\rm T}$ as a linear combination of $\vec{v_1}$ and $\vec{v_2}$. 
+\eqn{
+{\bf J} = \avecc{-1 & 3 \\ 0 & -2}
 }
-We have shown 
+
+
+\solution 
+Since the matrix is triangular we can read off the eigenvalues $\lambda_1=-1$ and $\lambda_2=-2$ straight away. To find the first right eigenvector we solve 
 \eq{
-{\bf B}\vec{v} = (\lambda + \alpha) \vec{v} 
+\avecc{-1 & 3 \\ 0 & -2} \avec{a\\ b} = - \avec{a \\ b}
 }
-which means that $\vec{v}$ is an eigenvector of $\bf K$ with eigenvalue $\lambda+c$. So every eigenvector of $\bf L$ is also an eigenvector of $\bf K$ with the eigenvalue shifted by $c$.
+Note that in this case the equation for $b$ is 
+\eq{
+ -2b = b
+}
+which can only be solved with $b=0$, so we set $a=1$ which yields the solution 
+\eq{
+\vec{v_1} = \avec{1 \\ 0}.
+}
+For the second right eigenvector we solve 
+\eq{
+\avecc{-1 & 3 \\ 0 & -2} \avec{a\\ b} = -2 \avec{a \\ b}
+}
+Now $b=1$ solves the lower row, and we are left with the upper row
+\eqa{
+-a + 3 &=& -2a \\
+  a &=& -3
+}
+Hence the second right eigenvector is 
+\eq{
+\vec{v_2} = \avec{-3\\ 1}.
+}
+To compute the first left eigenvector we need to solve 
+\eq{
+(a,b) \avecc{-1 & 3 \\ 0 & -2} = -(a,b)
+}
+Consider the left and the right column separately leads to the equations 
+\eqa{ 
+-a + 0b &=& -a \\
+3a-2b &=& -b
+}
+the first equation just tells us that we can chose $a$ as we want so we set $a=1$. Now the remaining equation reads 
+\eqa{
+3-2b &=& -b \\
+ b&=&3 
+}
+Hence we can write the eigenvector as  
+\eq{
+{w_1}^\dag =  (1,3) 
+}
+For the second left eigenvector we consider 
+\eq{
+(a,b) \avecc{-1 & 3 \\ 0 & -2} = -2(a,b)
+}
+Now the two columns give us the equations 
+\eqa{
+-a&=&-2a \\
+3a-2b &=& -2b 
+}
+The first equation requires $a=0$. Then any $b$ will satisfy the second equation so we choose $b=1$. So before checking the normalization we have  
+\eq{ 
+\vec{v_1} = \avec{1 \\ 0} \qqq \vec{w_1}^\dag = (1,3)  
+}
+\eq{
+\vec{v_2} = \avec{-3\\ 1} \qqq \vec{w_2}^\dag = (0,1) 
+}
+Now let's check the orthonormality condition. We start by checking that left eigenvectors are orthogonal to right eigenvectors that belong to a different eigenvalue
+\eq{
+\vec{w_1}^\dag \vec{v_2} =  (1,3) \avec{-3\\ 1} =  (-3+3) = 0
+}
+\eq{
+\vec{w_2}^\dag \vec{v_1} = (0,1)  \avec{1 \\ 0}  = 0+0 =0 
+}
+Now we check the products of eigenvectors belonging to the same eigenvalue. For eigenvalue 1 we find 
+\eq{
+\vec{w_1}^\dag \vec{v_1} =  (1,3) \avec{1 \\ 0} = 1
+}
+which is perfect. There is still one product remaining, 
+\eq{
+   \vec{w_2}^\dag \vec{v_2} = (0,1) \avec{-3\\ 1} = 1,
+}
+which is also correctly normalized already. This shows that we have found the vectors we wanted. Note however, that this solution is not unique. In this case chosing these vectors is quite compelling, but it you double your length of say $\vec{v_1}$ and half the length of $\vec{w_n^\dag}$ you will still have vectors that meet the conditions, and consequently you will also find slightly different answers to the last part of this exercise. 
 
+We now want to find $c_1$ and $c_2$ such that 
+\eq{
+c_1 \vec{v_1}+c_2\vec{v_2} = \avec{0 \\ 1} 
+}
+From the chapter we know that we can find the coefficients by multiplying the corresponding left eigenvectors
+\eq{
+c_1 = \vec{w_1}^\dag \avec{0 \\ 1} = (1,3) \avec{0 \\ 1} = 3 
+}
+\eq{
+c_2 = \vec{w_2}^\dag \avec{0 \\ 1} = (0,1) \avec{0 \\ 1} = 1
+}
+Hence we can decompose the vector as 
+\eq{
+\avec{0\\ 1} = 3 \vec{v_1} + 1 \vec{v_2} = 3 \avec{1\\ 0} + 1 \avec{-3\\ 1} = \avec{0 \\ 1}.
+}
 
+\solutionend

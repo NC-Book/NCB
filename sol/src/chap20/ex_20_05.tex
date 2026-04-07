@@ -1,53 +1,39 @@
-
-\exercise{Square proof}{5}
-If $\lambda_1,\ldots,\lambda_N$ are the eigenvalues of an adjacency matrix of a network containing $N$ nodes and $K$ links then 
-\eq{
-\frac{1}{2}\sum_n {\lambda_n}^2 = K.
-}
+\exercise{Epidemic example revisited\label{exMotifSIS}}{3}
+We revisit the epidemic model from Ex.~19.8. In this model the Jacobian of the disease-free state is ${\bf J}= p {\bf A}- r {\bf I}$, where $p$ is the infection rate, $r$ is the recovery rate $\bf A$ is the adjacency matrix and $\bf I$ is an identity matrix. 
 
 \subquestion
-Check that the statement above is correct for some networks of your choice. 
+Find the relationship between Jacobian eigenvalues $\kappa_n$ and the adjacency eigenvalues $\lambda_n$.
 
 \solution
-Let me first try this for a network containing a single node and no links. The adjacency matrix is 
+Multiplying a matrix by $p$ multiplies the eigenvalues by $p$ and subtracting $r$ times the identity matrix subtracts $r$ from the eigenvalues. Hence the eigenvalues are related by 
 \eq{
-{\bf A} = (0)
+\kappa_n = p \lambda_n - r
 }
-Clearly the only eigenvalue is 0 and the statement is trivially true. I can now see that the same would happen without links. So lets try a linked pair next. The adjacency matrix is 
-\eq{
-{\bf A}=\avecc{ 0  & 1 \\ 1 & 0 } 
-}
-which has the eigenvalues $\lambda_1=1$ and $\lambda_2=-1$ and hence 
-\eq{
-\frac{1^2+-(-1)^2}{2} = 1 
-}
-which is the number of links in the network. We can also try a three-node chain. The eigenvalues in this case are $\sqrt{2}$, $-\sqrt{2}$, and $0$, and hence
-\eq{
-\frac{0+2+2}{2} = 2,
-}
-so this seems to work!
 
 \subquestion 
-Prove that the statement holds for any simple graph. 
+You notice that the network contains a fully-connected clique of six nodes. What does this tell you about the largest Jacobian eigenvalue $\kappa_1$? 
 
 \solution
-This is very easy once we have the right idea (and hard otherwise). We know form the lecture that the degrees of the nodes appear on the diagonal of ${\bf A}^2$. The trace is the sum of the diagonal terms and hence 
+The clique by itself can sustain an adjacency eigenvalue of 5. The adjacency matrix is positive and symmetric. Either of these properties is enough to guarantee that the largest eigenvalue of the adjacency matrix must obey 
 \eq{
-{\rm Tr}( {\bf A}^2) =2K
+\lambda_1 \geq 5
 }
-We also know that the trace of a matrix is the sum of its eigenvalues. So let's see if we can express the eigenvalues of ${\bf A}^2$ as a function of the eigenvalues of $\lambda_n$ of $\bf A$. If $\lambda_n$ is an eigenvalue of $\bf A$ there must be a vector $\vec{n_n}$ such that 
+and hence 
 \eq{
-{\bf A}\vec{v_n} = \lambda_n \vec{V_n}
+\kappa_n \geq 5p -r 
 }
-We might have the suspicion that this vector is also an eigenvector of ${\bf A}^2$. Let's try 
+
+\subquestion At which value of $p$ will the clique destabilize the disease-free steady state? Is the transition that occurs at this point the epidemic threshold?  
+
+\solution 
+If the clique is present in the network we can be certain that the disease-free state is unstable if 
 \eq{
-{\bf A^2}\vec{v_n}={\bf AA}\vec{v_n} = {\bf A}\lambda_n \vec{v_n}={\lambda_n}^2\vec{v_n}
+p\geq 5r.
 }
-Since we can do this for every eigenvector the eigenvalues of $\kappa_n$ of ${\bf A}^2$ are
-\eq{
-\kappa_n = {\lambda_n}^2
-}
-Thus we can write
-\eq{
-2K = {\rm Tr}({\bf A}^2) = \sum_n \kappa_n = \sum_n \lambda_n
-}
+Of course the disease-free state could be destabilized before if even larger cliques or hubs of degree greater then 25 are present. But is this really the epidemic threshold?
+
+In practice often yes, at least this reasoning typically agrees with other ways of determining the epidemic threshold. If we think about it more carefully some caveats are in order: First, the model is not necessarily good. In this way of modeling we are using continuous variables to describe the probability that a person is infected (see Ex.~19.8), but actually people are infected or they are not. If we were talking about large groups we can usually safely switch from discrete to continuous variables, but here what supposedly keeps the disease alive is a clique of just 6 people. With such small numbers there is a chance that all six people randomly recover from the disease at the same time. If such a chance exists it will eventually happen, so our clique of six people will not be able to keep the epidemic going indefinitely by themselves. 
+
+The second caveat is more philosophical in nature. When previously defined the epidemic threshold as the point where a finite proportion of the population is infected. We haven't even specified how large the population is in our model. So we might be talking about an infinite population and in this case any finite number of infected that might exist in our clique and in their neighborhood, does not constitute a finite proportion of the population, so we could still be below the threshold. By contrast we could be talking about a finite population. In fact the whole network could be nothing but the clique. In such a very finite network (and if we are willing to split hairs, in any finite network) no sharp epidemic threshold exists. 
+
+But in practice, yes, you can use this approach. The result will be useful, just take it with a grain of salt. 

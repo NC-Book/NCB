@@ -1,0 +1,14 @@
+\exercise{Two nice results\label{exTigerProp}}{4}
+Show that the following holds for any reaction diffusion system:
+
+\subquestion
+A steady state that is unstable in a single isolated node, can never be stabilized by coupling multiple identical nodes together. 
+
+\solution 
+If the system is unstable in an isolated node the node Jacobian $\bf P$ must have a non-negative eigenvalue. If then consider a coupled system ever eigenvalue of ${\bf P}-\kappa {\bf C}$ is also an eigenvalue of the Jacobian $\bf J$. But because the Laplacian always has at least one eigenvalue $\kappa = 0$, Every eigenvalue of $\bf P$ must also be an eigenvalue of $\bf J$ and since we know that $\bf P$ has a non-negative eigenvalue, also $\bf J$ must have a non-negative eigenvalue and hence the coupled system is unstable. 
+
+\subquestion 
+Diffusion can never destabilize a homogeneous state if all variables diffuse independently and at the same rate, i.e.~$\bf C= c {\bf I}$. 
+
+\solution 
+If we substitute ${\bf C}=c{\bf I}$ into ${\bf P}-\kappa {\bf C}$ it becomes ${\bf P}-\kappa c {\bf I}$, so we are subtracting a multiple of the identify matrix from the node Jacobian. But this is our eigenvalue shifting rule! The subtraction will simply shift every eigenvalue to the left by $c\kappa$. Therefore if all variables diffuse at identical rates, increasing $\kappa$ will uniformly decrease the real parts of all eigenvalues. Hence no real part can increase as a result in $\kappa$, so diffusion can never destabilize the system.  

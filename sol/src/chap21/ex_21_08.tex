@@ -1,0 +1,85 @@
+\exercise{Second eigenvalue}{4}
+In a weighted network the weighted adjacency is given by 
+\eq{
+{\bf A} = \avecccc{ 0 & 1 & 0 \\ 1 & 0 & 2 \\ 0 & 2 & 0 }
+}
+Compute the corresponding Laplacian. Then, find an iterative method to compute the Fiedler vector $\vec{v_2}$. 
+
+\solution 
+The Laplacian matrix the weighted version of the degree matrix is 
+\eq{
+{\bf K} = \avecccc{ 1 & 0 & 0 \\ 0 & 3 & 0 \\ 0 & 0 & 2 }
+}
+and hence the Laplacian is 
+\eq{
+{\bf L} = \avecccc{ 1 & -1 & 0 \\ -1 & 3 & -2 \\ 0 & -2 & 2 }
+}
+Our normal eigenvector iteration would converge to the eigenvectors corresponding to the eigenvalue of the greatest modulus, which is not what we want. There are different ways to fix this first I will multiply the Laplacian with -1.  
+\eq{
+-{\bf L} = \avecccc{ -1 & 1 & 0 \\ 1 & -3 & 2 \\ 0 & 2 & -2 }
+}
+because I always wanted to do this. It also means that the eigenvalue at zero is now the rightmost eigenvalue, while the smallest eigenvalue could be as small as -6 (Gershgorin circles tell us this). So lets add 6 to the diagonal 
+\eq{
+6{\bf I}-{\bf L} = \avecccc{ 5 & 1 & 0 \\ 1 & 3 & 2 \\ 0 & 2 & 4 }
+}
+Now the eigenvalue that was at zero is 6. We can verify this by multiplying its eigenvector $(1,1,1)^{\rm T}$. The eigenvalue the was formerly the rightmost is somewhere zero. This is the eigenvalue we care least about so it's good that it is close to zero where iteration will not find it. And, the eigenvalue that we are interested $\lambda_2$ is now the second from the right.
+
+The idea is now that we can keep the iteration from approaching the eigenvector of $\lambda_1=0$ by starting from an initial vector that is orthogonal to it. 
+As long as the elements sum to zero a vector will be orthogonal to $(1,1,1)^{\rm T}$. I use $\vec{s(0)}=(1,1,-2)^{\rm T}$ as the starting vector. We can verify the orthogonality by 
+\eq{
+     (1,1,-2)\avec{1\\ 1\\ 1} = 1+1-2=0
+}
+In the first iteration we get
+\eq{
+\vec{s(1)}=\avecccc{ 5 & 1 & 0 \\ 1 & 3 & 2 \\ 0 & 2 & 4 } \avec{1 \\ 1 \\ -2} = \avec{6\\ 0 \\ -6}
+}
+and in the next iterations 
+\eqa{
+\vec{s(2)}&=& (30,-6,-24)^{\rm T} \\
+\vec{s(3)}&=& (144,-36,-108)^{\rm T} \\
+\vec{s(4)}&=& (684,-180,-584)^{\rm T}
+}
+Now the numbers are getting a bit large so we normalize by deviding by the largest element. This yields 
+\eqa{
+\vec{s(4)}&=& (1,-0.262,-0.736)^{\rm T}
+}
+After normalizing it is good to check that the vector is still orthogonal to $(1,1,1)^{\rm T}$. If we add up the numbers we find that we are missing $-0.002$ due to rounding errors so let's use 
+\eqa{
+\vec{s(4)}&=& (1,-0.263,-0.737)^{\rm T}
+}
+We iterate a bit more 
+\eqa{
+\vec{s(5)}&=& (4.737,-1.263,-3.474)^{\rm T} \\
+\vec{s(6)}&=& (22.422,-6,-16.422)^{\rm T} \\ 
+\vec{s(7)}&=& (106.11,-28.422,-77.688)^{\rm T} \\
+\vec{s(8)}&=& (502.128,-134.532,-367.596)^{\rm T}
+}
+Normalizing again yields 
+\eqa{
+\vec{s(8)}&=& (1,-0.268,-0.733)^{\rm T}
+}
+Which looks almost like the previous vector, but to be sure let's 
+fix the orthogonality 
+\eqa{
+\vec{s(8)}&=& (1,-0.268,-0.732)^{\rm T}
+}
+and iterate a bit further (I made a little google sheet that does this very quickly, with a calculator I probably would not even have done this last block)
+\eqa{
+\vec{s(9)}&=& (4.732,-1.268,-3.464)^{\rm T} \\
+\vec{s(10)}&=& (22.392,-6,-16.392)^{\rm T} \\ 
+\vec{s(11)}&=& (105.69,-28.392,-77.568)^{\rm T} \\
+\vec{s(12)}&=& (501.408,-134.532,-367.056)^{\rm T}
+}
+If we normalize again we find 
+\eqa{
+\vec{s(12)}&=& (1,-0.268,-0.732)^{\rm T}
+}
+which is the same as before, so the first three digits have stabilized. The corresponding eigenvalue is 
+\eq{
+\kappa = \frac{501.408}{105.69} \approx 4.732
+}
+but this is the eigenvalue of our modified matrix $6{\bf I}-{\bf L}$. To get the original eigenvalue back we need to substract 6 and flip the sign. This yields 
+\eq{
+\lambda_2 = 1.268
+}
+The eigenvector suggests that the best cut partitions the network as ( 1 | 2 3 ), which makes sense because it means cutting through the lighter link, which has weight 1. 

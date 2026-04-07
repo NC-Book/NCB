@@ -1,69 +1,35 @@
-\exercise{Heterogeneous Expansion}{4}
-Consider a network with $N$ nodes and mean degree $z$. Existing links in this network are broken at a rate $1$ per link. At rate $r$ per node a node establishes a link to a randomly chosen partner. 
-
-\subquestion
-The dynamics of the degree distribution are captured by the differential equation 
-\eq{
-\dot{p_k} = -\underbrace{2rp_k}_1 -\underbrace{kp_k}_2 +\underbrace{2rp_{k-1}}_3+\underbrace{(k+1)p_{k+1}}_4    
-}
-Explain the meaning of the terms 1-4.
-
-\solution 
-The terms capture the following processes:
-
- 1. We lose nodes of degree $k$ because they gain an additional link
- 
- 2. We lose nodes of degree $k$ because they lose one of their links
- 
- 3.  We gain nodes of degree $k$ because nodes of degree $k-1$ gain a link
- 
- 4. We gain nodes of degree $k$ because nodes of degree $k+1$ lose a link
-
-\subquestion
-Define $G(x)$ as the generating function of the degree distribution. And derive a differential equation that captures the dynamics of $G$.
+\exercise{aSIS invasion threshold done differently}{4}
+Consider a typical newly infected node in the aSIS model in the scenario where the disease is still very rare. Find a way to compute the secondary infections $R_0$ that this node causes before it recovers. Does this give you the same threshold for disease invasion as above? (Because other susceptible nodes will rewire their links away from your focal node you may need to integrate in time. As the threshold will happen at very small infection rates you can use that $p$ is small) 
 
 \solution
-We define
-\eq{G(x)=\sum p_k x^k}
-and write 
-\eqa{ 
-\dot{G}&=&\sum \dot{p}_k x^k \\
-  &=& \sum (-2rp_k - kp_k + 2rp_{k-1} + (k+1)p_{k+1}) x^k \\
-   &=& - 2rG - xG' + 2rxG + G' \\
-   &=&  2r(x-1)G + (1-x)G' 
-}
-
-\subquestion
-Consider the steady state of your equation and integrate to obtain $G(x)$. (Use the normalization conditions to fix the constant of integration.) 
-
-\solution
-Setting the rate of change to zero yields
+Let's define $x$ as the probability that the node is still infected at time $t$ after infection. We know that this probability decreases at rate $r$, so 
 \eq{
-0= 2r(x-1)G + (1-x)G' 
+\dot{x} = -rx 
 }
-Which we can also write as 
+with intial condition $x(0)=1$ and hence 
 \eq{
-G' = 2r G
+x(t) = \exp{-rt}
+}
+Since the infection reaches our node via a link we can assume that we have $q=z$ additional neighbors. And, because the disease is rare these additional neighbors are initially susceptible. Since our focal node is infected the susceptible neighbors will not start to rewire their links away at rate $w$. Hence the number of susceptible neighbors, $k$ will change according to  
+\eq{
+\dot{k}=-wk
+}
+with initial condition $K(0)=z$ which we integrate to find 
+\eq{
+k(t)=z\exp{-wt}
+}
+The rate at which we infect neighbors as long as we are infected is $p$. So if we multiply this with the number of neighbors and the proabability that we are still infected we get the instantaneous rate of transmissions $pz\exp{-rt}\exp{-wt}$ = $p\exp{-(r+w)t}$. To find our $R_0$ we integrate over all time 
+\eq{
+R_0 = \int pz\exp{-(r+w)t} {\rm d}t = \left[ - \frac{pz}{r+w} \exp{-(r+w)t} \right]_0^\infty   = 0 +  \frac{pz}{r+w} 
 }
 and hence 
 \eq{
-G(x)=G(0)\exp{2rx} 
+R_0 = \frac{pz}{r+w} 
 }
-We don't know $G(0)$ straight away, but we know $G(1)=1$ and hence
+Our disease can spread if $R_0>1$ which we can write as 
 \eq{
-1=G(0)\exp{2r} 
+pz > r+w
 }
-Solving for $G(0)$ yields
-\eq{
-G(0)=\exp{-2r}
-}
-which means 
-\eq{
-G(x)=\exp{2r(x-1)}
-}
+which is the same that we found above in a different way.
 
-\subquestion 
-We have now found the generating function that the network approaches in the long run. What does it tell you about the network.  
 
-\solution
-This is the generating function of en ER graph with $z=2r$.

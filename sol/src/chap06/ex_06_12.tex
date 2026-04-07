@@ -1,8 +1,8 @@
 
 \exercise{Degree Correlations \label{exFriendsDegreeCorr}}{4}
-In a sufficiently random network the expected degree of a random neighbor of a random node is $k_{\rm nn}=q+1$. However, this isn't true if the nodes are connected in a specific way that causes strong assortativity/disassortativity.
+In a sufficiently random network $q+1$ is the expected degree of a random neighbor of a random node is $k_{\rm nn}$, but this isn't true if the nodes are connected in a specific way that causes strong assortativity/disassortativity.
 \subquestion
-For illustration, compute the average degree of a random neighbor of a random node, $k_{\rm nn}$, for the star network from \vs{Fig.~\ref{figFriendsTwoExamples}B.}{the following network: 
+For illustration, compute the average degree of a random neighbor of a random node, $k_{\rm nn}$, for \vs{the star network from Fig.~\ref{figFriendsTwoExamples}B.}{the following network: 
 \begin{center}
 \includegraphics[width=0.3\textwidth]{star}    
 \end{center}
@@ -69,3 +69,49 @@ Of course we could have substituted $p_k$ in already earlier, but waiting with t
    k_{\rm nn} = 9 \frac{9}{10} + \frac{1}{10} = 8.2,
 }
 which is the expected result. 
+
+\subquestion{Bonus: Show that $k_{\rm nn} = q+1$ if there are no degree correlations.}
+
+\solution If a network has `no degree correlations' we expect that 
+following a link has statistically the same outcomes irrespective of the degree of the node that we are starting from. So that means that 
+$x_{kl}$ is independent of $k$. Using the same reasoning as in the chapter, following a random link will then take us to a random endpoint. So the probability that following a random link leads us to a node of degree $l$ is then the number of endpoints on nodes of degree $l$ divided by the total number of endpoints, i.e. 
+\eq{
+x_{kl}= \frac{Np_l l}{Nz} = \frac{p_l l}{z}
+}
+We substitute this into our equation for $k_{\rm nn}$
+\eqa{
+k_{\rm nn} &=& \sum_k p_k \sum_l l x_{k,l}  \\
+  &=& \sum_k p_k \sum_l l^2 p_l /z 
+}
+Because the whole second sum does not depend on $k$ we can pull it out of the sum over $k$
+\eq{
+k_{\rm nn} =  \left(\sum_l l^2 p_l /z\right)\left(\sum_k p_k\right)
+}
+The right of these two factors is the norm of the degree distribution so it is just 1 and we can write
+\eq{
+k_{\rm nn} =  \sum_l \frac{l^2 p_l}{z}
+}
+To make this look more familiar, let's change the name of the summation index back to $k$,
+\eq{
+k_{\rm nn} =  \sum_k \frac{k^2 p_k}{z}
+}
+From the chapter we know that we can write $q$ as 
+\eq{
+q = \sum k q_k = \sum k \frac{(k+1)p_{k+1}}{z} 
+}
+This looks similar to our equation for $k_{\rm nn}$ but $p_{k+1}$ shows up, so let's shift the index in the equation for $k_{\rm nn}$ to try to create a $q$ in that equation. We write
+\eq{
+k_{\rm nn} = \sum \frac{(k+1)^2p_{k+1}}{z}  
+}
+Note that the edge term created by the index shift is zero. Before the shift the sum started $0+p_1/z+4p_2/z+\ldots$ and after the shift it starts with $p_1/z+4p_2/z+\ldots$, which is the same. To create our $q$ we now split up one of the factors $(k+1)$, which yields
+\eq{
+k_{\rm nn} = \underbrace{\left( \sum  \frac{k(k+1)p_{k+1}}{z} \right)}_{=q} + \underbrace{\left( \sum \frac{(k+1)p_{k+1}}{z}  \right)}_{=1}  
+}
+We can immediately see that the first of these terms is $q$ to see more clearly that the second term is 1 we can undo the index shift, and write
+\eq{
+\sum \frac{(k+1)p_{k+1}}{z} = \sum \frac{kp_k}{z} = \frac{z}{z}=1
+}
+So this gives us the desired result
+\eq{
+k_{\rm nn} = q+1
+}

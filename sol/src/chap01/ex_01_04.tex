@@ -1,10 +1,6 @@
 
-
-%%% Exercise 4 %%%
-
-
 \exercise{Return to Moravia}{2}
-Find a the minimum spanning tree for a network with the distance matrix 
+Solve the Moravian city example again. The distances between the cities are the ones given in the distance matrix  %Find a the minimum spanning tree for a network with the distance matrix 
  \eqn{
 {\bf D} = \left(\begin{array}{c c c c c} 
  0  & 137 & 100 &  74 &  77 \\
@@ -18,7 +14,7 @@ where the nodes are
  \eqn{
 1: {\rm B}, \, 2: {\rm O}, \, 3: {\rm L}, \, 4: {\rm Z}, \, 5: { \rm J}.
 }
-
+Notice that the distance from L to B is now $D_{\rm L,\rm B}=D_{\rm B,\rm L}=100{\rm\ km}$ instead of 63 km. (Perhaps some obstacles exist between these cities that we have to go around)
 % solution %
 
 \solution
@@ -28,11 +24,11 @@ E=\{(\rm L,Z),(B,Z),(O,L),(B,J)\}
 }
 we find it by
 \begin{enumerate}[label=\arabic*.]
-    \item Try (L,Z) [51km] -- accept
-    \item Try (B,Z) [74km] -- accept
-    \item Try (L,O) [75km] -- accept
-    \item Try (O,Z) [76km] -- reject
-    \item Try (B,J) [77km] -- accept 
+    \item Try (L,Z) [51 km] -- accept
+    \item Try (B,Z) [74 km] -- accept
+    \item Try (L,O) [75 km] -- accept
+    \item Try (O,Z) [76 km] -- reject
+    \item Try (B,J) [77 km] -- accept 
 \end{enumerate}
-Of course just drawing the solution network is also an acceptable answer to this question, but also writing down these steps makes it easier to discuss the solution and identify the nature of the mistake if there is one.  
+Of course, just drawing the solution network is also an acceptable answer to this question, but also writing down these steps makes it easier to discuss the solution and identify the nature of the mistake if there is one.  
 

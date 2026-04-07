@@ -1,9 +1,9 @@
 
 \exercise{Island Meta-community}{3}
-Consider a system of grassy small islands. Individually each island is too 
-small to sustain animal populations for an extended amount of time, due to inbreeding. However, sometimes, during an especially low tide, animals can cross between certain islands. We can describe this system as a network where nodes are islands and links are possible crossings. Assume that this system is an ER network with mean degree $z=6$.
+Consider a system of small, grassy islands. Each island is too 
+small to sustain animal populations for an extended amount of time, due to inbreeding, etc. However, sometimes, during an especially low tide, animals can cross between certain islands. We can describe this system as a network where nodes are islands and links are possible crossings. Assume that this system is an ER network with mean degree $z=6$.
 
-\subquestion A species of sheep live on these islands, but they can only maintain the necessary genetic diversity on those islands that are in genetic exchange with many other islands (i.e.~those forming a giant component of sheep). Moreover, sheep are not good swimmers so they can cross 20\% of the network links. Compute the proportion of islands on which sheep can persist.  
+\subquestion A species of sheep lives on these islands, but they can only maintain the necessary genetic diversity on those islands that are in genetic exchange with many other islands (i.e.~those forming a giant component). Moreover, sheep are not good swimmers so they can cross 20\% of the network links. Compute the proportion of islands on which sheep can persist.  
 
 \solution
 To answer this question we need to compute the giant component size after we have removed 80\% of the links from the original network.
@@ -26,7 +26,7 @@ s=1-G_{\rm a}(v)=1-Q_{\rm a}(v)=1-v\approx 0.313698331
 }
 So we find the sheep on approximately 31\% of the islands.
 
-\subquestion There is also a species of rabbits on the islands. Again they can only survive by forming a giant component of connected populations. They are surprisingly good swimmers so they can use all the paths between islands. However, the rabbits can't colonize any islands where sheep are present. 
+\subquestion There is also a species of rabbits on the islands. They also can only survive by forming a giant component of connected populations. But, they are surprisingly good swimmers so they can use all the links between islands, though thy can't colonize any islands where sheep are present. On what proportion of islands would you expect rabbits?
 
 \solution 
 From the perspective of rabbits the sheep are a viral attack on their network (weird thought isn't it). So let's work out what degree distribution this viral attack leaves of for the rabbits. 

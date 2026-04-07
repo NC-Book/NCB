@@ -1,0 +1,136 @@
+\exercise{Spectra of hypercubes}{4}
+A hypercube is a generalization of cubes to arbitrary dimensions. The 0-dimensional hypercube is just a single  node. 
+
+\subquestion
+Compute the eigenvalue of the adjacency matrix of the 0-dimensional hypercube, ${\bf A_0}$.
+
+\solution
+Since 
+\eq{ {\bf A_0} = (0)}
+we get $\lambda=0$
+
+\subquestion
+To make a 1-dimensional hypercube we take the 0-dimensional hypercube and make a copy of it. Then we connect every node in the original cube with the same node in the copy. Compute the eigenvalues of the corresponding adjacency matrix ${\bf A_1}$. 
+
+\solution
+Following the instructions leads to 
+\eq{
+{\bf{A_1}} = \avecc{0 & 1 \\ 1 & 0}
+}
+hence the eigenvalues are $\lambda_{1,2}=\pm 1$.
+
+\subquestion
+To make a 2-dimensional hypercube we take the 1-dimensional hypercube and make a copy of it. Then we connect every node in the original 1D-cube with the same node in the copy. Try to express the adjacency matrix of the 2-dimensional hypercube, $\bf A_2$, as a function of $\bf A_1$, $\bf I$ and 
+\eqn{
+{\bf M}=\avecc{0 & 1\\ 1 & 0}
+}
+Note that $\bf M$ plays a different role than $\bf A_2$. If you use $\bf M$ in the right way you will have an equation that also relates $\bf A_0$ and $\bf A_1$ if you shift the index. Once you have convinced yourself of your formula, use it to compute the eigenvalues of $\bf A_2$
+
+\solution
+The adjacency matrix for the 2-dimansional hypercube is 
+\eq{
+{\bf A_2} = \left(  \begin{array}{c c c c} 
+0 & 1 & 1 & 0 \\
+1 & 0 & 0 & 1 \\
+1 & 0 & 0 & 1 \\
+0 & 1 & 1 & 0 \\ 
+\end{array}  \right)
+}
+which we can write as 
+\eq{
+{\bf A_2} = {\bf I} \otimes {\bf A_1} + {\bf M}\otimes {\bf I}
+}
+The first term of the sum represents the copying of the previous network. The second term connects nodes up with their copies. So although $\bf A_1$ and $\bf M$ are the same matrix, they have different roles. $\bf A_1$ is the adjacency matrix of a 1-dimensional hypercube, and $\bf M$ is a kind of connection operator that we use to stitch together the copies.  
+
+We can test if we are on the right track by following up on the hint from the question. Which suggests shifting the index, this leads to 
+\eq{
+{\bf A_1} = {\bf I} \otimes {\bf A_0} + {\bf M}\otimes {\bf I}
+}
+We check that this is correct by substituting
+\eq{
+\avecc{0 & 1 \\ 1 & 0} = \avecc{1 & 0 \\ 0 & 1} \otimes (0) + \avecc{0 & 1 \\ 1 & 0}\otimes (1)
+}
+We can now use the Kronecker product formula to compute the eigenvalues Using the ansatz $\vec{u}\otimes\vec{v}$ for the eigenvector, we find
+\eqa{
+{\bf A_2}(\vec{u}\otimes \vec{v})& =& {\bf I}\vec{u} \otimes {\bf A_1}\vec{v} + {\bf M}\vec{u}\otimes {\bf I}\vec{v} \\
+&=& \vec{u} \otimes \alpha_1\vec{v} + \mu\vec{u}\otimes \vec{v} \\
+&=& (\alpha_1+\mu) (\vec{u} \otimes \vec{v}) 
+}
+Where $\alpha_1$ is any eigenvalue of $\bf A_1$ and $\mu$ is either of the two eigenvalues of $\bf M$.
+
+Because the eigenvalues of $\bf M$ are $+1$ and $-1$ we find half the eigenvalues of $\bf A_2$ by adding 1 to every eigenvalue of $\bf A_1$ and the other half of the eigenvalues of $\bf A_2$ by subtracting 1 from the eigenvalues of $\bf A_1$. Since the eigenvalues of $\bf A_1$ were 1 and -1, the eigenvalues of $\bf A_2$ are
+\eq{
+\lambda = -2, 0, 0,2.   
+}
+
+\subquestion
+To make a 3-dimensional hypercube we take the 2-dimensional hypercube and make a copy of it. Then we connect every node in the original 2D-cube with the same node in the copy. Check if your formula for the procedure still works, then use it to compute the eigenvalues of $\bf A_3$. 
+
+\solution 
+This is easy now. The same formula for the eigenvalues still holds. So subtracting one from the eigenvalues of the two-dimensional cube yields
+\eqn{
+-3,-1,-1,1    
+}
+Adding one to the spectrum yields
+\eqn{
+-1,1,1,3  
+}
+and by putting both parts together we find the whole spectrum
+\eqn{
+-3,-1,-1,-1,1,1,1,3
+}
+
+\subquestion
+Compute the Laplacian eigenvalues of the 3-dimensional hypercube; call it $\bf L_3$ 
+
+\solution
+Note that the hypercubes are regular graphs, with a degree that is identical to the dimension of the cube. So for example the 3-dimensional hypercube is a 3-regular graph. Hence, 
+\eq{{\bf L_3}=3{\bf I}-{\bf A_3}}
+The minus sign in front of the adjacency just flips the spectrum, because it is symmetric this leaves it unchanged actually. Adding $3{\bf I}$ to the matrix shifts all eigenvalues by 3 units to the right, so the spectrum of ${\bf L_3}$ is
+\eqn{
+\{0,2,2,2,4,4,4,6 \}
+}
+
+\subquestion
+Is there a general rule for the Laplacian eigenvalues of hypercubes? Can you use it to compute the Laplacian eigenvalues of the 4-dimensional hypercube?
+
+\solution
+So when we move from the three dimensional cube to the four dimensional-cube in the Laplacian spectrum also the degree of the nodes increases by one, which means we get one unit more shift to the right. So instead of adding and subtracting 1, we get the new spectrum by adding 0 and 2. So the spectrum for the 3-dimensional hypercube was
+\eqn{
+0,2,2,2,4,4,4,6
+}
+Shifted by 2 this becomes 
+\eqn{
+2,4,4,4,6,6,6,8 
+}
+Joining these two sets we get the complete ${\bf L_4}$ spectrum
+\eqn{
+0,2,2,2,2,4,4,4,4,4,4,6,6,6,6,8
+}
+
+\subquestion
+Now that we have spotted the pattern, consider the generating function
+\eqn{
+G_{i}(x) = \sum c_{in} x^n
+}
+where $c_{in}$ is the multiplicity of the eigenvalue $\lambda=n$ in the Laplacian spectrum of the $i$-dimensional hypercube. Write an iteration rule that relates $G_i$ and $G_{i+1}$ and hence find a closed form for $G_i$.
+
+\solution
+Written in terms of generating functions our update rule reads 
+\eq{
+G_{i+1} = G_i (1+x^2)
+}
+and since we know $G_0=1$ (one eigenvalue $\lambda=0$) we find
+\eq{
+G_i = (1+x^2)^i.
+}
+
+\subquestion
+Use your result to compute the sum of all Laplacian eigenvalues of the 1000-dimensional hypercube. Is there a way in which we can test if the result is correct?
+
+\solution 
+Hmm, we know that we can add up a generating function by differentiating and then substituting 1. So let's try 
+\eq{
+G_{1000}'(1) = 1000  (1+x^2)^{999} \cdot 2 = 100 \cdot 2^{1000}
+}
+where the extra 2 appeared as because of the inner derivative of $x^2$. So is this the correct result? Yes, we can also compute it in another way: The sum over the eigenvalues is also the trace of the matrix and because the Laplacian has the node degrees on the diagonal the trace is also the sum over node degrees. We already noticed that the $i$-dimensional hypercube is an $i$-regular graph, so in the 1000-dimensional hypercube every node has degree 1000.  Moreover there 0-dimensional hypercube has only one node, but then the number of nodes doubles in every step so that the $i$-dimensional hypercube has $2^{i}$ nodes. So in summary the 1000-dimensional hypercube has $2^{1000}$ nodes and each of the nodes is 1000, and hence total node degree must be $1000\cdot 2^{1000}$.   

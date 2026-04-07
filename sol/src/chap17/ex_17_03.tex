@@ -1,52 +1,34 @@
-\exercise{Fast prey}{2}
-Consider the predator-prey system 
-\eqan{
-\dot{X}&=&rX-aXY-X^2 \\
-\dot{Y}&=&caXY-dY
+\exercise{Simple conservation law}{2}
+If you did the exercises of the previous chapters you might be able to guess the conservation law found in the dynamical system 
+\eqn{
+\dot{x} = y \qqq \dot{y}=-x
 }
-\subquestion Look at the system and decide who is the predator. 
+Can you also find the conservation law mathematically?
 
 \solution 
-It is $Y$, the species that profits from the interaction (the XY-term)
-
-\subquestion
-Assume that the dynamics of the predator is much slower than the dynamics of the prey, while the predator still inflicts significant losses on the prey losses on the prey. Which parameter have to be small for this to be the case?
-
-\solution 
-The parameters are $c$ and $d$. We can think of $c$ as an conversion efficiency from prey to predator biomass and of $d$ as a death rate of the predator. 
-
-\subquestion
-Now use time-scale separation coarse-graining to remove the fast prey variable from the system. (There are two cases to consider)
-
-\solution 
-We start by fining the steady states of the fast dynamics. 
+This system featured in some previous exercises where we showed that the trajectories are set of concentric circles around zero. So we might guess that the conservation law has the form
 \eq{
-0=rX-aXY-X^2 
+x^2 + y^2 = r^2
 }
-where $Y$ is now a parameter. The possible steady states are 
+where $r$ is the constant radius of the circle. If we already know this it is tempting to convert to polar coordinates, which yields the equation $\dot{r}=0$ which proves that the radius is conserved. However in this case a simpler approach that does not require prior knowledge of the solution is to use the method that was presented in this chapter. We write 
 \eq{
-X=0
+\frac{\d x}{\d y } = \frac{\dot{x}}{\dot{y}} = -\frac{y}{x}
 }
-and
+The equation 
 \eq{
-X=r-aY
+\frac{\d x}{\d y } = -\frac{y}{x}
 }
-We can guess (or show) that the second steady state is stable if 
+can be separated into 
 \eq{
-Y<\frac{r}{a}
+x \d x = -y \d y 
 }
-otherwise the first steady state is stable. 
-
-We can now substitute into the slow dynamics  
+which we can integrate 
+\eqa{
+\int x \d x &=& - \int y \d y  \\
+\frac{1}{2} x^2 &=& - \frac{1}{2} y^2 + C 
+}
+which we can also write as 
 \eq{
-\dot{Y}=caXY-dY
+x^2+y^2 = 2C
 }
-which yields 
-\eq{
-\dot{Y}=-dY
-}
-if $Y>r/a$ and
-\eq{
-\dot{Y}=caY(r-aY)-dY 
-}
-otherwise. Note that in the latter case we get a logistic growth term for the predator. 
+which is the same result as we guessed above, except that we named the conserved property $2C$ instead of $r^2$, but that doesn't change anything.

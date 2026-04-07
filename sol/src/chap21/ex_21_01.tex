@@ -1,21 +1,28 @@
-
-\exercise{Adjacency and Laplacian}{1} 
-Construct the adjacency and Laplacian matrices for a three node chain (o-o-o) and a 4-cycle (a ring of four nodes).  
+\exercise{Laplacian construction}{1} 
+Construct the adjacency $\bf A$ and Laplacians $\bf L$, $\bf L_{rw}$, $\bf L_{sym}$ for a cycle of four nodes. 
 
 \solution
-
+The adjacency matrix is 
 \eq{
-{\rm A}_{\rm o-o-o}=\aveccc{0 & 1 & 0 \\ 1 & 0 & 1 \\ 0 & 1 & 0}
+{\rm A}=\avecccc{0 & 1 & 0 & 1\\ 1 & 0 & 1 & 0 \\ 0 & 1 & 0 & 1 \\ 1 & 0 & 1 & 0}.
 } 
 
+We compute the Laplacian as ${\bf L}={\bf K}-{\bf A}$ where ${\bf K}=2{\bf I}$ because every node has degree two. This yields   
 \eq{
-{\rm A}_{\rm 4-cycle}=\left( \begin{array}{c c c c} 0 & 1 & 0 & 1 \\ 1 & 0 & 1 & 0 \\ 0 & 1 & 0 & 1 \\ 1 & 0 & 1 & 0 \end{array}\right)
+{\rm L}=\left( \begin{array}{c c c c} 2 & -1 & 0 & -1 \\ -1 & 2 & -1 & 0 \\ 0 & -1 & 2 & -1 \\ -1 & 0 & -1 & 2 \end{array}\right)
 }
-
+To find the random-walk Laplacian we divide every row by the degree
 \eq{
-{\rm L}_{\rm o-o-o}=\aveccc{1 & -1 & 0 \\ -1 & 2 & -1 \\ 0 & -1 & 1}
-} 
-
-\eq{
-{\rm L}_{\rm 4-cycle}=\left( \begin{array}{c c c c} 2 & -1 & 0 & -1 \\ -1 & 2 & -1 & 0 \\ 0 & -1 & 2 & -1 \\ -1 & 0 & -1 & 2 \end{array}\right)
+{\rm L_{rw}}=\left( \begin{array}{c c c c} 1 & -1/2 & 0 & -1/2 \\ -1/2 & 1 & -1/2 & 0 \\ 0 & -1/2 & 1 & -1/2 \\ -1/2 & 0 & -1/2 & 1 \end{array}\right)
 }
+To find the symmetric Laplacian we compute ${\bf L_{sym}}={\bf K}^{-1/2} {\bf L} {\bf K}^{-1/2}$.
+
+We have 
+\eq{
+{\bf K}^{-1/2} = \avecccc{1/\sqrt{2} & 0 & 0 & 0 \\ 0 & 1/\sqrt{2} & 0 & 0 \\ 0 & 0 & 1/\sqrt{2} & 0 \\ 0 & 0 & 0 & 1/\sqrt{2}}
+}
+and hence 
+\eq{
+{\rm L_{sym}}=\left( \begin{array}{c c c c} 1 & -1/2 & 0 & -1/2 \\ -1/2 & 1 & -1/2 & 0 \\ 0 & -1/2 & 1 & -1/2 \\ -1/2 & 0 & -1/2 & 1 \end{array}\right)
+}
+Since the random walk Laplacian was already symmetric it is identical to the symmetric Laplacian. This happens in every network where the components are degree regular. 

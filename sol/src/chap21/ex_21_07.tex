@@ -1,0 +1,168 @@
+\exercise{Laplacian properties \label{exVibeProperties}}{4}
+For undirected graphs the Laplacian $\bf L$ has an interesting property: If we multiply it from both sides with a vector $\vec{x}$ we get 
+\eqn{
+\vec{x}^{\rm T} {\bf L} \vec{x}=\sum_{i,j>i} A_{ij} (x_i-x_j)^2.
+}
+which sums the quadratic differences in x over all links, providing a measure of the smoothness of $\vec{x}$.
+
+\subquestion Show that this equation is correct.   
+
+\solution 
+Let's start with 
+\eq{
+L_{ij} = \delta_{ij} k_i - A_{ij}
+}
+Now consider the $i$-th row of the product ${\bf L} \vec{x}$ 
+\eq{
+({\bf L} \vec{x})_i = \sum_j L_{ij} x_j = \sum_j (\delta_{ij} k_i - A_{ij}) x_j
+}
+Now we multiply the other $x^{\rm T}$ from the right, this is now only an inner product of two vectors  
+\eqa{
+\vec{x}^{\rm T}{\bf L} \vec{x} &=& \sum_i x_i  ({\bf L} \vec{x})_i  \\
+  &=& \sum_i x_i \sum_j (\delta_{ij} k_i - A_{ij}) x_j \\
+  &=& \sum_{i,j} x_i (\delta_{ij} k_i - A_{ij}) x_j 
+}
+So far we have mainly been working on putting the right expression together in the left and seeing what it amounts to on the right. In the last step I have combined the sums because they are combined in the result. The key insight is now that we can also write $k_j=\sum_j A_ij$ which looks like it could create an $A_{ij}(x_i-x_j)$ term. But we need two of those terms if we want to have the quadratic expression in the desired result. So what do we do?
+
+Let's be pragmatic for a minute. The $k_i$ contains another sum, and I don't really want to introduce another summation index. But it also has a Kronecker delta which could cancel one summation if it wasn't for the $A_{ij}$ in the same sum. So let's separate the terms for now.
+\eqa{
+\vec{x}^{\rm T}{\bf L} \vec{x} &=&  \left(\sum_{i,j} x_i (\delta_{ij} k_i) x_j\right) - \left(\sum_{i,j} x_i  A_{ij} x_j\right) \\
+&=& \left(\sum_{i} x_i  k_i x_i\right) - \left(\sum_{i,j} x_i  A_{ij} x_j\right) \\
+&=& \left(\sum_{i} {x_i}^2 k_i  \right) - \left(\sum_{i,j} x_i  A_{ij} x_j\right) \\
+&=& \left(\sum_{i} {x_i}^2 \sum_j A_{ij}  \right) - \left(\sum_{i,j} x_i  A_{ij} x_j\right) \\
+&=& \left(\sum_{i,j} A_{ij} {x_i}^2   \right) - \left(\sum_{i,j} x_i  A_{ij} x_j\right) \\
+}
+It looks we are almost ready to combine the sum back together but that would give us the wrong expression under sum. We would get 
+\eq{ {x_i}^2-x_ix_j} 
+but we need 
+\eq{ (x_i-x_j)^2=({x_i}^2 + {x_j}^2 -2x_ix_j ) } 
+SO comparing these two equations we need the $x_ix_j$ term twice, and we also need the quadratic term ${x_i}^2$ twice, just once with an $j$ instead of an $i$, so the plan is now to double everything and somehow exchange an $i$ for a $j$ in one of the terms. This is easier while the sums are still separate. We write 
+\eqa{
+2\vec{x}^{\rm T}{\bf L} \vec{x} &=&   2\left(\sum_{i,j} A_{ij} {x_i}^2   \right) - 2\left(\sum_{i,j} x_i  A_{ij} x_j\right) \\ 
+&=&  \left(\sum_{i,j} A_{ij} {x_i}^2\right) + \left(\sum_{i,j} A_{ij} {x_i}^2\right) - \left(\sum_{i,j} A_{ij}  (2x_ix_j)\right)   
+} 
+Now let's consider the first sum. We can choose the names of the summation indices as we want, so we can aslo exchange the names if we want 
+\eq{
+\sum_{i,j} A_{ij} {x_i}^2 = \sum_{j,i} A_{ji} {x_j}^2 = \sum_{i,j} A_{ij} {x_j}^2 
+}
+In the last step we used that we can change the order of summation and that $\bf A$ is symmetric $A_{ij}=A_{ji}$. Substituting this for the first sum we get 
+\eqa{
+2\vec{x}^{\rm T}{\bf L} \vec{x} 
+&=&  \left(\sum_{i,j} A_{ij} {x_j}^2\right) + \left(\sum_{i,j} A_{ij} {x_i}^2\right) - \left(\sum_{i,j} A_{ij}  (2x_ix_j)\right)  \\
+&=&  \sum_{i,j} A_{ij} ({x_i}^2 - 2x_ix_j + {x_j}^2  \\
+&=& \sum_{i,j} A_{ij} (x_i-x_j)^2  
+} 
+OK we are almost there we just have to deal with the factor of two. This is easy to see now isn't it? The right hand side of the equation sums over every link twice. If we only sum over the $j>i$ then we sum only over every link once, so 
+\eq{
+2\vec{x}^{\rm T}{\bf L} \vec{x} = 2 \sum_{i,j>i} A_{ij} (x_i-x_j)^2 
+}
+and hence we have our desired result 
+\eq{
+\vec{x}^{\rm T}{\bf L} \vec{x} =  \sum_{i,j>i} A_{ij} (x_i-x_j)^2 
+}
+A more elegant way to write this is 
+\eq{
+\vec{x}^{\rm T}{\bf L} \vec{x} =  \sum_{(i,j)\in E} A_{ij} (x_i-x_j)^2 
+}
+which is saying we sum over all pairs $(i,j)$ in the edge set $E$ of the graph. 
+
+Fortunately all other parts of this exercise are now much easier. 
+
+\subquestion
+Also find interpretations for the following expressions: $({\bf L}\vec{x})_i$, $({\bf L_{rw}}\vec{x})_i$, $\vec{x}^{\rm T} {\bf Q} \vec{x}$,  $|{\bf Q}|$, $\rm Tr(\bf L)$, $\rm Tr(\bf L_{rw})$, where $\bf Q={\bf K}+{\bf A}$ is the \emph{signless Laplacian}.
+
+\solution
+\paragraph{First expression:} $({\bf L} \vec{x})_i$. In part a we already showed 
+\eq{
+({\bf L} \vec{x})_i = \sum_j (\delta_{ij} k_i - A_{ij}) x_j
+} 
+We can now simplify a bit 
+\eq{
+({\bf L} \vec{x})_i = k_ix_i - \sum_j ( A_{ij}) x_j
+}
+Consider what this would mean for a node, node 1 that is connected to two nodes, node 2 and node 3. We would have 
+\eqn{
+2 x_1 - x_2 -x_3 
+}
+which we can also write as 
+\eqn{
+(x_1-x_2) + (x_1-x_3)
+}
+So this is the sum of the differences over all links of node 1. Let's also create this form in the general case. We write 
+\eqa{
+({\bf L} \vec{x})_i &=&  \left( \sum_j A_{ij} \right) x_i - \sum_j ( A_{ij}) x_j \\ 
+&=& \sum_j ( A_{ij}) (x_i-x_j)  
+}
+So this measures the sum of the differences between $x$ in node $i$ and $x$ in the neighbors of $i$. 
+
+\paragraph{Second expression:} $({\bf L_{rw}}\vec{x})_i$.
+We use exactly the same idea as above, with a slightly different result 
+\eqa{
+({\bf L_{rw}} \vec{x})_i &=& \sum_j (\delta_{ij}- A_{ij}/k_i) x_j \\
+  &=& x_i - \sum_j A_{ij}x_j/k_i  \\
+  &=& k_ix_i/k_i - \sum_j A_{ij} x_j/k_i \\
+  &=& \left(\sum_j A_{ij} \right)x_i/k_i  - \sum_j A_{ij}x_j/k_i  \\
+  &=& \sum_j A_{ij} (x_i-x_j)/k_i
+}
+which we can also write as 
+\eq{
+({\bf L_{rw}} \vec{x})_i = \frac{1}{k_i} \sum_j A_{ij} (x_i-x_j)
+}
+
+So this is the average difference between $x$ in $i$ and $x$ in $i$'s neighbors. 
+
+\paragraph{Third expression:} $\vec{x}^\dag {\bf Q} \vec{x}$.  
+This one is just like part a:
+\eqa{
+\vec{x}^\dag {\bf Q} \vec{x} &=& \sum_{i,j} x_i Q_{ij} x_j \\
+  &=&  \sum_{i,j} x_i (\delta_{ij}k_i + A_{ij} ) x_j \\
+  &=&  \left(\sum_{i,j}\delta_{ij}k_ix_ix_j\right) + \left(\sum_{i,j} X_ix_j A_{ij}\right) \\
+  &=&  \left(\sum_{i}k_i{x_i}^2\right) + \left(\sum_{i,j} x_ix_j A_{ij}\right) \\
+  &=&  \left(\sum_{i,j}A_{ij}{x_i}^2\right) + \left(\sum_{i,j} x_ix_j A_{ij}\right) \\
+  &=&  2\left(\sum_{(i,j)\in E}{x_i}^2\right) + 2\left(\sum_{(i,j) \in E} x_ix_j \right) \\
+  &=&  \left(\sum_{(i,j)\in E}{x_i}^2\right)+\left(\sum_{(i,j)\in E}A{x_i}^2\right) + \left(\sum_{(i,j) \in E} 2x_ix_j \right) \\  
+  &=&  \left(\sum_{(i,j)\in E}{x_i}^2\right)+\left(\sum_{(i,j)\in E}{x_j}^2\right) + 2\left(\sum_{(i,j) \in E} x_ix_j A_{ij}\right) \\  
+  &=& \sum_{(i,j)\in E}({x_i}^2+2x_ix_j+{x_j}^2) \\ 
+  &=& \sum_{(i,j)\in E}(x_i+x_j)^2
+}
+So this one is the sum over sums of squares of the combined values on linked nodes. 
+
+\paragraph{Forth expression:} $\rm Tr(\bf L)$. 
+
+The diagonal terms of the Laplacian are the node degrees, so the trace is just the two times the total degree, so $2K$
+
+\paragraph{Fifth expression:} $\rm Tr(\bf L_{rw})$.
+
+Since the diagonal elements are all 1 we get the dimension of the matrix, so the number of nodes $N$. 
+
+\subquestion
+What would $|{\bf Q}|=0$ imply?
+
+\solution
+This one is very hard or very easy. It is hard to force your way to a result but a little intellectual curiosity can get you to the result very quickly. We know that the determinant is the product of all eigenvalues:
+\eq{
+|{\bf Q}| = \prod \lambda_n
+}
+So zero determinant implies that an eigenvalue of $\bf Q$ is zero. Let's try to work with the relationship from above:
+\eq{
+\vec{x}^{\rm T}{\bf Q}\vec{x} = \sum_{(i,j)\in E} (x_i+x_j)^2 
+}
+So let's suppose $\vec{v}$ is an eigenvector with eigenvalue 0 then 
+\eq{
+\vec{v}^{\rm T}{\bf Q}\vec{v} = 0
+}
+which implies 
+\eq{
+\sum_{(i,j)\in E} (v_i+v_j)^2 = 0  
+}
+This is odd, isn't it. The vector $\vec{v}$ is an eigenvector of a real symmetric matrix and hence his eigenvectors must have real elements. So we are adding up square of real numbers, which cannot be negative, but the result must be zero. Hence the only way in which this is possible is 
+\eq{
+v_i = -v_j \quad \mbox{ for all links $(i,j)$}
+}
+This is quite a strong constraint. Imagine our 3-chain, (1)-(2)-(3). We can always normalize the eigenvector such that $v_1=1$ this automatically implies $v_2=-1$ which in turn implies $v_3=1$. So if a zero eigenvalue exists, the we can start with one node and set the eigenvector element to 1. All of the nodes neighbors must then have elements of -1, the second neighbors again get a 1 and so on. Of course this is only possible if the network is bipartite, otherwise a node could be a neighbor and a second neighbor at the same time. So a zero eigenvalue of $\bf Q$ indicates bipartiteness. 
+
+We have to be a little bit careful because we need only one component of $\bf Q$ to be bipartite, the the eigenvector can just be zero in the other components. 
+
+One can also prove the other direction, if a component is bipartite then we always have a zero eigenvalue of $\bf Q$. 
+
+In summary: $|{\bf Q}|=0$ if and only if there is at least one bipartite component. 

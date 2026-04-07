@@ -1,11 +1,51 @@
-
-\exercise{Voter model mean field}{2}
-Consider a network with $N$ nodes and $K$ links, where nodes represent agents and links represent social contacts. Each agent is in either of two states, say favoring one of two political parties. We call these states A and B. Further we say a link is an active link if it connects agents with different opinions, i.e.~it is an AB-link. Active links get updated at rate $r$. In an update one of the two agents connected by the link is chosen at random and that agent's opinion is copied to the other agent. Use a mean field approximation to derive a system of differential equations for this model. (The result may be surprising)  
+\exercise{Network SIS model}{2}
+Consider the network SIS model given by 
+\eqn{
+[\dot{I}]=pz(1-[I])[I]-r[I]
+}
+Compute the steady states and use the result to find the critical value of $p$ from which on the disease can spread. Then, find the critical value of $p$ in another way, by finding the point where the stability of the disease-free state changes. Do the results agree?
 
 \solution
-Deriving the differential equations along the lines of the lecture yields
-\eqa{
-\dot{[A]}&=&\frac12 [AB]-\frac12 [AB] = 0 \\ 
-\dot{[B]}&=&\frac12 [AB]-\frac12 [AB] = 0 \\ 
+To find the steady states we consider the condition 
+\eq{
+0=pz(1-[I])[I]-r[I] 
 }
-If an update occurs the number of nodes of opinion A is increased by 1 (probability 50\%) or it is decreased by 1 (also probability 50\%). These two processes cancel so the that the net change of the number of nodes in state A (or B) is zero. The voter model is actually a very fair model. 
+As all terms on the right are proportional to $[I]$. The disease-free state $[I]=0$ is a steady state. To find the other steady state we divide by $[I]$ and arrive at 
+\eq{
+0=pz(1-[I])-r 
+}
+which we solve for 
+\eq{
+[I] = \frac{pz-r}{pz}
+}
+so this is the other steady state. To find the critical value of $p$ from which on the disease can invade, we demand that this second state must be a physical solution, i.e.~occur at positive values,
+\eqa{
+0&<&(pz-r)/pz \\
+0&<&pz-r \\
+r/z&<&p\\ 
+}
+so $p>r/z$. Hence the critical point from which on the disease can invade is
+\eq{
+p=\frac{r}{z}
+}
+So more recovery rate means we need faster infection as well, while higher degree means that the disease can already invade at lower infection rates. Makes sence. 
+
+Now let's try the other way. We start by computing the Jacobian, which in this case is a $1 \times 1$ matrix 
+\eq{
+{\bf J} = \left( \frac{\partial [\dot{I}]}{\partial [I]} \right) = \left( pz(1-2[I])-r \right)
+}
+We consider this matrix in the disease free state $[I] = 0$ and find the point where the stability changes using $|{\bf J}|=0$. Because $\bf J$ is a $1\times 1$ matrix the determinant is identical to its only element
+\eq{
+|{\bf J}| = |(pz-r)| = pz-r 
+}
+Hence the condition $|{\bf J}|=0$ gives us 
+\eq{
+p=\frac{r}{z}
+}
+as before. Technically the two conditions find two different properties that are slightly different. The instability of the disease-free state guarantees that a perturbation that introduces some infected can spread. Whereas the existence of a positive `endemic' steady state guarantees that there is a way for the disease to survive in the long run. In this simple SIS model both of these properties (invasion, persistence) start at the same threshold. But this is not the case for the adaptive SIS model. 
+
+
+
+
+
+

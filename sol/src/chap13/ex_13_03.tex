@@ -1,7 +1,5 @@
 \exercise{Fibonacci numbers}{1}%
 \label{exBeesFibonacci}%
-Let's do two quick tests of our Fibonacci results:
-\subquestion
 Compute the first Fibonacci numbers up to $F_4$ using 
 \eqn{F_i = \frac{ {\phi}^i - {\bar\phi}^i}{\sqrt{5}}.
 }
@@ -29,40 +27,3 @@ We can now compute
 \eq{
     F_4 = \frac{\phi^4-\bar{\phi}^4}{\sqrt{5}} = \frac{(1+4\sqrt{5}+30+20\sqrt5+25)-(1-4\sqrt{5}+30-20\sqrt5+25} = \frac{48\sqrt{5}}{16\sqrt{5}} = 3  
 }
-
-\subquestion 
-Use $D_{i+1}=Q_i$, $Q_{i+1}=Q_i+B_i$, and $F_i=Q_i+B_i$ to show 
-\eqn{F_{i+1}=F_i + F_{i-1}.}
-
-\solution
-Let's start by assembling the troops. From the question we have 
-\eqn{
-D_{i+1} = Q_i \qqq \mbox{[Drone rule]}
-}
-\eqn{
-Q_{i+1} = Q_i+D_i \qqq \mbox{[Queen rule]}
-}
-\eqn{
-F_{i} = Q_i+D_i \qqq \mbox{[Definition of $F$]}
-}
-And of course these relations remain valid under an index shift, so we can write
-\eqn{
-Q_{i} = Q_{i-1}+D_{i-1} \qqq \mbox{[Shifted queen rule]}
-}
-\eqn{
-F_{i+1} = Q_{i+1}+D_{i+1} \qqq \mbox{[Shifted definition of $F$]}
-}
-\eqn{
-F_{i-1} = Q_{i-1}+D_{i-1} \qqq \mbox{[Second shifted def of $F$]}
-}
-Now we can do the following:
-\eqa{
-F_{i+1} &=& Q_{i+1}+D_{i+1} \qqq \mbox{[using shifted definition of $F$]} \\
-  &=&(D_i+Q_i)+(Q_i) \qqq \mbox{[using queen and drone rules]}\\
-  &=&(F_i)+(Q_i)\qqq \mbox{[using definition of $F$]} \\
-  &=&(F_i)+(D_{i-1}+Q_{i-1})\qqq \mbox{[using shifted queen rule]} \\
-  &=&F_i+F_{i-1}, \qqq \mbox{[using second shifted def of $F$]}
-}
-which completes the proof. 
-
-This exercise is interesting because it is surprisingly difficult, although it only needs minimal mathematical technique (substitution and index shifts). The difficult part is to find the right sequence of operations that leads us to the target. We are almost navigating a maze here where every equation that we arrive at opens up multiple new directions. Maybe it is useful to think about this also as a network problem.

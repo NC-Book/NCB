@@ -1,0 +1,213 @@
+\exercise{Working backwards}{3}
+Suppose we wanted to make a dynamical system that exhibits pattern formation if placed on a triangle but not on many other networks. Our starting point is the observation that the triangle has a Laplacian eigenvalue $\kappa=3$.
+
+\subquestion
+Define the node Jacobian and the coupling matrix as
+\eqn{
+{\bf P} = \avecc{a & b \\ c & d}, \qqq {\bf C}=\avecc{1 & 0 \\ 0 & 10}
+}
+Demand that the system has Turing bifurcation at $\kappa=2.5$ and another one at $\kappa=3.5$. Use the resulting conditions to express $d$ and $bc$ as a function of $a$
+
+\solution 
+So we define 
+\eq{
+{\bf J} = {\bf P} - \kappa {\bf C} = \avecc{a-\kappa & b \\ c & d-10\kappa}
+}
+We know that a Turing bifurcation occurs if ${\rm det}({\bf J})=0$. Hence we evaluate the determinant at $\kappa=2.5$ which gives us   
+\eqa{
+0&=& (a-2.5)(d-25)-bc  \\
+ &=& ad-25a-2.5d+62.5-bc
+}
+and also at $\kappa=3.5$ which gives us
+\eqa{
+0&=& (a-3.5)(d-25)-bc  \\
+ &=& ad-35a-3.5d+122.5-bc
+}
+These two conditions almost have identical form so let's subtract one from the other the result is 
+\eq{
+0=(ad-25a-2.5d+62.5-bc)-(ad-35a-3.5d+122.5-bc)=10a+d+60
+}
+which gives us the condition 
+\eq{
+d=60-10a 
+}
+Substituting this $d$ back into the first condition yields 
+\eqa{
+bc &=& (a-2.5)(60-10a-25)\\
+   &=& (a-2.5)(35-10a) \\
+   &=& -10a^2+60a-87.5.  
+}
+\subquestion 
+Ensure that your system is stable for $\kappa=0$ but unstable for $\kappa=3$. Choose your values for $a$ and $b$ accordingly, then compute $c$ and $d$. [Avoid computing eigenvalues if you can.]
+
+\solution 
+We now need to check the stability. Computing eigenvalues is quite tedious. However in a two dimensional system we know that the system is stable as long as ${Tr}({\bf J})<0$ and $|{\bf J}|>0$. 
+
+So let's check this for $\kappa=0$.  We first compute the 
+determinant 
+\eqa{
+|{\bf J}| &=& ad-bc \\
+   &=& a(60-10a)-(-10a^2+60a-87.5) \\
+   &=& -10a^2+60a+10a^2-60a+87.5 \\
+   &=& 87.5
+}
+which is positive as it should be. Now we check the trace condition
+\eq{
+a+d=a+60-10a = 60-9a 
+}
+This is only negative if 
+\eq{
+a>\frac{60}{9}
+}
+so we keep this in mind as an additional constraint. But if this condition is met the system is stable for $\kappa=0$. Additionally we want it to be unstable for $\kappa=3$. To be unstable it only needs to violate the trace or the determinant condition. As the trace is only getting more negative with increasing $\kappa$, it must be the determinant condition. SO we substitute $\kappa =3 $ and compute 
+\eqa{
+|{\bf J}| &=& (a-3)(d-30)-bc \\
+  &=& (a-3)(30-10a)-(-10a^2+60a-87.5) \\
+  &=& 30a-10a^2+30a-90+10a^2-60a+87.5 \\
+  &=& -3.5
+}
+which is what we wanted: The system is unstable for $\kappa=3$.  (Essentially these checks work out as intended because we chose the diffusion rates differently enough, and because specifying two zeros of the determinant prevents further zeros from appearing as it is a quadratic function of $\kappa$.)
+
+The only additional constraint the we discovered is $a>60/9$, so to have a nice value I will use $a=10$. We can now compute 
+\eq{
+d=60-9a=-30 
+}
+and 
+\eq{
+bc=-10a^2+60a-87.5=-1000+600-87.5=-387.5
+}
+It's good to split this large number roughly evenly between $b$ and $c$, and since we chose $a=10$ we might as well chose $b=10$, which leaves us with
+\eq{
+c=-38.75
+}
+So our final local Jacobian is 
+\eq{
+{\bf P} = \avecc{10 & 10 \\ -38.75 & -30}. 
+}
+
+\subquestion 
+You should now have a fully specified node Jacobian $\bf P$. Now design a dynamical system $\dot{x}=f(x,y)$, $\dot{y}=g(x,y)$ for which $\bf P$ appears as the Jacobian in a steady state. 
+
+\solution 
+If we are willing to cut some corners this is can be extremely simple. For example, the question did not specify that the steady state can't be at zero. So we can just use a linear system,
+\eqa{
+\dot{x}&=&10x+10y \\
+\dot{y}&=&-37.75x -30y 
+}
+clearly $x=y=0$ is a steady state and the corresponding Jacobian is $\bf P$, so that would be an acceptable answer. 
+
+But can we also make a system that has the right Jacobian for a non-trivial steady state? Sure, 
+\eqa{
+\dot{x} &=& x^{10}-y^{-10} \\
+\dot{y} &=& x^{-37.75} - y^{30}
+}
+Clearly $y=x=1$ is a steady state and the corresponding Jacobian is $\bf P$. While computing steady states is hard, design the system so that it has a specific steady state is quite simple. But while this second system technically solves the question the large exponents would make it almost impossible to simulate on a a network. 
+
+So let's make the question a bit harder and ask if we can formulate a plausible predator-prey model that shows the desired behavior. The quick answer is no; Here is why: The element $P_{11}>0$ while $P_{22}<0$ which means that the first species has autocatalytic growth while the second is self-limiting, so the first would need to be the prey while the second is the predator. However, note that $P_{12}>0$ and $P_{21}<0$ so our predator growth suffers from the prey while the prey profits from the predator (which reminds me of a certain XKCD cartoon). So no this cannot be a plausible ecological system, but wait a minute only the product $bc$ mattered in our derivation so we can turn the sign of the two off-diagonal elements around and without changing anything. We can use this to our advantage
+
+A nice ecological model could have the form 
+\eqa{
+\dot{x} &=& r_1x - \frac{r_2 xy}{k +x} \\   
+\dot{y} &=& \frac{r_3 xy}{k +x} - r_4 y^2-r_5y
+}
+which has autocatalytic growth, a Holling type-II response in the predator prey interaction, and a mix of linear and quadratic mortality for the predator, all of which are nice ecological features. 
+
+Let's start by fixing the steady state. I want my steady state to be at $x=1$, $y=1$ (in suitably normalized units which could be very different) for predator and prey. I also want a prey turnover of 20 units per unit time. I think we might need that much to create the high numbers in the Jacobian. 
+
+So let's try
+\eq{
+r_1 = 20 
+}
+This gives us 20 units of biomass production for the prey, per time. To make the steady state actually steady we also need 20 units of loss per time 
+\eq{
+ \frac{r_2 x^*y^*}{k +x^*} = \frac{r_2}{k+1} = 20 
+}
+which implies 
+\eq{
+r_2 = 20(k+1)
+}
+Substituting this back into our equation yields 
+\eq{
+\dot{x} = 20x - \frac{20(k+1) xy}{k +x}  
+}
+Let's see if we can make the derivatives work. We compute the first elemet of the Jacobian 
+\eqa{
+{\bf P_{11}} &=& \left. \frac{\partial \dot{x}}{\partial x} \right|_* \\
+  &=& \left. \frac{\partial}{\partial x}  20x - \frac{20(k+1) xy}{k +x}   \right|_* \\
+  &=& \left. 20 + \frac{20(k+1) xy}{(k +x)^2} - \frac{20(k+1) y}{k +x}   \right|_* \\
+  &=& \left. 20 + \frac{20(k+1) xy}{(k +x)^2} - \frac{20(k+1) y(k+x)}{(k +x)^2}   \right|_* \\
+  &=& \left. 20  - \frac{20(k+1) yk}{(k +x)^2}   \right|_* \\
+  &=& 20  - \frac{20(k+1)k}{(k +1)^2}   \\
+  &=& 20\left(1  - \frac{k}{k +1}\right)   \\
+}
+We want $P_{11}=10$ which requires $k=1$. Hence our equation now  reads 
+\eq{
+\dot{x} = 20x - \frac{40 xy}{1+x}  
+}
+Let's compute the second Jacobian element 
+\eqa{
+{\bf P_{12}} &=& \left. \frac{\partial \dot{x}}{\partial y} \right|_* \\
+&=& \left. \frac{\partial}{\partial y} 20x - \frac{40 xy}{1 +x}  \right|_* \\
+&=& \left. - \frac{40 x}{1 +x}  \right|_* \\
+&=& \frac{40}{2} = -20 
+}
+Clearly our value of $P_{12}=10$ is not happening but we only need $P_{12}$ and $P_{21}$ to multiply to -377.5 so with $P_{12}=-20$ we now need $P_{21}= 18.875$. We consider the second equation 
+\eq{
+\dot{y} = \frac{r_3 xy}{1 +x} - r_4 y^2-r_5y
+}
+and compute 
+\eqa{
+{\bf P_{21}} &=& \left. \frac{\partial \dot{y}}{\partial x} \right|_* \\
+ &=& \left. \frac{\partial}{\partial x} \frac{r_3 xy}{1 +x} - r_4 y^2-r_5y   \right|_* \\
+  &=& \left. -\frac{r_3 xy}{(1 +x)^2} + \frac{r_3 y}{1 +x}     \right|_* \\
+  &=& \left. -\frac{r_3 xy}{(1 +x)^2} + \frac{r_3 y(1+x)}{(1 +x)^2}     \right|_* \\
+  &=& \left. \frac{r_3 y}{(1 +x)^2}     \right|_* \\
+  &=& \frac{r_3}{2^2}     \\ 
+  &=& \frac{r_3}{4}     
+}
+which implies 
+\eq{
+r_3 = 4 \cdot 18.875 = 75.5 
+}
+So our equation is now 
+\eq{
+\dot{y} = \frac{75.5 xy}{1 +x} - r_4 y^2-r_5y
+}
+It looks like the predator is gaining more from predation than the prey is losing, but keep in mind that the equation for $y$ is in ``predator units'' i.e.~the units where $y=1$ in the steady state. In principle it could be that we measure the prey in tons of biomass and the predator in 100 kg of biomass. In this case the predator would need to eat 40 tons to increase it's biomass by 7.55 tons, which is plausible.
+
+Now we need to make sure that also the predator is steady in the steady state. So we substitute $x=y=1$ which yields 
+\eq{
+\dot{y} = \frac{75.5}{2} - r_4-r_5
+}
+and hence 
+\eq{
+r_4=37.75-r_5
+}
+Now our equation reads 
+\eq{
+\dot{y} = \frac{75.5 xy}{1 +x} - (37.75-r_5) y^2-r_5y. 
+}
+Let's check the final derivative 
+\eqa{
+{\bf P_{22}} &=& \left. \frac{\partial \dot{y}}{\partial y} \right|_* \\
+ &=& \left. \frac{\partial}{\partial y} \frac{75.5 xy}{1 +x} - (37.75-r_5) y^2-r_5y \right|_* \\
+  &=& \left. \frac{75.5 x}{1 +x} - 2(37.75-r_5) y-r_5 \right|_* \\
+  &=&  \frac{75.5}{2} - 2(37.75-r_5)-r_5  \\
+  &=& - 37.75+2r_5-r_5  \\
+  &=& - 37.75+r_5  \\
+}
+We wanted a value of $P_{22}=-30$ so 
+\eq{
+r_5=7.75
+}
+and hence 
+\eq{
+r_4=30
+}
+So in summary our system is 
+\eqa{
+\dot{x} &=& 20x - \frac{40 xy}{1+x} \\ 
+\dot{y} &=& \frac{75.5 xy}{1 +x} -30 y^2-7.75y
+}
+which is a sensible ecological model. You can verify that it has a steady state at $x=y=1$ that is unstable for $2.5\leq\kappa\leq3.5$ but stable for all other positive $\kappa$. 
+ 

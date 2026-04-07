@@ -1,5 +1,5 @@
 \exercise{A simple controller}{4}
-Consider the following system:
+Suppose we want to stabilize the following system:
 \eqan{
 \dot{x}=&f(x,y)&=x-2y \\
 \dot{y}=&g(x,y)&=2x+y 
@@ -17,12 +17,12 @@ The Jacobian in the steady state is
 There are different ways in which we can show that the steady state is unstable. But the quickest way to show the instability is to compute the trace, which is two. So the sum of the two eigenvalues must be two and if two numbers sum to 2 at least one of them must be positive. 
 
 \subquestion 
-We now want to stabilize the system for this purpose we will modify the system by adding a feedback onto the equation for y. In the simplest case this feedback acts instantaneously and directly such that the equations become
+We now modify the system by adding a feedback for y. In the simplest case this feedback acts instantaneously and directly such that the equations become
 \eqan{
 \dot{x}&=&f(x,y) \\
 \dot{y}&=&g(x,y)+h(y),
 }
-where $g$ and $y$ are as above but $h$ describes the newly added feedback. Find a function $h(y)$ such that $h(0)=0$ and the steady state at $(0,0)$ is stable. 
+where $g$ and $y$ are as above but $h$ is the feedback. Find a function $h(y)$ such that $h(0)=0$ (to save energy) and the steady state at $(0,0)$ is stable. 
 
 \solution 
 With the new term the Jacobian is 

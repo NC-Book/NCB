@@ -1,0 +1,154 @@
+\exercise{Lyapunov property\label{exHeatLyapunov}}{4}
+Consider a dynamical system of the form $\vec{\dot{x}}=-{\bf L}\vec{x}$, where $\vec{x}=(p_1,p_2,\ldots)^{\rm T}$, and $\bf L$ is a Laplacian matrix. Let $\vec{x^*}$ be a stationary state, and $S_{\rm KL}=\sum p_k \log p_k/p_k^*$. Show the following:
+
+\subquestion $S_{\rm KL}=0$  if $\vec{x}=\vec{x^*}$
+
+\solution
+Substituting $\vec{x}=\vec{x^*}$ into the definition of $S_{\rm KL}$ yields 
+\eq{
+\sum p_k^* \log p_k^*/p_k^* = \sum p_k^* \log 1 = \sum p_k^* \cdot 0 = \sum 0 = 0  
+}
+
+\subquestion $\dot{S}_{\rm KL}=0$ if $\vec{x}=\vec{x^*}$
+
+\solution 
+The easiest way to do this is to notice that by definition state doesn't change anymore when it is already in the stationary state, and if the state of the system doesn't change $S_{\rm KL}$ can't change either. 
+
+However, since we likely need it anyway below. Let's compute the derivative
+\eqa{
+    \dot{S}_{\rm KL} &=& \frac{\rm d}{{\rm d} t} \left( \sum p_k \log p_k - \sum p_k \log p_k^* \right)  \\
+    &=& \sum \frac{p_k}{p_k}\dot{p}_k + \sum \dot{p}_k \log p_k  - \sum \dot{p}_k \log p_k^*   \\
+    &=& \underbrace{\sum \dot{p}_k}_{=0} + \underbrace{\sum \dot{p}_k \log p_k - \sum \dot{p}_k \log p_k^* }_{= \sum \dot{p}_k \log \frac{p_k}{p_k^*}}  
+}
+In the first step we used the logarithm rules again to split the fraction in the logarithm into two sums. Then when we differentiate the first sum we used the product rule of differentiation. This gave us two terms which we split into their own individual sums. One of these terms looks a bit odd. The derivative of the logarithm gives us a $1/p_k$ and an inner derivative of $\dot{p}_k$ (chain rule!). The $1/p_k$ cancels with a $p_k$ that is already there so that we are left with a $\sum \dot{p}_k$ term. This term sums the changes in the probabilities of all microstates. In a sense it computes the change how much probability there is in the system in total, but of course the total probability is conserved ($\sum p_k=1$), and hence this term must be zero. The result is that when we differentiate $S_{\rm KL}$ only the factor in front of the logarithm but not the log term itself gets differentiated.
+
+We have now arrived at 
+\eq{
+\dot{S}_{\rm KL} = \sum \dot{p}_k \log \frac{p_k}{p_k^*}.
+}
+If substitute $\vec{x}=\vec{x^*}$ the result is
+\eq{
+\dot{S}_{\rm KL} = \sum 0 \cdot \log 1 = 0. 
+}
+
+\subquestion $S_{\rm KL}>0$ if $\vec{x}\neq \vec{x^*}$
+
+\solution
+Now we get to the part that was hinted at in the chapter. To prove these inequalities we will need to find a suitable bound for the logarithm. We that we will need a bound that it tight when $p_k=p_k*$, which means we need the bound to be tight when the argument of the logarithm is 1. 
+
+To find this bound we use the first order Taylor approximation 
+\eq{
+\log x \approx x-1 
+}
+Because $\log$ is a concave function it always remains below this approximation except for $x=1$, where they coincide. Hence we can write 
+\eq{
+\log x < x-1 \qqq \mbox{for $x\neq 1$} 
+}
+Now here is a small problem, we now have an upper bound for $S_{\rm KL}$ but we want to show that $S_{\rm KL}$ is greater than something and that requires a lower bound. So here is an idea. Instead of trying to find a lower bound, we will apply our upper bound to $-S_{\rm KL}$ to show that $-S_{\rm KL}<0$, which then proves that $S_{\rm KL}>0$. We start by writing
+\eq{
+-S_{\rm KL} = - \sum p_k \log \frac{p_k}{p_k^*} = \sum  p_k \log \frac{p_k^*}{p_k}
+}
+where we used that $-\log x = \log (1/x)$. We are now ready to apply the bound 
+\eq{
+-S_{\rm KL} = \sum  p_k \log \frac{p_k^*}{p_k} < \sum p_k \left( \frac{p_k^*}{p_k} -1  \right)  
+}
+Which holds as long as $p_k\neq p_k^*$ for at least one $k$. Let's write the sum on the right as two separate sums and use the nice cancellation that occurs 
+\eq{
+-S_{\rm KL} < \sum p_k \left( \frac{p_k^*}{p_k} -1  \right) = \left(\sum p_k^* \right) - \left(\sum p_k \right)  
+}
+We now have a sum over all $p_k$ and a sum over all $p_k^*$ but as these are properly normalized probability distributions they must sum to one, and hence 
+\eq{
+-S_{\rm KL} < \left(\sum p_k^* \right) - \left(\sum p_k \right) = 1 -1 = 0  
+}
+So we have shown that for $\vec{x}\neq \vec{x^*}$, 
+\eq{
+-S_{\rm KL} < 0 
+}
+which implies 
+\eq{
+S_{\rm KL} > 0. 
+}
+This property is called Gibbs' inequality.
+
+\subquestion $\dot{S}_{\rm KL}< 0$ if $\vec{x}\neq \vec{x^*}$ (Hard. Check the solution if you get stuck.)
+
+\solution
+This is the tricky part. Let's think. Clearly the property that we are trying to demonstrate will not be true for every dynamical system $\dot{x}={\bf J}\vec{x}$, so at some point we will probably 
+have to use that ${\bf J} = -{\bf L}$ and that $\bf L$ is not just any matrix but a Laplacian and hence a matrix with the structure 
+\eq{
+{\bf L} = {\bf K} - {\bf A}
+}
+So the plan is to start with the time derivative of $S_{\rm KL}$ that we have already computed in (b), then use the structure of the Laplacian and then somehow use the bound to arrive at the desired result. 
+
+So we start with 
+\eq{
+\dot{S}_{\rm KL} = \sum \dot{p}_k \log \frac{p_k}{p_k^*}.  
+}
+To continue on we need to use 
+\eq{
+\dot{x} = - {\bf L}\vec{x}. 
+}
+The $k$-th component of this matrix-vector product is 
+\eq{
+\dot{p}_k = -\sum_j L_{kj} p_j  
+}
+Since we wanted to use ${\bf L}={\bf K}-{\bf A}$ we now write this in component form 
+\eq{
+-L_{kj} = A_{kj} - \delta_{kj} k_j = A_{kj} - \delta_{kj} \sum_i A_{ik} 
+}
+Substituting this into the equation for $\dot{p}_k$ yields
+\eqa{
+\dot{p}_k &=&\sum_j  \left(A_{kj}-\delta_{kj} \sum_i A_{ik} \right) p_j   \\ 
+  &=& \left( \sum_j  A_{kj}p_j \right) - \left(\sum_j \delta_{kj} \sum_i A_{ik} p_j \right)    \\ 
+  &=& \left( \sum_j  A_{kj}p_j \right) - \left(\sum_i A_{ik} p_k \right)    \\
+  &=& \left( \sum_j  A_{kj}p_j \right) - \left(\sum_j A_{jk} p_k \right)   
+}
+Now we are ready to substitute into the equation for $\dot{S}_{\bf KL}$
+\eqa{
+\dot{S}_{\rm KL} &=& \sum_k \left(\sum_j A_{kj} p_j - \sum_j A_{jk} p_k \right) \log \frac{p_k}{p_k^*}\\
+&=& \sum_{k,j} \left(A_{kj} p_j - A_{jk} p_k \right) \log \frac{p_k}{p_k^*} \\ 
+&=&  \left( \sum_{k,j} A_{kj} p_j \log \frac{p_k}{p_k^*} \right)  - \left( sum_{k,j} A_{jk} p_k \log \frac{p_k}{p_k^*}  \right)  \\  
+&=&  \left( \sum_{k,j} A_{kj} p_j \log \frac{p_k}{p_k^*} \right)  + \left( sum_{k,j} A_{jk} p_k \log \frac{p_k^*}{p_k}  \right)  \\  
+}
+We could not apply our bound, but we would have to apply it in two places, this would possibly still work but often it is a better idea to apply it only once. So the log terms have to come back together. Fortunately we can make the prefactors look identical if we swap the summation indices on one of the terms. While we are on it we will rename them such that the familiar $A_{ij}$ appears,
+\eqa{
+\dot{S}_{\rm KL} &=&  \left( \sum_{i,j} A_{ij} p_j \log \frac{p_i}{p_i^*} \right)  + \left( sum_{i,j} A_{ij} p_j \log \frac{p_j^*}{p_j}  \right)  \\
+&=&   \sum_{i,j} A_{ij} p_j \left( \log \frac{p_i}{p_i^*} + \log \frac{p_j^*}{p_j} \right) \\ 
+&=&   \sum_{i,j} A_{ij} p_j  \log \frac{p_ip_j^*}{p_i^*p_j} 
+}
+Now is a good time to apply the bound 
+\eq{
+\dot{S}_{\rm KL} = \sum_{i,j} A_{ij} p_j  \log \frac{p_ip_j^*}{p_i^*p_j} < \sum_{i,j} A_{ij} p_j \left( \frac{p_ip_j^*}{p_i^*p_j} -1 \right) 
+}
+To see a bit more clearly it is good to turn the $A_{ij}$ back into $L_{ij}$. Is there an easy way to do this?
+
+We know that $\bf A$ and $-{\bf L}$ only differ in their diagonal elements, that is the elements where $i=j$, but in the sum all the terms with $i=j$ vanish anyway, consider that 
+\eqa{
+0 &=& \sum_{i,j} 0 \\
+  &=&  \sum_{i,j} k_i \delta_{i,j} \cdot{} 0 \\
+  &=& \sum_{i,j} k_i \delta_{i,j} \left( \frac{p_ip_i^*}{p_i^*p_i} -1 \right)   \\
+  &=& \sum_{i,j} k_i \delta_{i,j}  \left( \frac{p_ip_j^*}{p_i^*p_j} -1 \right) 
+}
+So we can write
+\eqa{
+\dot{S}_{\rm KL} &<& \sum_{i,j} A_{ij} p_j \left( \frac{p_ip_j^*}{p_i^*p_j} -1 \right) - 0\\ 
+&=& \sum_{i,j} A_{ij} p_j \left( \frac{p_ip_j^*}{p_i^*p_j} -1 \right) -  \sum_{i,j} k_i \delta_{i,j}  \left( \frac{p_ip_j^*}{p_i^*p_j} -1 \right)\\ 
+&=& \sum_{i,j} (A_{ij}-\delta_{ij}k_i) p_j \left( \frac{p_ip_j^*}{p_i^*p_j} -1 \right) \\
+&=& \sum_{i,j} (A_{ij}-K_{ij}) p_j \left( \frac{p_ip_j^*}{p_i^*p_j} -1 \right) \\
+&=& -\sum_{i,j} L_{ij} p_j \left( \frac{p_ip_j^*}{p_i^*p_j} -1 \right) \\
+}
+Now we have our $L_{ij}$ back. Let's separate the remaining sums a bit 
+\eqa{
+\dot{S}_{\rm KL} &<&  -\sum_{i,j} L_{ij} p_j \left( \frac{p_ip_j^*}{p_i^*p_j} -1 \right) \\
+ &=&  \underbrace{\sum_{i,j} L_{ij} p_j}_{\rm I}-\underbrace{\sum_{i,j} L_{ij} \frac{p_ip_j^*}{p_i^*}}_{\rm II} 
+}
+Now we only have to show that the right hand side is zero. Let's consider the two terms separately. The first one is 
+\eq{
+{\rm I}=\sum_{i,j} L_{ij} p_j = \sum_i \sum_j L_{ij} p_j = -\sum_i \dot{p}_i =0
+}
+due to the conservation of probability. The second term is  
+\eq{
+{\rm II}= \sum_{i,j} L_{ij} \frac{p_ip_j^*}{p_i^*} = \sum_i \frac{p_i}{p_i^*} \underbrace{\sum_j L_{ij}p_j^*}_{[{\bf L}\vec{x^*}]_i = 0} = 0    
+}
+
+

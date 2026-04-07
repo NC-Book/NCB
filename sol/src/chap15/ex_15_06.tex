@@ -1,106 +1,142 @@
-\exercise{Adaptive Voter Model}{3}
-We now continue the adaptive voter model. In this model the nodes represent agents, each of whom holds one of two possible opinions, A or B. Links represent social interaction and a link is considered active if it connects agents holding different opinions. At rate 1 these AB-links 
-are updated. In the update, with probability $p$,  one of the agents copies the others opinion. Otherwise, with probability $\bar{p}=1-p$, the link is rewired. In the former case (opinion update) one of the agents is chosen at random who will keep their opinion, which the respectively other agent now copies. In the latter event (rewiring) the link connecting the agents is cut. A new link is then made from one of the two agents (chosen randomly) to a new partner picked randomly from all agents holding the same opinion (e.g. If an agent of opinion A gets to create a new link, they always link to a random agent who holds also opinion A)  
+\exercise{aSIS invasion threshold}{3}
+The aSIS model is described by the following differential equation system:
+\eqan{
+[\dot{I}] &=& p[SI]-r[I] \\{}
+[\dot{SS}] &=& r[SI]-p[SSI]+w[SI] \\{}
+[\dot{II}] &=& p[SI]+2p[ISI]-2r[II] 
+}
+along with the two conservations laws $[S]+[I]=1$ and $[SS]+[II]+[SI]=z/2$ and the closure approximations 
+\eqn{
+[SSI] = \frac{2[SS][SI]}{[S]} \qqq [ISI]=\frac{[SI]^2}{2[S]}. 
+}
 
 \subquestion 
-As in the non-adaptive voter model, it is easy to show that the number of agents holding a certain opinion, does not change deterministically ($[\dot{A}]=[\dot{B}]=0$). However there is interesting dynamics of the links. Dervie differential equations for $[\dot{AA}]$ and $[\dot{BB}]$ and close them. (Don't use the conservation law yet.)
+Compute the Jacobian matrix $\bf J$ that describes these differential equations. 
 
 \solution
-Following the reasoning from the lecture we find 
+To make our life a bit easier we refrain from substituting everything right away. Since we have chosen $[I]$, $[SS]$, and $[II]$ as our variables, we will treat $[S]$ and $[SI]$ as auxiliary variables. This means they are just short hand notations for the expressions 
 \eqa{
-[ \dot{AA} ]  &=& \frac{[AB]}{2} + \bar{p}\frac{[AB]}{2}\left( \frac{[AB]}{[B]} -2\frac{[AA]}{[A]} \right) \\{}    
-[ \dot{BB} ] &=& \frac{[AB]}{2} + \bar{p}\frac{[AB]}{2}\left(\frac{[AB]}{[A]}  -2\frac{[BB]}{[B]} \right)
+[S] &=& 1-[I] \\{}
+[SI] &=& z/2 - [SS] - [II]
+}
+When we compute the derivatives for the Jacobi matrix we will have to differentiate these functions accordingly. Their derivatives with respect to the variables are 
+\eq{ 
+\frac{\partial}{\partial [I]} [S] = -1 \qqq \frac{\partial}{\partial [SS]} [S] = 0 \qqq \frac{\partial}{\partial [II]} [S] = 0
+}
+\eq{
+\frac{\partial}{\partial [I]} [SI] = 0 \qqq \frac{\partial}{\partial [SS]} [SI] = -1 \qqq \frac{\partial}{\partial [II]} [SI] = -1
+}
+Likewise we will need the derivatives of the closure approximations
+\eq{
+[SSI] = \frac{2[SS][SI]}{[S]} \qqq [ISI]=\frac{[SI]^2}{2[S]}. 
+}
+We compute 
+\eq{ 
+\frac{\partial}{\partial [I]} [SSI] = - \frac{2[SS][SI]}{[S]^2} \frac{\partial [S]}{\partial [I]} = \frac{2[SS][SI]}{[S]^2}    
+}
+\eq{ 
+\frac{\partial}{\partial [SS]} [SSI] = \frac{2[SI]}{[S]} - \frac{2[SS]}{[S]} = \frac{2([SI]-[SS])}{[S]} 
+}
+\eq{ 
+\frac{\partial}{\partial [II]} [SSI] = - \frac{2[SS]}{[S]}
+}
+\eq{ 
+\frac{\partial}{\partial [I]} [ISI] = \frac{[SI]^2}{2[S]^2}
+}
+\eq{ 
+\frac{\partial}{\partial [SS]} [ISI] = -\frac{[SI]}{[S]}
+}
+\eq{ 
+\frac{\partial}{\partial [II]} [ISI] = -\frac{[SI]}{[S]}
+}
+We can now compute the nine derivatives for the Jacobian 
+\eq{
+\frac{\partial [\dot{I}]}{\partial [I]} = -r 
+}
+\eq{
+\frac{\partial [\dot{I}]}{\partial [SS]} = -p 
+}
+\eq{
+\frac{\partial [\dot{I}]}{\partial [II]} = -p 
+}
+\eq{
+\frac{\partial [\dot{SS}]}{\partial [I]} = -\frac{2p[SS][SI]}{[S]^2}  
+}
+\eq{
+\frac{\partial [\dot{SS}]}{\partial [SS]} = -r - \frac{2p([SI]-[SS])}{[S]} -w  
+}
+\eq{
+\frac{\partial [\dot{SS}]}{\partial [II]} = -r +\frac{2p[SS]}{[S]}  -w  
+}
+\eq{
+\frac{\partial [\dot{II}]}{\partial [I]} =  \frac{p[SI]^2}{[S]^2}
+}
+\eq{
+\frac{\partial [\dot{II}]}{\partial [SS]} =  -p -\frac{2p[SI]}{[S]}
+}
+\eq{
+\frac{\partial[\dot{II}]}{\partial[II]} =  -p -\frac{2p[SI]}{[S]} -2r
 }
 
-\subquestion
-Find the steady states of the system. (Hint: You will need to use a conservation law, but delay this as long as possible to preserve the symmetry)
+After this nice exercise in differentiation we have our Jacobian 
+\eq{
+{\bf J} = \aveccc{
+-r & -p & -p \\
+-\frac{2p[SS][SI]}{[S]^2}   &  -r - \frac{2p([SI]-[SS])}{[S]} -w  & -r +\frac{2p[SS]}{[S]}  -w \\
+\frac{p[SI]^2}{[S]^2} &  -p -\frac{2p[SI]}{[S]} & -p -\frac{2p[SI]}{[S]} -2r 
+}. 
+}
 
-\solution
-Setting the rate of change to zero yields 
-\eqa{
-0 &=& \frac{[AB]}{2} + \bar{p}\frac{[AB]}{2}\left( \frac{[AB]}{[B]} -2\frac{[AA]}{[A]} \right) \\
-0 &=& \frac{[AB]}{2} + \bar{p}\frac{[AB]}{2}\left(\frac{[AB]}{[A]}  -2\frac{[BB]}{[B]} \right)
-}
-We can see straight away that a solution is $[AB]=0$, i.e. the fragmented state where there are no more links between nodes with different opinions.
+\subquestion Find a condition for the `invasion threshold' from which on the disease can invade a disease-free system. Hint: Use $|{\bf J}|=0$.
 
-To find other steady states we divide by $[AB]$ and multiply by $2[A][B]$ to avoid the fractions
-\eqa{
-0 &=& [A][B] + \bar{p}\left([AB][A] -2 [AA][B] \right) \\
-0 &=& [A][B] + \bar{p}\left([AB][B] -2 [BB][A] \right)
-}
-This is a bit tricky because we are interested in $[AB]$ but at the same time we want to use the conservation law to remove one of the variables and it is quite intuitive to use it to remove $[AB]$ as removing either $[AA]$ or $[BB]$ would break the symmetry. My feeling here is that it is a good idea to move to variables that for the sum and the difference of the $[AA]$ and $[BB]$ links. So let's introduce
-\eqa{
-x&=&[AA]+[BB] \\
-y&=&[AA]-[BB]
-}
-This allows us to write $2[AA]$ as $x+y$ and $2[BB]$ as $x-y$, hence
-\eqa{
-0 &=& [A][B] + \bar{p}\left([AB][A] -(x+y)[B] \right) \\
-0 &=& [A][B] + \bar{p}\left([AB][B] -(x-y)[A] \right)
-}
-We can now use the link conservation law in the form 
+\solution 
+In the healthy state we know
 \eq{
-x=z/2-[AB]
+[I]=0 \qqq [S]=1
 }
-to eliminate one variable in a symmetric fashion
-\eqa{
-0 &=& [A][B] + \bar{p}\left([AB][A] -(z/2-[AB]+y)[B] \right) \\
-0 &=& [A][B] + \bar{p}\left([AB][B] -(z/2-[AB]-y)[A] \right)
-}
-We can now collect the $[AB]$ in each equation and take advantage of the conservation law for nodes, $[A]+[B]=1$.
-\eqa{
-0 &=& [A][B] + \bar{p}\left([AB] -(z/2+y)[B] \right) \\
-0 &=& [A][B] + \bar{p}\left([AB] -(z/2-y)[A] \right)
-}
-Having preserved the symmetry now seems a good moment to take advantage of it by forming the sum and the difference of the two equations
-\eqa{
-0 &=& 2[A][B] + \bar{p} \left(2[AB]-z/2+y([A]-[B])\right)  \\
-0 &=& -\bar{p} \left((z/2)([B]-[A])+y \right)
-}
-From the second equation we can now compute 
 \eq{
-y=\frac{z}{2}([A]-[B])
+[SI]=0 \qqq [II]=0 \qqq [SS]=z/2
 }
-Substituting into the first equation yields
+Substituting this steady state into our Jacobian simplifies it considerably and we are left with
 \eq{
-0 = 2[A][B] + \bar{p} \left(2[AB]-z/2+([A]-[B])^2z/2\right)  
+{\bf J} = \aveccc{
+-r & -p & -p \\
+0  &  -r + pz -w  & -r +pz  -w \\
+0 &  -p  & -p  -2r 
+}. 
 }
-We divide everything by 2 and $\bar{p}$ 
-\eq{
-0 = \frac{[A][B]}{\bar{p}} +[AB]-z/4+([A]-[B])^2z/4  
-}
-And then solve for 
-\eq{
-[AB] = z/4(1-([A]-[B])^2)-\frac{[A][B]}{\bar{p}}   
-}
-This isn't too bad but we can make it a bit nicer. Consider that 
-\eq{
-([A]-[B])^2 = [A]^2-2[A][B]+[B]^2 = ([A]+[B])^2-4[A][B] = 1- 4[A][B]
-}
-Hence
-\eq{
-[AB] = z[A][B]-\frac{[A][B]}{\bar{p}}   
-}
-which we can write as 
-\eq{
-[AB] = [A][B]\left(z-\frac{1}{\bar{p}}\right)   
-}
-The first two factors ($[A][B]$) give us the parabola shape that we observed in the simulations from the lecture. The last factor is the height of the parabola. 
-
-\subquestion
-Find an estimate for the value of $p$ at which the network fragments.
-
-\solution
-From the previous equation we can see that fragmentation occurs when 
-\eq{
-\bar{p}=\frac{1}{z}
-}
-To find the value of $p$ at which the network fragments we substitute $\bar{p}=1-p$,
-\eq{
-1-p=\frac{1}{z}
+Because the diagonal element $J_{11}=-r$ is alone in its column it must be also an eigenvalue,  $\lambda_1=-r$. So one way to make a bifurcation occur is to set $r=0$. This makes sense, if the nodes no longer recover the system changes fundamentally. So it is good that this turns out to be a bifurcation, but it is not the one we are after. To check for other ways in which an eigenvalue can become zero, we consider the $2\times 2$ block that is left when we remove the first row and column
+\eq{ 
+{\bf J}_{\overline{11}} = \avecc{
+-r + pz -w  & -r +pz  -w \\
+  -p  & -p  -2r 
 } 
-and solve for $p$, which yields
-\eq{
-p=1-\frac{1}{z}
 }
-One nice property of this result is that we recover the fragmentation transition of the giant component: for $p=0$ the network fragments at $z=1$.
+As we compute the determinant we want to exploit that one line has two identical elements
+\eqa{
+|{\bf J_{\overline{11}}}| &=& (-r+pz-w)(-p-2r)-(-r+pz-w)(-p)  \\
+  &=& (-r+pz-w)(-p-2r+p) \\
+  &=& (-r+pz-w)(2r) 
+}
+Since we are looking for solutions where the determinant becomes zero, multiplying this out would be a step in the wrong direction. We already know that a bifurcation happens at $r=0$ so we are no longer interested in this. Once we exclude $r=0$ it is save to divide by $2r$ and we are left with the condition 
+\eq{
+-r+pz-w = 0
+}
+This simplified nicely. It is also good to see that $p$ and $z$ only appear as a product. You'd expect that the number of links and the transmission rate across those links somehow multiply. It is also interesting to see that rewiring acts exactly as recovery. This was unexpected but is a nice insight into the system. 
+
+\subquestion 
+Find the critical value of $p$ from which on invasion of the disease is possible. As a test consider the case $w=0$ and compare it to the condition for the the non-adaptive SIS model from Ex.~15.2. 
+
+\solution 
+This is simple now. We solve our condition for $p$, which yields 
+\eq{
+p = \frac{r+w}{z}
+}
+and of course for $w=0$ we recover  
+\eq{
+p= \frac{r}{z}
+}
+which is consistent with the previous result. 
+
+As a side note, we find that our social distancing strategy is quite effective in preventing the invasion, and we not even really distancing. As a healthy person you are not isolating, you are just meeting other people. 
+

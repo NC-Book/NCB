@@ -1,0 +1,125 @@
+\exercise{Fixation probability}{3}
+In a flowerbed there is space for five plants. Plats die at a rate of 3 per plant per time. When this happens one of the other plants has space to reproduce, so the space freed by the dying plant is filled (immediately) by an offspring of one of the other plants, chosen at random. But one plant has a rare mutation that makes it more resilient such that this plant only dies at rate 2. All of the mutant plant's offspring have the same mutation, whereas neither of the offspring of other plants has it. Compute the probability that mutant plants take over the whole flowerbed.    
+
+\solution 
+In this case our system has 6 microstates when we have 0,1,2,3,4, or 5 mutants. Interestingly there are two absorbing states: If there are 0 mutant plants the mutation is lost and won't come back. If there are 5 mutant plants the mutation, then the non-mutatant (wildtype) plants have been excluded from the flower bed and the mutation has become fixed in the population. 
+
+We define $x_n$ as the probability that the system is in state $n$ that has $n$ mutant plants. We collect the $x_n$ in the vector 
+\eq{
+\vec{x} = (x_0,x_1,x_2,x_3,x_4,x_5)^{\rm T}
+}
+From the question we know that the initial state is 
+\eq{
+\vec{x}(0)=(0,1,0,0,0,0)^{\rm T}
+}
+
+Now there is a hard way and an elegant way to find the answer.
+
+\paragraph{Hard way: continuous time dynamics}
+We start by constructing the differential equations. Let's consider first all the processes that reduce the number of mutant plants:
+\begin{itemize}
+\item If we are in state 1, the mutant plant can die (rate 3) and is then replaced by the wildtype.
+\eq{j_{1\to 0} = 3x_1.}
+\item If we are in state 2, one of the two mutant plants can die (rate 6), and is then replaced by one of the three wildtype plants (probability 3/4),
+\eq{j_{2\to 1} = 6x_2 \frac{3}{4} = \frac{9}{2} x_2.}
+\item In state 3 one of the three mutants can die (rate 9) and be replaced by offspring of one of the two wildtype plants (probability 1/2),
+\eq{j_{3\to 2} = 9x_3 \frac{1}{2} = \frac{9}{2} x_2.}
+\item In state 4, one of the 4 mutants can die (rate 12) and be replaced by offspring from the one wildtype plant (probability 1/4),
+\eq{j_{4\to 3} = 12x_4\frac{1}{4} = 3x_4.}
+\end{itemize} 
+Likewise we can enumerate all the fluxes that increase the number of mutants. 
+\begin{itemize}
+\item In state 1 one of the four wildtype plants can die (rate 16) and be replaced by offspring of the mutant (probability 1/4)
+\eq{j_{1\to 2} = 16x_1\frac{1}{4} = 4x_1.}
+\item In state 2 one of the three wildtype plants can die (rate 12) and be replaced by offspreing of one of the two mutants (probability 1/2)
+\eq{
+j_{2\to 3} = 12x_2\frac{1}{2} =6x_2
+}
+\item In state 3 one of the two wildtype plants can die (rate 8) and be replaced by offspring from one of the three mutants (probability 3/4) 
+\eq{
+j_{3\to 4} = 8x_3\frac{3}{4} =6x_3
+}
+\item In state 4 the one remaining wildtype plant can die (rate 4).
+\eq{
+j_{4\to 5} = 4x_4
+}
+\end{itemize}
+In summary this gives us the differential equations 
+\eqa{
+\dot{x}_0 &=& j_{1\to 0}   \\ 
+\dot{x}_1 &=& -(j_{1\to 0}+j_{1\to 2}) + j_{2\to 1}    \\  
+\dot{x}_2 &=& -(j_{2\to 1}+j_{2\to 3}) + j_{1\to 2} + j_{3 \to 2}  \\  
+\dot{x}_3 &=& -(j_{3\to 2}+j_{3\to 4}) + j_{2\to 3} + j_{4 \to 3}   \\  
+\dot{x}_4 &=& -(j_{4\to 3}+j_{4\to 5}) + j_{3\to 4}    \\  
+\dot{x}_5 &=&  j_{4\to 5}   \\  
+}
+I don't like haveing to deal with the fractions so let's change the unit of time so that everything is twice as fast, then the equations are
+\eqa{
+\dot{x}_0 &=& 6x_1   \\ 
+\dot{x}_1 &=& -(6x_1+8x_1) + 9x_2    \\  
+\dot{x}_2 &=& -(9x_2+12x_2)  + 8x_1 + 18x_3/2 \\  
+\dot{x}_3 &=& -(9x_3+12x_3) + 12x_2 + 6x_4   \\  
+\dot{x}_4 &=& -(6x_4+8x_4) + 12x_3    \\  
+\dot{x}_5 &=&  8x_4   \\  
+}
+which we can also capture by the Jacobian
+\eq{
+{\bf J} = \avecccccc{
+ 0 &  6 & 0   & 0   & 0  & 0\\
+ 0 & -14 & 9  & 0   & 0  & 0\\
+ 0 &  8 & -21 & 9   & 0  & 0\\
+ 0 &  0 & 12  & -21 & 6  & 0\\
+ 0 &  0 &   0 &  12 & -14 & 0 \\ 
+ 0 &  0 &   0 &  0  & 8   & 0}
+}
+Now the question is how do we solve for the long term behavior? Detailed balance or Kirchhoff or node-wise steady state conditions won't work, because neither of these approaches takes the initial condition into account, but in this case how we start the system will clearly have an impact on the probability with which we reach the alternative absorbing states. So if we use one of the methods above they will tell us that the system ends up with one of the absorbing states with certainty, but why won't tell us what the changes are that it is one or the other.
+
+To get the answer we are looking for we will need to solve the dynamics (of sorts). Consider that the dynamics will still be given by the general form 
+\eq{
+\vec{x}(t) = \sum_n c_n \vec{v_n} \exp{\lambda_n}  
+}
+Since our Jacobian is still a Laplacian matrix we know that there can be no positive eigenvalues, however there are two zero eigenvalues. On the one hand we know this from the absorbing states: If there are two absorbing states there must also be two zero eigenvalues. On the other hand we can see it directly in the Jacobian matrix, from the two columns that contain only zeroes.
+
+We can chose the eigenvectors corresponding to be
+\eq{
+\vec{v_1}=\avec{1\\ 0 \\ 0 \\ 0 \\ 0 \\ 0},\qqq \vec{v_2}=\avec{0\\ 0 \\ 0 \\ 0 \\ 0 \\ 1}
+}
+Because only two of the eigenvalues are zero, while the others are negative in the limit $t\to \infty$ the general solution will become 
+\eq{
+\lim_{t\to \infty} \vec{x}(t) = c_1 \vec{v_1} + c_2 \vec{v_2} 
+}
+If now consider this solution and the eigenvectors, we can see that $c_1$ is the probability that the mutants go extinct and $c_2$ is the probability that they manage to take over the flowerbed. 
+
+So our task becomes to find the expansion coefficients $c_1$ and $c_2$. The easiest way to determine these coefficents is the formula 
+\eq{
+c_n = \vec{w_n}^{\dag}\vec{x}(0)
+}
+where $\vec{w_n}^\dag$ is the $n$-th left eigenvector, which has been normalized such that. 
+\eq{
+\vec{w_n}^{\dag}\vec{v_n}=1
+}
+
+
+
+We thus have to solve 
+\eqa{
+ 0\vec{w}^\dag &=& \vec{w}^\dag {\bf J} \\
+   &=& (w_0,w_1,w_2,w_3,w_4,w_5) \avecccccc{
+ 0 &  3 & 0     & 0     & 0 & 0\\
+ 0 & -7 & 9/2   & 0     & 0 & 0\\
+ 0 &  4 & -21/2 & 9/2   & 0 & 0\\
+ 0 &  0 & 6     & -21/2 & 6 & 0\\
+ 0 &  0 &     0 &  6    & -10 & 0 \\ 
+ 0 &  0 &     0 &  0    & 4   & 0}
+} 
+From the product of the  vector with the non-zero columns we get the conditions  
+\eqa{
+0&=& 3w_0 -7w_1 +4w_2 \\
+0&=& 9w_1/2 -21w_2/2 +6w_3 \\
+0&=& 9w_2/2 -21w_3/2 +6w_4 \\
+0&=& 6w_3 -10w_4 + 4w_5 
+}
+So we have four conditions for 6 unknowns, which means that we can chose two of the unknowns as we want. So how should we chose them? Recall from Chap.~20 that our method for computing the expansion coefficients requires that the left eigenvectors are orthogonal to all right eigenvectors that belong to different eigenvalues. In particular this means that when we are constructing $\vec{w_1}^\dag$ then we want to make sure that it is orthogonal to $\vec{v_2}$. Because $\vec{v_2}$ only has one non-zero element and it is in the six row any vector that obeys the orthogonality condition $\vec{w}^\dag\vec{v_2}=0$ must have $w_5=0$, so this is the first choice that we make. Moreover we want our vector to be normalized such that $\vec{w_1}^\dag\vec{v_1}=1$ which we can ensure by choosing $w_0=1$. Now we just need to solve the rest. I'll just state with the fourth condition:
+
+
+

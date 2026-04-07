@@ -1,0 +1,102 @@
+\exercise{Supersensitivity in degenerate bifurcations\label{exBrainSuper}}{4}
+In the pitchfork and transcritical bifurcations the slope of the steady state in the bifurcation point is undefined, because there are several branches with different slopes. To find the slope of the nontrivial branch we first have to remove the trivial steady state, which we can do by dividing the equation of motion by $x$. 
+
+\subquestion Define $g(x,p)=f(x,p)/x$ and then use the implicit function theorem for $g$ to find the slope in the critical point of the pitchfork and transcritical bifurcations. (Hint: you might need to use l'Hospital's rule)
+
+\solution 
+We start by defining 
+\eq{
+g(x,p) = f(x,p)/x
+}
+So $\dot{x}=g(x,p)$ is a dynamical which has the same non-trivial steady state as $\dot{x}=f(x,p)$ but misses the trivial steady state. We can now apply our implicit function theorem to $g$ which states 
+\eq{
+\frac{\d x^*}{\d p} = - \frac{g_{\rm p}}{g_{\rm x}}.
+}
+We need to compute 
+\eqa{
+g_{\rm p}  &=& \left. \partial_p \frac{f(x,p)}{x} \right|_{x=x*,p=p^*} \\
+   &=& \left.  \frac{f_{\rm p}(x,p)}{x} \right|_{x=x*,p=p^*} 
+}
+If we would now substitute $x=x*$, $p=p^*$ then the fraction would become $0/0$ because the bifurcation point of the transcritical and pitchfork normal forms occurs at $x^*=0$ and $f_{\rm p}(x^*,p^*)=0$ in both bifurcations. 
+
+L'Hospital's rule which states (roughly speaking) that if we want to evaluate $a(x)/b(x)$ at $x^*$ where $a(x^*)=b(x*)=0$ we can find the result by evaluating 
+$a'(x^*)/b'(x^*)$, instead. Using this rule we can now write
+\eq{
+g_{\rm p}  =  \left.  \frac{f_{\rm px}(x,p)}{1} \right|_{x=x*,p=p^*} = f_{\rm px} 
+}
+We also need to compute 
+\eqa{
+g_{\rm x} &=& \left. \partial_x \frac{f(x,p)}{x}  \right|_{x=x*,p=p^*} \\
+  &=& \left( \frac{f_{\rm x}(x,p)}{x} - \frac{f(x,p)}{x^2}   \right)_{x=x*,p=p^*}  
+}
+Because $f(x^*,p^*)=0$ (stationarity condition), $f_{\rm x}(x^*,p^*)=0$ (bifurcation condition) and also $x^*={x^*}^2=0$ we have to use L'Hospital's rule once for the first term and twice for the second term, which yields
+\eqa{
+g_{\rm x} &=& \left( \frac{f_{\rm x}(x,p)}{x} - \frac{f(x,p)}{x^2}   \right)_{x=x*,p=p^*} \\
+&=& \left( \frac{f_{\rm xx}(x,p)}{1} - \frac{f_{\rm x}(x,p)}{2x}   \right)_{x=x*,p=p^*}  \\ 
+&=& \left( \frac{f_{\rm xx}(x,p)}{1} - \frac{f_{\rm xx}(x,p)}{2}   \right)_{x=x*,p=p^*}  \\ 
+&=& f_{\rm xx} - f_{\rm xx}/2 = f_{\rm xx}/2
+}
+Hence our result is that the slope of the nontrivial steady state in the critical point of the transcritical and pitchfork bifurcations is
+\eq{
+\frac{\d x^*}{\d p} = - \frac{g_{\rm p}}{g_{\rm x}} = -2 \frac{f_{\rm xp}}{f_{\rm xx}}
+}
+For the pitchfork bifurcation $f_{\rm xp}\neq 0$ but $f_{\rm xx}=0$ (even order derivative in $x$). Hence the result still diverges; We have a vertical slope. This is consistent with our picture of the pitchfork bifurcation where the nontrivial steady states branch off vertically, giving us supersensitivity. 
+
+In the transcritical bifurcation both $f_{\rm xp}\neq 0$ and $f_{\rm xx}\neq 0$ such that the slope is finite. We can now use this result to relatively quickly compute the slope in any transcritical bifurcation. 
+
+\subquestion 
+Test your result on the transcritical bifurcation in the SIS-system from \exref{exBrainDegen}.
+
+\solution 
+We already analyzed the SIS system already in quite some detail, but here is a quickly recap: Since every term contains at least one factor of $x$ we can immediately see that $x_1^*=0$ is a steady state. To determine the stability of this steady state we can  
+\eqa{
+f_{\rm x} &=& \left. \partial_{\rm x} (px(1-x)-x)  \right|_{x=x^*}    \\
+    &=& \left. \partial_{\rm x} (p-2px)-1)  \right|_{x=x^*} \\ 
+    &=& p-1
+}
+The steady state is stable if $f_{\rm x}<0$ which is the case when $p<1$. At $p=1$ a bifurcation occurs in which the stability changes. Because this bifurcation occurs in a steady state that is pinned to zero we suspect a transcritical bifurcation. 
+
+Now we want to compute the slope at which the nontrivial steady state $x_2^*$ is crossing the bifurcation point using our previous result 
+\eq{
+\frac{\d x_2^*}{\d p} = - \frac{g_{\rm p}}{g_{\rm x}} = -2 \frac{f_{\rm xp}}{f_{\rm xx}}
+}
+For this purpose we compute 
+\eqa{
+  f_{\rm xp} &=&  [ \partial_x \partial_p  px(1-x)-x ]_* \\
+    &=& [ \partial_x  x(1-x) ]_* \\
+    &=& [ 1-2x ]_* \\
+    &=& 1 
+}
+and 
+\eqa{
+  f_{\rm xx} &=&  [ \partial_x \partial_x  px(1-x)-x ]_* \\
+    &=& [ \partial_x  p(1-2x)-1 ]_* \\
+    &=& [  -2p ]_* \\
+    &=& -2.  
+}
+So the slope we are looking for is 
+\eq{
+\frac{\d x_2^*}{\d p} = -2 \frac{f_{\rm xp}}{f_{\rm xx}} = -2 \frac{1}{-2} = 1
+}
+In this way we can compute the slope at which the non-trivial steady state is branching off even if we cannot compute the non-trivial steady state itself. 
+However the SIS-system is simple enough to compute this steady state, so let's use this to check the result. Starting from the stationarity condition 
+\eq{
+0 = px(1-x)-x,
+}
+we divide out the trivial steady state $x=0$ by dividing by $x$, which yields 
+\eq{
+0=p(1-x) -1 
+}
+which we solve for 
+\eq{
+x_2^* = \frac{p-1}{p}
+}
+Now that we have the steady state we can compute the slope with respect to $p$, by differentiating, 
+\eq{
+\frac{\d x_2^*}{\d p}  = \frac{\d}{\d p} \frac{p-1}{p} = \frac{1}{p} - \frac{p-1}{p^2} = \frac{1}{p^2}
+}
+Finally we evaluate the slope at the bifurcation point $p^*=1$ which yields 
+\eq{
+\frac{\d x_2^*}{\d p} = 1
+}
+which is consistent with the result that we got from the implicit function theorem. 

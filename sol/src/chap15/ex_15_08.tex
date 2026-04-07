@@ -1,34 +1,152 @@
-\exercise{SIS percolation}{}
-In this exercise we find the epidemic threshold of the SIS model using a different approach:
+\exercise{adaptive Voter Model (aVM)}{3}
+Consider a network with $N$ nodes and $K$ links, where nodes represent agents and links represent social contacts. Each agent is in either of two states A and B, say favoring one of two political parties. AB-Links, connecting agents of different opinion, get updated at rate $r$. In an update with probability $p$ the link is cut and one of the two agents (chosen randomly) creates a new link to an agent in the same opinion state (so the new link is an AA or BB link). Otherwise (so with probability, $\bar{p}=1-p$) one agent chosen at random convinces the other of their opinion. 
 
-\subquestion Consider a single infected node in a large network where every other node is susceptible. How long do you expect the infected node to stay infected until it returns to the susceptible state?
-
-\solution
-Since we recover with rate $r$ the expected time to recovery is $1/r$.
-
-\subquestion While the initial node is infected it can infect other nodes. Estimate the initial rate at which it causes such infections. 
+\subquestion{Derive a mean-field model for $[A]$ and $[B]$, the density of agents holding opinion A and B.}
 
 \solution
-We can assume that the initial node has $z$ links. Since the disease is transmitted along every link at rate $p$ the initial rate of infections caused is $pz$.
+Rewiring of the link does not change the numbers at all, so we can ignore it. The process that changes the agents opinion results in 
+\eqa{
+\dot{[A]}&=&(1-p)\frac12 [AB]-\frac12 [AB] = 0 \\ 
+\dot{[B]}&=&(1-p)\frac12 [AB]-\frac12 [AB] = 0 
+}
+If an update occurs where we copy the opinion the number of nodes of opinion A is increased by 1 (probability 50\%) or it is decreased by 1 (also probability 50\%). These two processes cancel so the that the net change of the number of nodes in state A (or B) is zero. The voter model is actually a very fair model. 
+
+In a simulation with a finite number of agents $[A]$ and $[B]$ may still change due to stochastic fluctuations. Because there is change involved in the consensus process the average opinion $[A]-[B]$ follows a random walk. Eventually, after very long time, a consensus might even be reached where by coincidence, every agent ends up in the same opinion state, which stops the game. 
+
+\subquestion
+Derive differential equations for $[AA]$ and $[BB]$ and close using a pair approximation. (Don't use the conservation law yet.)
+
+\solution
+Rewiring occurs at rate $p[AB]$ and whenever a rewiring event occurs we get a new $[AA]$ or $[BB]$ link with 50\% probability each which gives us term $p[AB]/2$ in the equations for both $[AA]$ and $[BB]$.
+
+Opinion adoption events occur at a rate $\bar{p}[AB]$. Half the time the node of type B will adopt opinion A and in this case we get one new AA-link. This gives us a gain rate $\bar{p}[AB]/2$. 
+
+We may gain additional AA-links if the newly convinced note had already additional neighbors of opinion A. We gain one such additional link for every ABA-chain that runs through the AB-link on which the convincing occurs. The corresponding rate of AA-link creation is $2\bar{p}[ABA]/2$, where the factor 2 appears because every ABA chain runs through two AB-links (see chapter text).
+
+Finally we can lose AA-links from opinion adoption events if a node of opinion A is convinced of opinion B. This also occurs at a rate $\bar{p}[AB]/2$. In this case we lose one AA-link for every AAB chain that runs through the AB-link on which the opinion adoption event occurs. The corresponding rate is $\bar{p}[AAB]/2$.
+
+So before closure the differential equation for $[AA]$ is
+\eq{
+[\dot{AA}] = \underbrace{\frac{p}{2} [AB]}_{\mbox{rewiring}} + \underbrace{\frac{\bar{p}}{2} [AB]}_{\mbox{adop.~direct}} + \underbrace{\bar{p}[ABA]}_{\mbox{adop.~neighbor}} -
+\underbrace{\frac{\bar{p}}{2} [AAB]}_{\mbox{adop.~n.~loss}}
+}
+We can simplify this a bit by writing  
+\eq{
+[\dot{AA}] = \frac{1}{2} [AB] + \bar{p}[ABA] - \frac{\bar{p}}{2} [AAB]  
+}
+where we used $p+\bar{p}=1$ when we added the rewiring and direct adoption terms. 
+We can now use the pair approximation 
+\eq{
+[ABA] \approx \frac{[AB]^2}{[B]} \qqq [AAB] \approx \frac{2[AA][AB]}{[A]}. 
+}
+With this approximation the equation becomes  
+\eq{
+[\dot{AA}] = [AB] \left[\frac{1}{2} + \bar{p} \left( \frac{[AB]}{[B]}-\frac{[AA]}{[A]}\right) \right]. 
+}
+The equation for $[BB]$ is completely symmetric. Hence, we arrive at the system
+\eqa{
+[\dot{AA}] = [AB] \left[\frac{1}{2} + \bar{p} \left( \frac{[AB]}{[B]}-\frac{[AA]}{[A]}\right) \right], \\{}    
+[\dot{BB}] = [AB] \left[\frac{1}{2} + \bar{p} \left( \frac{[AB]}{[A]}-\frac{[BB]}{[B]}\right) \right].  
+}
+
+\subquestion
+Consider the case $[A]=[B]=1/2$ and find the two steady states of the system (Hint: You will need to use a conservation law, but delay this as long as possible to preserve the symmetry)
+
+\solution
+So yes, because we found in (a) that $[A]$ and $[B]$ never change (deterministically) we can treat them as parameters. It makes sense to consider the symmetric state $[A]=[B]=1/2$
+
+Using our equations from (b) and setting the rate of change to zero yields 
+\eqa{
+ 0 &=& [AB] \left[\frac{1}{2} + \bar{p} \left( \frac{[AB]}{[B]}-\frac{[AA]}{[A]}\right) \right], \\{}    
+ 0 &=& [AB] \left[\frac{1}{2} + \bar{p} \left( \frac{[AB]}{[A]}-\frac{[BB]}{[B]}\right) \right].  
+}
+Substituting $[A]=[B]=1/2$ gives us 
+\eqa{
+ 0 &=& [AB] \left[\frac{1}{2} + 2\bar{p} ( [AB]-[AA] ) \right], \\{}    
+ 0 &=& [AB] \left[\frac{1}{2} + 2\bar{p} ( [AB]-[BB] ) \right].  
+}
+We can see straight away that one steady state is $[AB]=0$ and then $[AA]$ and $[BB]$ can be what they want. Actually this steady state is not a single point at all but a line that contains all possible $[AA]$ and $[BB]$ values that are consistent with $[AB]=0$. 
+
+So when there are no more links on which disagreements exists, the dynamics stops as there are no conflicts to resolve.
+
+Let's see if we can find another steady state. Dividing our equations by $[AB]$ we arrive at
+\eqa{
+ 0 &=& \frac{1}{2} + 2\bar{p} ( [AB]-[AA] )  \\{}    
+ 0 &=& \frac{1}{2} + 2\bar{p} ( [AB]-[BB] ).  
+}
+You could now use the conservation law for links $[AA]+[BB]+[AB]=z/2$ and solve for for the steady state the hard way. A more insightful way to go is to notice that nice things happen when we compute the difference between the two equations.
+We find 
+\eq{
+0 = 2\bar{p} ([BB]-[AA])
+}
+and hence 
+\eq{
+[AA]=[BB]
+}
+in the steady state. So this takes care of one of the variables, say $[BB]$, and we only need to worry about one of the equations, 
+\eq{
+ 0 = \frac{1}{2} + 2\bar{p} ( [AB]-[AA] )
+}
+Since we already know that $[AA]=[BB]$ we can now write the conservation law for links as 
+\eq{
+[AB]+2[AA]=\frac{z}{2}
+}
+which we solve for 
+\eq{
+[AA]=\frac{z}{4}-\frac{[AB]}{2}
+}
+Which we can substitute into our remaining steady state condition to find,
+\eqa{
+ 0 &=& \frac{1}{2} + 2\bar{p} \left( [AB]-\frac{z}{4} + \frac{[AB]}{2}  \right) \\{}
+ 0 &=& \frac{1}{2} + \bar{p} \left( 3 [AB]-\frac{z}{2}  \right) \\{}
+ 3[AB]\bar{p} & = & - \frac{1}{2} + \frac{z\bar{p}}{2} \\{}
+  [AB]   &=&  \frac{z\bar{p}-1}{6\bar{p}}  \\{}
+  [AB]   &=&  \frac{1}{6}\left( z - \frac{1}{\bar{p}} \right)    
+}
 
 \subquestion 
-Now estimate the basic reproductive number $R_0$, i.e.~the number of infections that are directly caused by our initial infected node by multiplying the time that the initial node is infected with the rate at which it causes infections. 
-
-\solution
-Multiplying the two previous results we get 
-\eq{
-R_0= \frac{zp}{r}
-}
-
-\subquestion The disease can invade the population when $R_0>1$, hence $R_0=1$ is the epidemic threshold. Use this to find the critical value of $p$ where the epidemic threshold occurs. 
+In simulations of this model, a fragmentation transition is observed. 
+On the one side of this transition there is ongoing opinion dynamics which can observed over very long time. On the other side the system rapidly splits into two separate components such that no agent of opinion A has contact to an agent with opinion B. Estimate the value of $p$ at which this transition occurs. (Bonus: Your estimate from the moment expansion won't be very precise in this case, formulate an hypothesis why this might be the case.)
 
 \solution 
-We solve 
+We already noticed that the there are two steady states, $[AB]=0$ which corresponds to the fragmented state and 
 \eq{
-1= \frac{zp}{r}
+[AB]  =  \frac{1}{6}\left( z - \frac{1}{\bar{p}} \right)    
 }
-which yields
+which corresponds to the state with ongoing opinion dynamics. 
+
+Now the question is, why and when is there a transition between these states. 
+A first clue is that the non-fragmented state may not always be physical. 
+The smalles $\bar{p}$ becomes, the smaller is $[AB]$ in this state until it eventually becomes negative. 
+
+To find the transition point where the solution becomes unphysical we consider
+\eqa{
+0  &=&  \frac{1}{6}\left( z - \frac{1}{\bar{p}} \right) \\
+0  &=&  z - \frac{1}{\bar{p}} \\
+0  &=&  Z\bar{p} -1 \\
+1  &=&  z\bar{p} \\
+\bar{p} &=& 1/z
+}
+which we can also write as 
 \eq{
-p=\frac{r}{z}.
+1-p = \frac{1}{Z}
 }
-Note that is the same result that we previously derived in a more complicated way. 
+and hence 
+\eq{
+p = 1- \frac{1}{z}
+}
+SO does the transition happen as the state where the dialog between agents is ongoing, dip out of the physical space?
+
+To be sure we could check the stability of the two steady states. The result is that 
+the state where the network remains connected is indeed the only stable state while it occurs at $[AB]>0$. When the state becomes unphysical, the fragmented state at $[AB]=0$ becomes stable instead.
+
+The idea that the moment expansion gives us is qualitatively right: There are two types of long term behavior: ongoing opinion dynamics (with eventual consensus after a very long time) or sudden fragmentation into two components which are internally in consensus. Moreover the network usually favors the former dynamics, but increasing rewiring $p$, decreases the density of AB links in the ongoing dynamics. If we increase $p$  too much there is a point where none of the  controversial links are left, and we land in the fragmented state. 
+
+So far so good. However, quantitatively our predictions are way off. For example for a mean degree of $z=4$ we would expect that fragmentation occurs at $p=1-1/z=0.75$. However, in simulations fragmentation already occurs at $p=0.4$. Why is the pair approximation so wrong in this case, when it worked so beautifully for the SIS model?
+The answer lies in the fragmentation transition itself: Our assumptions, and particularly the closure approximations, are based on the idea that we have a certain number of links of a given type, but then these links come together randomly in triplet chains. By contrast, picture how the network would look like close to the fragmentation point. 
+
+It has alraeady almost split into two homogeneous components that are only connected with each other by the last few AB-links. Due to the polarization that has developed this is a very non-random network. In particular many AB links are connected to nodes that have been freshly convinced and now find themselves on the wrong side of the divide. Because the AB-links are clustered around these nodes, there is a much larger number of ABA and BAB triplets than we would expect in random networks. 
+
+So now that we have realized what the problem with the fragmentation is we can make an approximation that corrects for this by assuming that the network is almost fragmented. Such an approximation would then be accurate near the fragmentation, but inaccurate in other parameter regions where the network is more random. Why not give it a try? 
+
+(OK one final thought: Did you notice that we predict that for $p=0$ we predict that the network fragments at $z=1$? Of course that is where the giant component transition occurs in random graphs. It's very nice to see this reappearing. So the pair approximation actually works well in this limit.)

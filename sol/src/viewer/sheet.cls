@@ -7,7 +7,7 @@
 \RequirePackage{xcolor}
 \RequirePackage{amssymb}
 \RequirePackage{amsmath}
-\RequirePackage{hyperref}
+\RequirePackage[hidelinks]{hyperref}
 \RequirePackage{qrcode}
 
 \newsavebox{\solutionbuffer}
@@ -83,9 +83,9 @@
 \setlength{\leftskip}{0cm}
 \spacewherebelongs{\topsep}
 \ifsinglemode
-\href{\exlink}{\bf Ex \thesheet .\theexercise : #1 [#2]}
+\href{\exlink}{\bf Ex \thesheet .\theexercise : #1 [Lvl.~#2]}
 \else
-\href{\sollink}{\bf Ex \thesheet .\theexercise : #1 [#2]}
+\href{\sollink}{\bf Ex \thesheet .\theexercise : #1 [Lvl.~#2]}
 \fi
 \refstepcounter{exercise}\nopagebreak
 \vspace{0.2em}\nopagebreak\par\nopagebreak\noindent\nopagebreak\ignorespaces%
@@ -157,7 +157,7 @@
 \newcommand{\avecccccc}[1]{\left(\begin{array}{c c c c c c}#1\end{array}\right)}
 \newcommand{\colvec}[1]{(#1)^{\rm T}}
 \newcommand{\dxdt}{\frac{{\rm d}x}{{\rm d}t}}
-
+\newcommand*\Laplace{\mathop{}\!\mathbin\bigtriangleup}
 \newcommand{\exref}[1]{Ex.~\thesheet.\ref{#1}}
 
 \usepackage{graphicx}

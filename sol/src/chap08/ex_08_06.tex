@@ -26,7 +26,7 @@ So even at $z=5$ more than 99\% of people end up in the giant component.
 
 \subquestion 
 The real sexual contact network is more heterogeneous. How would your estimate of the giant component size change if we assumed the degree distribution $p_k=0.8 \delta_{k,1} + 0.2 \delta_{k,21}$?
-(Bonus: What is your expectation of the number of contacts of your partner)
+
 
 \solution
 In this case the first step is to compute the probability that a random link does not lead to a node in the giant component, $v$. From the chapter we know 
@@ -34,7 +34,7 @@ In this case the first step is to compute the probability that a random link doe
 \label{eqExV}
 v=\sum q_k v^k.
 }
-For this we need the the excess degree distribution $q_k$. 
+\paragraph{Excess degree distribution.}For this we need the the excess degree distribution $q_k$. 
 Using results from Chap.~6 we compute
 \eqa{
 q_k &=& \frac{(k+1)p_{k+1}}{z} \\
@@ -43,7 +43,7 @@ q_k &=& \frac{(k+1)p_{k+1}}{z} \\
     &=& \frac{1}{5} \left( 0.8 \delta_{k,0} + 21\cdot 0.2 \delta_{k,20} \right) \\
     &=& \frac{4}{25} \delta_{k,0} + \frac{21}{25} \delta_{k,20} 
 }
-Substituting into the self-consistency condition yields
+\paragraph{Probability that random link does not lead to node in the giant component.}Substituting into the self-consistency condition yields
 \eqa{
   v&=&\sum  \left( \frac{4}{25} \delta_{k,0} + \frac{21}{25} \delta_{k,20} \right) v^k \\
    &=& \frac{4}{25} + \frac{21}{25} v^{20}
@@ -56,7 +56,7 @@ by iteration. However, in this case there is also another way. Since it is clear
 \eq{
 v=\frac{4}{25}
 }
-We can now compute the giant component size as 
+\paragraph{Giant component size.}We can now compute the giant component size as 
 \eqa{
 s&=&1-\sum p_k v^k \\
  &=&1 - \sum \left(0.8 \delta_{k,1} + 0.2 \delta_{k,21} \right)v^k \\
@@ -67,12 +67,3 @@ s&=&1-\sum p_k v^k \\
  &\approx& 1 - \frac{4}{5} \frac{4}{25} = \frac{109}{125}.\\
 }
 We can also write this as 87.2\%. This is still large but we can see that the heterogeneous degree distribution leads to a somewhat smaller giant component. We will come back to this insight in Chap.~10.
-
-The bonus question is actually asking for the mean excess degree. Since we already know the excess degree distribution we compute
-\eqa{
-q&=&\sum k q_k \\ 
-&=&\sum k \left( \frac{4}{25} \delta_{k,0} + \frac{21}{25} \delta_{k,20} \right) \\
-&=&\sum  20  \frac{21}{25} \delta_{k,20} \\
-&=&   \frac{420}{25} = 16.8,
-}
-which is a different way of saying that condoms are a great invention ;o) 

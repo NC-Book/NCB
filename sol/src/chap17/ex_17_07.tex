@@ -1,0 +1,43 @@
+
+\exercise{Reproduction, reduction and cats}{3}
+Consider a population of male cats $M$, female cats that are not pregnant or raising kits $F$, and female cats that are pregnant or raising kits $P$. Female cats in the class $F$ become pregnant through contact with males. Females in the class $P$ return to class $F$ when their offspring reach adulthood. 
+
+\subquestion Write a mass action model for this system. 
+
+\solution 
+We write 
+\eqa{
+\dot{M} &=& amP  \\
+\dot{F} &=& a(f+1)P -bMF \\ 
+\dot{P} &=& bMF-aP
+}
+where we define the $a$ as the rate constant for raising kits, $b$ the rate constant for becomeing preganant, $m$ the number of male kits per litter, and $f$ the number of female kits per litter. 
+
+\subquestion Assume that becoming pregnant is a much faster process than raising kits. Then, use the Tikhonov-Fenichel reduction to formulate a model for total number of males $M$ and females $X=P+F$. 
+
+\solution 
+So we assume $a$ is slow rate and $b$ is fast. To consider the fast subsystem we set $a=0$ which yields  
+\eqa{
+\dot{M} &=& \\
+\dot{F} &=& -bMF \\ 
+\dot{P} &=& bMF
+}
+We can see immediately that on the fast timescale there are two conserved quantities: $M$ and $X=F+P$. Moreover the steady state of the fast system is 
+$F=0$, $P=X$. The slow equation for the males is the same as before 
+\eq{
+\dot{M} = amP
+}
+For the females we write
+\eq{
+\dot{X} = \dot{F} + \dot{P} = a(f+1)P -bMF + bMF-aP = afP
+}
+finally we can replace the $P$ in both equations using our result that $P=X$ on the slow manifold. This yields the final system 
+\eqa{
+\dot{M}&=&amX \\
+\dot{X}&=&afX
+}
+Note that in the long run the gender ratio will approach a steady state. Thus a reduction to a single differential equation for the total population size is possible. But this second reduction is not a simple Tikhonov-Fenichel reduction but requires modeling insight. 
+
+It is also interesting to note that the system we have arrived at is a skew-product system. The males actually do not show up in the female equation. This is an important (and well-known) ecological insight: As long as some males exist only the number of females is important for the growth potential of the population. This is the reason why programs that seek to reduce urban feral cat populations by castrating male cats, have only limited success.  
+
+Another insight that we can glean from this example is that also sexually reproducing populations undergo normal exponential growth, $\dot{x}=ax$, and not crazy explosive growth, $\dot{x}=ax^2$, as a naive application of the mass action laws could lead us to expect. 

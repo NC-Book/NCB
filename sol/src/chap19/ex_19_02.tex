@@ -1,62 +1,76 @@
-
-
-\exercise{When things go wrong}{2}
-We discovered that the iterative procedure for the leading eigenvalue fails in bipartite networks. Let's try it nevertheless.
-
-\subquestion
-Consider
+\exercise{Observability and controllability}{2}
+For the Jacobian from the previous question compute the observability and controllability Gramians
 \eqn{
-{\bf A}=\avecc{0& 1 \\ 1 & 0}
+{\bf P} = - \sum_{m,n} \frac{
+(\vec{w_m}\vec{w_n^\dag})  (\vec{v_m^\dag}\vec{v_n}) 
+}{\lambda_n+\lambda_m^\dag},\qqq 
+{\bf Q} = - \sum_{m,n} \frac{
+(\vec{v_m}\vec{v_n^\dag})  (\vec{w_m^\dag}\vec{w_n}) 
+}{\lambda_n+\lambda_m^\dag} 
 }
-and the initial vector
-\eqn{
-\vec{v}_0 = \avec{1\\2}
-}
-Use the iteration 
-\eqn{
-\vec{v}_{i+1} = {\bf A}\vec{v}_i
-}
-a few times and see what happens.
+and then compute the observability $P_{ii}$ and controlability $Q_{ii}$ of the two nodes. 
 
-\solution
-Starting from 
+\solution 
+From the previous exercise we know the eigenvectors 
 \eq{
-\vec{v}_0 = \avec{1\\2}
+   \vec{v_1}=\avec{1\\ 0},  \qqq \vec{w_1}^\dag = (1,3),  
 }
-we multiply by $\bf A$ to get  
 \eq{
-\vec{v}_1 = {\bf A} \vec{v}_0 = \avecc{0& 1 \\ 1 & 0}\avec{1\\2} = \avec{2\\1} 
+   \vec{v_2}=\avec{-3\\ 1},  \qqq \vec{w_2}^\dag = (0,1),
 }
-and after another multiplication, we are back to 
+and the eigenvalues 
 \eq{
-\vec{v}_2 = {\bf A} \vec{v}_1 = \avecc{0& 1 \\ 1 & 0}\avec{2\\1} = \avec{1\\2} = \vec{v}_0 
+   \lambda_1 = -1, \qqq \lambda_2=-2
+} 
+\eqa{
+{\bf P} &=& - \sum_{m,n} \frac{
+(\vec{w_m}\vec{w_n^\dag})  (\vec{v_m^\dag}\vec{v_n}) 
+}{\lambda_n+\lambda_m^\dag} \\
+   &=&  \frac{
+(\vec{w_1}\vec{w_1^\dag})  (\vec{v_1^\dag}\vec{v_1}) 
+}{\lambda_1+\lambda_1^\dag} +  
+\frac{
+(\vec{w_1}\vec{w_2^\dag})  (\vec{v_1^\dag}\vec{v_2}) 
+}{\lambda_2+\lambda_1^\dag} \\
+\frac{
+(\vec{w_2}\vec{w_1^\dag})  (\vec{v_2^\dag}\vec{v_1}) 
+}{\lambda_1+\lambda_2^\dag} +  
+\frac{
+(\vec{w_2}\vec{w_2^\dag})  (\vec{v_2^\dag}\vec{v_2}) 
+}{\lambda_2+\lambda_2^\dag} \\
 }
-So, this won't get us anywhere. 
-
-\subquestion
-Define the shifted matrix ${\bf B}={\bf A}+{\bf I}$ and try again.
-
-\solution
-We start again with 
-\eq{
-\vec{v}_0 = \avec{ 1 \\ 2}  
+Let's consider the numerators of these four terms separately:
+\eqa{
+(\vec{w_1}\vec{w_1^\dag})  (\vec{v_1^\dag}\vec{v_1}) &=& \left(\avec{1\\ 3}(1,3)\right)  \left((1,0)\avec{1\\ 0}\right) \\
+   &=& \avecc{1 & 3 \\ 3 & 9} \cdot  1 \\
+(\vec{w_1}\vec{w_2^\dag})  (\vec{v_1^\dag}\vec{v_2}) &=& \left(\avec{1 \\ 3}(0,1)\right) \left((1,0)\avec{-3\\ 1}\right) \\  
+&=& \avecc{  0 & 1 \\ 0 & 3} \cdot{-3} \\  
+(\vec{w_2}\vec{w_1^\dag})  (\vec{v_2^\dag}\vec{v_1}) &=& \left(\avec{0 \\ 1}(1,3)\right) \left((-3,1)\avec{1\\ 0}\right) \\
+   &=& \avecc{ 0 & 0 \\ 1 & 3} \cdot (-3) \\
+(\vec{w_2}\vec{w_2^\dag})  (\vec{v_2^\dag}\vec{v_2}) &=& \left(\avec{0 \\ 1}(0,1)\right )  \left((-3,1)\avec{-3\\ 1}\right) \\
+  &=& \avecc{0 & 0 \\ 0 & 1} \cdot (10)
 }
-and multiply $\bf B$ to find 
-\eq{
-\vec{v}_1 = \avec{ 3 \\ 3} \quad \vec{v}_2 = \avec{ 6 \\ 6} 
+Substituting back yields 
+\eqa{
+{\bf P} &=& \frac{1}{2} \avecc{1 & 3 \\ 3 & 9} - \avecc{  0 & 1 \\ 0 & 3} - \avecc{ 0 & 0 \\ 1 & 3} + \frac{5}{2} \avecc{0 & 0 \\ 0 & 1} \\
+  &=& \frac{1}{2} \avecc{1 & 1\\ 1 & 2}
 }
-Form now on the entries will just double with every further multiplication. 
+So the observability of the first node is $1/2$ whereas the observability of the second node is $1$.  It makes sense that the second node has more impact on the dynamics as it has a strong feedback on the first node. 
 
-\subquestion
-Based on the result from (b) state the largest eigenvalue and the eigenvector of $\bf A$. 
-
-\solution
-The eigenvector is $\vec{v}=(1,1)^{\rm T}$ or any multiple thereof. We can see from the iterative procedure that the eigenvector gets stretched by a factor two 
-in every iteration. So the largest eigenvalue of $\bf B$ is 2, which means that the largest eigenvalue of $\bf A$ is 1.
-
-\subquestion
-Bonus: This one is more tricky, but note that in this case the iteration lands us exactly on the eigenvalue in the first step. This actually tells us what the second eigenvalue of $\bf A$ is. Explain!
-
-\solution
-Our initial vector was not the leading eigenvector, so it contained some component in the direction of the second eigenvector. But whatever, this component was it vanished in the first multiplication, which means it was multiplied by zero. So zero must be the second eigenvalue of $\bf B$, which means that the second eigenvalue of $\bf A$ is -1. 
-
+Now we compute the four numerators that appear in $Q$
+\eqa{
+(\vec{w_1^\dag}\vec{w_1})  (\vec{v_1}\vec{v_1}\dag) &=& \left((1,3)\avec{1\\ 3}\right)  \left(\avec{1\\ 0}(1,0)\right)\\
+   &=& (10) \cdot \avecc{1 & 0 \\ 0 & 0   } \\
+(\vec{w_1^\dag}\vec{w_2})  (\vec{v_1}\vec{v_2^\dag}) &=& \left((1,3)\avec{0\\ 1}\right) \left(\avec{1 \\0 }(-3,1)\right) \\  
+&=& (3) \cdot  \avecc{-3 & 1 \\ 0 & 0} \\  
+(\vec{w_2^\dag}\vec{w_1})  (\vec{v_2}\vec{v_1^\dag}) &=& \left((0,1)\avec{1\\ 3}\right) \left(\avec{-3\\ 1}(1,0)\right) \\
+   &=& (3) \cdot \avecc{-3 & 0 \\ 1 & 0}  \\
+(\vec{w_2^\dag}\vec{w_2})  (\vec{v_2}\vec{v_2^\dag}) &=& \left((0,1)\avec{0 \\ 1}\right )  \left(\avec{-3\\ 1}(-3,1)\right) \\
+  &=& (1) \cdot \avecc{9 & -3 \\ -3 & 1}
+}
+Hence the matrix is 
+\eqa{
+{\bf Q} &=& 5 \avecc{1 & 0 \\ 0 & 0 } + \avecc{-3 & 1 \\ 0 & 0} + \avecc{-3 & 0 \\ 1 & 0}  + \frac{1}{4} \avecc{9 & -3 \\ -3 & 1} \\ 
+   &=& \frac{1}{4}  \avecc{5 & 1 \\ 1 & 1 }
+}
+This shows that the first node with its controllability of $5/4$ is five times more sensitive to perturbations than the second node (controlability 1/4) 

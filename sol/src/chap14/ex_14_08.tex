@@ -1,7 +1,7 @@
 
 \exercise{Stability condition for maps}{4}
 In the chapter we derived a general condition for the stability of steady states in ODE systems. Now use the same procedure to find a condition for the stability of fixed points in maps. 
-\subquestion Start by finding a condition for fixed points in maps. Don't try to guess the result, instead proceed analogously to our approach from the chapter: Define the general one-dimensional map $x_{i+1}=f(x_i)$, consider a fixed point $x^*$, define a deviation $\delta_i$ from the fixed point, find an iteration rule for $\delta_i$, Taylor expand around $x^*$, eliminate all terms that can be eliminated and solve the resulting equation to find the stability condition. (If you get stuck, check the solution)
+\subquestion Find a stability condition for fixed points in 1-dimensional maps. [Follow the procedure, guessing won't work.]
 \solution  
 We consider the general one-dimensional map 
 \eqn{x_{i+1}=f(x_i)}
@@ -42,7 +42,7 @@ This linear map is solved by
 We can now see that the deviation $\delta$ gets smaller and smaller $|f'(x^*)|<1$, whereas for $|f'(x^*)|>1$ it becomes larger and larger in maginitude. So $|f'(x^*)|<1$ is the stability condition that we are looking for.  
 
 \subquestion
-Now, find the stability condition for multi-dimensional maps $\vec{x_{i+1}}=f(\vec{x_i})$, where $\vec{x_i}$ is a vector of dimension $N$. (Proceed as in (a), when you arrive at a multi-dimensional linear map, solve it using eigendecomposition.)
+Now, find the stability condition for multi-dimensional maps $\vec{x_{i+1}}=f(\vec{x_i})$, where $\vec{x_i}$ is a vector of dimension $N$.
 
 \solution
 We proceed in the same way as for the one.dimensional system. We start by defining $\vec{x^*}$ as the fixed point such that 
@@ -94,41 +94,8 @@ However more importantly we can now read off the stability condition that we are
 |\lambda_n|^2 <1 \quad \mbox {for all $n$}.  
 }
 
-\subquestion
-In Ex.~13.8 we found that the logistic map $x_{i+1}=px_i(1-x_i)$ has fixed points at $x_1^*=0$ and $x_2^*=(p-1)/p$. Determine the stability of these fixed points. 
-
-\solution 
-We define the right-hand side of the map as 
-\eqn{
-px(1-x)=f(x)
-}
-and compute the derivative 
-\eqn{
-f'(x) = p-2px 
-}
-If we now compute the derivative in the first fixed point we find
-\eqn{
-f'(x_1^*)=f'(0)=p 
-}
-therefore this fixed point is stable if $|p|<1$ and unstable otherwise. 
-
-For the second fixed point we find
-\eqn{
-f'(x_2^*) = p-2p \frac{p-1}{p} = p-2(p-1) = 2-p.
-}
-Hence the second fixed point is stable if $|2-p|<1$ which is the case if 
-$1<p<3$.
-
-So in summary: 
-\begin{itemize}
-  \item For $p\leq -1$ both fixed points are unstable.
-  \item For $-1<p<1$ the first (trivial) fixed point is stable while the second (non-trivial) fixed point is unstable 
-  \item For $1<p<3$ the non-trival fixed point is now stable while the trivial one is unstable.
-  \item  For $p>3$ both fixed points are unstable. 
-\end{itemize}
-
 \subquestion 
-The equation $5x=x^2$ is easy to solve, but suppose you wanted to solve it by the fixed-point iteration $x_{i+1}={x_i}^2/5$. If you give it a try, you'll find one of the solutions but not the other. Explain why this happens. (Bonus: Come up with a way to nevertheless find the second fixed point by fixed-point iteration.)
+Suppose you wanted to solve $5x=x^2$ by the fixed-point iteration $x_{i+1}={x_i}^2/5$. Do you see why this is problematic? Can you fix it?
 
 \solution 
 To explore this we first compute the fixed points, which yields $x_1=0$ and $x_2=-5$.

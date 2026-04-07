@@ -1,0 +1,94 @@
+\exercise{Laplacian as second derivative\label{exVibeLaplace}}{3}
+Consider diffusion in a one-dimensional continuous space that is the interval [0, 5]. In continuous space diffusion is described by the Laplace equation
+\eq{
+\dot{x} = \Laplace x = \frac{\partial^2}{\partial l^2}  x  
+}
+
+\subquestion 
+Discretize the interval into five bins, numbered 1 to 5. Each bin $i$ has an associated variable $x_i$ that counts the number of walkers between $l=i-1$ and $l=i$. Show that the dynamics in bin 3 is approximated by
+\eq{
+   \dot{x}_3 = - 2x_3 + x_2 + x_4 .   
+}
+
+\solution 
+To discretize the spatial derivative we can consider a small change in $l$ that is actually one unit long 
+\eq{
+ \d l =  1
+}
+The responding change in $x(l)$ is 
+\eq{
+\d x(l)  = x(l+0.5)-x(l-0.5)
+}
+We can now approximate the derivative with these finite differences, 
+\eq{
+\frac{\d x}{\d l}(l) = x(l+0.5)-x(l-0.5)
+}
+For the second derivative we need to compute a change in the first derivative if we move by one unit,  
+\eqa{
+\d  \frac{\d x}{\d l}(l') &=&  \frac{\d x}{\d l}_{l=l'+0.5} - \frac{\d x}{\d l}_{l=l'-0.5} \\ 
+&=&  x(l'+1)-x(l') - x(l') + x(l'-1) \\
+&=&  -2x(l')+x(l'+1)+x(l'-1)  
+}
+Hence we can write 
+\eq{
+\frac{\d^2 x }{\d l^2}(l) = \frac{\d}{\d l} \frac{\d x }{\d l}(l) = -2x(l)+x(l+1)+x(l-1) 
+}
+So if we consider this at the center of bin 3, which is at the point $l=2.5$
+\eq{
+\frac{\d^2 x }{\d l^2}(2.5) = -2x(2.5)+x(3.5)+x(1.5) 
+}
+The diffusion equation tells us that the second spatial derivative equals the temporal derivative and hence 
+\eq{
+\dot{x}(2.5) = \frac{\d^2 x }{\d l^2}(2.5) = -2x(2.5)+x(3.5)+x(1.5) 
+}
+If we now discretize into bins the density of walkers $x(2.5)$ becomes the walker density in bin 3, which is $x_3$. Likewise the $x(1.5)$ becomes the walker density in bin 2, $x_2$ and x(3.5) becomes the walker density in bin 4, $x_4$. And hence the change in $x_3$ is 
+\eq{
+\dot{x}_3 = -2x_3+x_2+x_4 
+}
+
+\subquestion 
+Compare this result with the random walk on a network that consists of a chain of five nodes, numebered again from 1 to 5. What is the differential equation for $x_3$, the number of walkers in node 3 in this model?
+
+\solution 
+We know the random walk follows 
+\eq{
+\dot{\vec{x}} = - {\bf L} \vec{x}
+}
+The adjacencency matrix for the 5-chain is 
+\eq{
+{\bf A} = \aveccccc{ 
+  0 & 1 & 0 & 0 & 0 \\
+  1 & 0 & 1 & 0 & 0 \\
+  0 & 1 & 0 & 1 & 0 \\
+  0 & 0 & 1 & 0 & 1 \\
+  0 & 0 & 0 & 1 & 0}
+}
+The degree matrix is 
+\eq{
+{\bf K} = \aveccccc{ 
+  1 & 0 & 0 & 0 & 0 \\
+  0 & 2 & 0 & 0 & 0 \\
+  0 & 0 & 2 & 0 & 0 \\
+  0 & 0 & 0 & 0 & 1}
+}
+and hence the Laplacian is 
+\eq{
+{\bf A} = {\bf K}-{\bf A} = \aveccccc{ 
+  1 & -1 & 0 & 0 & 0 \\
+  -1 & 2 & -1 & 0 & 0 \\
+  0 & -1 & 2 & -1 & 0 \\
+  0 & 0 & -1 & 2 & -1 \\
+  0 & 0 & 0 & -1 & 1}
+}
+We can write the $i$-th row of $\dot{\vec{x}}=-{\bf L}\vec{x}$ as 
+\eq{
+\dot{x}_i = -\sum L_{ij} x_j 
+}
+and hence for node 3 we have the differential equation 
+\eq{
+\dot{x}_3 = -2x_3 + x_2 + x_4
+}
+which is the same equation as before. Generally it is a good intuition to think of the $-{\bf L}$ as the network version of the second spatial derivative.   
+
+
+

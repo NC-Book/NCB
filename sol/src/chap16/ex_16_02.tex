@@ -1,39 +1,33 @@
-\exercise{Transcritical bifurcation}{2}
-We can write the normal form of the transcritical bifurcation as 
-\eq{
-\dot{x}=apx+bx^2
+\exercise{Fold bifurcation normal form\label{exBrainFold}}{2}
+Compute the steady states and their stability for the system
+\eqn{
+\dot{x} = a x^2 + b p. 
 }
-Find the steady states of this dynamical system, analyze their stability and draw the bifurcation diagram. 
 
-\solution
-To compute the steady states we start by demanding
+
+\solution 
+
+We compute the steady states by solving 
 \eq{
-0=apx+bx^2
+0=a\delta^2+b\rho
 }
-we can immediately see that $x^*=0$ is a steady state. Dividing the equation above by $x$ we find 
+which yields 
 \eq{
-0=ap+bx
+x^*=\pm \sqrt{-\frac{bp}{a}}
 }
-which gives us a second steady state
+This means we have either two steady states ($b\rho/a<0$) or none ($b\rho/a>0$). If $a$ and $b$ have the same sign then steady states exist at negative values of $\rho$, otherwise they only exist at positive values of $\rho$. 
+
+In this sense there are two forms of the fold bifurcation, but they are indistinguishable in practice.
+
+To determine the stability of solutions we compute
 \eq{
-x^*=-\frac{a}{b}p
+f_{\rm x}=\frac{\partial }{\partial x} ax^2+bp = 2ax
 }
-To determine the stability of the steady states we compute
-\eq{
-f_{\rm x} = ap+2bx
-}
-Substituting $x^*=0$, yields
-\eq{
-f_{\rm x} = ap
-}
-This shows that the steady state at 0 is stable if $ap<0$. Substituting the second steady state $x^*=-ap/b$ gives us
-\eq{
-f_{\rm x} = ap-2b\frac{a}{b}p = -ap
-}
-which shows that the second steady state is stable if $ap>0$. 
+If $a>0$ then the positive steady state is unstable and the negative one is unstable. For $a<0$ it's the other way around. 
 
 We can now draw the bifurcation diagram 
 \begin{center}
-\includegraphics[width=0.6\textwidth]{Transcritical}
+\includegraphics[width=0.6\textwidth]{Fold}
 \end{center}
-This diagram corresponds to the case $a>0$ (second steady state is stable for positive $p$) and $b>0$ (second steady state is positive for positive $p$)
+This diagram corresponds to the case $a<0$ (positive branch of steady states is stable) and $b>0$ (steady states exist for negative $p$).
+

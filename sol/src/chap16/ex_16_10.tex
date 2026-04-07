@@ -1,0 +1,31 @@
+\exercise{Subcritical transcritical bifurcation\label{exBrainSub}}{4}
+We don't usually think of the transcritical bifurcation as having a subcritical and supercritical form. However, in Chap. 15 the transcritical bifurcation behaved in a subcritical way, causing a discontinuous phase transition. Consider the transcritical normal $\dot{x}=ax+bx^2$. Assume that the model demands $x\geq 0$ and find the conditions under which the bifurcation behaves subcritically.   
+\solution
+Close to the bifurcation point the system should behave like the transcritical normal form
+\eq{
+\dot{x} = ax+bx^2 
+}
+where the bifurcation point is now at $a=0$  the steady state at $x^*=0$ is stable is stable before the bifurcation ($a<0$). For the bifurcation to show supercritical behavior we need another steady state to be present at $a>0$. In other words we want a stable, positive steady state to exist for $a>0$. 
+
+In our analysis of the normal form we saw that the second steady state is  
+\eq{
+x_2^* = - \frac{a}{b}
+}
+and it is always stable if $a>0$. However the steady state is only positive for 
+$a>0$ if $b<0$. To phrase this in terms of the original system we recall that 
+\eq{
+b= \frac{f_{\rm xx}}{2}.
+}
+Hence the pitchfork bifurcation behaves supercritically if $f_{\rm xx}<0$ and subcritically if $f_{\rm xx}>0$.
+
+To test this result we can once again consider the SIS-model,
+\eq{
+\dot{x} = p x(1-x)-x
+}
+in which we observed a supercritical transcritical bifurcation at $x=0$ and $p=1$. We compute 
+\eq{
+f_{\rm xx} = \left. \partial_x \partial_x px(1-x)-x \right|_* = -2
+}
+which is consistent with the supercritical behavior of the transcritical bifurcation.
+
+\solutionend
