@@ -1,10 +1,27 @@
-
-\exercise{Traffic: Degree centrality}{3}
-Consider the network from the previous exercise again, but this time determine the degree centrality. Is the result reasonable?
+\exercise{Traffic: Spectral centrality}{3}
+Consider once again the road map from the previous exercise, but now compute the spectral centrality. (Mind the parallel links.)
 
 \solution
-This one is straight forward. 
+We represent the parallel links by setting the corresponding elements of the adjacency matrix to 2, like we did in Chap.~3. The resulting matrix is 
+\eq{
+{\bf A} =  \left(\begin{array}{ c c c c c c c c c} 
+0 & 1 & 1 & 0 & 0 & 0 & 0 & 0 & 1 \\
+1 & 0 & 1 & 1 & 0 & 0 & 1 & 0 & 0 \\
+1 & 1 & 0 & 0 & 2 & 0 & 0 & 0 & 0 \\
+0 & 1 & 0 & 0 & 0 & 0 & 1 & 1 & 0 \\
+0 & 0 & 2 & 0 & 0 & 1 & 0 & 1 & 0 \\
+0 & 0 & 0 & 0 & 1 & 0 & 2 & 1 & 0 \\
+0 & 1 & 0 & 1 & 0 & 2 & 0 & 0 & 0 \\
+0 & 0 & 0 & 1 & 1 & 1 & 0 & 0 & 0 \\
+1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0
+\end{array}\right) 
+}
+where I used the ordering 
 \begin{center}
-A: 3, B: 4, C: 4, D: 3, E: 4, F: 4, G: 4, H: 3, X: 1
+A, B, C, D, E, F, G, H, X  
 \end{center}
-The result is reasonable but not very useful. It tells us that crossroads are more important than dead ends, but does not help us distinguish the relative importance of the degree 4 nodes. 
+I had to multiply my starting vector about 10 times until it stabilized. I then normalized the vector such that the first entry is (the one corresponding to node A) is 1. The relative importance of the nodes is then:
+\begin{center}
+A: 1, B: 1.6, C: 1.7, D: 1.3, E: 1.8, F: 1.9, G: 1.8, H: 1.4, X: 0.2
+\end{center}
+Note that the least important node is again $X$, while the most important is now F. 

@@ -12,7 +12,7 @@ Np_0 = N\frac{z^0 \exp{-z}}{0!} = N\exp{-z} = 1000 \exp{-4} \approx 18
 Calculate the number of isolated pairs of friends in the club, i.e.~the number of components of size 2. (Hint: This is not the same as the number of link motifs, because motifs are not necessarily isolated. You will have to find a different way.) 
 
 \solution
-There are different ways to find the answer. For example we can think of an isolated pair as a node of degree 1 that links to a node of excess degree 0.
+\paragraph{Solution 1.}There are different ways to find the answer. For example we can think of an isolated pair as a node of degree 1 that links to a node of excess degree 0.
 
 Using the degree distribution we can compute the number of nodes of degree 1
 \eq{
@@ -26,7 +26,7 @@ We can find the number of isolated pairs by multiplying the number of nodes of d
 \eq{\frac{Np_1q_0}{2}=2000\exp{-8} \approx 0.7 }
 The expected number of isolated pairs ca. 0.7 so it seems unlikely that there is more than one such isolated pair. 
 
-An alternative way of computing this number is to consider that there are $N(N-1)/2$ ways in which we can pick two nodes from the system. To be considered an isolated pair the two nodes must be linked (probability $p$). Each of the two nodes has $N-2$ chances to receive a link to a node outside the pair. For an isolated pair all of these trials must fail (probability $q=1-p$ per such link), hence we can compute the expected number of isolated pairs as
+\paragraph{Solution 2.}An alternative way of computing this number is to consider that there are $N(N-1)/2$ ways in which we can pick two nodes from the system. To be considered an isolated pair the two nodes must be linked (probability $p$). Each of the two nodes has $N-2$ chances to receive a link to a node outside the pair. For an isolated pair all of these trials must fail (probability $q=1-p$ per such link), hence we can compute the expected number of isolated pairs as
 \eq{
 n_{\mbox{isolater pair}} = \frac{N(N-1)}{2} p q^{2(N-2)}
 }
@@ -45,7 +45,7 @@ as before.
 
 \solution A component of size 3 could be an isolated triangle, or an isolated 3-chain (o-o-o). 
 
-You might simply guess that isolated triangles are super rare in any ER-graph ($N=3$, $p=1$ is perhaps the only exception to this rule) 
+\paragraph{Isolated triangles.}You might simply guess that isolated triangles are super rare in any ER-graph ($N=3$, $p=1$ is perhaps the only exception to this rule) 
 
 One way to convince ourselves of this is to use our equation for the number of triangles 
 \eq{
@@ -57,7 +57,7 @@ n_{\mbox{isolated $\Delta$}} = \frac{64}{6} \left(\frac{995}{999}\right)^{2991} 
 }
 so indeed the chances of seeing even just one isolated triangle are very very slim. 
 
-So how about the isolated 3-chain? A quick way to compute their number is to first compute the number of nodes of degree 2
+\paragraph{Isolated 3-chain.}So how about the isolated 3-chain? A quick way to compute their number is to first compute the number of nodes of degree 2
 \eq{
 n_2 = N\frac{z^2 \exp{-z}}{2!} = 8000 \exp{-4} \approx 146.5 
 }

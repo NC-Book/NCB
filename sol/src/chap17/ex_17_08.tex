@@ -1,0 +1,35 @@
+\exercise{Lotka-Volterra \label{exManifoldLV}}{3}
+The Lotka-Voltera model describes the the interaction of a prey populations  $X$ and a predator population $Y$ by 
+\eqan{
+\dot{X} &=& aX-bXY \\
+\dot{Y} &=& cXY-mY
+}
+%where $a$, $b$, $c$, and $m$ are parameters. The system captures the intuition that the prey reproduces on its own ($aX$) and dies in encounters with the predator $bXY$, while the predator population grows be feeding on the prey ($cXY$) and eventually dies of old age ($mY$). 
+Find the conservation law hiding in this model. 
+
+\solution 
+We using the approach from the chapter we can describe trajectories by  
+\eq{
+\frac{{\rm d} X}{{\rm d} Y} = \frac{\dot{X}}{\dot{Y}} = \frac{aX-bXY}{cXY-mY} 
+}
+We can also write this as 
+\eq{
+\frac{{\rm d} X}{{\rm d} Y} = \frac{X(a-bY)}{Y(cX-m)},
+}
+and hence 
+\eq{
+\frac{cX-m}{X} \d X   = \frac{a-bY}{Y} \d Y
+}
+which we can integrate 
+\eq{
+\int \frac{cX-m}{X} \d X   =  \int \frac{a-bY}{Y} \d Y
+}
+to find 
+\eq{
+cX -m \ln (X) = a \ln(Y) - bY + K
+}
+where $K$ is the constant of integration. This yields the desired conservation law
+\eq{K= cX + bY - m \ln(X) - a\ln(Y)}
+
+This conservation low describes a cycles in the state space on which the species oscillate. 
+

@@ -1,21 +1,90 @@
-\exercise{Traffic: Betweenness centrality}{}
-Consider the traffic a final time, and this time rank the nodes by betweenness centrality. (If there is multiple alternative shortest paths between nodes assign importance proportionally, e.g.~half a point if there are two paths.)  Is the result reasonable?
+\exercise{Divided attention \label{exCentralDividing}}{3}
+Starting from the idea `important people have important friends' derive another type of centrality. Proceed as in the case of spectral centrality, but this time nodes divide up their importance, such that for instance a neighbor of a node of degree four, only receives a quarter of the neighbor's importance. Explore where this idea leads you. Consider the example of a 3-chain (o-o-o).
 
-\solution
-Thankfully, we can reuse the table from (c). We just need to count occurrences of intermediate nodes. The challenge is to not let the bookkeeping get out of hand. For this purpose I made another table
+\solution 
+Let's define $v_i$ again as the importance of node $i$, then we can write our idea as  
+\eq{
+v_i = \sum_{[ij]} \frac{v_j}{k_j} = \sum_j A_{ij} \frac{v_j}{k_j}  
+}
+where $k_j$ is the degree of node $j$. So instead of a division by a constant $\lambda$ we now have a division by $k_j$. Because this degree depends on the node $j$ we are looking at we can't simply pull it out of the sum like we did with $\lambda$. However the equation still seems linear in terms of $k$ so we should be able to express it as a matrix-vector product, which means we should be able to write it in the form 
+\eq{
+v_i = \sum_j B_{ij} v_j
+}
+where $\bf B$ is some matrix that we still need to construct. To gain some intuition let's consider the example of a chain of three nodes (o-o-o). The Adjacency matrix for such a chain is 
+\eq{
+{\bf A} = \aveccc{ 0 & 1 & 0 \\ 1 & 0 & 1 \\ 0 & 1 & 0 }
+}
+and the degrees are $k_1=1$, $k_2=2$, $k_3=1$. Hence the equation above gives us 
+\eqa{
+v_1 &=& v_2 \\
+v_2 &=& (v_1+v_3)/2 \\
+v_3 &=& v_2
+}
+Let's compare this to how these equations would look like with a general $\bf B$, 
+\eqa{
+v_1 &=& B_{11}v_1 + B_{12} v_2 + B_{13} v_3 \\
+v_2 &=& B_{21}v_1 + B_{22} v_2 + B_{23} v_3 \\
+v_3 &=& B_{31}v_1 + B_{32} v_2 + B_{33} v_3 
+}
+By comparing the two equation systems we can now see 
+\eq{
+B_{11}=B_{13}=B_{22}=B_{31}=B_{33} = 0 
+}
+\eq{
+B_{21}=B_{23}= 1/2 
+}
+\eq{
+B_{12}=B_{32}=1
+}
+Hence, 
+\eq{
+{\bf B} = \aveccc{ 0 & 1 & 0 \\ 1/2 & 0 & 1/2 \\ 0 & 1 & 0 }
+}
+So this is like the adjacency matrix but every row has been divided by the degree of the corresponding node. As a result the column sum (sum over all columns) in every row is now 1. For the general case we can write 
+\eq{
+{\bf B} = {\bf K}^{-1} {\bf A} 
+}
+where we defined $\bf K$ as the degree matrix i.e.~the matrix which has the node degrees on the diagonal. So for our example network
+\eq{
+{\bf K} = \aveccc{1 & 0 & 0 \\ 0 & 2 & 0 \\ 0 & 0 & 1 }
+}
+The power $-1$ on this matrix indicates the matrix inverse and our diagonal matrix this is simply 
+\eq{
+{\bf K}^{-1} = \aveccc{1 & 0 & 0 \\ 0 & 1/2 & 0 \\ 0 & 0 & 1 }
+}
+multiplying this from the left has the desired effect of normalizing the rows. But let's not get distracted. Whether we use this notation or not, we can now write 
+\eq{
+v_i = \sum_j B_{ij} v_j 
+}
+or equivalently 
+\eq{
+\vec{v} = {\bf B} \vec{v} 
+}
+where $\bf B$ is an adjacency matrix where all the rows have been normalized such that they add up to one. The question is now, does this equation actually have a solution? Before we try to answer this generally, it is good to first check this in our example system. We return to  
+\eqa{
+v_1 &=& v_2 \\
+v_2 &=& (v_1+v_3)/2 \\
+v_3 &=& v_2
+}
+Straight away the first and the last equations tell us $v_1=v_2=v_3$. If the substitute $v_3=v_2$ and $v_1=v_2$ in the second equation we get 
+\eq{
+v_2 = \frac{v_2 + v_2}{2} 
+}
+which is obviously true. So $v_1=v_2=v_3$ is a solution. As always we can scale the the vector $v$ as we want, but for example 
+\eq{
+\vec{v} = \avec{1 \\ 1 \\ 1} 
+}
+is a solution. Unfortunately this tells us that all nodes are of equal importance. Will it always be like this with this centrality. Consider that the matrix $\bf B$ has the property 
+\eq{
+\sum_j B_{ij} = 1 \quad \mbox{for all $i$}
+}
+We know that we can write the $i$th component of the product ${\bf B}\vec{v}$ as 
+\eq{
+[{\bf B}\vec{v}]_i = \sum_j B_{ij} v_j 
+}
+Now consider what happens when $\vec{v}=(1,1,\ldots)^{\rm T}$ in this case $v_j=1$ for all $j$. Then 
+\eq{
+[{\bf B}\vec{v}]_i = \sum_j B_{ij} v_j = \sum_j B_{ij} = 1 \quad  \mbox{for all $i$}}
+This shows that whenever ${\bf B}$ is a matrix in which the column sums are all one, then the vector $\vec{v}=(1,1,\ldots)^{\rm T}$ is an eigenvector with eigenvalue one, and hence it is always the solution to our condition $\vec{v}={\bf B}\vec{v}$.
 
-\begin{center}
-\begin{tabular}{c c c c}
-Node & On Paths (no alternative) & On Path (one alternative) & Centrality \\\hline
-A & B-X,C-X,D-X,E-X,F-X,G-X,H-X & - & 7 \\
-B & A-D,A-G,C-D,C-G,D-X,G-X & A-F,A-H,F-X,H-X & 8 \\
-C & A-E,B-E,E-X & A-F,A-H,F-X,H-X & 5 \\
-D & B-H & A-H,F-X,G-H,H-X & 3 \\
-E & C-F,C-H & A-F,A-H,F-X,H-X & 4 \\
-F & E-G & G-H & 1.5 \\
-G & B-F & A-F,D-F & 2   \\
-H & D-E & D-F & 1.5 \\
-X & - & - & 0 \\  
-\end{tabular}
-\end{center}
-Again we end up with B as the most important node and X as the least important which makes sense. A surprise is maybe the relatively high value for A. This highlights A as a bottleneck. Generally, betweenness centrality is used when we are interested in finding such bottlenecks. 
+So in summary, the centrality that we constructed will always tell us that each node is equally important. SO maybe we should call it the `humanist centrality'.

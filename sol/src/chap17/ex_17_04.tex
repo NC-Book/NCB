@@ -1,57 +1,93 @@
-\exercise{Slow-Fast}{3}
-Analyze the following system 
-\eqan{
-\dot{x}&=&-x^3+x+y \\
-\dot{y}&=&-\alpha x
+\exercise{Linear manifold example\label{exManifoldInvariant}}{2} 
+Use eigendecomposition to find the invariant manifolds of the steady state in the following linear system:
+\eqn{
+\begin{array}{r c l}
+\dot{x} &=&2x+4y\\
+\dot{y} &=&x-y, 
+\end{array}
 }
-where again $\alpha\ll 1$. What happens in this system in the long run? (Hint: Make sure to check the stability of the slow manifold, the result may be surprising)
 
-\solution
-In this case the fast dynamics is 
+
+\solution 
+Because the system is linear we know that the trajectories have the form 
 \eq{
-\dot{x}=-x^3+x+y 
+\vec{x}(t) = c_1 \vec{v_1} \exp{\lambda_1 t} + c_2 \vec{v_2} \exp{\lambda_2 t} 
 }
-we solve for the steady state
+hence we need to compute the eigenvectors and eigenvalues of the Jacobian matrix 
+\eq{
+{\bf J} = \avecc{2 & 4 \\ 1 & -1}. 
+}
+We find the characteristic polynomial as 
+\eq{
+0 = \left| \avecc{2-\lambda & 4 \\ 1 & -1- \lambda} \right|  
+}
+which yields 
 \eqa{
-0&=&-x^3+x+y \\
-y&=&x^3-x 
+0&=&(2-\lambda)(-1-\lambda)-4 \\
+0&=&\lambda^2 - \lambda - 6 \\ 
+0&=&(\lambda - 1/2)^2 - 1/4 - 6 \\
+0&=&(\lambda - 1/2)^2 - 25/4 \\
+0&=& \lambda - 1/2 \pm 5/2  \\
 }
-Note that in the fast dynamics $y$ only appears as a parameter 
-rather then a variable. So normally we would solve for $x(y)$ rather than $y(x)$ but the third root makes this quite horrible. But already the solution in the form $y(x)$ allows us to draw the solution branches.
-
-\includegraphics[width=0.8\textwidth]{slowfastcycle1}
-
-Is this slow manifold stable? Or rather, which parts of it are stable? 
-To check the stability mathematically we need the Jacobian
+Hence we find the eigenvalues 
 \eq{
-{\bf J}= \frac{\partial \dot{x}}{\partial x} = -3x^2+1 
+\lambda_1 = 3 \qqq \lambda_2 = -2
 }
-Even without knowing the steady states, we know that stability requires
+We now determine the eigenvectors in the usual way. First for the eigenvalue 
+$\lambda_1=3$:
 \eq{
-0 > -3x^2+1 
+\avecc{2 & 4 \\ 1 & -1}\avec{1\\ a} = \avec{3 \\ 3a}
 }
-in the steady state. We find the bifurcations by solving 
+The lower row reads 
+\eqa{ 
+1-1a &=& 3a \\
+a &=& 1/4
+}
+multiplying the whole vector by 4 we write 
+\eq{
+\vec{v_1} = \avec{4\\ 1} 
+}
+Using the same approach for the second eigenvector yields
+\eq{
+\avecc{2 & 4 \\ 1 & -1}\avec{1\\ a} = \avec{-2 \\ -2a}
+}
+and hence 
 \eqa{
-0 &=& -3x^2+1  \\
-x &=& \pm \sqrt{\frac{1}{3}} 
+1-a &=& -2a \\ 
+ a &=& -1
 }
-So we can see that the slow manifold is unstable for $\sqrt{-1/3}\leq x \leq \sqrt{1/3}$ and stable otherwise. Let's plot that.
-
-\includegraphics[width=0.8\textwidth]{slowfastcycle2}
-
-Now we also have to consider the slow dynamics. This follows
+which gives us the eigenvector 
 \eq{
-\dot{y}=-\alpha x
+\vec{v_2} = \avec{1 \\ -1}
 }
-Because $\alpha>0$ this means that $y$ will slowly increase if $x<0$ and $y$ will slowly decrease if $x>0$.\nl
-
-So if we are on the stable branch of the slow manifold at $x>0$ we move slowly downwards along the manifold until we hit the fold bifurcation. \nl
-
-At this point our branch of the slow manifold is destroyed, so fast dynamics sets in and takes us rapidly to the other branch. \nl
-
-Now we are at $x<0$ so $y$ slowly increases until we hit the other fold bifurcation. \nl
-
-This sends us back to the initial branch, thus completing a slow-fast cycle. 
-
-\includegraphics[width=0.8\textwidth]{slowfastcycle3}
-
+We now know that trajectories have the form 
+\eq{
+\vec{x}(t) = c_1 \avec{4 \\ 1} \exp{3t} + c_2 \avec{1 \\ -1} \exp{-2t} 
+}
+If our initial value is such that $c_1=0$ we are on a trajectory
+\eq{
+\vec{x}(t) =  c_2 \avec{1 \\ -1} \exp{-2t} 
+}
+that approaches the state (0,0) and hence we are on the stable manifold. We can also write this as 
+\eqa{
+x &=& c_2 \exp{-2t} \\
+y &=& -c_2 \exp{-2t}
+}
+for all values of $c_2$ and $t$. Substituting the first equation into the second we find 
+\eq{
+y=-x
+}
+which describes the manifold that we are looking for. In the same the unstable manifold consists of the points visited by trajectories for which $c_2=0$, so 
+\eq{
+\vec{x}(t) =  c_1 \avec{4 \\ 1} \exp{3t}
+}
+which means  
+\eqa{
+x &=& 4c_1 \exp{3t} \\
+y &=& c_1 \exp{3t}
+}
+such that 
+\eq{
+y = \frac{1}{4}x 
+}
+is the unstable manifold we are looking for. 

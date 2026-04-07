@@ -1,32 +1,35 @@
-
-\exercise{A fancy derivative}{1}
-Consider the equation 
+\exercise{Geometric dynamics\label{exBrainGeo}}{1}
+Starting from the initial condition $\delta(0)=\delta_0$, integrate 
 \eqn{
-  a = bc + \sqrt{b} 
+\dot{\delta} = a\delta^2.
 }
-where 
-\eqn{ 
-  b=3c+1 
-}
-Compute $\d a / \d c$ at $c=1$.
 
 \solution 
-To do this we first compute 
+We separate the variables, by writing the differential equation as 
 \eq{
-\frac{\d b}{\d c} = 3 
-} 
-\eq{
-\frac{\partial a}{\partial c} = b  
+   \delta^{-2} \d \delta = a \d t. 
 }
-\eq{
-\frac{\partial a}{\partial b} = c - \frac{1}{\sqrt{b}}  
-}
-and then write 
+Then we integrate 
 \eqa{
-\frac{\d a}{\d c} &=& \frac{\partial a}{\partial c} + \frac{\partial a}{\partial b} \frac{\d b}{\d c} \\
-  &=& b + 3\left(c - \frac{1}{\sqrt{b}}\right ) 
+ \int  \delta^{-2} \d \delta &=& \int  a \d t. \\{} 
+ -  \delta^{-1}  &=& at +C  \\
+   \delta^{-1}  &=& -at-C \\
 }
-at $c=1$, we find $b=4$ and thus 
+which we can solve for
 \eq{
-\left. \frac{\d a}{\d c}\right|_{c=1} = 4 + 3(1 - 1/2) = 5.5
+\delta(t)=\frac{1}{-at-C}.
 }
+To fix the constant of integration we recall the initial condition  
+\eq{
+   \delta_0 = \delta_{0}  = \frac{1}{-C}
+}
+which implies 
+\eq{
+-C = {\delta_0}^{-1}
+}
+Hence we can write the solution to the initial value problem as 
+\eq{
+\delta(t) = \frac{1}{{\delta_0}^{-1}-at}
+}
+
+

@@ -1,0 +1,56 @@
+\exercise{SIS Closure complications}{5}
+Let's consider these two equations form the pair approximation of the SIS model 
+\eqan{
+[\dot{SS}]&=& r[SI] - 2p[SS][SI]/[S] \\{}
+[\dot{II}]&=& p [SI] + p[SI]^2/[S] - 2 r [II].
+} 
+with $[SI]=z/2-[SS]-[II]$. Assume that the link dynamics described by these equations is much faster than the dynamics of $[S]$ (not shown). Solve the link equations to find an expression that gives you $[SI]$ as a function of $[S]$. 
+Does the resulting $[SI]$ behave like you would expect it to? Is there a way to fix this?
+
+\solution
+As stated in the question the fast subsystem is 
+\eqa{
+[\dot{SS}]&=& r[SI] - 2p[SS][SI]/[S]  \\{}
+[\dot{II}]&=& p [SI] + p[SI]^2/[S] - 2 r [II].
+}
+We already know that $[I]$ is the slow variable that we want to keep. Hence the task is now to compute the steady state of the link equations to find the value of $[SI]$ as a function of $[I]$.  
+
+Setting the left hand side of the equations to zero yields 
+\eqa{
+0&=& r[SI] - 2p[SS][SI]/[S]  \\{}
+0&=& p [SI] + p[SI]^2/[S] - 2 r [II].
+}
+One possible steady state is the disease free state where $[SI]=[II]=0$. To find the other steady state we divide the upper equation by $[SI]$ and multiply both lower equations by $[S]$
+\eqa{
+0&=& r[S] - 2p[SS] \\{}
+0&=& p [SI][S] + p[SI]^2 - 2 r [II][S].
+}
+In second equation we can use the conservation law for links to replace $[II]=z/2-[SS]-[SI]$ which yields 
+\eqa{
+0&=& r[S] - 2p[SS] \\{}
+0&=& p [SI][S] + p[SI]^2 - zr[S] + 2r[SS][S]+2r[SI][S].
+}
+Then we can use this first equation to replace $2[SS]=r[S]/p$. This leaves us with a single equation 
+\eq{
+0= p [SI][S] + p[SI]^2 - zr[S] + r^2[S]^2/p +2r[SI][S].
+}
+\eq{
+0= p^2 [SI][S] + p^2[SI]^2 - zrp[S] + r^2[S]^2 +2rp[SI][S].
+}
+which we can write a little bit more compactly 
+\eq{
+0= p^2 [SI]^2 + p(p+2r)[SI][S] + r^2[S]^2-zrp[S] 
+}
+This is a quadratic polynomial. Solving it in the usual way yields 
+\eq{
+[SI] = \frac{-(p^2 + 2pr)[S] + \sqrt{(p^4 + 4p^3r)[S]^2 + 4p^3zr[S]}}{2p^2}.
+}
+We pull the denominator into the terms to arrive at 
+\eq{
+[SI] = -[S]\left(\frac{1}{2} + \frac{r}{p}\right) + \sqrt{\left(\frac{1}{4}+\frac{r}{p}\right)[S]^2 + z\frac{r}{p}[S]}
+}
+We can now define a normalized recovery rate parameter $\tilde{r}=r/p$ which turns the equation into 
+\eq{
+[SI] = -[S]\left(\frac{1}{2} + \tilde{r} \right) + \sqrt{\left(\frac{1}{4}+\frac{r}{p}\right)[S]^2 + z\tilde{r}[S]}
+}
+This equation has simplified considerably, but surprisingly at $[S]=1$ where every node is susceptible we find $[SI]\neq 0$. Clearly our intuition that SI-links require I-nodes was not reflected in the link equations. Of course there is no reason to believe that this coarse graining would actually obey our expectations. After all it is an approximation and we are pushing it to extreme cases where the premise that the link equations are faster is violated. Conversely, it would not have raised many eyebrows if a coarse graining was possible that worked elegantly in this case. So maybe this can be fixed somehow. If you know how, let me know. 

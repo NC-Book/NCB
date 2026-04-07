@@ -1,0 +1,104 @@
+\exercise{A predator-prey model}{3}
+A predator-prey system with quadratic mortality can be written as 
+\eqan{
+\dot{x}&=& (4x^2+x)/5 -xy \\
+\dot{y}&=& xy - y^2 
+}
+\subquestion Compute the positive steady state of the system and the corresponding Jacobian $\bf P$.
+
+\solution
+From the second equation we see that $x=y$ in the steady state. Dividing the first equation by $x$ and substituting $x=y$, and then multiplying by 5 yields the condition
+\eq{
+4x+1-5x=0
+}
+i.e.
+\eq{
+x=1
+}
+So the steady state is $x=y=1$. We compute the Jacobian elements
+\eqa{
+J_{11}&=&\left.\frac{\partial \dot{x}}{\partial x}\right|_* = \left.  \frac{8x+1}{5}-1\right|_* = 4/5 \\ 
+J_{12}&=&\left.\frac{\partial \dot{x}}{\partial y}\right|_* = \left.  -x\right|_* = -1 \\
+J_{21}&=&\left.\frac{\partial \dot{y}}{\partial x}\right|_* = \left.  y\right|_* = 1 \\
+J_{22}&=&\left.\frac{\partial \dot{y}}{\partial y}\right|_* = \left.  x-2y\right|_* = -1 \\
+}
+Hence,
+\eq{
+{\bf P} = \avecc{ 4/5 & -1 \\ 1 & -1} 
+}
+
+\subquestion  Now consider a geographical system, consisting of several habitat patches. Each patch internally has the dynamics from a). The patches form a geographical network, where the links correspond to avenues of dispersal. The prey disperses diffusively between these patches at rate $1/5$. The predator also disperses diffusively but at rate $1$. Find the critical values of the Laplacian eigenvalue $\kappa$ at which Turing bifurcations of the positive homogeneous state occur. 
+
+\solution
+The dispersal process is diffusive with the coupling matrix  
+\eq{
+{\bf C} = \avecc{1/5 & 0 \\ 0 & 1}
+}
+We know that we can compute the eigenvalues of $\bf J$ as eigenvalues of the matrix  
+\eq{
+{\bf P}-\kappa {\bf C} = \avecc{(4-\kappa)/5 & -1 \\ 1 & -(1+\kappa)} 
+}
+We know that a Turing bifurcation occurs when an eigenvalue of this matrix becomes zero. The easiest way to check for a zero eigenvalue is to compute the determinant
+\eqa{
+0&=& -(1+\kappa)(4-\kappa)/5 +1 \\ 
+0&=& -(1+\kappa)(4-\kappa) + 5 \\
+0&=& \kappa^2 -3\kappa + 1 \\
+0&=& (\kappa -3/2)^2 - 5/4 \\
+\kappa &=& 3/2 \pm \sqrt{5/4} \\
+}
+Hence the Turing bifurcations occur at 
+\eq{
+\kappa = \frac{3\pm \sqrt{5}}{2}
+}
+
+\subquestion 
+Show that wave instabilities cannot occur. 
+
+\solution
+We know that in two dimensional system Hopf-like bifurcations can only occur when the trace of the Jacobian is zero. Hence we consider the trace of ${\bf P} - \kappa {\bf C}$ which is 
+\eq{
+{\rm Tr}({\bf P-\kappa {\bf C}}) = \frac{4-\kappa}{5} -(1+\kappa) = -\frac{1+6\kappa}{5} < 0
+}
+Since the Laplacian can only have eigenvalues $\kappa\geq 0$ the trace is always negative and hence wave instabilities cannot occur. 
+
+\subquestion 
+Consider a linked pair of nodes, where the link has weight $w$. For which link weights is the positive homogeneous state stable?
+
+\solution 
+The weighted adjacency of the network is 
+\eq{
+{\bf A} = \avecc{0 & w \\ w & 0} 
+}
+and hence the Laplacian is 
+\eq{
+{\bf L} = \avecc{w & -w \\ -w & w} 
+}
+One eigenvalue of the Laplacian is 
+\eq{
+\kappa_1=0 
+}
+Moreover trying the eigenvector $(1,-1)^{\rm T}$ reveals the other eigenvalue 
+\eq{
+\kappa_2=2w
+}
+We can verify that $\kappa_1=0$ does not cause an instability. In this case ${\bf P}-\kappa{\bf C}={\bf P}$ and the eigenvalues of $P$ have negative real parts. 
+
+The stability can only change is bifurcation and the first bifurcation that occurs when we increase $w$ is the Turing bifurcation at
+\eq{
+\kappa = \frac{3- \sqrt{5}}{2}
+}
+Since the only other $\kappa$ of our linked pair is $2w$ this occurs if  
+\eq{
+2w=\frac{3- \sqrt{5}}{2}
+}
+which means that if we increase the weight of the link to the point 
+\eq{
+w= \frac{3- \sqrt{5}}{4}
+}
+then the coupling between the patches becomes strong enough to overcome the restoring force from the local dynamics and the homogeneous state becomes unstable. If we increase the weight of the link further then 
+we encounter another Turing bifurcation 
+at
+\eq{
+w= \frac{3+ \sqrt{5}}{4}
+}
+at this point the coupling becomes so strong that the two patches start to behave effectively as a single patch and the homogeneous state is stable again. 

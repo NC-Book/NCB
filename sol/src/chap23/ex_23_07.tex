@@ -1,0 +1,146 @@
+\exercise{Well-mixed SIS\label{exMasterMixedSIS}}{3}
+Consider SIS dynamics on a network, with one additional process: If there are no infected then a random node is infected at rate $a$ from an external source.   
+
+\subquestion 
+Consider the SIS epidemic on the linked-pair. Use the symmetry to argue that in the case where one agent is infected, it does not matter who is infected, and hence formulate a master equation for the variables $x_0$, $x_1$, $x_2$, that are the probabilities of having 0, 1, or 2 infected. 
+
+\solution 
+The linked pair is a completely symmetric network, hence if there is one infected, the network can transition to states were either both or neither agents are infected. The corresponding transition rates are independent of who is infected. Hence who is infected has no consequence for the future dynamics and we can work with three microstates corresponding to  0, 1, or 2 infected. 
+
+\paragraph{Small detour.} The same argument can be made more formally by first constructing the model with four states, as we did in the chapter, and then noticing the symmetry between microstates 2 and 3 in the 4-state Laplacian as a result of this symmetry the eigenvectors of the Laplacian must be either antisymmetric or symmetric. Solving the eigenproblem for symmetric eigenvectors then leads naturally to the three state description--but we would be repeating a lot of the material from the chapter if we went this route, so the verbal motivation above will have to do. 
+
+\paragraph{Formulation of the model.} We can now write the master equations
+\eqa{
+\dot{x}_0 &=& -ax_0 + rx_1 \\
+\dot{x}_1 &=& -(r+p)x_1 + ax_0 + 2rx_2 \\
+\dot{x}_2 &=& -2rx_2 +px_1
+}
+This model takes into account that we transition the if we are in the state $0$ then we transition to state 1 at rate $a$ due to the new external infection process, leading to a current $x_0a$ from 0 to 1. If we are in state 1 the one infected recovers at rate $r$ (current $rx_1$ from 1 to 0). Moreover in the state 1 the second agent can become infected which happens at rate $p$ as there is one link between the susceptible and infected agents (current $x_1p$ from 1 to 2). If we are in state 2 there are two agents that can recover, leading to a transition to state 1 at the rate $2r$ (current $2rx_2$ from 2 to 1).
+
+You have probably noticed that the additional process does not look like a proper natural process. Why does it only cause infections, when nobody is infected? The answer is that we only include it to avoid having an absorbing state. You could say we rather put up with this somewhat artificial process, rather than the artificial result that everybody is healthy for all eternity.   
+
+\subquestion 
+Find the steady state of your model on the linked pair, by exploiting the detailed balance property. 
+
+\solution 
+Right. Our model describes a chain of three microstates (not a triangle) which we can see from writing the Jacobian 
+\eq{
+{\bf J} = \avecccc{-a & r & 0 \\ a & -r-p & 2r \\ 0 & p & -2r }
+}
+See how the 0s in the top right and bottom left make this a chain. State 0 interacts only with state 1 and so on. 
+
+Because a chain is a type of tree the steady state must exhibit detailed balance. Demanding that the net flux between states 0 and 1 vanishes in the steady state yields the condition 
+\eq{
+ax_0 = rx_1 
+}
+which we can solve for 
+\eq{
+x_1 = \frac{a}{r} x_0
+}
+Demanding that the net flux between states 1 and 2 vanishes in the steady state yields the condition 
+\eq{
+2rx_2 = px_1  
+}
+and hence 
+\eq{
+x_2 = \frac{p}{2r} x_1 = \frac{ap}{2r^2} x_0 
+}
+Note that if $p>2r$ then $x_2>x_1$ so in a sense $x_1$ becomes a bottleneck between the highly infected state 2 and the disease free state 1, so for $p>2r$ there can be an outbreak in miniture. If you will, this is a shadow of the epidemic threshold that only really exists in much larger systems. 
+
+Finally we demand that the three probabilities sum up to 1,
+\eq{
+1=x_0+ \frac{a}{r} x_0 + \frac{ap}{2r^2} x_0 = \left(1+\frac{a}{r}+ \frac{ap}{2r^2}\right)x_0 = \frac{2r^2+2ar+ap}{2r^2}  
+}
+hence 
+\eq{
+x_0 = \frac{2r^2}{2r^2+2ar+ap}
+}
+As a quick check, consider that for $a=0$ we have $x_0=1$. That is the absorbing state coming back. Moreover for $r=0$ we have $x_0=0$ which makes sense; if we don't recover there is now way to go back to the disease free state. In the limit of very large recovery rates $r\to \infty$ we also approach the state $X_0 = 1$. 
+
+We can now compute the other probabilities 
+\eq{
+x_1 = \frac{a}{r} \frac{2r^2}{2r^2+2ar+ap} = \frac{2ar}{2r^2+2ar+ap}
+}
+\eq{
+x_2 =\frac{ap}{2r^2} \frac{2r^2}{2r^2+2ar+ap} = \frac{ap}{2r^2+2ar+ap}
+}
+Note how the weights of spanning trees appear in these results. For example the weight of the spanning tree directed at microstate 2 is $ap$. 
+
+\subquestion 
+Now consider the same epidemic process on a fully connected network of three nodes. Use Kirchhoff's method to compute the probability to find three, two, one or none infected agent in the stationary state. 
+
+\solution
+Due to the symmetry all states with infected agent behave exactly the same. Also all states with one infected agent behave exactly the same. We thus have 4 microstates, and we again use $x_i$ to denote the probability that there are exactly $i$ infected in the stationary state.
+
+In each transition the number of infected will only ever change by one. Therefore, even on the triangle network, the micrtostates of the system form a chain, (0)-(1)-(2)-(3).
+
+Since this is the chain there is only one spanning tree, and I will use $w_i$ senote the weight of this tree when it is oriented such that it points at node $i$. 
+
+We start with the spanning tree directed at microstate 0. In this case all edges need to be oriented such that they point towards states with less infected, i.e.~the recovery direction. In state (1) there is only one infected individual so recoveries occur at rate $r$ and this is also the weight of the edge pointing from 1 to 0. In state 2 there are two infected individuals that can receover, so the recovery edge has weight $2r$, and in state 3 there are three, so an edge weight of $3r$. Hence the spanning tree directed at state 0 has the weight
+\eq{
+w_0 = (r)(2r)(3r) = 6r^3
+}
+To find the weight of the spanning tree directed at state 1 we have to orient the edge between 0 and 1 upwards toward one, which gives us a weight of $a$. The other edges are oriented downwards as before so they still have the same weight as before. We find 
+\eq{
+w_1 = (a)(2r)(3r) = 6r^2a
+}
+To get the weight of the spanning tree directed at state 2 we now only have to flip the edge between state 1 and 2. In the recovery direction this edge had the weight $2r$. To find its weight in the infection direction, consider that we are now looking at the edge that takes us from one infected to two infected. At the beginning of this step there is one infected connected to two susceptibles, so there are two links across which the disease can spread, and hence the edge now has a weight of $2p$.
+\eq{
+w_2 = (a)(2p)(3r) = 6rap 
+}
+To compute $w_3$ we flip the final edge. This now takes us from the state 2 to state 3. At the beginning of this step there are two infected and one susceptible which again gives us two links on which the infection can spread, so a weight of $2p$
+\eq{
+w_3 = (a)(2p)(2p) = 4ap^2 
+}
+We can now compute the probabilities in the stationary state as
+\eq{
+x_{i} = \frac{w_i}{\sum w_j}
+}
+which gives us 
+\eq{
+x_0= \frac{6r^3}{6r^3+6r^2a+6rap+4ap^2}
+}
+\eq{
+x_1= \frac{6r^2a}{6r^3+6r^2a+6rap+4ap^2}
+}
+\eq{
+x_2= \frac{6rap}{6r^3+6r^2a+6rap+4ap^2}
+}
+\eq{
+x_3= \frac{4ap^2}{6r^3+6r^2a+6rap+4ap^2}
+}
+
+\subquestion 
+Finally, consider the epidemic on a fully-connected network of $N$ nodes and determine the probability to that $n$ agents are infected in the stationary state.  
+
+\solution 
+The Kirchhoff method is the easier way to go. To use it we will need the transition rates. Let's first consider the links in the recovery direction. In state $n$ there are $n$ infected that can recover hence the recovery link weight between state $n$ and $n-1$ is $rn$. 
+
+Now consider the weights in the infection direction. We know that the infection link between state 0 and state 1 is $a$. If we are in a state $n>0$ then there are $n$ infected and $N-n$ susceptibles such that the number of links across which the disease can spread is $n(N-n)$ and hence the link weight is $n(N-n)p$.
+
+The spanning tree directed at state 0 is special as it is the only tree that does not contain a factor $a$. To compute its weight we simply orient all links in the recovery direction,
+\eq{
+w_0 = (r)(2r)(3r)\cdots(Nr) = \prod_n=1^{N} nr = r^N (N!)
+}
+All trees oriented at states $i>0$ contain a factor $a$. Additionally we need to multiply the weight of infection links between state 1 and state i, and recovery links between state $N$ and state $i$,
+\eqa{
+w_i &=& a \left(\prod_{n=1}^{i-1} p n(N-n) \right) \left(\prod_{n=i+1}^{N} nr \right) \\
+&=& a p^{i-1}r^{N-i-1} \left(\prod_{n=1}^{i-1}n(N-n) \right)\left(\prod_{n=i+1}^{N} n \right)  \\
+&=& a p^{i-1}r^{N-i-1} \left((i-1)!\frac{(N-1)!}{(N-i)!} \right)\left(\frac{N!}{i!}\right)\\
+&=& a p^{i-1}r^{N-i-1} \frac{(i-1)!(N-1)!N! }{(N-i)!i!}\\
+&=& a p^{i-1}r^{N-i-1}(i-1)!(N-1)!B(N,i)\\
+&=& a p^{i-1}r^{N-i-1}(i-1)!(N-1)!B(N,i)     
+}
+It is interesting that the Binomial factor $B(N,i)$ appears, which makes the number of ways in which we can pick the $i$ infected from the $N$ nodes a factor in the equation. 
+
+In any cas we can now write 
+\eq{
+x_0 = A(N!)r^N 
+}
+\eq{
+x_1 = A a p^{i-1}r^{N-i-1}(i-1)!(N-1)!B(N,i)
+}
+where $A$ is the normalizing factor
+\eq{
+A = \left((N!)r^N + a\sum_{i=1}^N p^{i-1}r^{N-i-1}(i-1)!(N-1)!B(N,i)  \right)^{-1}
+}

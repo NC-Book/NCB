@@ -1,0 +1,125 @@
+\exercise{Small eigenvalue puzzles}{3}
+Find the adjacency eigenvalues of the following networks:
+\begin{center}
+\includegraphics[width=0.75\textwidth]{smallpuzzle}
+\end{center}
+
+\solution
+
+{\bf NETWORK A. }Network A is a 4-chain. The orbit structure is `(12)(34)'. So we expect two even-symmetry and two odd-symmetry eigenvectors. The even symmetry eigenvectors should have the form $\vec{v} = (a,a,1,1)^{\rm T}$. Let's try to put this in the eigenvector equation
+\eq{
+\avecccc{
+ 0 & 1 & 1 & 0 \\ 
+ 1 & 0 & 0 & 1 \\
+ 1 & 0 & 0 & 0 \\
+ 0 & 1 & 0 & 0
+}
+\avec{a\\ a \\ 1 \\ 1}
+= 
+\avec{ a+1 \\ a+1 \\ a \\ a }
+=
+\lambda \avec{ a\\ a \\ 1 \\ 1 }
+}
+This gives us two independent conditions
+\eqa{
+a+1 &=& \lambda a  \\
+a &=&  \lambda  
+}
+If we substitute $a=\lambda$ in the first equation we get 
+\eqa{
+0&=&\lambda^2 - \lambda -1 \\
+0&=&(\lambda-1/2)^2 - 5/4 \\
+5/4 &=& (\lambda-1/2)^2 \\
+\pm{\sqrt{5}}/2 &=& \lambda-1/2
+}
+Hence we have the eigenvalues 
+\eq{
+\lambda_1 = \frac{1+\sqrt{5}}{2} \qqq \lambda_3 = -\frac{1+\sqrt{5}}{2}.
+}
+Of course the golden ratio has to show up somewhere. I scale the corresponding eigenvectors by a factor of two to avoid fractions in the vector 
+\eq{
+\vec{v_1} = \avec{ 1+\sqrt{5}\\ 1+\sqrt{5}\\ 2 \\ 2}, \qqq \vec{v_3} = \avec{1-\sqrt{5}\\ 1-\sqrt{5}\\ 2 \\ 2}.
+}
+I have numbered the eigenvalues $\lambda_1$ and $\lambda_3$ so that the eigenvalues will be properly sorted in descending order in the result. So how did I know these two are 1 and 3? Easy, this is a bipartite network and we haven't found the symmetric partners of these two yet. So the others are 
+\eq{
+\lambda_2 = \frac{-1+\sqrt{5}}{2}, \qqq \lambda_4 = \frac{-1-\sqrt{5}}{2}.
+}
+But to be sure let's also go the long way. We know the odd-symmetry eigenvectors must have the form $\vec{v}=(a,-a,1,-1)^{\rm T}$ so substituting into the eigenvector equation yields 
+\eq{
+\avecccc{
+ 0 & 1 & 1 & 0 \\ 
+ 1 & 0 & 0 & 1 \\
+ 1 & 0 & 0 & 0 \\
+ 0 & 1 & 0 & 0
+}
+\avec{a\\ -a \\ 1 \\ -1}
+= 
+\avec{ -a+1 \\ a-1 \\ a \\ -a }
+=
+\lambda \avec{ a\\ -a \\ 1 \\ -1 }
+}
+Which again gives us two independent conditions 
+\eqa{
+1-a &=& \lambda a \\
+a &=& \lambda
+}
+Hence we solve 
+\eqa{
+0 &=& \lambda^2 + \lambda -1 \\
+= &=& (\lambda+1/2)^2 - 5/4 \\
+5/4 &=& (\lambda+1/2)^2 \\
+\pm \sqrt{5}/2 &=& \lambda + 1/2 
+}
+and hence 
+\eq{
+\lambda_{2,4} = \frac{-1 \pm \sqrt{5}}{2}
+}
+and the corresponding eigenvectors are
+\eq{
+\vec{v_2}=  \avec{ -1+\sqrt{5}\\ 1-\sqrt{5}\\ 2 \\ -2}, \qqq
+\vec{v_2}=  \avec{ -1-\sqrt{5}\\ 1+\sqrt{5}\\ 2 \\ -2}. 
+}
+
+{\bf NETWORK B. }
+Network B is significantly more fun. All nodes are in the same orbit `(1,2,3,4)' so we only have one even-symmetry eigenvector and three odd-symmetry eigenvectors. In the even-symmetry all nodes have the same element, so we can use $\vec{v_1}=(1,1,1,1)^{\rm T}$. By staring at the network we can visually see that the eigenvalue must be $\lambda_1=2$. If you can't see this immediately, consider that this is a regular graph so the leading eigenvalue must be the node degree, and this must be the leading eigenvector we are talking about because the matrix is positive, the vector has positive elements, so Perron-Frobenius says this must be the leading one.
+
+Now for the other eigenvectors We know that the elements must add up to zero. In this network not every vector that meets this condition will work, but it is possible to spot some visually. 
+
+[Hint: Because this is bipartite you already know that you are looking for one eigenvalues that is -2, so ask yourself how you would need to distribute the the eigenvector elements to make every element double and change sign upon multplication.The squares of the eigenvalues 2 and -2 already add up to 8 which is twice the number of links so the other two eigenvalues must be zero. Eigenvectors for zeros are easy to create as the neighbors have to add up to zero for every node.]
+
+If you can't do it visually you can use the Ansatz $\vec{v}=(a,b,c,-a-b-c)^{\rm T}$ where the orbit adds up to zero, and put put it into the eigenvector equation
+\eq{
+\avecccc{0 & 1 & 1 & 0 \\ 1 & 0 & 0 & 1 \\ 1 & 0 & 0 & 1 \\ 0 & 1 & 1 & 0} 
+\avec{a \\ b \\ c \\ -a-b-c} = 
+\avec{b+c \\ -b-c \\ -b-c \\ b+c} = \lambda \avec{a \\ b \\ c \\ -a-b-c}
+}
+So we get four conditions 
+\eqa{
+b+c &=& \lambda a \\
+b+c &=& -\lambda b \\
+b+c &=& - \lambda c \\
+b+c &=& -\lambda(a+b+c) 
+}
+If $\lambda \neq = 0 $ the first three conditions imply  
+\eq{
+a = -b = -c 
+}
+We can chose $a=1$ then $b=c=-1$ and the fourth condition reads 
+\eqa{
+-1-1 &=& -\lambda (1-1-1 ) \\ 
+-2 &=& \lambda 
+}
+So as expected $\lambda_4=-2$ and the corresponding eigenvector is 
+$\vec{v_4}=(1,-1,-1,1){\rm T}$.
+
+In the case $\lambda=0$ our conditions imply $b+c=0$. But what about $a$ and $d$. Rememeber that we have the additional condition that the whole orbit must sum to zero. So as long as $b$ and $c$ cancel each other and $a$ and $d$ cancel each other we are fine; any chaoice with $a=-d$ and $b=-c$ will work. Perhaps the most reasonable choice is 
+\eq{
+\vec{v_2} = \avec{0 \\ 1 \\ -1 \\ 0},\qqq \vec{v_3}= \avec{1\\ 0 \\ 0 \\ -1}. 
+}
+
+{\bf NETWORK C.} Network C is the most fun one. Immediately we see that all nodes ar in the same orbit, `(1234)'. So there is one even-symmetry eigenvector and $\vec{v_1}=(1,1,1,1)^{\rm T}$ with the eigenvalue $\lambda_1=3$. In the odd-symmetry eigenvectors all nodes have to sum to zero. Since this network is a fully-connected clique there are no additional constraints and every vector that sums to zero will work. A reasonable choice is
+\eq{
+\vec{v_2}=\avec{1\\ -1 \\ 0 \\ 0}, \quad \avec{v_3}=\avec{1\\ 0 \\ -1 \\ 0}, \quad \vec{v_4}=\avec{1\\ 0 \\ 0 \\ -1}. 
+}
+And the remaining eigenvalues are eigenvalues are $\lambda_2=\lambda_2=\lambda_4=-1$.
+ 

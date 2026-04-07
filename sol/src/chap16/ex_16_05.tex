@@ -1,31 +1,47 @@
-\exercise{Fold normal form revisited}{4}
-Consider the normal from of the fold bifurcation, which we can write as 
+\exercise{Cellular switch \label{exBrainCellular}}{3}
+In human cells a certain protein can be present in an activated and an inactivated form.  The dynamics of the amount of activated protein, $x$, can be modeled as 
 \eqn{
-\dot{x}=ax^2+bp
+\dot{x} = \frac{x^2}{1+x^2}(S-x) - x,   
 }
-where $a$ and $b$ are normal form coefficients, $p$ is the control parameter, and $x$ is the dynamical variable. Find the steady states, determine their stability, and draw the bifurcation diagram. Are there actually different forms (e.g.~subcritical, supercritical) of this bifurcation as well?
+where $S$ is the total amount of protein in either form.
+Biologist suspect that the protein acts as a switch that the cell uses to store information. Is this possible? 
 
-\solution
-We compute the steady states by solving 
+\solution 
+We start by considering the steady states. Straight away it is apparent that 
+$x=0$ is a solution. So maybe this is the off state of the switch.
+Let's check the stability of the state. We differentiate the equation of motion to find 
+\eqa{
+f_{\rm x} &=& \left. \partial_x \left(  \frac{x^2}{1+x^2}(S-x) - x \right) \right|_{x=0} \\
+&=& \left. \left(  \frac{2x}{1+x^2}(S-x) - \frac{2x^3}{(1+x^2)}(S-x) -  \frac{x^2}{1+x^2}  - 1 \right) \right|_{x=0} \\ 
+&=& \left. \left(  \frac{2x(1+x^2)}{(1+x^2)^2}(S-x) - \frac{2x^3}{(1+x^2)^2}(S-x) -  \frac{x^2}{1+x^2}  - 1 \right) \right|_{x=0} \\
+&=& \left. \left(  \frac{2x}{(1+x^2)^2}(S-x) -  \frac{x^2}{1+x^2}  - 1 \right) \right|_{x=0} \\
+&=&  - 1  \\
+}
+So this steady state is stable.  If there is another stable state we could maybe switch between the two of them. To find the other steady states we divide the equation of motion by $x$ to remove the off state and set the remainder to zero, which yields 
 \eq{
-0=ax^2+bp
+0= \frac{x(S-x)}{1+x^2} -1 
 }
-which yields 
+Clearing the denominator gives us 
 \eq{
-x^*=\pm \sqrt{\frac{b}{a}p}
+0= x(S-x) - (1+x^2)
 }
-This means we have either two steady states ($bp/a>0$) or none ($bp/a<0$). If $b/a>0$ we find the steady states at positive values of $p$, otherwise they only exist at negative values of $p$. 
-
-In this sense there are two forms of the fold bifurcation, but they are indistinguishable in practice.
-
-To determine the stability of solutions we compute
+which we can write as
+\eqa{
+0 &=& -2x^2 +Sx -1 \\
+0 &=& x^2-Sx/2 +1/2 \\
+0 &=& (x-S/4)^2 - S^2/16  +1/2 \\
+}
+which we can solve for 
 \eq{
-f_{\rm x}=\frac{\partial }{\partial x} ax^2+bp = 2ax
+x = \frac{S}{4} \pm \frac{\sqrt{S^2-8}}{4}.
 }
-If $a>0$ then the steady state at $+\sqrt{bp/a}$ is unstable and the one at $+\sqrt{bp/a}$ is stable. Otherwise its the other way around. 
+So this gives us two more steady states if the term under the root is positive and none otherwise.  We have discovered an interesting constraint. The system can only act as a switch if the total amount of the protein is large enough, $S>\sqrt{8}$. If this condition is met then we have three steady states. We could now check the stability of these, but actually we don't need to. Because we know that the state at $X=0$, we can conclude $\dot{x}<0$ for sufficiently small $x$. In a one dimensional system, the trajectories that lead to the stable state at $x=0$ must come from somewhere and the only place they can come from is the lower of the non-trivial stead states, but this means that the lower branch must be unstable. 
 
-We can now draw the bifurcation diagram 
-\begin{center}
-\includegraphics[width=0.6\textwidth]{Fold}
-\end{center}
-This diagram corresponds to the case $a<0$ (positive branch of steady states is stable) and $b>0$ (steady states exist for negative $p$).
+So if the system sits in the lower branch and we perturb it lightly downward it will fall to the steady state at $x=0$. Conversely if we perturb it slightly upwards then $x$ will rise until it hits the upper steady state, which shows that the upper steady state must be stable. This reasoning only works in one-dimensional systems, but we will see its extension to multi-dimensional systems in the next chapter. 
+
+We are now ready to answer our biological question. Yes, this system can act as a switch provided there is enough of the protein $S>\sqrt{8}$. If there is less than this amount it will always be in the off state (maybe this is an experiment that can be done). If there is enough of the protein then it can be in the off state, $x=0$ or in the on state $x=(S+\sqrt{S^2-8})/4$. The cell can switch between the off and the on state if it has some other process that can produce or deplete the activated protein. In that case the switching will occur at $x=(S-\sqrt{S^2-8})/4$. 
+
+BIFURCATION DIAGRAM
+
+
+

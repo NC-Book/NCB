@@ -1,70 +1,104 @@
-
-\exercise{Exploitative Competition}{3}
-We consider two species of predators, $X_1$, $X_2$, and a resource $R$, which are part of of much larger ecological food web. The dyanamics of the three variables are described by the differential equations
-\eqan{
-\dot{X}_1 &=& g_1(R)X_1 - m_1 X_1 \\
-\dot{X}_2 &=& g_2(R)X_2 - m_2 X_2 \\
-\dot{R} &=& s(R) -g_1(R)X_1 - g_2(R)X_2 + \ldots
-}
-where $g_1$, $g_2$ and $s$ are arbitrary functions, $m_1$ and $m_2$ are arbitrary mortality rates for the two predator species and `$\ldots$' represents further terms that connect $R$ to other variables of a large dynamical system. 
-
-\subquestion Formally compute the $3\times 3$-block of the Jacobian that describes the interaction between $X_1$, $X_2$, and $R$. Use the stationarity condition for $X_1$ and $X_2$ to simplify your matrix. 
+\exercise{5-chain\label{exMotifFiveChain}}{2} 
+Find the eigenvalues of the adjacency matrix of a chain of five nodes.
 
 \solution
-The block from the Jacobian has the form
-\eq{
-{\bf J} = \aveccc{g_1(R^*)-m_1 & 0 & g_1'(R^*)X_1^* \\
-0 & g_2(R^*)-m_2 & g_2'(R^*)X_2^* \\ 
--g_1(R^*) & -g_2(R^*) & Z  
-}
-}
-where $Z$ has been used as a placeholder for the derivative of $\dot{R}$ with respect to $R$, while we could compute two of the terms in $Z$ there are likely further terms from the omitted ($\ldots$) terms. Without further information, we'll just hope that the value of $Z$ doesn't matter for what we want to show.  
+We assume that the nodes are numbered from one end of the chain, i.e.
+\begin{center}
+(1)-(2)-(3)-(4)-(5)
+\end{center}
+The orbit structure is (15)(24)(3), hence there are two eigenvectors with even symmetry and three with odd symmetry. 
 
-Now we look att eh stationarity conditions for the two predators, they read
+We start by finding the eigenvalues that belong to the eigenvectors with odd symmetry. There are two ways to find the eigenvalues. First the more boring option: Since the eigenvector elements need to sum to zero in each orbit, the eigenvector has the structure 
+\eq{
+\vec{v} =  (a,b,0,-b,-a)^{\rm T}.
+}
+Multiplying ${\bf A}$
+\eq{
+\aveccccc{
+0 & 1 & 0 & 0 & 0 \\
+1 & 0 & 1 & 0 & 0 \\
+0 & 1 & 0 & 1 & 0 \\
+0 & 0 & 1 & 0 & 1 \\
+0 & 0 & 0 & 1 & 0
+}
+\avec{ a\\ b \\ 0 \\ -b \\ -a} =   \avec{b \\ a \\ 0 \\ -a \\ -b} 
+}
+So this is the ${\bf A}\vec{v}$, if $\vec{v}$ is an eigenvector then this should be the same as $\lambda \vec{v}$, which yields the condition
+\eq{
+ \avec{b \\ a \\ 0 \\ -a \\ -b}  = \lambda \avec{ a\\ b \\ 0 \\ -b \\ -a}
+}
+
+Due to the symmetry the condition in the third row is trivial and row 5 and four 4 contain the same condition as $1$ and $2$. Hence the equation stipulates only two independent conditions 
 \eqa{
-0 &=& g_1(R^*)X_1^* - m_1 X_1^* \\
-0 &=& g_2(R^*)X_2^* - m_2 X_2^* 
+ b &=& \lambda a \\
+ a &=& \lambda b
 }
-Dividing both equations by the respective predator variable yields
+If we substitute one of these equations into the other we find 
+\eq{
+a = \lambda^2 a
+}
+which implies 
+\eq{
+\lambda^2 = 1 
+}
+and hence 
+\eq{
+\lambda \pm 1
+}
+Could we have found this result more quickly. Sure. Just delete the central node from the chain. This leaves us with a network consisting of two linked pairs: 
+\begin{center}
+(1)-(2)\qqq (4)-(5)
+\end{center}
+Maybe you still remember that the linked pair has eigenvalues 1 and -1. Otherwise these are very quick to find. Because we have two pair the eigenvalues of the reduced networks are
+\eq{
+\mu_1 = 1, \quad \mu_2 = 1, \quad \mu_3=-1, \mu_4=-1.
+}
+By the interlacing theorem, the eigenvalues of the original netwok have to interlace with these, which also reveals that 1 and -1 must have been eigenvalues of the original network. 
+
+Now for the eigenvectors with even symmetry. These eigenvectors must have the form $(a,b,c,b,a)^{\rm T}$, and hence applying the eigenvector equation gives us 
+\eq{
+\aveccccc{
+0 & 1 & 0 & 0 & 0 \\
+1 & 0 & 1 & 0 & 0 \\
+0 & 1 & 0 & 1 & 0 \\
+0 & 0 & 1 & 0 & 1 \\
+0 & 0 & 0 & 1 & 0
+}
+\avec{ a\\ b \\ c \\ b \\ a} =   \avec{b \\ a+c \\ 2b \\ a+c \\ b} = \lambda \avec{ a\\ b \\ c \\ b \\ a} 
+}
+This gives us three conditions 
 \eqa{
-0 &=& g_1(R^*) - m_1 \\
-0 &=& g_2(R^*) - m_2 
+ b &=& \lambda a \\
+ a+c &=& \lambda b \\
+ 2b &=& \lambda c
 }
-which shows that in the Jacobian the two diagonal elements for the predators are zero.  Hence we can simplify the Jacobian block to  
+One solution is $\lambda=0$ which implies $b=0$ and $a=-c$. (Not the interesting symmetry of this eigenvector, we'll come back to it later)
+Furthermore, comparing the first and the third equation, we see that  
 \eq{
-{\bf J} = \aveccc{0 & 0 & g_1'(R^*)X_1^* \\
-0 & 0 & g_2'(R^*)X_2^* \\ 
--m_1 & -m_2 & Z  
+c=2a 
 }
-}
-
-\subquestion Show that in any large ODE system that contains the exploitative competition motif studied here, one eigenvalue of the Jacobian for the entire system will be zero.
-
-\solution
-We do not know the Jacobian from the entire system. So our only hope to get the job done is that the zero eigenvalue arises from an eigenvector that is localized within the motif, and hence is independent of the rest of the network. 
-
-For this idea to work we need to find a vector that is an eigenvector with eigenvalue 0 of our $3 \times 3$ block, and has a zero element in the row that corresponds to the resource to keep the eigenvector from spilling out in to the wider network. 
-
-So we are looking for a solution to 
+Substituting into the second equation and then using the first again gives us 
 \eq{
-\aveccc{0 & 0 & g_1'(R^*)X_1^* \\
-0 & 0 & g_2'(R^*)X_2^* \\ 
--m_1 & -m_2 & Z  
+3a = \lambda b = \lambda^2 a 
 }
-\avec{ v_1 \\ v_2 \\ 0} = \lambda \avec{ v_1 \\ v_2 \\ 0}, 
-}
-where $\lambda=0$. We now have to ask if there is a way in which $v_1$ and $v_2$ can be chosen to satisfy this equation. Fortunately the first two rows equate to $0=0$ straight away, so let's focus on the third row. After multiplying the matrix with the vector it reads
+Therefore,
 \eq{
--m_1 v_1 -m_2 v_2 =0
+\lambda^2 = 3,  
 }
-We can satisfy this condition for example by choosing $v_1=m_2$ and $v_2=-m_1$.
+so the last two eigenvalues are 
+\eq{
+\lambda = \pm \sqrt{3}.
+}
 
-So we can say whenever a large population dynamical system contains a the exploitative competition motif studied here. Then the Jacobian will always have a zero eigenvalue corresponding to the eigenvector $(m_2,-m_1,0,\ldots)^{\rm T}$, where `$\ldots$' are further zeros corresponding to other system variables.
-
-The presence of the zero eigenvalue means that no such system can be asymptotically stable (Unless we chose the parameters very carefully there isn't even a steady state that we could converge to, but this is a different, though related, matter.) This insight is one form of the comptetitive exclusion principle, which is a very valuable in ecology: It means that if we see observe two species competing for a single resource in nature, their must be some additional regulation going on in the background, leading to further nonlinearities not captured by the present model. If such additional regulations were absent the two species could not coexist. In the past searching for hidden regulation that makes the coexistence of such competitors possible has led to some exciting discoveries. 
-
-
-
-
-
+Could we have found the three even-symmetry eigenvalues more quickly? Sure. 
+From the odd-symmetry eigenvectors we already know the eigenvalues 1 and -1
+The network is biparpite which means that the three missing eigenvalues must be 0 and a symmetric pair. Let's say the symmetric eigenvalues are $m$ and $-m$. We know that the squares of all eigenvalues must add up to two times the number of links, so 
+\eq{
+(1)^2 + (-1)^2+ 0^2 + (m)^2 + (-m)^2 = 2 \cdot 4
+}
+and hence 
+\eq{
+2 m^2 = 6  
+}
+so $m=\sqrt{3}$
 

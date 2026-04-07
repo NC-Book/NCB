@@ -1,0 +1,70 @@
+\exercise{Holling's type-II response\label{exManifoldHolling}}{3}
+
+To develop a better model of predator-prey dynamics,we consider the number of prey $X$, predators searching for prey $S$, and predators currently handling prey $H$, which change in time according to
+\eqan{
+\dot{X} &=& aX - rXS \\
+\dot{S} &=& -rXS+bH+cH -mS \\
+\dot{H} &=& +rXS-bH -mH 
+}
+where predator reproduction $cH$ and linear mortality of the predator ($mS$ and $mH$).
+
+\subquestion Ignore the equation for prey for now. Use Tikhonov-Fenichel reduction to find the one-dimensional slow subsystem of the predator dynamics. 
+
+\solution
+We start by focusing on 
+\eqan{
+\dot{S} &=& -rXS+bH+cH -mS \\
+\dot{H} &=& +rXS-bH -mH 
+}
+Using that $c$ and $m$ are small, we set them to zero to identify the fast subsystem 
+\eqan{
+\dot{S} &=& -rXS+bH\\
+\dot{H} &=& +rXS-bH 
+}
+It is apparent that $Y=S+H$ is a conserved on the fast timescale. Moreover we see that in the steady state of the fast dynamics 
+\eq{
+rXS=bH
+}
+To relate this to the slow variable $Y$ we can use the conservation law in the form $S=Y-H$ which yields 
+\eq{
+rX(Y-H)=bH 
+}
+and hence 
+\eq{
+rXY = (b+rX)H
+}
+which we can solve for 
+\eq{
+H= \frac{rXY}{b+rX} 
+}
+and also
+\eq{
+S=Y-H=Y-\frac{rXY}{b+rX}  = \frac{bY}{b+rX}
+}
+We now write an equation for our slow variable 
+\eq{
+\dot{Y} = \dot{H} + \dot{S} = cH -mS -mH = cH -mY = c \frac{rXY}{b+rX} - mY
+}
+where we replaced $H$ with it's value on the slow manifold $(bXY)/(r+bX)$. 
+
+\subquestion
+Call the slow predator variable $Y$ and write a closed model consisting of ODEs for $X$ and $Y$. Compare the result with the Lotka-Volterra model. 
+
+\solution 
+The equation for $\dot{X}$ still contains an $S$, so we replace it with the $S$ on the slow manifold 
+\eq{
+S= \frac{bY}{b+rX}
+}
+which yields the system 
+\eqa{
+\dot{X} &=& aX - b\frac{rXY}{b+rX} \\
+\dot{Y} &=& c\frac{rXY}{b+rX} -mY 
+}
+If we compare this model with the Lotka-Volterra model,
+\eqan{
+\dot{X} &=& aX-bXY \\
+\dot{Y} &=& cXY-mY,
+}
+we can see that the problematic predator-prey interaction term $XY$ has been replaced with $rXY/(b+rX)$. This is the so-called Holling type-II functional response, named after it's inventor CS Holling. Holling independently rediscovered this function after it was first derived from an analogous problem in organic chemistry, by Leonor Michaelis and Maud Leonora Menten. Hence, it is also known as Michaelis-Menten kinetics. In ecological models Holling type-II responses avoid the problem of very high prey consumption rates at large prey population sizes. If the $X$ is small then the type-II response behave approximately like $rXY/b$ which is reminiscent of the Lotka-Volterra interaction. However if $X$ becomes large the it approaches $Y$, hence the predation rate becomes independent of prey abundance as the predator saturates (pun intended).     
+
+We have already seen the type-II response in action in the Rosenzweig-MacArthur model in Ex.~14.7. Now you know where it comes from. 

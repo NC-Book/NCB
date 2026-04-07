@@ -1,23 +1,32 @@
-
-\exercise{Rock-paper-scissors}{2}
-Consider a network of agents playing the rock-paper-scissors game. Each agent has a state which can be either rock (R), paper (P), or scissors (S). At some rate we pick a random link and the game is played by the two agents that the link connects: If both players are in the same state the game is a draw and nothing happens. Otherwise R wins against S, S wins against P, and P wins against R. Whoever is the loser then changes it's state to the strategy that would have won the game. For example if R plays against P, R loses and switches to S. Write mean field equations for the proportion of players with a given strategy, $[R]$, $[P]$, $[S]$, and find the steady states.
+\exercise{Individuality}{2}
+Consider a network of agents which can be in either of two states A, or B. No agent wants to be in the same state as its neighbors. Links in the network are checked at rate $r$. When a link is checked, the agents connected by the link compare their state. If they are in the same state, one of them chosen randomly switches to the respectively other state. For example if an AA-link is checked one of the agents would switch to state B. Write a mean field model, find its steady state and check the stability. 
 
 \solution
-The mean field equations before closure are 
-\eqa{
- [\dot{R}]&=&[SP]-[RP]\\{}
- [\dot{S}]&=&[PR]-[SR]\\{}
- [\dot{P}]&=&[RS]-[PS]
+
+We write the mean field equation
+\eq{
+[\dot{A}] = -r[AA]+r[BB]. 
 }
-We close the system using a mean field approximation of the form $[AB]=z[A][B]$ which yields 
-\eqa{
- [\dot{R}]&=&z[P]([S]-[R])\\{}
- [\dot{S}]&=&z[R]([P]-[S])\\{}
- [\dot{P}]&=&z[S]([R]-[P])
+Closing with a mean field approximation yields
+\eq{
+[\dot{A}] = -rz[A][A]+rz[B][B]
 }
-There are a number of different steady states:
-\begin{enumerate}
-\item $[R]=[P]=[S]=0$
-\item $[R]=c$, $[P]=[S]=0$ and related states where the types are exchanged
-\item $[R]=[P]=[S]$
-\end{enumerate}
+Now using the conservation law $[A]+[B]=1$ we get 
+\eqa{
+[\dot{A}] &=& -rz[A]^2+rz(1-[A])^2  \\{}
+[\dot{A}] &=& rz(1-2[A])  
+}
+To compute the steady state we set the rate of change to zero
+\eqa{
+0 &=& rz(1-2[A])  \\{}
+[A] &=& 1/2
+}
+So the symmetric case $[A]=[B]=1/2$ is a stationary state. To explore its stability 
+we have to compute the Jacobian, which in this case is a 1$\times$1-matrix ($[B]$ acts as a 
+auxiliary variable). We compute
+\eq{
+\lambda =  -2rz
+}
+so for reasonable parameters $r>0$, $z>0$ the steady state is stable.
+
+

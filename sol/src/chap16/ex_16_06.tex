@@ -1,2 +1,98 @@
+\exercise{Transcritical bifurcation normal form \label{exBrainTranscritical}}{3} 
+Consider a dynamical system of the form $\dot{x}=f(x,p)$, that has a steady state $x^*$. At a parameter value $p^*$ the steady state undergoes a bifurcation such that $f_{\rm x}(x*,p^*)=0$. Moreover $f_{\rm p}(x^*,p)=0$ for all $p$.
 
+\subquestion Find the normal form: Define $\delta=x-x^*$ and $\rho=p-p^*$ then Taylor expand the $\dot{\delta}$ until you have enough terms such that you can argue that all further Taylor term are negligible if $ \delta$ and $\rho$ are sufficiently small. (Hint: note that the conditions also implies $f_{\rm pp}(x^*,p)=0$)
+
+\solution
+We define 
+\eq{
+\delta = x-x^* \qqq  \rho = p-p^* 
+}
+We can now write 
+\eq{
+\dot{\delta}=f(x,p) 
+}
+Taylor expanding around $\delta=0$, $\rho=0$ yields 
+\eq{
+\dot{\delta} = \underbrace{f(x^*,p^*)}_{=0} +  \underbrace{\delta f_{\rm x}(x^*,p^*)}_{=0} + \underbrace{\rho f_{\rm p}(x^*,p^*)}_{=0} + \ldots
+} 
+where the first term is zero because of the stationarity condition, the second term is zero due to the symmetry condition, and the third term is zero due to the symmetry implied in the question. Since so far all terms are zero we need to consider the higher order expansion terms indicated by $\ldots$. The next terms are the second order derivatives
+\eq{
+\dot{\delta} = \delta^2 f_{\rm xx}(x^*,p^*)/2 + \delta \rho f_{\rm xp}(x^*,p^*) + \underbrace{\rho^2 f_{\rm pp}(x^*,p^*)}_{=0} + \ldots
+}
+The last term in the expansion is zero because the exercise demanded $f(x^*,p)=0$ for all $p$. So if we compute 
+\eq{
+f_{\rm pp}(x^*,p^*) = \left. \frac{\partial}{\partial p} f_{\rm p}(x^*,p) \right|_{p=p^*} =  \left. \frac{\partial}{\partial p} 0 \right|_{p=p^*} = 0 
+}
+For the same reason all the higher derivatives with respect to $p$ must also be zero. Note that we cannot apply the same reasoning with respect to the derivatives to $x$ as we only know that the derivative with respect to $x$: Although we know that the derivative with respect to $X$ is zero in the steady state the slope of this derivative, i.e.~the second derivative can still have an arbitrary value. 
+
+At point we know that all further terms that contain only derivatives with respect to $p$ must be zero. Hence all non-zero terms must involve at least one derivative with respect to $x$. By the logic of the Taylor expansion this means that all remaining terms must contain at least one factor of $\delta$. We can therefore now write the expansion as 
+\eq{
+\dot{\delta} = \delta^2 f_{\rm xx}/2 + \delta \rho f_{\rm xp} + O(\delta^3) +  O(\delta^2\rho)  + O(\delta\rho^2) 
+}
+where we have dropped the argument $(x^*,p^*)$ for conciseness.
+
+The equation means that any further term, in addition to the ones that we have explicitly accounted for must either contain $\delta^3$, $\delta^2\rho$, or $\delta \rho^2$. However if $\delta$ and $\rho$ are sufficiently small then 
+all terms containing $\delta^3$ are negligible in comparison to the $\delta^2$ term; All terms that that contain $\delta^2 \rho$ are negligible in comparison with both the $\delta^2$ and the $\delta \rho$ term; And, all terms containing $\delta \rho^2$ are negligible compared to the $\delta \rho$ term. Hence for sufficiently small perturbations from the steady state, the local dynamics around the bifurcation is captured by 
+\eq{
+\dot{\delta} = \delta^2 f_{\rm xx}/2 + \delta \rho f_{\rm xp}
+}
+as long as 
+\eqa{
+f_{\rm xx}(x^*,p^*) & \neq 0 \qqq & \mbox{(Genericity condition 1)} \\
+f_{\rm xp}(x^*,p^*) & \neq 0 \qqq & \mbox{(Genericity condition 2)}
+}
+
+\subquestion 
+To simplify the notation, define a new variable $x$, and new parameters $a$ and and $b$ to show that your normal form can be written as 
+\eqn{
+\dot{x} = ax+bx^2.
+}
+\solution
+Starting from our equation 
+\eq{
+\dot{\delta} = \delta^2 f_{\rm xx}/2 + \delta \rho f_{\rm xp}
+}
+We now define a new $x=\delta$ and furthermore define the parameters 
+\eq{
+a = \rho f_{\rm xp}, \qqq b= \frac{f_{\rm xx}}{2}.
+}
+which allows us to write the normal form as 
+\eq{
+\dot{x} = ax+bx^2.
+}
+
+\subquestion
+Compute the steady states and determine their stability. Define a new parameter $p=-a/b$ and draw the bifurcation diagram of $x^*$ over $p$ for the case $b<0$.
+
+\solution 
+We compute the steady states from
+\eq{
+0=ax+bx^2
+}
+This immediately reveals one steady state $x^*_1 = 0$. Dividing the condition by $x$ we find the second steady state as the solution of  
+\eq{
+0=a+bx.
+}
+Hence,
+\eq{
+x_2^* = -\frac{a}{b}
+}
+By defining, $p$ as suggested in the question, we can write the steady states simply as 
+\eq{
+x_1^*=0 \qqq x_2^* = p
+}
+To check the stability we compute the derivative 
+\eq{
+\frac{\partial \dot{x}}{\partial x} = a + 2bx. 
+}
+Hence the trivial steady state is stable if $a<0$. Substituting the non trivial steady state reveals
+\eq{
+\frac{\partial \dot{x}}{\partial x} = a + 2bx= a -2a =-a. 
+}
+So the trivial steady state is stable if $a$ is negative, and the non-trivial steady state is stable if $a$ is positive. To draw the bifurcation diagram we only need to translate this stability result into terms of $p$. For $b<0$ negative $a$ means negative $p$ and positive $a$ means positive $p$. Hence we can say that $x_1^*$ is stable for $p<0$ and $x_2^*$ is stable for $p>0$ and hence we arrive at the bifurcation diagram from the chapter: 
+
+\begin{center}
+\includegraphics[width=0.5\textwidth]{trans}
+\end{center}
 

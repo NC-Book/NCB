@@ -1,0 +1,74 @@
+\exercise{Sorting numbers}{3}
+We say numbers are similar if they have a divider in common that is greater than 1. So 2 and 3 are not similar, but 2 and 10 are similar, because they are both divisible by 2.Construct a network where the nodes represent the numbers from 1 to 10 and links indicate that the connected numbers are similar. Then construct the Laplacian and find eigenvectors for the four eigenvalues closest to zero. Do the cuts implied by these eigenvectors make sense? 
+
+\solution 
+The adjacency matrix is 
+\eq{
+{\bf A} = \left( \begin{array}{cccccccccc}
+  0 &  0 &  0 &  0 &  0 &  0 &  0 &  0 &  0 &  0 \\  
+  0 &  0 &  0 &  1 &  0 &  1 &  0 &  1 &  0 &  1 \\
+  0 &  0 &  0 &  0 &  0 &  1 &  0 &  0 &  1 &  0 \\
+  0 &  1 &  0 &  0 &  0 &  1 &  0 &  1 &  0 &  1 \\
+  0 &  0 &  0 &  0 &  0 &  0 &  0 &  0 &  0 &  1 \\
+  0 &  1 &  1 &  1 &  0 &  0 &  0 &  1 &  1 &  1 \\
+  0 &  0 &  0 &  0 &  0 &  0 &  0 &  0 &  0 &  0 \\ 
+  0 &  1 &  0 &  1 &  0 &  1 &  0 &  0 &  0 &  1 \\
+  0 &  0 &  1 &  0 &  0 &  1 &  0 &  0 &  0 &  0 \\
+  0 &  1 &  0 &  1 &  1 &  1 &  0 &  1 &  0 &  0 
+  \end{array}\right) 
+}
+and the corresponding Laplacian is 
+\eq{
+{\bf L} = \left( \begin{array}{cccccccccc}
+  0 &  0 &  0 &  0 &  0 &  0 &  0 &  0 &  0 &  0 \\  
+  0 &  4 &  0 & -1 &  0 & -1 &  0 & -1 &  0 & -1 \\
+  0 &  0 &  2 &  0 &  0 & -1 &  0 &  0 & -1 &  0 \\
+  0 & -1 &  0 &  4 &  0 & -1 &  0 & -1 &  0 & -1 \\
+  0 &  0 &  0 &  0 &  1 &  0 &  0 &  0 &  0 & -1 \\
+  0 & -1 & -1 & -1 &  0 &  6 &  0 & -1 & -1 & -1 \\
+  0 &  0 &  0 &  0 &  0 &  0 &  0 &  0 &  0 &  0 \\ 
+  0 & -1 &  0 & -1 &  0 & -1 &  0 &  4 &  0 & -1 \\
+  0 &  0 & -1 &  0 &  0 & -1 &  0 &  0 &  2 &  0 \\
+  0 & -1 &  0 & -1 & -1 & -1 &  0 & -1 &  0 &  5 
+  \end{array}\right) 
+}
+We can see straight away that the numbers 1 and 7 are isolated and this allows us to guess three of the eigenvectors that we are looking for straight away. We can choose the first eigenvector to be
+\eq{
+\vec{v_1} = (1,0,0,0,0,0,0,0,0,0)^{\rm T} \quad \lambda_1=0
+}
+It implies that the 1 is different from the rest, which is certainly true as our definition of similarity mean that it can never be similar to any number. 
+We can choose the second eigenvector to be 
+\eq{
+\vec{v_2} = (0,0,0,0,0,0,1,0,0,0)^{\rm T} \quad \lambda_2=0
+}
+which tells us that the 7 is different from the rest, which makes sense as it does not have any similar number in the set from 1 to 10. Since 1 and 7 are in their own components it makes sense to now just write the Laplacian for the large component
+\eq{
+{\bf \tilde{L}} = \left( \begin{array}{cccccccc}
+    4 &  0 & -1 &  0 & -1 & -1 &  0 & -1 \\
+    0 &  2 &  0 &  0 & -1 &  0 & -1 &  0 \\
+   -1 &  0 &  4 &  0 & -1 & -1 &  0 & -1 \\
+    0 &  0 &  0 &  1 &  0 &  0 &  0 & -1 \\
+   -1 & -1 & -1 &  0 &  6 & -1 & -1 & -1 \\
+   -1 &  0 & -1 &  0 & -1 &  4 &  0 & -1 \\
+    0 & -1 &  0 &  0 & -1 &  0 &  2 &  0 \\
+   -1 &  0 & -1 & -1 & -1 & -1 &  0 &  5 
+  \end{array}\right) 
+}
+The first eigenvector of $\bf \tilde{L}$ 
+\eq{
+\vec{\tilde{v}_3} = (1,1,1,1,1,1,1,1)^{\rm T} \quad \lambda_3=0
+} 
+We can translate it back into the world of the original Laplacian by inserting zeros for the numbers 1 and 7, i.e. 
+\eq{
+\vec{\tilde{v}_3} = (0,1,1,1,1,1,0,1,1,1)^{\rm T} \quad \lambda_3=0
+} 
+which just tells us that the rest of the numbers belongs together once the 1 and the seven have been separated.
+
+Note that finding these eigenvectors by deduction often yields more reasonable eigenvectors than numerical computation as the numerics tends to mix the eigenvectors with identical eigenvalues into a wild mess. Nevertheless we might want to compute the next eigenvalue numerically, or we cold use the iteration that we developed in the previous exercise. Alternatively we could use our symmetry tricks. The odd-symmetry eigenvectors are easy to spot, but we need an even-symmetry eigenvector which leads to a pair of quadratic equations, which can then be solved iteratively. In either way we find 
+\eq{
+\vec{v_4} = (0,-0.429, 0.380, -0.429, -0.229, 0.056, 0,-0.429, 0.380, -0.344) 
+}
+This is an interesting vector. Obviously it does not want to talk about node 1 and 7.  Instead it divides the large component as follows ( 2 4 5 8 10 | 3 6 9)
+So it splits the numbers that are divisible by 3 from the rest, which makes sense.  
+
+If we were to compute the next eigenvector it would split the first set further into (2 4 8 | 10 5) so it separates the powers of two from the multiples of 5.

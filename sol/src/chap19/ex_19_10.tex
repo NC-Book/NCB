@@ -1,61 +1,58 @@
+\exercise{Matrix perturbation theory\label{exCentralImport}}{4}
+Let's suppose we make a small change to our Jacobian such that ${\bf J}={\bf A}+p{\bf B}$, where ${\bf A}$ is the original Jacobian, ${\bf B}$ describes  the change and $p$ is a parameter that is initially zero. Let's assume we know the eigenvalues $\lambda_n$ and the left eigenvectors $\vec{w_n^\dag}$ and the right eigenvectors $\vec{v_n}$ of $J$ for $p=0$. We now compute how the eigenvalues change as we increase $p$:
 
-\exercise{Five star}{4}
-Consider a 5-star, a single central node of degree 5 that is connected to 5 nodes of degree 1. Start using the procedure from the lecture to start compute the leading eigenvector. After a few steps use the insight gained to compute the eigenvector exactly. (This might be very hard or very easy)  
-
-\solution
-The adjacency matrix of the star network depends on the ordering of the nodes. But, if we make the central node number 1 the adjacency matrix is 
+\subquestion 
+Start with the (right) eigenvector equation for $\bf J$, substitute $\bf J$ and differentiate the whole equation with respect to $p$. Finally eliminate $\bf A$ by using the substitution backwards.  
+\solution 
+We start with 
 \eq{
-{\bf A} = \left(\begin{array}{c c c c c c} 
-0 & 1 & 1 & 1 & 1 & 1 \\
-1 & 0 & 0 & 0 & 0 & 0 \\
-1 & 0 & 0 & 0 & 0 & 0 \\
-1 & 0 & 0 & 0 & 0 & 0 \\
-1 & 0 & 0 & 0 & 0 & 0 \\
-1 & 0 & 0 & 0 & 0 & 0 
-\end{array}\right) 
+{\bf J} \vec{v_n} = \lambda_n \vec{v_n}
 }
-
-We now start with a vector containing only ones $\vec{v_0} = (1,1,1,1,1,1)^{\rm T}$. And do one multiplication
+Substituting 
 \eq{
-\vec{v_1} = {\bf A}\vec{v_0} = \left(\begin{array}{c c c c c c} 
-0 & 1 & 1 & 1 & 1 & 1 \\
-1 & 0 & 0 & 0 & 0 & 0 \\
-1 & 0 & 0 & 0 & 0 & 0 \\
-1 & 0 & 0 & 0 & 0 & 0 \\
-1 & 0 & 0 & 0 & 0 & 0 \\
-1 & 0 & 0 & 0 & 0 & 0 
-\end{array}\right)\avec{1\\ 1 \\ 1 \\ 1 \\ 1 \\ 1} = \avec{5\\ 1 \\ 1 \\ 1 \\ 1 \\ 1} 
+{\bf J}={\bf A}+p{\bf B} 
 }
-If we do this again we get 
+yields 
 \eq{
-\vec{v_2} = {\bf A}\vec{v_1} = \left(\begin{array}{c c c c c c} 
-0 & 1 & 1 & 1 & 1 & 1 \\
-1 & 0 & 0 & 0 & 0 & 0 \\
-1 & 0 & 0 & 0 & 0 & 0 \\
-1 & 0 & 0 & 0 & 0 & 0 \\
-1 & 0 & 0 & 0 & 0 & 0 \\
-1 & 0 & 0 & 0 & 0 & 0 
-\end{array}\right)\avec{5\\ 1 \\ 1 \\ 1 \\ 1 \\ 1} = \avec{5\\ 5 \\ 5 \\ 5 \\ 5 \\ 5} 
+({\bf A}+p{\bf B}) \vec{v_n} = \lambda_n \vec{v_n}
 }
-We can already see that in the next step the first value will become 25, then it will remain at 25 for one step and thenit will become 125. In fact it seems as if all of the values increase by a factor of five every second of step. SO if it takes in average two multiplications to stretch the vector by a factor of 5 then the eigenvalue is probably 
-\eq{\lambda=\sqrt{5}}. 
+When we change $p$ both the eigenvectors and eigenvalues will change so we need a to use a product rule in the differentiation 
+\eqa{
+\partial_p ({\bf A}+p{\bf B}) \vec{v_n} &=& \partial_p (\lambda_n \vec{v_n}) \\ 
+{\bf B}\vec{v_n} + {\bf J}\vec{v_n}'   &=&  \lambda_n' \vec{v_n} + \lambda_n \vec{v_n}'
+}
+In the second row of this equation I used a dash to indicate the derivative with respect to $p$. I have also already put the $\bf J$ back in by undoing the substitution in the second row.
 
-It is interesting to think about this a bit more carefully: What the adjacency matrix does is to copy the first element to all others in every step. This implies that even if they are not initially the same, those other elements will be the same after the first multiplication. From this point on each multiplication sets the value of the first element to five times the value of any the other element.
+\subquestion You should now have one equation that contains the change of $\partial_p \lambda_n$ but also $\partial_p \vec{v_n}$, which we don't want to compute. To fix this multiply your equation with $\vec{w_n^\dag}$ from the left, then find a way to eliminate $\partial_p \vec{v_n}$, and solve for $\partial_p \lambda_n$.  
 
-We can capture this by the matrix
+\solution 
+Multiplying $\vec{w_n^\dag}$ from the left yields
 \eq{
-{\bf B} = \avecc{0 & 5 \\ 1 & 0}
+\vec{w_n^\dag} {\bf B}\vec{v_n} + \vec{w_n^\dag} {\bf J}\vec{v_n}'   =   \vec{w_n^\dag} \lambda_n' \vec{v_n} + \vec{w_n^\dag} \lambda_n \vec{v_n}'
 }
-where the first row now represents what happens to the node 1 of our network, and the second row represents what happens to each of the other nodes. It is easy to confirm that $\lambda_{1,6} = \pm \sqrt{5}$. These are smallest and the largest eigenvalue of $\bf A$, respectively.   
+Our goal is to remove the $\vec{v_n}'$ which on both side of the equation. This makes you wonder if they maybe cancel each other, doesn't it? Recall that
+\eq{
+    \vec{w_n^\dag} {\bf J} = \lambda_n \vec{w_n^\dag}.
+}
+Substituting this relationship yields 
+\eq{
+\vec{w_n^\dag} {\bf B}\vec{v_n} + \vec{w_n^\dag} \lambda_n \vec{v_n}'   =   \vec{w_n^\dag} \lambda_n' \vec{v_n} + \vec{w_n^\dag} \lambda_n \vec{v_n}'
+}
+Now the terms are indeed identical and we can cancel them which leads to  
+\eq{
+\vec{w_n^\dag} {\bf B}\vec{v_n}    =   \vec{w_n^\dag} \lambda_n' \vec{v_n}
+}
+Since $\lambda_n'$ is a number we can just pull it out from between the two vectors and solve for 
+\eq{
+\frac{\partial \lambda_n}{\partial p} = \lambda_n' = \frac{\vec{w_n^\dag}{\bf B} \vec{v_n}}{\vec{w_n^\dag}\vec{v_n}}.
+}
+\subquestion Does the result give you an idea for another way in which we could rank the importance of nodes?
 
+\solution 
+The equation gives us a way to estimate the effect of the eigenvalues if we change the matrix. Suppose I wanted to improve the stability of the system and I had a way of adding a small controller to one node, which provides a little bit of negative feedback without changing the steady state. In that case I might want to rank the nodes in terms ot their effect on the eigenvalue. 
 
-
-
-
-
-
-
-
-
-
-
+If I chose to control node $i$, the matrix $\bf B$ has only one non-zero element  $B_{ii}=-1$, and hence we can compute the impact on the rightmost eigenvalue as 
+\eq{
+\frac{\partial \lambda_1}{\partial p} = - \frac{w_{1,i}^\dag v_{1,i}}{\vec{w_1^\dag}\vec{v_1}}.
+}
+which acts as a kind of `rightmost eigenvector perturbation centrality'.

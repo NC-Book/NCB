@@ -1,32 +1,101 @@
-\exercise{Mothers and fathers}{3} 
-In the chapter we modeled human ancestors in terms of people while for bees we differentiated between drones and queens. 
-Do the calculation for humans again but this time differentiate between the number of men $m_i$, and women $w_i$ in generation $i$. Confirm that you get the expected result. 
-(Bonus: Is there an intuitive interpretation of the eigenvectors and the corresponding expansion coefficients $c_1,c_2$ that appear.) 
+\exercise{Abstract linear ODE system}{2}
+Consider the dynamical system 
+\eqan{
+\dot{x}&=&2x-9y\\
+\dot{y}&=&-x+2y
+}
+where the initial state is $x=y=1$.
 
-\solution 
-Okay, male humans have a mother and a father, female humans also have a mother and a father. Hence we can write the dynamical system like this 
+\subquestion
+Write the system in matrix form.
+
+\solution
+We write the system in the form 
 \eq{
-\avec{m_{t+1} \\ f_{t+1}} = \avecc{1 & 1 \\ 1 & 1} \avec{m_t \\ f_t} 
+\dot{\vec{x}} = \avecc{2 & -9 \\ -1 & 2} \vec{x}
 }
-where $m_t$ and $f_t$ are respectively the number of male and female humans in generation $t$ (counting backwards). To solve the system using the procedure from the chapter, we need to compute the eigenvectors and eigenvalues. So let's solve 
-\eq{
-\avecc{1 & 1 \\ 1 & 1} \vec{1\\ b} = \lambda \vec{1 \\ b} 
-}
-where we already set the first element of the vector to 1. In components the equations read
+where $\vec{x}=(x,y)^T$.
+
+\subquestion 
+Write the initial state as a linear combination of the eigenvectors of the matrix that appears in (a). 
+
+\solution
+ We write the characteristic polynomial 
 \eqa{
-  1+b &=& \lambda  \\
-  1+b &=& \lambda b 
+0&=&(2-\lambda)^2-9 \\
+\lambda&=&2\pm 3
 }
-And hence $\lambda = \lambda b$. One solution to this equation is $b=1$, another is $\lambda=0$. In the first case $b=1$ our system of equations tells us straight away $\lambda=2$. So one eigenvalue is $\lambda_1=1$ with the corresponding eigenvector $\vec{v_1}=(1,1)^{\rm T}$. 
-
-In second case, $\lambda=0$ the system reads $1+b=0$ so $b=-1$, and hence we have an eigenvalue $\lambda=0$ with the corresponding eigenvector $\vec{v_2} = (1,-1)^{\rm T}$. 
-
-We can now write the general solution
+We find the first eigenvector from 
 \eq{
-\avec{m_t\\ f_t} = c_1 2^t \avec{1 \\ 1} + c_2 0^t \avec{1\\ -1}. 
+\avecc{2 & -9 \\ -1 & 2}\avec{1 \\ a} = 5 \avec{1 \\ a} 
 }
-The $c_1$ and $c_2$ depend on your initial generation ($t=0$) and are $c_1=c_2=1/2$ if you start with one male individual, and $C_1=1/2,$ $c_2=-1/2$ if you start with one female individual.
+the first line reads 
+\eq{
+2-9a = 5
+}
+which means $a=-1/3$ so the eigenvector for the $\lambda_1=5$ is 
+\eq{
+\vec{v}_1 = \avec{1 \\ -1/3}  
+}
+Because an eigenvector stays an eigenvector if we rescale it we can multiply it by 3 which gives a nicer version of the same eigenvector
+\eq{
+\avec{3 \\ -1}  
+}
+but for the purpose of this exercise we will stick with the $\vec{v}_1$ that we found above. 
 
-It is interesting to note how the eigenvalue of 2 doubles the number of people in each generation that we go back. But perhaps even nicer is how the eigenvalue of 0 erases the information if we started with a man or a woman as soon as we take one step into the past. Unless we look at the starting generation, the second term will always be zero. 
+For the second eigenvector we write 
+\eq{
+\avecc{2 & -9 \\ -1 & 2}\avec{1 \\ a} = -1 \avec{1 \\ a} 
+}
+the first line reads 
+\eq{
+2-9a = -1
+}
+and hence $a=1/3$. So the eigenvector for $\lambda_2=-1$ is 
+\eq{
+\vec{v}_2 = \avec{1 \\ 1/3}  
+}
+
+We now need to write the initial condititon as a combination of eigenvectors. We are looking for $c_1$ and $c_2$ such that
+\eq{
+\avecc{1\\ 1} = c_1 \avec{1 \\ -1/3} +c_2 \avec{1\\ 1/3} \label{ini}
+}
+
+\subquestion
+Solve the system (i.e.~compute $x(t)$ and $y(t)$).
+
+\solution
+Form the first row in \eqref{ini} we can see that 
+\eq{c_1+c_2=1.}
+and hence 
+\eq{c_2=1-c_1}
+From the second row we get 
+\eq{
+\frac{1}{3} c_2 - \frac{1}{3} c_1 = 1
+}
+We multiply the equation by 3 which gives
+\eq{
+ c_2 - c_1 = 3
+}
+Substituting $c_2=1-c_1$ from above yields
+\eq{
+1 - 2c_1 = 3
+}
+Solving this we find 
+\eq{
+c_1 = -1 
+}
+And using either of the relations above 
+\eq{
+c_2 = 2
+}
+We know from the lecture that the solution has the form
+\eq{
+\vec{x}(t) = c_1 \exp{\lambda_1 t} \vec{v}_1 + c_2 \exp{\lambda_2 t} \vec{v}_2 
+}
+so in this case 
+\eq{
+\vec{x}(t)= - \exp{5t} \avec{1 \\ -1/3} + 2 \exp{-t} \avec{1 \\ 1/3} 
+}
 
 

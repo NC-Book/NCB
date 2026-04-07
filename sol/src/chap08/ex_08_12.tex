@@ -48,13 +48,13 @@ nice!
 Find a way to compute the giant component size as a function of $b$. In your calculation use $s_i$ to denote the probability that a node of degree $i$ is part of the giant component. Use your result to compute the giant component size for $b=3/4$.
 
 \solution
- Let's start by thinking of nodes of degree 1. We know that with probability $p_{1,1}=b$ the node's single link leads to another node of degree 1. In this case the node is certainly not part of the giant component. Conversely, with probability $p_{1,3}$ the node's single link leads to a node of degree 3 and then the degree-1 node is part of the giant component if the degree-3 node is also part of the giant component. 
+ \paragraph{Warm up $s_1$.}Let's start by thinking of nodes of degree 1. We know that with probability $p_{1,1}=b$ the node's single link leads to another node of degree 1. In this case the node is certainly not part of the giant component. Conversely, with probability $p_{1,3}$ the node's single link leads to a node of degree 3 and then the degree-1 node is part of the giant component if the degree-3 node is also part of the giant component. 
  
- Let us use $w$ to denote the probability that a node of degree 3 that we have reached via a link is not part of the giant component. In other words, a link to a degree-3 node connects us to the giant component with probability $1-w$. Hence we can write,
+Let us use $w$ to denote the probability that a node of degree 3 that we have reached via a link is not part of the giant component. In other words, a link to a degree-3 node connects us to the giant component with probability $1-w$. Hence we can write,
  \eq{
  s_1=p_{1,3}(1-w)=(1-b)(1-w)
  }
- This was a good warm up. Let's tackle $s_3$, we can almost try our usual approach
+  \paragraph{Next approach $s_3$.} This was a good warm up. Let's tackle $s_3$, we can almost try our usual approach
  \eq{
  s_3=1-v^3,
  }
@@ -103,7 +103,8 @@ Find a way to compute the giant component size as a function of $b$. In your cal
  }
  If we substitute in $b=3/4$ we find 
  \eq{s=\frac{11}{27}.}
- For $b=3/4$ the networks has positive degree correlations (it is assortative) because high degree nodes are more likely to link to high degree nodes than they would be in the networks where links are connect random nodes. The take home message from this calculation is that networks with such degree correlations can have larger giant components than random networks. In this case the result is particularly impressive increasing the size of the giant component from 0 to more than 40\% of the network. 
+ For $b=3/4$ the networks has positive degree correlations (it is assortative) because high degree nodes are more likely to link to high degree nodes than they would be in the networks where links are connect random nodes. 
+ \paragraph{Take home message.}The take home message from this calculation is that networks with such degree correlations can have larger giant components than random networks. In this case the result is particularly impressive increasing the size of the giant component from 0 to more than 40\% of the network. 
  
  As a bonus, here is a plot of the giant component size as a function of $b$
  \begin{center}

@@ -1,27 +1,38 @@
-\exercise{Spectral methods in the wild}{3}
-A supermarket chain approaches you. Their goal is to identify different groups in their customer base. They have a large dataset that containing 20 million customers, for each customer the dataset describes which products they have bought in the past. Describe in bullet points how you would approach this question. 
+\exercise{Random derivation \label{exVibeDerivation}}{2}
+Consider a random walk on a network described by an adjacency matrix $\bf A$. A walker that in a node $i$ leaves at a random point in time such that the departure rate equals the node degree $k_i$. When leaving the walker picks a link connecting to $i$ at random and moves instantaneously to the link's other endpoint $j$. Derive a differential equation that governs the dynamics of $x_i$, the probability that the walker is in node $i$.
 
-\solution
+\solution 
+Let's consider a small time interval $\d t$ since the walker leaves at rate $i$.
+The walker is currently in node $i$ with probability $x_i$. If it is in node $i$ it leaves at a rate $k_i$. Therefore the total probability that the walker leaves node $i$ in the time interval $\d t$ is 
+\eq{
+     R_{{\rm leave},i} = x_i k_i \d t 
+}
+Next consider the rate at which the walker is arriving from a specific neighbor $j$ of node $i$. The rate at which the walker leaves $j$ is 
+\eq{
+     R_{{\rm leave},j} = x_j k_j \d t 
+}
+If the walker leaves node $j$, which has degree $k_j$ the chance that it chooses the link to $i$ is $1/k_j$ hence the probability that we see the walker traveling from $j$ to $i$ in the time interval $\d t$ is
+\eq{
+    R_{{\rm travel},j \to i} = \frac{x_j k_j}{k_j} \d t = x_j \d t 
+}
+Since $\d t$ is short we can simply add up the arrival rates from all neighbors od node $i$, 
+\eqa{
+   R_{{\rm arrive},i} &=& \sum_{[ij]} R_{{\rm travel},j \to i} \\ 
+     &=& \sum_j A_{ij} R_{{\rm travel},j \to i}  \\
+     &=& \sum_j A_{ij} x_j \d t  
+}
+Note that in the arrival term we did not have to multiply an extra factor $1-x_i)$ to exclude that the walker is in $x_i$ already, like we did in the SIS model where we had to exclude that the node is already infected. The difference arises because many nodes can be infected in the epidemic, but in the random walk there is only one walker. Hence the probabilities are not independent. If the walker is in node $j$ we can be sure that it is not in node $i$. So if we look at the case where the walker is currently in $j$ the probability that it is not in $i$ is not $1-x_i$ but it is actually 1.
 
-\begin{itemize}
-\item We can represent the customers previous purchases as a table. This table could state the rate at which the customer buys an item or just whether the customer has ever bought the item. For example it could be something line this
-\begin{center}
-\begin{tabular}{l  c c c c}
- & \sw{Product 1} & \sw{Product 2} &  \sw{Product 3} & $\cdots$ \\\hline
- Customer 1 & 1 & 0 & 0 & \ldots \\
- Customer 2 & 1 & 1 & 0 & \ldots \\
- Customer 3 & 0 & 0 & 1 & \ldots \\
- Customer 4 & 1 & 1 & 0 & \ldots \\
- $\vdots$
-\end{tabular}
-\end{center}
+The change in $x_i$, that occurs over the interval $\d t$ is the difference of arrival and departure rate,
+\eq{
+\d x_i =  R_{{\rm arrive},i} - R_{{\rm leave},j} = \left( sum_j A_{ij} x_j \d t\right) - \left( x_i k_i \d t  \right) 
+}
+Dividing by $\d t$ yields
+\eq{
+\frac{\d x_i}{\d t} = \dot{x}_i = - x_i k_i + \sum A_{ij} x_j  
+}
+which is the equation that we used as a starting point in the chapter. We recognize at the $i$-th component of the vector equation 
+\eq{
+\vec{x} = ({\bf A} - {\bf K}) \vec{x} = - {\bf L}\vec{x}.
+}
 
-\item We standardize the products such that every column in the table has mean zero and variance one
-\item Now we regard the rows as vectors and define a distance $d_{ij}$ between customers as the euclidian distance between their respective vectors
-\item  We define a similarity $s_{ij}=1/d_{ij}$.
-\item We threshold the similarities. For example a similarity $s_{ij}$ is retained if it is among the top-10 similarity scores for either customer $i$ or $j$. All other  $s_{ij}$ are set to zero. 
-\item  We now regard the $s_{ij}$ as elements of a weighted adjacency $\bf s$ and construct the corresponding Laplacian ${\bf L}=-{\bf s}+{\bf D}$, where ${\bf D}=\delta_{ij} \sum_k s_{ik}$. 
-\item We compute the second smallest eigenvalue of $\bf L$ and the corresponding eigenvector $\vec{v}$.
-\item The customers who correspond to a positive entry in the eigenvector are identified as a cluster, the customers who correspond to a negative entry in the eigenvector form another cluster. 
-\item Additional eigenvectors can be used to split the clusters further. 
-\end{itemize}

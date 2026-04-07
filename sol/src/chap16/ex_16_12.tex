@@ -1,0 +1,131 @@
+\exercise{The complicated example revisited\label{exBrainComplicated}}{4}
+Let's return to the system from \exref{exBrainSense}. Could you use the approach from the implicit function theorem also to compute $x''(p)$ at $p=1$? How about $x'''(p)$ and $x''''(p)$? Use this to construct $x^*(p)$ as a Taylor expansion. Use your result to find $x^*(0)$, and verify that it is a steady state.    
+
+\solution 
+So we start with 
+\eq{
+f(x(p),p)=0 
+}
+Differentiating this equation with respect to $p$ gives us 
+\eq{
+\label{eqSes1}
+f_{\rm p}+f_{\rm x}x'=0, 
+}
+as we saw in the chapter. So, let's differentiate again 
+\eq{
+\label{eqSes2}
+f_{\rm pp} + 2f_{\rm xp}x' + f_{\rm xx}(x')^2 + f_{\rm x}x'' = 0 
+}
+and again 
+\eq{
+\label{eqSes3}
+f_{\rm ppp} + 3f_{\rm xpp}x' + 3f_{\rm xxp}(x')^2+f_{\rm xxx}(x')^3 + 2f_{\rm xp}x'' +f_{\rm xx}x'x''+f_{\rm xp}x'' + f_{\rm x}x'''= 0 
+}
+and again 
+\eq{
+\label{eqSes4}
+\begin{split}
+f_{\rm pppp} + 4 f_{\rm pppx}x'+ 3f_{\rm xpp}x''+ 6f_{\rm xxpp}(x')^2+6f_{\rm xxp}x'x''+ 4 f_{\rm xxxp}(x')^3+f_{\rm xxxx}(x')^4\\+3f_{\rm xxx}(x')^2x''+ 2f_{\rm xpp}x'' + + 2f_{\rm xxp}x'x''+ + 2f_{\rm xp}x'''+f_{\rm x}x'''' = 0 
+\end{split}}
+
+OK this was admittedly some tough differentiation, so let's do some simpler derivatives to relax a bit. In the example our function is  
+\eq{
+f=-x^4 + 2px^3 + 2p^2x - px^2 + x - 2p
+}
+Hence, 
+\eq{
+f_{\rm p} = 2x^3 +4px -x^2 -2 = 16 + 8 -4 -2 = 18
+}
+\eq{
+f_{\rm x} = -4x^3 + 6px^2 +2p^2 - 2px +1 = -32 + 24 +2 -4 + 1 = -9
+}
+\eq{
+f_{\rm pp} = 4x  = 8 
+}
+\eq{
+f_{\rm px} = 6x^2 +4p -2x  = 24 +4 -4 = 24
+}
+\eq{
+f_{\rm xx} = -12x^2 + 12px - 2p  = -48 + 24 -2 = -26
+}
+\eq{
+f_{\rm ppp} = 0 
+}
+\eq{
+f_{\rm ppx} = 4 
+}
+\eq{
+f_{\rm pxx} =  12x -2 = 24-2 = 22
+}
+\eq{
+f_{\rm xxx} = -24x + 12p  = -48 +12 = -36
+}
+\eq{
+f_{\rm pppp} = 0 
+}
+\eq{
+f_{\rm pppx} = 0 
+}
+\eq{
+f_{\rm ppxx} = 0 
+}
+\eq{
+f_{\rm pxxx} = 12 
+}
+\eq{
+f_{\rm xxxx} = -24
+}
+Now let's consider Eq.~\eqref{eqSes1} again 
+\eqa{
+ 0&=&f_{\rm p}+f_{\rm x}x'  \\
+ 0&=& 18 -9x'
+}
+Therefore $x'=2$ at $p=1$, but we already knew this. Le't take a look at Eq.~\eqref{eqSes2} instead 
+\eqa{
+0&=& f_{\rm pp} + 2f_{\rm xp}x' + f_{\rm xx}(x')^2 + f_{\rm x}x'' \\
+0&=& 8 + 2\cdot 24 \cdot 2 -26 \cdot 4 -9 x'' \\
+0&=& 8+4\cdot 24 - 4 \cdot 26 -9x'' \\
+0&=& -9x'' \\
+}
+Hence $x''=0$. Now in the next equation, Eq.~\eqref{eqSes3} we can start by removing all the terms that contain a factor of $x''$:
+\eqa{
+0 &=& f_{\rm ppp} + 3f_{\rm xpp}x' + 3f_{\rm xxp}(x')^2+f_{\rm xxx}(x')^3 + 2f_{\rm xp}x'' +f_{\rm xx}x'x''+f_{\rm xp}x'' + f_{\rm x}x''' \\
+0&=& f_{\rm ppp} + 3f_{\rm xpp}x' + 3f_{\rm xxp}(x')^2+f_{\rm xxx}(x')^3 + f_{\rm x}x''' \\
+0&=& 0 + 3 \cdot 4 \cdot 2 + 3\cdot 22 \cdot 4 -36 \cdot 8 -9 x''' \\
+0&=& 8 + 88 - 96 - 3 x''' \\
+0&=&  - 3 x''' \\
+}
+We are lucky, $x'''=0$. Now there is only one left and this one will have many vanishing terms. I will start by putting in the $x'''=x''=0$ and then substitute the other terms: 
+\eq{
+\begin{split}
+\ \ \ 0\ \ =\ f_{\rm pppp} + 4 f_{\rm pppx}x'+ 3f_{\rm xpp}x''+ 6f_{\rm xxpp}(x')^2+6f_{\rm xxp}x'x''+ 4 f_{\rm xxxp}(x')^3+\\f_{\rm xxxx}(x')^4+3f_{\rm xxx}(x')^2x'' + 2f_{\rm xpp}x'' + + 2f_{\rm xxp}x'x''+ + 2f_{\rm xp}x''' +f_{\rm x}x''''    
+\end{split}}
+\eqa{
+0 &=& f_{\rm pppp} + 4 f_{\rm pppx}x'+ 6f_{\rm xxpp}(x')^2+ 4 f_{\rm xxxp}(x')^3+f_{\rm xxxx}(x')^4 +f_{\rm x}x'''' \\
+0 &=&   4 \cdot 12 \cdot 8 -24 \cdot 16 -9 x''''  \\
+0 &=& -9 x''''  \\
+}
+So $X''''=0$. We can see now that all subsequent terms will work out in the same way. either the terms are zero because they contain higher derivatives of $f$ or they contain derivatives of $x$ that we already know to be zero. We can now write the Taylor expansion
+\eq{
+x(p) = x(1) + x'(1)(p-1) + \frac{1}{2} x''(1)(p-1)^2 + \ldots    
+}
+Since $x''$ and all higher derivatives are zero we are left with 
+\eq{
+x(p) = x(1) + x'(1)(p-1) 
+}
+We know from the \exref{exBrainSense} that $x(1)=2$ and computed here and previously that $x'(1)=2$. there we have 
+\eq{
+x(p) = 2+ 2(p-1)
+}
+So this branch of steady states is simply 
+\eq{
+x^* = 2p
+}
+Hence $x^*=0$ should be a steady state for $p=0$. We can confirm that this is indeed true by realizing that every term in the equation of motion contains either $x$ or $p$ as a factor. 
+
+Bonus: In the design of this exercise I cheated a bit to make sure that the result would be simple, and some nice cancellations would happen on the way.  You can actually discover how I constructed the original system by solving the equation of motion for $p$. If you don't see it immediately use polynomial long dividion to remove the known solution $x=2p$. It should then be quite simple to also compute the two bifurcation points in this system where a fold bifurcation and an unusual transcritical bifurcation occur.   
+
+
+
+
+

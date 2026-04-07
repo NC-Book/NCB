@@ -1,32 +1,99 @@
 
-\exercise{Traffic: Spectral Centralities}{3}
+\exercise{Traffic: Simple centralities}{3}
 Consider the following road network
 \picm{Gritting}{}
-Find the relative importance of the nodes using the spectral centrality metric (Hint: mind the parallel links). Is the result reasonable?
+\subquestion Compute the degree centrality of all nodes.
 
 \solution
+This one is straight forward. 
+\begin{center}
+A: 3, B: 4, C: 4, D: 3, E: 4, F: 4, G: 4, H: 3, X: 1
+\end{center}
+The result is reasonable but not very useful. It tells us that crossroads are more important than dead ends, but does not help us distinguish the relative importance of the degree 4 nodes. 
 
-The adjacency matrix is 
-\eq{
-{\bf A} =  \left(\begin{array}{ c c c c c c c c c} 
-0 & 1 & 1 & 0 & 0 & 0 & 0 & 0 & 1 \\
-1 & 0 & 1 & 1 & 0 & 0 & 1 & 0 & 0 \\
-1 & 1 & 0 & 0 & 2 & 0 & 0 & 0 & 0 \\
-0 & 1 & 0 & 0 & 0 & 0 & 1 & 1 & 0 \\
-0 & 0 & 2 & 0 & 0 & 1 & 0 & 1 & 0 \\
-0 & 0 & 0 & 0 & 1 & 0 & 2 & 1 & 0 \\
-0 & 1 & 0 & 1 & 0 & 2 & 0 & 0 & 0 \\
-0 & 0 & 0 & 1 & 1 & 1 & 0 & 0 & 0 \\
-1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0
-\end{array}\right) 
+%%%%%%%%%
+
+\subquestion
+Compute the closeness centrality of all nodes. (All links have length 1)
+
+\solution 
+For this one we need to find the shortest paths in the network. For this small example visual inspection is easier than Dijkstra. We find 
+\begin{center}
+\begin{tabular}{ c c c | c c c }
+Trip & Distance & Intermediate nodes & Trip & Distance & Intermediate nodes \\\hline
+A-B & 1 & - &
+A-C & 1 & - \\
+A-D & 2 & B &
+A-E & 2 & C \\
+A-F & 3 & B,G / C,E &
+A-G & 2 & B \\
+A-H & 3 & B,D / C,E &
+A-X & 1 & - \\
+B-C & 1 & - &
+B-D & 1 & - \\
+B-E & 2 & C &
+B-F & 2 & G \\
+B-G & 1 & - &
+B-H & 2 & D \\
+B-X & 2 & A &
+C-D & 2 & B \\
+C-E & 1 & - &
+C-F & 2 & E \\
+C-G & 2 & B &
+C-H & 2 & E \\
+C-X & 2 & A &
+D-E & 2 & H \\
+D-F & 2 & H / G &
+D-G & 1 & - \\
+D-H & 1 & - &
+D-X & 3 & A,B \\
+E-F & 1 & - &
+E-G & 2 & F \\
+E-H & 1 & - &
+E-X & 3 & C,A \\
+F-G & 1 & - &
+F-H & 1 & - \\
+F-X & 4 & E,C,A / G,B,A &
+G-H & 2 & F / D \\
+G-X & 3 & A,B &
+H-X & 4 & A,B,D / A,C,E
+\end{tabular}
+\end{center}
+We can now compute the centralities
+\eqa{
+c_{\rm A}&=&\frac{8}{1+1+2+2+3+2+3+1}=\frac{8}{15}\approx 0.53 \\
+c_{\rm B}&=&\frac{8}{1+1+1+2+2+1+2+2}=\frac{8}{12}= 0.75 \\
+c_{\rm C}&=&\frac{8}{1+1+2+1+2+2+2+2}=\frac{8}{13}\approx 0.61 \\
+c_{\rm D}&=&\frac{8}{2+1+2+2+2+1+1+3}=\frac{8}{13}\approx 0.61 \\
+c_{\rm E}&=&\frac{8}{2+2+1+2+1+2+1+3}=\frac{8}{14}\approx 0.57\\
+c_{\rm F}&=&\frac{8}{3+2+2+2+1+1+1+4}=\frac{8}{16}= 0.50\\
+c_{\rm G}&=&\frac{8}{2+1+2+1+2+1+2+3}=\frac{8}{14}\approx 0.57\\
+c_{\rm H}&=&\frac{8}{3+2+2+1+1+1+2+4}=\frac{8}{16}= 0.50\\
+c_{\rm X}&=&\frac{8}{1+2+2+3+3+4+3+4}=\frac{8}{22}\approx 0.36 
 }
-where I used the ordering 
-\begin{center}
-A, B, C, D, E, F, G, H, X  
-\end{center}
-I had to multiply my starting vector about 10 times until it stabilized. I then normalized the vector such that the first entry is (the one corresponding to node A) is 1. The relative importance of the nodes is then:
-\begin{center}
-A: 1, B: 1.6, C: 1.7, D: 1.3, E: 1.8, F: 1.9, G: 1.8, H: 1.4, X: 0.2
-\end{center}
+This is soo much more work than the spectral centrality! Note that again X lands in last place which is reasonable, while B is the most important node. 
 
+%%%%%%%
+
+\subquestion
+Compute the betweenness centrality of all nodes.
+
+\solution
+Thankfully, we can reuse the table from the previous question. We just need to count occurrences of intermediate nodes. The challenge is to not let the bookkeeping get out of hand. For this purpose I made another table
+
+\begin{center}
+\begin{tabular}{c c c c}
+Node & On Paths (no alternative) & On Path (one alternative) & Centrality \\\hline
+A & B-X,C-X,D-X,E-X,F-X,G-X,H-X & - & 7 \\
+B & A-D,A-G,C-D,C-G,D-X,G-X & A-F,A-H,F-X,H-X & 8 \\
+C & A-E,B-E,E-X & A-F,A-H,F-X,H-X & 5 \\
+D & B-H & A-H,F-X,G-H,H-X & 3 \\
+E & C-F,C-H & A-F,A-H,F-X,H-X & 4 \\
+F & E-G & G-H & 1.5 \\
+G & B-F & A-F,D-F & 2   \\
+H & D-E & D-F & 1.5 \\
+X & - & - & 0 \\  
+\end{tabular}
+\end{center}
+Again we end up with B as the most important node and X as the least important which makes sense. A surprise is maybe the relatively high value for A. This highlights A as a bottleneck. Generally, betweenness centrality is used when we are interested in finding such bottlenecks. 
 

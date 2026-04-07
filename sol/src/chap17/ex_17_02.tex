@@ -1,28 +1,31 @@
-\exercise{Simple  timescale renormalization}{1}
-In the system
-\eqn{\dot{x}=k(x-x^2)}
-renormalize the timescale to make the parameter $k$ disappear.
-(Hint: If you are not sure how to do it, renomalise time by a factor $a$ and then decide how you need to chose this factor.)
 
-\solution 
-We define 
-\eq{
-\tau = a t
+\exercise{Codimension example \label{exManifoldExample}}{2}
+Consider the system
+\eqn{
+\dot{x} = f(x,a,b) = a - bx^2. 
 }
-Hence
-\eq{
-\frac{\partial t}{\partial \tau} = \frac{1}{a}.
+For $b>0$ find the steady states and their bifurcation points. Plot the bifurcation points in a 2-parameter bifurcation diagram, where the axes are the parameters $a$ and $b$. 
+
+\solution
+We compute the steady states
+\eqa{
+0 &=& a-bx^2 \\
+ bx^2 &=& a\\
+x^2 &=& a/b \\
+x &=& \pm \sqrt{a/b}
 }
-Therefore
+So for $b>0$ and $a>0$ we have two branches of steady states $x_{1,2}=\pm\sqrt{a/b}$. At $a=0$ these two branches collide in a square root 
+shape and annihilate each other so that there are no steady states left. 
+This already shows that there is a fold bifurcation at $a=0$ regardless of $b$, 
+as long as $b>0$. If we want to do another test we could compute 
 \eq{
-\frac{{\rm d}x}{{\rm d}\tau} = \frac{\partial t}{\partial \tau} \frac{{\rm d}x}{{\rm d}t} =\frac{1}{a} k(x-x^2)
+f_{\rm x} = \frac{\partial \dot{x}}{\partial x} = -2xb = \pm 2\sqrt{ab}
 }
-This in the new units of time we can write 
-\eq{
-\dot{x}=\frac{k}{a} (x-x^2)
-}
-Chosing $a=k$, yields the desired equation
-\eq{
-\dot{x}= (x-x^2)
-}
-Note we can always set one of the rates in the system to one by means of a timescale renormalization. 
+which becomes zero at $b=0$, confirming the presence of the bifurcation point.
+We can thus plot the two-parameter diagram from the text:
+
+FIGURE
+
+As a bonus it is interesting to explore what happens at $b=0$. The line $b=0$ is also a bifurcation line as $f_{\rm x}=0$. However it is a very weird bifurcation as our steady states disappear to infinity. For $b<0$ the steady states reappear, but thy now exist for $a<0$. So this bifurcation line is none of the bifurcations that we studied so far but a very highly degenerate case, where almost all derivatives of $f$ become zero. such highly degenerate bifurcations can appear in very simple examples, because the most simple systems tend to be very special, and hence degenerate.
+
+The point $a=b=0$ where the degenerate bifurcation intersects the fold is an example of a (highly degenerate) codimension-2 bifurcation where the fold bifurcation changes its nature from creating two steady states on the positive-$a$ side, to creating two steady states on the negative-$a$ side of the bifurcation manifold. 

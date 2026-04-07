@@ -1,8 +1,24 @@
 
 \exercise{Circuit census}{5}
-Find a formula that computes the number of distinct eulerian circuits in a network from network properties (e.g.~node degrees or adjacency matrix) 
+Find a formula that computes the number of distinct Eulerian circuits in a network from network properties (e.g.~node degrees or adjacency matrix) 
 
 \solution
-This is a famous unsolved problem.
+\paragraph{General case.} This is an unsolved problem that is known to be \#P-complete, which means it is at least as complex as a large class of unsolved problems which currently cannot be solved in polynomial time, and if solved would solve many of these as well.
+
+\paragraph{Balanced directed graphs.} So this is a hopeless case? In general proabably yes. However progress can be made in special cases. For example you already know that directed networks can only have Eulerian circuits if they are balanced such that the in-degree equals the out degree in every node. For such network the number of Eulerian circuits is given by the BEST theorem it is 
+\eqn{
+T \prod_{i \in V} (k^{\rm out}_i-1)! 
+}
+where $T$ is the number of spanning trees that can be constructed such that the links point to a specific root node. In balanced directed graphs this number is independent of the root we chose. So this is one of many, many graph problems where spanning trees make an appearance. We will encounter a very elegant method to compute the number of spanning trees in a network in Chap.~23. 
+
+But for now just note how many Eulerian Circuits there are. For all but the smallest networks the number of spanning trees will be very large.
+We then multiply this number with the factorial of each out degree minus one. 
+
+For a quick check consider a network that is a directed cycle. Clearly there is only one directed spanning tree. Moreover there is only one directed spanning tree for each root that we can possibly chose. Since all out degrees are one $k^{\rm out}_i-1$ is 0 for every node and $0!=1$ by definition. So the right hand side of the BEST equation would be multiplying only factors of 1 for a result of 1, which is the correct result. 
+
+Can you also check that the theorem produces the correct result for two directed cycles that intersect in one node?
+
+\paragraph{Further reading.}
+A reference to the BEST result as well as solutions for other cases is included in the Further Reading page for this chapter.
 
 \solutionend

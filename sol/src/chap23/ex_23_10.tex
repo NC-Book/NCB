@@ -1,0 +1,312 @@
+\exercise{Two walkers \label{exHeatPair}}{4}
+Consider two distinguishable non-interacting random walkers on a network with Laplacian matrix $\bf L$, such that the master equation for each walker individually is $\vec{\dot{x}}=-{\bf L}\vec{x}$ where $x_i$ is the probability that the walker is in node $i$. Then define $y_{ij}$ as the probability that the first walker is in node $i$ and the second walker is in node $j$.
+
+\subquestion Consider the system on the linked pair graph. Write differential equations for $y_{ij}$. Use Kronecker products to compactly write the Jacobian of the system and use it to find the general solution of the system. 
+
+\solution 
+We write the differential equations
+\eqa{
+\dot{y}_{11} &=& -2 y_{11} + y_{12} + y_{21} \\  
+\dot{y}_{12} &=& -2 y_{12} + y_{11} + y_{22} \\  
+\dot{y}_{21} &=& -2 y_{21} + y_{11} + y_{22} \\  
+\dot{y}_{22} &=& -2 y_{22} + y_{12} + y_{21} \\  
+}
+For example state $1,1$ declines at a rate 2 because walker 1 could move to node 2 (rate 1) or walker 2 could move to node 2. We gain probability from two sources. If the system is in state $1,2$ the second walker moves to node 1 at rate 1, leading to a system in state 1,1. Likewise if the system is in state $2,1$ the first walker moves to node 1 at rate 1, also leading to a system in state 1. 
+
+The Jacobian of the system is 
+\eq{
+{\bf J} = \avecccc{-2 & 1 & 1 & 0 \\ 1 & -2 & 0 & 1 \\ 1 & 0 & -2 & 1 \\ 0 & 1 & 1 & -2}. 
+}
+So we should somehow be able to write this using the matrices 
+\eq{
+{\bf L} = \avecc{1 & -1 \\ -1 & 1}, \qqq {\bf I} = \avecc{1 & 0 \\ 0 & 1},
+}
+which are the Laplacian of the linked pair and the identity matrix of the same size. There are possibly many ways to express the Jacobian as Kronecker products of these matrices. But based on the intuitition from the interacting particle notation for the SIS model we expect terms such as ${\bf I} \otimes {\bf L}$ (the first walker does nothing, the second moves) and ${\bf L} \otimes {\bf I}$ (the first walker moves, the second does nothing). Let's compute 
+\eq{
+{\bf L} \otimes {\bf I} = \avecccc{ 
+ 1 &  0 & -1 &  0 \\ 
+ 0 &  1 &  0 & -1 \\    
+-1 &  0 &  1 &  0 \\  
+ 0 & -1 &  0 &  1
+ }
+}
+\eq{
+{\bf I} \otimes {\bf L} = \avecccc{ 
+ 1 & -1 &  0 &  0 \\ 
+-1 &  1 &  0 &  0 \\    
+ 0 &  0 &  1 & -1 \\  
+ 0 &  0 & -1 &  1
+ }
+}
+and if we add these together we have 
+\eq{
+{\bf I} \otimes {\bf L} + {\bf L} \otimes {\bf I} =
+\avecccc{ 
+ 2 & -1 & -1 &  0 \\ 
+-1 &  2 &  0 & -1 \\    
+-1 &  0 &  2 & -1 \\  
+ 0 & -1 & -1 &  2
+ }
+}
+which is the Jacobian except that the sign is wrong (of course).
+So we can write 
+\eq{
+{\bf J} = -({\bf I} \otimes {\bf L} + {\bf L} \otimes {\bf I})
+}
+Now we solve the eigenproblem with the ansatz $\vec{v}=\vec{a}\otimes{\vec{b}}$, 
+\eqa{
+{\bf J}\vec{v} &=& -({\bf I} \otimes {\bf L} + {\bf L} \otimes {\bf I}) (\vec{a} \otimes \vec{b}) \\
+ &=&   -({\bf I}\vec{a} \otimes {\bf L}\vec{b} + {\bf L}\vec{a} \otimes {\bf I}\vec{b}) \\ 
+ &=&   -(\vec{a} \otimes {\bf L}\vec{b} + {\bf L}\vec{a} \otimes {\bf I}) \\
+ &=&   -(\vec{a} \otimes \beta \vec{b} + \alpha\vec{a} \otimes {\bf I}) \\
+  &=&   -(\alpha+\beta) (\vec{a} \otimes \vec{b}) = - (\alpha+\beta) \vec{v} \\
+}
+Where we had to assume that $\vec{a}$ is an eigenvector of $\bf L$ with eigenvalue $\alpha$ and $\vec{b}$ is an eigenvector of $\bf L$ with eigenvalue $\beta$. 
+
+In total we have two eigenvectors of $\bf L$ to chose from for $\vec{a}$ and also two for $\vec{b}$ which gives us four combinations, so we can find all four eigenvectors in this way. The eigenvectors of the the Laplacian matrix are 
+\eq{
+\vec{v_1} = \avec{1\\ 1}, \qqq \vec{v_2}= \avec{1\\  -1}
+}
+and the corresponding eigenvalues are $\lambda 1=0$ and $\lambda_2=2$. Hence the eigenvectors of the Jacobian of our two-walker system are 
+\eq{
+\vec{w_1} = \vec{v_1} \otimes \vec{v_1} = \avec{1\\ 1\\ 1\\ 1}
+}
+with the eigenvalue $\kappa_1=-(\lambda_1+\lambda_1)=0$,
+\eq{
+\vec{w_2} = \vec{v_1} \otimes \vec{v_2} = \avec{1\\ -1\\ 1\\ -1}
+}
+with the eigenvalue $\kappa_2=-(\lambda_1+\lambda_2)=-2$,
+\eq{
+\vec{w_3} = \vec{v_2} \otimes \vec{v_1} = \avec{1\\ 1\\ -1\\ -1}
+}
+with the eigenvalue $\kappa_3=-(\lambda_2+\lambda_1)=-2$,
+\eq{
+\vec{w_4} = \vec{v_2} \otimes \vec{v_2} = \avec{1\\ -1\\ -1\\ 1}
+}
+with the eigenvalue $\kappa_3=-(\lambda_2+\lambda_2)=-4$.
+Hence we can write the general solution 
+\eq{
+\avec{y_{11}\\ y_{12}\\ y_{21}\\ y_{22} } = c_1 \avec{1\\ 1\\ 1\\ 1} + c_2 \avec{1\\ -1\\ 1\\ -1} \exp{-2t} + c_3 \avec{1\\ 1\\ -1\\ -1} \exp{-2t} + c_4 \avec{1\\ -1\\ -1\\ 1} \exp{-4t}
+}.
+
+\subquestion For the network from (a), define $z_i$ as the expectation value of walkers in node $i$. Translate your solution for $y_{ij}(t)$ into a solution for $z_i(t)$. Can you also identify the differential equation that $\vec{z}=(z_1,z_2)^{\rm T}$ follows?
+
+\solution 
+If we are in state $1,1$ there are two walkers on the first node, if we are in state $1,2$ or $2,1$ there is one, and in state $2,2$ there is none, hence 
+\eq{
+z_1 = 2y_{11} + y_{12} + y_{21}
+}
+and similarly 
+\eq{
+z_2 = 2y_{22} + y_{12} + y_{21}
+}
+Since these are linear equations we can summarize them in a matrix
+\eq{
+\avec{z_1\\ z_2} = \avecccc{ 2 & 1 & 1 & 0 \\ 0 & 1 & 1 & 2} \vec{y_{11}\\ y_{12}\\ y_{21}\\ y_{22} }
+}
+Let's call this matrix $\bf M$. It acts as a translator between the states and the expectation values, i.e.~$\vec{z}={\bf M}\vec{y}$. 
+Hence we can now use it to translate our previous general result 
+\eqa{
+\avec{y_{11}\\ y_{12}\\ y_{21}\\ y_{22} } &=& c_1 \avec{1\\ 1\\ 1\\ 1} + c_2 \avec{1\\ -1\\ 1\\ -1} \exp{-2t} + c_3 \avec{1\\ 1\\ -1\\ -1} \exp{-2t} + \avec{1\\ -1\\ -1\\ 1} \exp{-4t} \\ 
+{\bf M}\avec{y_{11}\\ y_{12}\\ y_{21}\\ y_{22} } &=& c_1 {\bf M} \avec{1\\ 1\\ 1\\ 1} + c_2 {\bf M}\avec{1\\ -1\\ 1\\ -1} \exp{-2t} + c_3 {\bf M}\avec{1\\ 1\\ -1\\ -1} \exp{-2t} + c_4 {\bf M}\avec{1\\ -1\\ -1\\ 1} \exp{-4t} \\
+\avec{z_1 \\ z_2} &=& c_1 \avec{4\\ 4} + c_2 \avec{2\\ -2 } \exp{-2t} + c_3 \avec{2\\ -2} \exp{-2t} + c_4 {\bf M} \avec{0 \\ 0} \exp{-4t} 
+}
+We can still simplify this result a little. First there is no need for the $(0,0)^{\rm T}$ term. Moreover since the second and third vector are the same anyway we can also summarize them in one term. Finally we can just rescale the remaining vectors to makes them nicer. This rescales also the factors $c_n$, but those are just arbitrary constants anyway, so with a different set of $c_n$ the solution can be written as 
+\eq{
+\avec{z_1 \\ z_2} = c_1 \avec{1\\ 1} + c_2 \avec{1\\ -1 } \exp{-2t} 
+}
+Looks familiar? This is the solution of a linear system that has two eigenvectors
+\eq{
+\vec{v_1} = \avec{1\\ 1}, \qqq \vec{v_2} = \avec{1\\ -1}  
+}
+with eigenvalues 
+\eq{
+\lambda_1 = 0, \qqq \lambda_2 = -2 . 
+}
+fortunately we know just such a system it is the diffusion equation 
+\eq{
+\dot{\vec{z}} = -{\bf L} \vec{z} 
+}
+So the same equation describes the diffusion of  one walker individually but also the evolution of the expectation value for two non-interacting walkers. 
+
+Of course this insight is not limited to the linked pair but can be generalized to all networks...
+
+\subquestion 
+Repeat your approach from parts (a) and (b) but instead of a linked pair, focus on two walkers on a general network topology, described an unspecified Laplacian $\bf L$.
+
+\solution
+We now consider two walkers on a general network, as first step we want to show that the dynamics have the form 
+\eq{
+\vec{\dot{y}} = -({\bf I} \otimes {\bf L} + {\bf L} \otimes {\bf I}) \vec{y}.    
+}
+We can start by writing a differential equation for the state in which the first walker is in node $i$ and the second walker is in state $j$, consider that the dynamics of a single walker is given by
+\eq{
+\dot{x}_i = -\sum_k L_{ik} x_k 
+}
+So if we for a moment consider the case where the second walker does not move, but remains in node $j$ the dynamics of the corresponding $y_{ij}$ would be given by 
+\eq{
+\dot{y}_{ij} = - \sum_k L_{ik} y_{kj} \qqq \mbox{[Part 1]}
+}
+Conversely if we let the second walker move and hold the first one in place we would have 
+\eq{
+\dot{y}_{ij} = - \sum_k L_{jk} y_{ik} \qqq \mbox{[Part 2]}
+}
+To take the movement of both walkers into account we add these two contributions
+\eq{
+\dot{y}_{ij} = -\left(  \sum_k L_{ik} y_{kj} \right) - \left( \sum_k L_{jk} y_{ik} \right) 
+}
+
+Again there are three different rountes that we can take to the Jacobian, the element-wise microscopic reasoning, the block-wise meso-level reasoning or the systemic high level reasoning. 
+
+(ADD other options here ?)
+
+The most elegant option is the high-level reasoning. In this case we consider $\bf y$ as the matrix of elements $y_{ij}$  we recall that the element-wise equation for a product of two matrices $\bf A$, $\bf B$ is 
+\eq{
+[{\bf A}{\bf B}]_{ij} = \sum_k A_{ik}B_{kj}
+ }
+ hence 
+ \eq{
+ \sum_k L_{ik} y_{kj} = [{\bf L}{\bf y}]_{ij}
+ }
+ and also 
+ \eq{
+ \sum_k y_{ik} L_{jk}  = \sum_k y_{ik} L^{\rm T}_{kj} = [{\bf y}{\bf L}^{\rm T}]_{ij}
+ }
+ which allows us to write 
+ \eq{
+ \dot{y}_{ij} = - [{\bf L}{\bf y}]_{ij} - [{\bf y}{\bf L}^{\rm T}]_{ij}
+ }
+ If this holds for all elements $i,j$ it holds as well for the entire matrix, so 
+ \eq{
+ \dot{\bf y} = - ({\bf L}{\bf y} + {\bf y}{\bf L}^{\rm T}) 
+ }
+ For the computation of the Jacobian we want the vector $\vec{y}$ rather than the matrix $\bf y$ so we use the vectorization $\vec{y}={\rm vec} ({\bf y})$. We recall the rule 
+ \eq{
+ {\rm vec}( {\bf QRS}) = ({\bf S}^{\rm T} \otimes{\bf R}  ) {\rm vec} ({\bf R}).
+ }
+ We wnat to apply this rule such that all instances of the matrix ${\bf y}$ are turned into vectors. Hence we write 
+ \eq{
+ \dot{\bf y} = - ({\bf L}{\bf y}{\bf I} + {\bf I}{\bf y}{\bf L}^{\rm T}) 
+ }
+ and then vectorize the equation to arrive at  
+\eqa{
+\vec{\dot{y}} &=& - (({\bf I}^{\rm T}\otimes {\bf L} ){\rm vec}({\bf y}) + ({\bf L} \otimes {\bf I}) {\rm vec}({\bf y})    ) \\
+  &=& -({\bf I} \otimes {\bf L} + {\bf L} \otimes {\bf I}) \vec{y}
+}
+Now we can straightforwrdly compute the Jacobian using matrix calculus
+\eqa{
+{\bf J} &=& \frac{\rm d}{{\rm d} \vec{y}}   \vec{\dot{y}}  \\
+ &=& - \frac{\rm d}{{\rm d} \vec{y}} ({\bf I} \otimes {\bf L} + {\bf L} \otimes {\bf I}) \vec{y} \\
+ &=& -({\bf I} \otimes {\bf L} + {\bf L} \otimes {\bf I})\\
+}
+which is our first milestone. 
+
+Next we want we need the eigenvectors and eigenvalues of $\bf J$, but when we computed the eigenvecotrs of $\bf J$ in (a) we did not even use that $\bf L$ was the Laplacian of the linked pair. Hence the reasoning still holds and we again get the eigenvectors 
+\eq{
+\vec{w_{nm}} = \vec{v_n} \otimes \vec{v_m}
+}
+and the corresponding eigenvectors 
+\eq{
+\kappa_{nm} = -(\lambda_n + \lambda_m) 
+}
+where we $\vec{v_n}$ is the $n$-th eigenvector of $\bf L$ and $\lambda_n$ is the corresponding eigenvalue. Also note that we have used a pair of indices $n,m$ to enumerate the eigenvectors for convenience. We can now write the general solution 
+\eq{
+\vec{y} = \sum_{n,m} c_{nm} \vec{w_{nm}} \exp{\kappa_{nm}t}  
+}
+Now we want to do the reduction to expectation values. For this purpose we first need to determine how many walkers are in node $i$ if the system is in state $j,k$. The answer is one if $i=j$ plus another one if $i=k$. Since $y_{jk}$ is the probability that the system is in state $j,k$  we can write the expected number of walkers in state $i$ as 
+\eqa{
+z_i &=& \sum_{j,k} y_{jk} (\delta_{ij} + \delta{ik})  \\
+  &=& \left(\sum_k y_{ik}  \right) + \left(\sum_j y_{ji}\right) \\
+  &=& \left(\sum_k y_{ik}1_k  \right) + \left(\sum_j 1_jy_{ji}\right)
+}
+where we have inserted $I_k$ the $k$-th element of a column vector that contains the number in every element. These addition a make the first sum look like the equation for a matrix vector multiplication in which a matrix ${\bf y}$ is multiplied with a vector $\vec{1}$ from the right. Conversely the second sum looks like a $y$ is multiplied with the row vector $\vec{1}^{\rm T}$ from the left. Hence we can write 
+\eq{
+z_i = [{\bf y}\vec{1}]_i + [\vec{1}^{\rm T} {\bf y} ]_i 
+}
+if this is true for each element $i$ of the vector it also has to be true for the entire vector, so 
+\eq{
+\vec{z} = {\bf y}\vec{I} + \vec{I}^{\rm T} {\bf y} 
+}
+This is nice but we actually wanted to compute $\vec{z}$ from the vector vector $\vec{y}$ not the matrix $\bf y$ so let's vectorize the whole equation. Thankfully the vectorization of a vector is the vector itself so 
+\eqa{
+\vec{z}&=& {\rm vec}(\vec{z})  \\ 
+ &=& {\rm vec}({\bf y}\vec{1}) + {\rm vec}(\vec{1}^{\rm T} {\bf y}) \\
+ &=& {\rm vec}({\bf I}{\bf y}\vec{1}) + {\rm vec}(\vec{1}^{\rm T} {\bf y} {\bf I}) \\ 
+ &=& (\vec{1}^{\rm T} \otimes {\bf I}) {\rm vec}({\bf y}) + ({\bf I} \otimes \vec{1}^{\rm T}) {\rm vec}({\bf y}) \\
+ &=& (\vec{1}^{\rm T} \otimes {\bf I}+ {\bf I} \otimes \vec{1}^{\rm T}) \vec{y} 
+}
+We now have the desired form $\vec{z}={\bf M} \vec{y}$ and hence we can identify our translation matrix 
+\eq{
+{\bf M} = \vec{1}^{\rm T} \otimes {\bf I}+ {\bf I} \otimes \vec{1}^{\rm T} 
+}
+Let's check if this is right. For the linked-pair example we have 
+\eq{
+{\bf I} = \avecc{1 & 0 \\ 0 & 1},\qqq {\vec{1}}^{\rm T} = (1,1)
+}
+and thus we expect 
+\eqa{
+{\bf M} &=& \vec{1}^{\rm T} \otimes {\bf I}+ {\bf I} \otimes \vec{1}^{\rm T} \\
+ &=& (1,1) \otimes \avecc{1 & 0 \\ 0 & 1} + \avecc{1 & 0 \\ 0 & 1} \otimes (1,1) \\
+&=& \avecccc{1 & 0 & 1 & 0  \\ 0 & 1 & 0 & 1} + \avecccc{1 & 1 & 0 & 0 \\ 0 & 0 & 1 & 1}  \\
+&=& \avecccc{2 & 1 & 1 & 0  \\ 0 & 1 & 1 & 2} 
+}
+which is indeed the matrix that we identified before for this example, so this seems alright. 
+
+Let's now see what happens to the an eigenvector of the Jacobian when we multiply the translation matrix
+\eqa{
+{\bf M}\vec{w_{n,m}} &=& (\vec{1}^{\rm T} \otimes {\bf I}+ {\bf I} \otimes \vec{1}^{\rm T} ) (\vec{v_n} \otimes \vec{v_m})  \\
+ &=& \vec{1}^{\rm T}\vec{v_n} \otimes {\bf I}\vec{v_m}+ {\bf I}\vec{v_n} \otimes \vec{1}^{\rm T}\vec{v_m}  \\
+ &=& \vec{1}^{\rm T}\vec{v_n} \otimes \vec{v_m}+ \vec{v_n} \otimes \vec{1}^{\rm T}\vec{v_m}  \\
+}
+The products of the form $\vec{1}^{\rm T}\vec{v_n}$ are interesting. The vector $\vec{1}^{\rm T}$ is a left eigenvector of the Laplacian that corresponds to the eigenvalue 0. And thus it is orthogonal to any right eigenvector $\vec{v_n}$, except $\vec{v_1}$, the eigenvector corresponding to $\lambda_1=0$. Therefore the result of the product 
+\eq{
+\vec{1}^{\rm T}\vec{v_n} = r \delta_{1,n}
+}
+The scalar prefactor $\vec{1}^{\rm T}\vec{1} = r$ doesn't matter as we can always rescale the vectors to eliminate it. So we won't pay it much attention. Substituting into the equation above we find 
+\eqa{
+{\bf M}\vec{w_{n,m}} &=&  (r \delta_{1,n}) \otimes \vec{v_m}+ \vec{v_n} \otimes (c \delta_{1,m})  \\
+&=&  (r \delta_{1,n}) \vec{v_m}+  (r \delta_{1,m}) \vec{v_n} \\
+}
+In the second step we realized that one side of the Kronecker product was a scalar, and in this case the Kronecker product is just a normal scalar multiplication.
+
+Now that we have understood what happens to the eigenvectors when we translate them to expectation values, we can translate our general solution for states into a general solution for expectation values 
+
+\eqa{
+\vec{z} &=& {\bf M} \vec{y} \\
+ &=& \sum_{n,m} c_{nm} {\bf M} \vec{w_{nm}} \exp{\kappa_{nm}t} \\
+ &=& \sum_{n,m} c_{nm} ( (r \delta_{1,n}) \vec{v_m}+  (r \delta_{1,m}) \vec{v_n}) \exp{\kappa_{nm}t} \\
+ &=& \left(\sum_{n,m}(c_{nm} r \delta_{1,n}) \vec{v_m}\exp{\kappa_{nm}t} \right)+  \left(\sum_{n,m} c_{nm} r \delta_{1,m}) \vec{v_n}\exp{\kappa_{nm}t}   \right) \\
+  &=& \left(\sum_m c_{1m} r \vec{v_m}\exp{\kappa_{1m}t} \right)+  \left(\sum_{n} c_{n1} r \vec{v_n}\exp{\kappa_{n1}t}   \right) \\
+  &=& \left(\sum_m c_{1m} r \vec{v_m}\exp{-\lambda_m t} \right)+  \left(\sum_{n} c_{n1} r \vec{v_n}\exp{-\lambda_n t}   \right) \\
+  &=& \left(\sum_n c_{1n} r \vec{v_n}\exp{-\lambda_n t} \right)+  \left(\sum_{n} c_{n1} r \vec{v_n}\exp{-\lambda_n t}   \right) \\
+  &=& \left(\sum_n c_{1n} r \vec{v_n}\exp{-\lambda_n t} \right)+  \left(\sum_{n} c_{n1} r \vec{v_n}\exp{-\lambda_n t}   \right) \\   &=& \sum_n (c_{1n}+c_{n1}) r \vec{v_n} \exp{-\lambda_n t} \\
+  &=& \sum_n c_n \vec{v_n} \exp{-\lambda_n t} \\
+}
+where we used $\kappa_{1n}=-(\lambda_1+\lambda_n)=-\lambda_n$, renamed the summation index $m$ to $n$, and finally defined new constants $c_n=r(c_{1n}+c_{n1})$. 
+
+We have arrived  at 
+\eq{
+\vec{z} = \sum_n c_n \vec{v_n} \exp{-\lambda_nt}
+}
+which we can identify as the solution to 
+\eq{
+\vec{\dot{z}} = -{\bf L} \vec{z}
+}
+So even on general networks it is true that the diffusion equation describes the random walk of one walker individually or the evolution of the expectation value of walkers in the system with two non-interacting walkers. 
+
+P.S.: The same result can be demonstrated for more walkers. For example for three walkers we have the Jacobian
+\eq{
+{\bf J} = -({\bf L} \otimes {\bf I} \otimes {\bf I} + {\bf I} \otimes {\bf L} \otimes {\bf I}+ {\bf I} \otimes {\bf I} \otimes {\bf L})
+}
+
+P.P.S.: If you didn't like the visual inspection in the last step of the derivation where we moved from the solution back to the dynamical system for $\vec{z}$ you can also derive the differential equation for $\vec{z}$ along the lines 
+\eqa{
+\vec{\dot{y}} &=& {\bf J} \vec{y} \\ 
+{\bf M}\vec{\dot{y}} &=& {\bf M}{\bf J} \vec{y} \\
+\vec{\dot{z}} &=& {\bf M}{\bf J} {\bf I} \vec{y} \\
+\vec{\dot{z}} &=& {\bf M}{\bf J} ({\bf M}^{-1}{\bf M}) \vec{y} \\
+\vec{\dot{z}} &=& ({\bf M}{\bf J}{\bf M}^{-1}) ({\bf M})\vec{y}) \\
+\vec{\dot{z}} &=& (-{\bf L}) (\vec{z}) \\
+\vec{\dot{z}} &=& -{\bf L}\vec{z}.
+}
+

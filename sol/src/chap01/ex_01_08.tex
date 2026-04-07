@@ -21,16 +21,16 @@ This time we assume that when we get to work there is already a power line from 
 % solution %
 
 \solution
-We can apply Kruskal's algorithm, but line (B,Z) is already there (or alternatively, we could say it has cost 0). So what we do is
+We can apply Kruskal's algorithm, but line (B,Z) is already there (or alternatively, we could say it has cost 0). So, what we do is
 \begin{enumerate}[label=\arabic*.]
 \item Place (B,Z)
-\item Try (L,Z) [52km] -- accept
-\item Try (L,B) [63km] -- reject
-\item Try (L,O) [75km] -- accept
-\item Try (O,Z) [76km] -- reject
-\item Try (B,J) [77km] -- accept
+\item Try (L,Z) [51 km] -- accept
+\item Try (L,B) [63 km] -- reject
+\item Try (L,O) [75 km] -- accept
+\item Try (O,Z) [76 km] -- reject
+\item Try (B,J) [77 km] -- accept
 \end{enumerate}
-So, the final edge set is 
+Hence, the final edge set is 
 \eq{
 E= \{{\rm (B,Z),(L,Z),(L,O),(B,J)}\}.
 }

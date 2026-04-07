@@ -1,0 +1,105 @@
+\exercise{Discrete-time diffusion \label{exVibeDiscrete}}{4}
+Consider a discrete-time random walk on a network where in each timestep 
+the walker picks one of the neighbors of its current node and moves there. 
+Let $x_i(t)$ be the probability that the walker is in node $i$ in $t$. 
+
+\subquestion 
+Study this process first on the 3-chain, (1)-(2)-(3). Write a discrete time map that capture the changes of the probabilities, then solve it for a walker starting in node $1$ at $t=0$. 
+
+\solution 
+The walker is in the node 1 in step $t+1$ with 50\% probability if it was in node $2$ in step $t$. The walker will certainly be in node 2 in step $t+1$ if it was either in node 1 or node 3 in step $t$. Finally it will be in node 3 in step $t+1$ with 50\% probability if it was in node 2 in step $t$. We can write this as
+\eqa{
+x_1(t+1) &=& 0.5 x_2(t) \\
+x_2(t+1) &=& x_1(t) + x_3(t) \\
+x_3(t+1) &=& 0.5 x_2(t)
+}
+We can write the system in matrix form 
+\eq{
+\vec{x}(t+1) = {\bf P}\vec{x}
+}
+where
+\eq{
+{\bf P} = \aveccc{ 0 & 1/2 & 0 \\ 1 & 0 & 1 \\ 0 & 1/2 & 0 }
+}
+which we recognize from the chapter. To solve the dynamics we need the eigenvectors based on the symmetry we guess that 
+\eq{
+\vec{v_1}  = \avec{1 \\ 0 \\ -1} 
+}
+is an eigenvector. Multiplying with $\bf P$ yields 
+\eq{
+\aveccc{ 0 & 1/2 & 0 \\ 1 & 0 & 1 \\ 0 & 1/2 & 0 } \avec{1 \\ 0 \\ -1}  = \avec{0 \\ 0 \\ 0} 
+}
+so this is an eigenvector with eigenvalues 
+\eq{
+\lambda_1 = 0 
+}
+This may seem odd at first glance since we are used to thinking of the eigenvectors with eigenvalue 0 as the long-term behavior. But we are now dealing with discrete time dynamics so the eigenvalues that determine the long term behavior are those that have an eigenvalue of modulus 1. 
+
+The two eigenvectors we are still missing have an even-symmetry so they must be of the form $(a,b,a)^{\rm T}$. We try 
+\eq{
+\aveccc{ 0 & 1/2 & 0 \\ 1 & 0 & 1 \\ 0 & 1/2 & 0 } \avec{a \\ b \\ a}  = \avec{b/2 \\ 2a \\ b/2} 
+}
+which gives us two conditions 
+\eqa{
+b/2 &=& \lambda a \\
+2a &=& \lambda b
+}
+and hence 
+\eq{
+b = 2\lambda a   = \lambda^2 b 
+}
+Setting $a=1$ we find the two eigenvectors 
+\eq{
+\vec{v_2} = \avec{1 \\ 2 \\ 1} \qqq \lambda_2=1   
+}
+\eq{
+\vec{v_3} = \avec{1 \\ -2 \\ 1} \qqq \lambda_3=-1   
+}
+We know from Chap.~12 that the general solution for maps is 
+\eq{
+\vec{x}(t) = \sum c_n \vec{v_n} (\lambda_n)^t
+}
+where the $c_n$ are expansion coefficients that are chosen such that 
+\eq{
+\vec{x}(0) = \sum c_n \vec{v_n}
+}
+For our example where the walker starts in node 1 this means 
+\eq{
+\avec{1 \\ 0 \\ 0} = c_1  \avec{1 \\ 0 \\ -1} + c_2 \avec{1 \\ 2 \\ 1} + c_3  \avec{1 \\ -2 \\ 1}
+}
+We can see almost immediately the $c_1=1/2$ and $c_2=c_3=1/4$ works. (At least finding this by visual inspection is much faster in this case than computing the left eigenvectors, normalizing and then finding the coefficients that way). 
+
+We can now write our solution for $t>1$ as
+\eq{
+\vec{x}(t) =  \frac{1}{4}\avec{1\\ 2 \\ 1}+ \frac{1}{4}\avec{1\\ 2 \\ 1}(-1)^t.
+}
+Note that the first eigenvector disappears entirely as it is multiplied with the eigenvalues $0$, so the zero eigenvalue means that the information whether the walker was left of right is forgotten immediately in the first step. By contrast the other two eigenvectors stay around for all eternity. This is more of the weirdness of discrete time systems that we commented on already in the exercises in Chap.~12. Though if the network were not bipartite one of the eigenvectors would be forgotten in time.  
+
+\subquestion 
+Now find the general solution for this discrete time random walk on an arbitrary network described by an adjacency matrix $\bf A$. 
+
+\solution
+Generalizing from our previous example we can describe the dynamics of a node $i$ by
+\eq{
+x_i(t+1) = \sum_{[ij]} \frac{x_j(t)}{k_j} = \sum A_{ij} \frac{x_j(t)}{k_j}
+}
+which we can write in matrix form as 
+\eq{
+\vec{x}(t+1) = {\bf A}{\bf K}^{-1} \vec{x}(t) = {\bf P} \vec{x}(t)
+}
+where 
+\eq{
+{\bf P} = {\bf A}{\bf K}^{-1}
+}
+We can then compute the eigenvectors $\vec{v_n}$ and eigenvalues $\lambda_n$ of $\bf P$ such that 
+\eq{
+{\bf P} \vec{v_n} = \lambda_n \vec{v_n} 
+}
+and then find the coefficients $c_n$ such that 
+\eq{
+\vec{x}(0) = \sum c_n \vec{v_n}. 
+}
+The general solutions is then 
+\eq{
+\vec{x}(t) = \sum c_n (\lambda_n)^t \vec{v_n}.
+}

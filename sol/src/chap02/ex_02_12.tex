@@ -1,9 +1,10 @@
 
 
 \exercise{Longest path problem}{5}
-Find an efficient method to find the longest path in a given network. 
+Find bounds or estimates for the longest path in a given network. 
 
-\solution 
-This is an unsolved problem. But maybe you have an idea?
+\solution
+This is an usolved problem but we can at least specify some bounds. If the network contains a link then the longest path must have a length of at least 1. 
+If it contains a node of degree 2 then it contains a node with two neighbors there must be a path of length 2. Since every path can only contain each node only once the length of the longest path can be at most $N-1$. Perhaps you can refine these bounds some more? 
 
 \solutionend

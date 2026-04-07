@@ -1,0 +1,107 @@
+
+\exercise{Pattern formation in continuous space}{4}
+
+Consider the partial differential equation (PDE) system 
+\eqan{
+\dot{x}(l) &=& f(x(l),y(l)) + c_{\rm x} \Laplace x(l) \\
+\dot{y}(l) &=& g(x(l),y(l)) + c_{\rm y} \Laplace y(l)
+}
+where $x(l)$ and $y(l)$ are defined in a one-dimensional space parameterized by the spatial coordinate $l$, such that $0\leq l \leq 1$ and $\Laplace=\partial^2/\partial l^2$. 
+
+\subquestion 
+Show that if $(x^*,y^*)$ is the steady state of the non-spatial system, $\dot{x}=f(x,y)$, $\dot{y}=g(x,y)$ then $x(l)=x^*$, $y(l)=y^*$ is a solution of the PDE. 
+
+\solution 
+Substituting $x(l)=x^*$, $y(l)=y^*$ into the PDE yields 
+\eqa{
+\dot{x}(l) &=& f(x^*,y^*) + c_{\rm x} \Laplace x^* \\
+\dot{y}(l) &=& g(x^*,y^*) + c_{\rm y} \Laplace y^*
+}
+where we used $f(x^*,y^*)=g(x^*,y^*)=0$ (otherwise it would not be a steady state of the non-spatial system) and $\Laplace x^* = \Laplace y^* =0 $ (derivative of a constant function is zero). 
+
+\subquestion 
+Consider a small perturbation $\vec{\delta}=(\delta_{\rm x}(l),\delta_{\rm y}(l))^{\rm T}$ from the steady state.  
+Linearize the functions $f$ and $g$, and define $\bf I$, $\bf P$, $\bf C$, $\vec{x}$ and $\otimes$ in such a way that you can write the linearized system as $\dot{\vec{\delta}}=({\bf I}\otimes{\bf P}+{\Laplace}\otimes {\bf C}) \vec{\delta}.$ 
+
+\solution 
+As usual we define 
+\eq{
+\vec{\delta} = \avec{\delta_{\rm x}(l)\\ \delta_{\rm y}(l)} = \avec{x(l)-x^* \\ y(l)- y^*}
+}
+we substitute into the PDE and then linearize by Taylor expanding $f$ and $g$ to first order, which yields
+\eqa{
+\dot{\delta}_{\rm x}(l) &=& f_{\rm x}(x^*,y^*)\delta_{\rm x} + f_{\rm y}(x^*,y^*)\delta_{\rm y}   + c_{\rm x} \Laplace \delta_{\rm x} \\
+\dot{\delta}_{\rm y}(l) &=& g_{\rm x}(x^*,y^*)\delta_{\rm x} + g_{\rm y}(x^*,y^*)\delta_{\rm y} + c_{\rm y} \Laplace \delta_{\rm y}
+}
+We can now identify the elements of Jacobian of the non-spatial system 
+\eqa{
+P_{11} &=&  \left. \frac{\partial \dot{x}}{\partial x}\right|_* = f_{\rm x}(x^*,y^*) \\
+P_{12} &=&  \left. \frac{\partial \dot{x}}{\partial y}\right|_* = f_{\rm y}(x^*,y^*) \\
+P_{21} &=&  \left. \frac{\partial \dot{y}}{\partial x}\right|_* = g_{\rm x}(x^*,y^*) \\
+P_{22} &=&  \left. \frac{\partial \dot{y}}{\partial y}\right|_* = g_{\rm y}(x^*,y^*) \\
+}
+Moreover you can probably guess that it is useful to define 
+\eq{
+{\bf C} = \avecc{c_{\rm x} & 0 \\ 0 & c_{\rm y}}. 
+}
+With these definitions we can write
+\eqa{
+\dot{\delta}_{\rm x}(l) &=& P_{11}\delta_{\rm x} + P_{12}\delta_{\rm y}   + C_{11} \Laplace \delta_{\rm x} \\
+\dot{\delta}_{\rm y}(l) &=& P_{21}\delta_{\rm x} + P_{22}\delta_{\rm y} + C_{22} \Laplace \delta_{\rm y}
+}
+We now want to to write this equation as 
+\eq{
+\dot{\vec{\delta}}=({\bf I}\otimes{\bf P}+{\Laplace}\otimes {\bf C}) \vec{\delta}.
+}
+This is possible if we define $\bf I$ as the number 1 and $\otimes$ as the normal multiplication. 
+
+So what is the point here? The stability analysis of reaction diffusion systems in continuous space is typically done without going to this notation. However, it is interesting to make the analogy to the network case clear as it highlights an underlying principle. In both cases we are dealing with two different spaces. One of these is the network of local interactions, the other is either the continuous space $l$ or the discretized space of the geographical network. 
+
+In both cases the key is to separate the spaces, and $\otimes$ is our separator that achieves this. In continuous space normal scalar multiplication works as a separator, while in the \emph{network on network} case we need the Kronecker product. In the continuous space the diffusion operator is $\Laplace$ while in the discretized network space it is $-{\bf L}$. Likewise the identity in the the network operator is the identity matrix while it the continuous space it is 1, which is actually a constant function that is 1 independently of $l$. 
+
+\subquestion 
+Identify the Jacobian and find an efficient way to compute its eigenvalues, using the boundary conditions $\vec{\delta}(0)=\vec{\delta}(1)=0$. 
+
+\solution 
+Because we have already linearized the system the Jacobian is now very easy to compute 
+\eq{
+\frac{\partial \vec{\dot{\delta}}}{\partial \vec{\delta}} = {\bf I}\otimes{\bf P}+{\Laplace}\otimes {\bf C}
+}
+The Jacobian in this case is not a matrix because it also contains the differential operator $\Laplace$ and hence also its eigen-objects will notbe pure vectors but vectors of functions. But this is all hidden beneath our notation now and we can use the same ansatz $\vec{v}=\vec{a}\otimes\vec{b}$ as before. Where just like in the network-on-network case we want $\vec{b}$ to live in the space of local dynamics, meaning it will be a vector independent of $l$, whereas $\vec{a}$ lives in the geographical space, so in this case it is scalar function of $l$ (not a vector). Because we changed our definition of $\otimes$ we let's rederive the master stability function approach carefully 
+\eqa{
+{\bf J}\vec{v} &=& ({\bf I}\otimes{\bf P}+{\Laplace}\otimes {\bf C})(\vec{a}\otimes\vec{b}) \\ 
+&=& {\bf I}\vec{a}\otimes{\bf P}\vec{b}+{\Laplace}\vec{a}\otimes {\bf C}\vec{b} \\
+&=& \vec{a}\otimes{\bf P}\vec{b}+\kappa\vec{a}\otimes {\bf C}\vec{b} \\
+&=& \vec{a}\otimes ({\bf P}+\kappa{\bf C})\vec{b} \\
+&=& \vec{a}\otimes \lambda \vec{b} \\
+&=& \lambda(\vec{a}\otimes \vec{b}) = \lambda \vec{v} \\
+}
+In the first step we used that $\otimes$ is now just the normal product and we can move the factors in the product around unless we change the order of matrices or move a spatial function past a differential operator. So the spacial function $\vec{a}$ cannot move past $\Laplace$ and the vector $\vec{b}$ cannot move pat the matrices $\bf P$ and $\bf C$, but we can otherwise freely move the terms around in their respective products- 
+
+In the second step we used ${\bf I}\vec{a}= 1\vec{a} = \vec{a}$ and assumed that $\vec{a}$ is an eigenfunction of $\Laplace$ with the eigenvalues $\kappa$. Finally in the fourth step we assume that $\vec{b}$ is an eigenvector of ${\bf P}+\kappa {\bf C}$ with eigenvalue $\lambda$. 
+
+In summary we have shown that we can find eigenvalues by first finding an eigenfunction of the diffusion part of the equation 
+\eq{
+\Laplace \vec{a} = \kappa \vec{a}
+}
+and then finding the eigenvalues of the $2\times 2$ matrix ${\bf P}-\kappa{\bf C}$. 
+
+Now is a good time to recall that $\vec{a}$ is not actually a vector but a spatial function $a(l)$ and solve
+\eq{
+\Laplace a(l) = \frac{\partial^2}{\partial l^2} a(l) = \kappa a(l)
+}
+So we are looking for a function that when differentiated twice is equal to itself times a factor $\kappa$. Moreover we want our function to obey the boundary conditions, meaning $a(0)=a(1)=0$ the only functions that can obey these constraints are
+\eq{
+a(l)=\sin(n\pi l)
+}
+for $n=1,2,\ldots$. If you don't see this immediately, integrate the differential equation which will give you exponentials, then enforce the boundary conditions. 
+
+By differentiating $a(l)$ we can see that the spatial eigenvalues are 
+\eq{
+\kappa_n = -(n\pi)^2 
+}
+and hence the eigenvalues of the Jacobian can be computed as the eigenvalues of 
+\eq{
+   {\bf P}+\kappa {\bf C} = \avecc{ f_{\rm x}-c_{\rm x}(n\pi)^2 & f_{\rm y} \\ g_{\rm x} & g_{\rm y} - c_{\rm y} (n\pi)^2 }
+}
+for all integer $n>0$. 

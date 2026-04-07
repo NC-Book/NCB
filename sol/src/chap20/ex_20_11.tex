@@ -1,3 +1,58 @@
+\exercise{More proofs\label{exMotifProof}}{4}
+Prove the following using direct computation, Gershgorin's theorem or Rayleigh quotient maximization, or eigenvalue properties:
+
+\subquestion Regular graphs have an eigenvalue that is identical to their mean degree. 
+
+\solution 
+Consdider a vector of the form $\vec{v}=(1,1,\ldots)^{\rm T}$. If we multiply this vector with the adjacency matrix $i$-th element of the resulting vector will be 
+\eq{
+\sum_j A_{ij} v_j = \sum_j A_{ij} = k_i  
+}
+where $k_i$ is the degree of node $i$. But in a regular graph every node has the mean degree $z$, so the result in every row will be $z$ and hence 
+\eq{
+{\bf A}\vec{v} = z \vec{v}
+}
+so $\vec{v}$ is an eigenvector with eigenvalue $z$. Since the highest node degree is an upper bound for the rightmost eigenvalue this must be the rightmost eigenvalue. 
+
+\subquestion The highest node degree is an upper bound for the the largest eigenvalue in any network. 
+
+\solution
+We can show this with Gershgorin's theorem. In a simple graph all Gershgorin disks for the adjacency matrix are centered on zero, and the radius of the disks is the degree. Hence the rightmost point where an eigenvalue can be is the degree. If self-loops are allowed they shift the center of the disk but add to the degree by the same amount so the statement remains true. 
+
+\subquestion The mean degree is a lower bound for the rightmost adjacency eigenvalue in any undirected simple graph.
+
+\solution
+Consider that the eigenvector of the rightmost eigenvalue maximizes the Rayleigh quotient 
+\eq{
+\frac{\vec{v}^\dag{\bf A}\vec{v}}{\vec{v}^\dag\vec{v}},
+}
+but we can also evaluate the Rayleigh quotient for other vectors such as the vector $\vec{v}=(1,1,\ldots)^{\rm T}$. As in part (a) the product of the adjacency matrix with this vector results yield a vector of node degrees
+\eq{
+\vec{k} = (k_1,k_2,\ldots)^{\rm T}
+}
+Therefore 
+\eq{
+\vec{v}^\dag{\bf A}\vec{v} = \vec{v}^\dag \vec{k} = \sum v_i k_i = \sum k_i = 2K
+}
+where $K$ is the total number of links in the network. Moreover 
+\eq{
+\vec{v}^\dag\vec{v} = \sum_{i=1}^{N} {v_i}^2 = \sum_{i=1}^{N} 1 = N
+}
+where $N$ is the number of nodes hence for this choice of $\vec{v}$ 
+\eq{
+\frac{\vec{v}^\dag{\bf A}\vec{v}}{\vec{v}^\dag\vec{v}}= \frac{2K}{N} = z
+}
+This shows that a vector exists for which the Rayleigh quotient is $z$.  
+Because the rightmost eigenvalue is the maximum value of the Rayleigh quotient it msut be at least $z$.
+
+\subquestion Bipartite networks cannot contain cycles of odd length (prove this one algebraically, don't use the coloring intuition).
+
+\solution
+Bipartite networks have a symmetric spectrum, hence all sums over odd powers of their eigenvalues are zero, i.e. 
+\eq{
+\sum {\lambda_n}^k = 0  \qqq \mbox{where $k$ is odd}
+}
+this sum is also the number of closed walks of length $k$. As there are no closed walks of odd length, the number of odd cycles must also be zero.  
 
 
 

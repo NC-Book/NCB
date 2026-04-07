@@ -1,0 +1,77 @@
+\exercise{A different random walk\label{exVibeMirror}}{3}
+Consider a different continuous-time random walk on a network: With rate $r = 1$ the walker decides to move. Then it picks one of the links that are available from its current node and instantaneously moves to that link's destination. 
+
+\subquestion Consider this walk on the 3-chain, (1)-(2)-(3). Define the probability that the walker is currently in node $i$. Derive the differential equations that govern these variables and show that they can be written in as
+\eqn{
+\dot{\vec{x}}=-\bf L_{rw}^{\rm{T}}\vec{x},
+}
+where $\vec{x}=(x_1,x_2,x_3)^{\rm T}$.
+
+\solution
+We define $x_i$ as the probability that the walker is currently in node $i$. 
+
+If the walker is currently in node 1 (probability $x_1$) is leaves at rate 1, leading to a loss rate of $-x_1$ from $x_1$. If the walker is currently in node 2 (probability $x_2$) it leaves also at rate 1 and chooses to go to node 1 with 50\% probability. This results in a gain rate of $x_2/2$ for $x_1$. Using the same reasoning also for the other nodes leads to  
+\eqa{
+\dot{x}_1 &=& -x_1 + x_2/2 \\
+\dot{x}_2 &=& -x_2 + x_1 + x_3 \\
+\dot{x}_3 &=& -x_3 + x_2/2
+}
+We can write this as 
+\eq{
+\dot{\vec{x}} = -{\bf L_{wr}}\vec{x} 
+}
+\eq{
+{\bf L_{wr}} = \aveccc{ 1 & -1/2 & 0 \\ -1 & 1 & -1 \\ 0 & -1/2 & 1}.
+}
+
+\subquestion 
+Now show the same for a general network where the network topology is given by an adjacency matrix $\bf A$. 
+
+\solution 
+In the general case we can write the equations as 
+\eq{
+\dot{x}_i = -x_i + \sum_{[ij]} \frac{x_j}{k_j} 
+}
+where $k_j$ is the degree of node $j$. We can write the same sum as 
+\eq{
+\dot{x}_i = -\sum_j (\delta_{ij} - A_{ij} \frac{1}{k_j} ) x_j
+}
+where $\delta_{ij}$ is the Krnonecker delta. We can now define the term in the braces as $L_{{\rm wr},ij}$, the element $i,j$ of $\bf L_{wr}$. This yields 
+\eq{
+\dot{x}_i = -\sum_j L_{{\rm wr},ij}  x_j
+}
+where 
+\eq{
+L_{{\rm wr},ij} = \delta_{ij} - A_{ij} \frac{1}{k_j}
+}
+we recognize the equation for $\dot{x}_i$ as the $i$-th row of a matrix vector product. Hence the equation for the entire product 
+\eq{
+\dot{\vec{x}} = - {\bf L_{wr}} \vec{x}
+}
+which is what we wanted. But now let's have a look at the matrix. The Kronecker delta puts the number 1 into the diagonal elements, as an identity matrix would in fact we can define the identity matrix by $I_{ij}=\delta_{ij}$. The second term contains $A_{ij}$ which is the adjacency matrix element, but it is divided by the the degree of node $j$. In the chapter we saw that this is what happens when we multiply the inverse of the degree matrix $\bf K$ from the right. So we can write
+\eq{
+{\bf L_{wr}} = {\bf I} - {\bf A}{\bf K}^{-1}
+}
+So did you notice anything odd? 
+
+This matrix is not the matrix that we called random walk Laplacian,
+\eq{
+{\bf L_{rw}} = {\bf I} - {\bf K}^{-1}{\bf A}
+}
+but the adjoined or transposed of that matrix. We can show 
+\eq{
+{\bf L_{wr}}^\dag = {\bf I} - {\bf K}^{-1} {\bf A} = {\bf L_{rw}} 
+}
+So why is it wrong way round?
+
+The definition of the random walk Laplacian comes from probability theory where the vectors of probability are usually row vectors and hence need to be multiplied from the left. This book sticks to the physics/dynamical systems convention where states are column vectors and hence multiplied from the right.
+
+Also the propagator of the discrete time random walks is often defined as the adjoint of our propagator $\bf P$ from the chapter. 
+
+This leads to another interesting question. If we use the random walk Laplacian  for spectral clustering, should we actually use the left eigenvectors? Or rather, should we use the right eigenvectors of $\bf L_{wr}$ rather than $\bf L_{rw}$? 
+
+Yes and no. Yes, because by our logic, using the right eigenvectors of $\bf L_{rw}$ is wrong, the right eigenvectors of $\bf L_{wr}$ or equivalently  the left eigenvectors of $\bf L_{rw}$ are actually the ones that describe the slowest dynamical modes of walker distribution. 
+
+But no, because it doesn't matter. The argument that we used in the chapter to show that we can use the eigenvectors of the symmetric Laplacian holds both ways: The signs of the elements of the right eigenvectors, are the same as signs of the elements of the right eigenvectors of the symmetric matrix. For the symmetric matrix the right and left eigenvectors are same. And the signs of the elements of the left eigenvector of the symmetric matrix are the same as the signs of the elements of the left eigenvector of the random walk Laplacian. 
+
+So in summary: yes in spectral clustering we commonly use the wrong eigenvectors, but it does not matter because the result will always be the same. 

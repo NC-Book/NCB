@@ -3,13 +3,12 @@ Glycolysis is a process by which your cells turn sugar into energy. The essence 
 \eqan{
 \mbox{A} &\xrightarrow{r}& B \\
 \mbox{B} &\xrightarrow{s}& 2A \\
-\mbox{A} &\xrightarrow{v}& \oslash
+\mbox{A} &\xrightarrow{v=1}& \oslash
 }
-Here, A describes the amount of available energy, which the cell stores in form of a molecule, adenosine-triphosphate, or, for short, ATP.
-The first of these reactions captures that energy is needed to start the process. In the second reaction more energy is produced as a result of the process, while the final reaction represents energy being used in the body. By measuring all rates in multiples of the energy consumption rate $v$ we can fix $v=1$. 
+Here, A describes the amount of available energy. Energy is needed to start a process (first reaction), which then produces more energy (second reaction), which is used to sustain the organism (third reaction).
 
 \subquestion 
-Define $a$ as the amount of A, and $b$ as the amount of B in the system. Then, write the ODE system that captures the dynamics of these variables, and show that there's in general no steady state in which $a>0$. 
+Let $a$ be the amount of A and $b$ the amount of B in the system. Then, write the ODE system that captures the dynamics of these variables, and show that there's no steady state in which $a^*>0$ except in a special case. 
 
 \solution
 Using the mass action laws we write 
@@ -28,7 +27,7 @@ and substituting this into the first differential equation gives us the conditio
 So except in the exceptional (i.e.~degenerate) state, where the parameters are chosen such that $r=1$, the only steady state is $a=0$.
 
 \subquestion 
-The absence of a steady state where we have a constant level of stored energy, is a problem. Your cells solve this problem by making the enzyme that catalyzes the first reaction dependent on the concentration of its substrate $a$. So let's assume that $r=a^p$. Show that this leads to a steady state with $a>0$.
+The absence of a robust steady state where we have a constant level of stored energy, is a problem. Let's assume that $r=a^p$, where $p\neq0$ is a new parameter. Show that there is now a steady state with $a^*>0$.
 
 \solution 
 We can proceed as before until we reach the steady state condition

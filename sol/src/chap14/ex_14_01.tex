@@ -1,31 +1,86 @@
-
-\exercise{Trace and determinant}{1}
-Compute the trace and determinant of the following matrices: 
+\exercise{Push and Pull}{1}
+Consider a steady state with the abstract Jacobian
 \eqn{
-{\bf A}=\avecc{1 & 2 \\ 3 & 4}\quad {\bf B}=\aveccc{B_{11} & B_{12} & B_{13}\\  
-B_{21} & B_{22} & B_{23}\\
-B_{31} & B_{32} & B_{33}}
-\quad
-{\bf C}=\avecccc{1 &1 & 1 & 1 \\ 1 & 0 & 1 & 0 \\ 0 & 1 & 0 & 1 \\  1 & 0 & 1 & 1 \\ }
+{\bf J}=\avecc{ J_{11}& J_{12} \\ J_{21} & J_{22}}
 }
+Compute the eigenvalues of this matrix to show: a) The off-diagonal elements only in the form of  the weight of the cycle $w=J_{12}J_{21}$ matters for the eigenvalues, b) if $w=0$ the eigenvalues are $J_{11}$ and $J_{22}$. c) if $w<0$ the eigenvalues are pulled together, d) if $w>0$ the eigenvalues are pushed apart.   
 
 \solution
-
-The trace is just the sum of diagonal elements, so
-\eq{{\rm Tr}({\bf A}) = 1 + 4 = 5 } 
-\eq{{\rm Tr}({\bf B}) = B_{11} + B_{22}+B_{33} } 
-\eq{{\rm Tr}({\bf C}) = 1 + 0 + 0 + 1 = 2 } 
-
-We express the determinant we express it as a sum over smaller determinats until we find the result 
-\eq{|{\bf A}| = 1\cdot4 - 3 \cdot 2 = 4-6 = -2 }
-\eqa{|{\bf B}| &=& B_{11} \left| \avecc{B_{22} & B_{23} \\ B_{32} & B_{33}}\right| - B_{12} \left| \avecc{B_{21} & B_{23} \\ B_{31} & B_{33}}\right| + B_{13} \left| \avecc{B_{21} & B_{22} \\ B_{31} & B_{32}}\right| \\
-&=& B_{11}B_{22}B_{33}-B_{11}B_{23}B_{32} - B_{12}B_{21}B_{33} + B_{12}B_{31}B_{23} + B_{13}B_{21}B_{32} - B_{13}B_{11}B_{22}
-}  
-For ${\bf C}$ we start our expansion into smaller determinants by going along the second row. Starting in a row with as many zeros as possible saves a bit of work. 
-\eqa{
-|{\bf C}| &=& - \left|\aveccc{1 & 1 & 1 \\ 1 & 0  & 1 \\ 0 & 1 & 1 } \right| - \left|\aveccc{1 & 1 & 1 \\ 0 & 1  & 1 \\ 1 & 0 & 1 } \right| \\
-&=& - \left(  \left|\avecc{0 & 1 \\ 1 & 1}\right| - \left|\avecc{1 & 1 \\ 0 & 1}\right| + \left|\avecc{1 & 0 \\ 0 & 1}\right|  \right) \\
-& & - \left(  \left|\avecc{1 & 1 \\ 0 & 1}\right| - \left|\avecc{0 & 1 \\ 1 & 1}\right| + \left|\avecc{0 & 1 \\ 1 & 0}\right|  \right) \\
-& = & - (-1 -1 +1) - (1 + 1 - 1 ) = 1 - 1 = 0
+\paragraph{Part (a).}We have to solve 
+\eq{
+\avecc{J_{11} & J_{12} \\ J_{21} & J_{22}}\avec{x\\ y} = \lambda \avec{x \\ y}
 }
-So the determinant is zero in this case. Could we have figured this out more quickly? Sure. Note that the sum of the second and the third row is the first row, so the rows are not linear independent. If this happens there always has to be zero eigenvalue and hence a zero determinant. 
+The first line reads 
+\eq{
+J_{11}x+J_{12}y=\lambda x
+}
+and hence 
+\eq{
+\lambda = J_{11} + J_{12}\frac{y}{x}
+}
+similarly the second line gives us 
+\eq{
+J_{21}x + J_{22}y = \lambda y. 
+}
+Here we don't care about the eigenvector. We just want to discover how the eigenvalues depend on $J_{11}$, $J_{12}$, $J_{21}$, and $J_{22}$. Heve we seek to eliminate $x$ and $y$ from the equation. Since the first line gave us a condition that only contains the fraction $y/x$ lets see if we can create this fraction again. So we divide the condition from the secons line by $x$ which yields 
+\eq{
+J_{21} + J_{22} \frac{y}{x} = \lambda \frac{y}{x}
+}
+and hence 
+\eq{
+\frac{J_{21}}{\lambda-J_{22}}= \frac{y}{x} 
+}
+which we can substitute into the first condition to find 
+\eq{
+\lambda = J_{11} + \frac{J_{12}J_{21}}{\lambda-J_{22}}
+}
+\paragraph{Part (b).}At this point we have already reached our first goal (a) as we can now see that $J_{12}$ and $J_{21}$ only appear in form of the product $J_{12}J_{21}$ which is our cycle weight $w$. Of course the condition is actually our characteristic polynomial which we can now write in the standard form 
+\eq{
+\lambda^2 - J_{22} \lambda -J_{11}\lambda + J_{11}J_{22}-w = 0 
+}
+We can now just factorize the characteristic polynomial 
+\eqa{
+ (\lambda-(J_{22}+J_{11})/2)^2 -(J_{22}+J_{11})^2/4 + J_{11}J_{22} - w &=& 0 \\
+ (\lambda-(J_{22}+J_{11})/2)^2 &=& J_{22}^2/4 +J_{11}^2/4 -J_{11}J_{22}/2 + w  \\
+ \lambda -(J_{22}+J_{11})/2 &=& \pm \sqrt{(J_{22}-J_{11})^2/4 + w } \\
+ \lambda = (J_{22}+J_{11})/2 \pm \sqrt{{J_{22}-J_{11}}^2/4 + w} \\
+}
+We have now almost reached the next goal. If $w=0$ then we can further simplify 
+\eq{
+\lambda = \frac{J_{22}+J_{11}}{2} \pm  \sqrt{\frac{(J_{22}-J_{11})^2}{4}} = \frac{J_{22}+J_{11}}{2} \pm  \frac{J_{22}-J_{11}}{2}
+}
+So we find the eigenvalues 
+\eqa{
+\lambda_1 &=& \frac{J_{22}+J_{11}}{2} +  \frac{J_{22}-J_{11}}{2} = J_{22}  \\
+\lambda_2 &=& \frac{J_{22}+J_{11}}{2} -  \frac{J_{22}-J_{11}}{2} = J_{11}  \\
+}
+Which shows (b) if the weight is zero. The eigenvalues are $J_{11}$ and $J_{22}$. 
+
+\paragraph{Part (c) and (d).}Now let's return to the case where the weight is not zero. From the equation 
+\eq{
+\lambda = \frac{J_{22}+J_{11}}{2} \pm  \sqrt{\frac{(J_{22}-J_{11})^2}{4}+w}
+}
+we can already sees that the separation between the two eigenvalues grows when $w>0$ and shrinks when $w<0$ which covers points (c) and (d). But can we actually see how strong the pull or push from the cycle is? 
+
+Ideally I want an equation such as $\lambda_1 = J_{22} + x$, where $x$ is the effect of the push or pull from the cycle. So lets substitute this in. Because we focused on the eigenvalue $\lambda_1$ we only need to consider the positive case, so 
+\eq{
+d+x = \frac{J_{22}+J_{11}}{2} + \sqrt{\frac{(J_{22}-J_{11})^2}{4}+w}
+}
+Which we can also write as 
+\eq{
+x = -\frac{J_{22}-J_{11}}{2} + \sqrt{\frac{(J_{22}-J_{11})^2}{4}+w}
+}
+It is interesting that $J_{11}$ and $J_{22}$ now only appear in expressions of the form $(J_{22}-J_{11})/2$ which is half the distance between $J_{11}$ and $J_{22}$ or in other words the distance between $d$ and the midpoint between $J_{11}$ and $J_{22}$. Let's call this $h$. We define
+\eq{
+h= \frac{J_{11}-J_{22}}{2} 
+}
+substituting simplifies our condition for $x$ to 
+\eq{
+x=-h + \sqrt{h^2+w}
+}
+This is about as nice as we can make it. From this form the results (b,c,d) are quite obvious. 
+
+Equivalently we can say that the total distance the eigenvalue is from the halfway point between the eigenvalues is 
+\eq{
+x+h = \sqrt{h^2 + w}.
+}

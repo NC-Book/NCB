@@ -1,0 +1,149 @@
+\exercise{Path graph}{4}
+Consider a long chain of nodes that are numbered consecutively from 1 to $N$. This is a so-called path graph. 
+
+\subquestion 
+Consider the eigenvector equation for the adjacency matrix in node $j$ in the middle of the chain and use the Ansatz $v_j=a b^j$, and find possible values for $b$. Did you notice something odd? Compute $|b|$. 
+
+\solution 
+The eigenvector equation in node $j$ is 
+\eq{
+v_{j-1} + v_{j+1} = \lambda v_j 
+}
+If we substitute the Ansatz we find
+\eq{
+a b^{j-1} + a b^{j+1} = \lambda ab^j  
+}
+Let's bring everything to one side and divide by $ab^{j-1}$,
+\eq{
+b^2 - \lambda b + 1 = 0.   
+}
+Now we solve for $b$, 
+\eqa{
+(b-\lambda/2)^2 &=& \lambda^2/4 -1 \\
+b-\lambda/2   &=& \pm \sqrt{\lambda^2/4-1}
+}
+and hence 
+\eq{
+  b_{1,2} =   \frac{\lambda\pm \sqrt{\lambda^2-4}}{2}
+}
+Because the maximum node degree is 2 we should the eigenvalues should be $-2\leq \lambda \leq 2$, so the square root term is imaginary. The equation we found for $b$ almost almost looks a bit too perfect. Let's compute $|b|$. 
+
+We start with 
+\eqa{
+  |b|^2 &=& \left(\frac{\lambda}{2}\right)2 + \left( \pm \frac{\sqrt{\lambda^2-4}}{2}   \right)^2 \\
+  &=& \frac{\lambda^2 +4-\lambda^2 }{4} \\
+  &=& \frac{4}{4} \\
+  &=& 1
+}
+
+\subquestion Let's define $\theta$ such that $\lambda=2\cos(\theta)$. Explain why this is an intuitive substitution. Then substitute it into $b$. Then an almost magical simplification is possible.
+
+\solution 
+In the previous part we found that the solutions for $b$ are always of magnitude 1 regardless of $\lambda$, so $b$ describes the unit circle in the complex plane. Any complex number can be expressed as  
+$x+iy$, but also also as $r\exp{i\theta}$. In general these two ways of writing the complex number are realted via 
+\eqa{
+x&=& r \cos(\theta) \\
+y&=& r \sin(\theta)
+}
+For our $b$ we noticed that the modulus is always $r=1$. To capitalize on this insight it is good to switch to the $r,\theta$ coordinates.
+
+In our case 
+\eqa{
+\cos(\theta)&=&x={\rm Re}(b) = \frac{\lambda}{2} \\
+\sin(\theta)&=&y={\rm Im}(b) = \frac{\sqrt{4-\lambda^2}}{2}
+}
+From the first equation we get the substitution 
+\eq{
+\lambda = 2 \cos(\theta)
+}
+Our solution for $b$ can be written as 
+\eqa{
+b_{1,2} &=&\frac{\lambda}{2} \pm i\frac{\sqrt{4-\lambda^2}}{2} \\
+   &=& \frac{2\cos(\theta)}{2} \pm i \frac{\sqrt{4-4\cos^2(\theta)}}{2} \\
+   &=& \cos(\theta) \pm i \sqrt{1-\cos^2(\theta)} \\
+  &=& \cos(\theta) \pm i \sqrt{\sin^2(\theta)} \\
+  &=& \cos(\theta) \pm i \sqrt{\sin^2(\theta)} \\
+  &=& \cos(\theta) \pm i \sin(\theta) \\
+  &=& \exp{\pm i \theta}
+}
+Was this magical? Ah, maybe you saw it coming? We already knew that $b$ was on the unit circle, and we literally just said that the points on the unit circle can be described in this way. Anyway, let's move on.  
+
+\subquestion  
+The adjacency matrix is a real symmetric matrix and hence should have real eigenvectors, but neither of our solutions for $b$ gives us such a vector. However, show that a linear combination of the solutions is also a solution.
+
+\solution 
+So we have the equation 
+\eq{
+v_{j-1} + v_{j+1} = \lambda v_{j} 
+}
+With $b_{1,2}=\exp{\pm i \theta}$ our ansatz now reads 
+\eq{
+v_{j} = c_1 \exp{ij\theta} + c_2 \exp{-ij\theta}
+}
+moreover we know $\lambda=2\cos(\theta)$. Substituting everything yields 
+\eq{
+c_1 \exp{i(j-1)\theta} + c_2 \exp{-i(j-1)\theta} + c_1 \exp{i(j+1)\theta} + c_2 \exp{-i(j+1)\theta}  = 2 \cos(\theta)(c_1 \exp{ij\theta} + c_2 \exp{-ij\theta})  
+)
+}
+Let's sort this a bit 
+\eqa{
+c_1(\exp{i(j-1)\theta}+\exp{i(j+1)\theta}-2\cos(\theta)\exp{ij\theta}) &=& -c_2 (\exp{-i(j-1)\theta}+\exp{-i(j+1)\theta}-2\cos(\theta)\exp{-ij\theta}) \\
+c_1\exp{ij\theta}(\exp{-i\theta} +\exp{i\theta}-2\cos(\theta)) &=& -c_2\exp{-ij\theta} (\exp{i\theta}+\exp{-i\theta}-2\cos(\theta)) \\
+c_1\exp{ij\theta}(2\cos(\theta)-2\cos(\theta)) &=& -c_2\exp{-ij\theta} (2\cos(\theta)-2\cos(\theta)) \\
+0&=&0 
+}
+So this also works. 
+
+\subquestion At the beginning and end of the chain, the eigenvector condition is slightly different. For example 1: $v_2=\lambda v_1$. However, we can write it in the familiar form $v_0+v_2=\lambda v_1$, if we demand $v_0=0$. Hence introduce \textit{ghost nodes}, numbered 0 and $N+1$ and demand that $v_0=v_{N+1}=0$. Use this boundary condition to find all eigenvalues and eigenvectors. 
+
+\solution 
+SO far we have
+\eq{
+v_j = c_1 \exp{ij\theta} + c_2\exp{-ij\theta} 
+}
+Now we demand $v_0=0$ which means 
+\eq{
+0 = c_1 + c_2 
+}
+and hence $c_2=-c_1$. This allows us to write 
+\eqa{
+v_j &=& c_1 (\exp{ij\theta} - \exp{-ij\theta}) \\
+  &=& 2i c_1 \sin(j\theta) 
+}
+That there is a factor $c_1$ left is just a manifestation of our freedom to scale an eigenvector how we like. For simplicity we can now choose $c_1=1/2i$ and hence 
+\eq{
+v_j = \sin(j\theta)
+}
+Now we have one boundary condition left: 
+\eq{
+v_{N+1} = \sin ((N+1)\theta) = 0 
+}
+The $\sin$ function is zero if its argument is a multiple of $\pi$. Hence the boundary condition is met when 
+\eq{
+(N+1) \theta = n \pi  
+}
+where $n$ is a positive integer. This implies 
+\eq{
+\theta = \frac{n}{N+1} \pi
+}
+Remembering that $\lambda = 2 \cos(\theta)$ which gives us the {\bf adjacency eigenvalues} 
+\eq{
+\lambda_n = 2 \cos( n\pi/(N+1) )
+}
+Note that we get $N$ different values for the eigenvalues, for $n=1,\ldots,N$, which shows that we find all the eigenvalues in this way. Moreover we already know the corresponding eigenvectors 
+\eq{
+v_{n,j} = \sin(j\theta) = \sin(jn\pi/(N+1))
+}
+We could have found the same result by solving the eigenvector condition using generating functions or by turning it into a two dimensional map and solving it with eigenvectors. Interestingly all of these approaches require us to solve the same quadratic polynomial, but among them this approach is the least tedious and perhaps the most insightful. 
+
+If you want to practice it, you can now also solve the Laplacian eigenvectors of the path graph (be careful with the boundary conditions if you do). The result for the {\bf Laplacian eigenvalues} is 
+\eq{
+\lambda_n = 2 - 2 \cos (2n\pi/N)
+}
+and the corresponding eigenvectors are 
+\eq{
+v_{n,j} = \cos ((2j-1)n\pi/2N)
+}
+
+Also remember the clique with a tail from the previous exercise sheet. You can now find the eigenvalues for that network quite easily as well. 
+

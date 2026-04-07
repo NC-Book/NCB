@@ -3,7 +3,7 @@ In this chapter we derived a method to compute $c_k$, the probability
 that a randomly picked node is in a component of $k$ nodes. Now, let $s_k$ be the probability that a randomly picked component has $k$ nodes. Formulate an equation that relates $c_k$ and $s_k$. Then translate your equation into an equation that relates the $C$ and $S$, the generating functions of $c_k$ and $s_k$. Use your equations to compute the average component size (the expectation value of $s_k$, for the networks from Ex.~9.5 and Ex.~9.6) [This one has some pitfalls, proceed with caution.]
 
 \solution 
-First, let's ask ourselves why are $c_k$ and $s_k$ different at all?
+\paragraph{Relation between $c_k$ and $s_k$.}First, let's ask ourselves why are $c_k$ and $s_k$ different at all?
 Does it make a difference if we pick select a component by picking a random component straight away, instead of picking a random node and then selecting this nodes component? Of course it does. At this stage of this 
 book we realize that this is a similar to the situation that we encountered when discussing excess degree. In Chap.~6 the key insight was that when we follow links we have a higher chance of arriving at nodes that have more links. Here we have the same. If we select a component by picking a random node then we have a higher chance of picking components that have more nodes. 
 
@@ -27,7 +27,7 @@ which is very similar to an equation for that we derived for the relationship be
 (In this case there is no $k+1$ because we count the selected node itself
 when we compute the size of the component, whereas we did not count the selected link when we count the excess degree)
 
-Now that we have found the relationship between $c_k$ and $s_k$ we can translate it into a relationship between the generating functions. At this point we could just multiply $x^k$ to the equation above and then sum both sides over $k$. However, let's rather follow our translation procedure one more time. We start by defining the generating functions
+\paragraph{Relation between $C$ and $S$}Now that we have found the relationship between $c_k$ and $s_k$ we can translate it into a relationship between the generating functions. At this point we could just multiply $x^k$ to the equation above and then sum both sides over $k$. However, let's rather follow our translation procedure one more time. We start by defining the generating functions
 \eq{
 S= \sum s_k x^k \qqq C= \sum c_k x^k. 
 }
@@ -58,7 +58,7 @@ C=x\frac{S'}{S'(1)}.
 This is very similar to the generating function that relates $G$ and $Q$ (degree and excess degree generating functions), $Q=G'/G'(1)$. Again an extra $x$ appears, because we count the node that we picked randomly 
 as part of the component. 
 
-Now that we have an equation we can test it. The simplest test is offered by the network from Ex.~9.5, where every node has degree 1. In that exercise we found 
+\paragraph{Equation test on network from Ex.~9.5.}Now that we have an equation we can test it. The simplest test is offered by the network from Ex.~9.5, where every node has degree 1. In that exercise we found 
 \eq{
 C=x^2. 
 }
@@ -91,7 +91,7 @@ S=x^2,
 }
 so this is telling us if we pick a random component we will get a component with two nodes all the time. This makes sense as every component in the network contains two nodes. 
 
-Having tested our equation on the simple test example we can now move on to the network from Ex.~9.6. In this case we have 
+\paragraph{Equation test on network from Ex.~9.6.}Having tested our equation on the simple test example we can now move on to the network from Ex.~9.6. In this case we have 
 \eq{
 C=\frac{x}{(2-x)^2}.
 }

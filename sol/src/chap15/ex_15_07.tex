@@ -1,200 +1,82 @@
-\exercise{aSIS model}{4}
-We now consider the adaptive SIS model. This model is identical to the network SIS model that we studied before, but additionally susceptible nodes try to distance themselves from infected neighbors. FOr every SI link,t the S node cuts the links at rate $w$. Whenever this happens the S-node establishes a new link to a randomly chosen S node. Hence, the number of links in the model remains constant. 
-
-\subquestion
-Write differential equations for the density of infected nodes $[I]$ and a conservation law that governs the density of susceptibles $[S]$. Express the right hand side of the differential equation in terms of node and link densities, don't close it yet. 
-
-\solution
-Following exactly the same reasoning as in lecture 14 we arrive at the same result 
-\eqa{
-\dot{[I]}&=&p[SI]-r[I]\\{}
-[S]&=&1-[I]
-}
-Note that the rewiring does not appear at all as it does not change any node state directly. 
-
-\subquestion
-Derive differential equations for the $[SS]$ and $[II]$ link densities and find a conservation law that governs the $[SI]$ link density.
+\exercise{aSIS steady states}{3}
+Compute the steady states of the aSIS model, studied already in Ex.~15.6. This will require good `navigational skills'. If you get lost check the solution. 
 
 \solution 
-Following the reasoning from the lecture we write 
+Let's also find the nontrivial steady states. We need to solve 
 \eqa{
-\dot{[SS]}&=&r[I]\frac{[SI]}{[I]}-p[SI]\frac{[SSI]}{[SI]}+w[SI] \\
-\dot{[II]}&=&-r[I]\frac{2[II]}{[I]}+p[SI]\left(1+\frac{2[ISI]}{[SI]}\right) 
+0&=&p[SI]-r[I] \\{}
+0&=& r[SI] - 2p[SS][SI]/[S] + w[SI] \\{}
+0&=& p [SI] + p[SI]^2/[S] - 2 r [II].
 }
-Note that the rewiring term is actually very simple whenever one rewiring event happens it adds one SS. We can simplify the equations to 
+Before we even start solving it let's see if there is a way to use our knowledge about trivial state to make the search for non-trivial states easier. 
+Have you spotted it already? In the second equation all terms are linear in $[SI]$, so unless $[SI]=0$ we can divide the whole equation by $[SI]$. At this point we are pretty sure that the trivial solution that we guessed above is the only steady state where $[SI]=0$, so we can divide the equation without losing any solutions, and replace the second equation with
+\eq{
+0=r+w - 2p\frac{[SS]}{[S]}.
+}
+The key to dealing with equation systems of intermediate complexity is staying in control and not letting them grow into a mess. Because we don't like fractions we multiply this equation by $[S]$. The system now reads 
 \eqa{
-\dot{[SS]}&=&r[SI]-p[SSI]+w[SI] \\
-\dot{[II]}&=&-2r[II]+p[SI]+2p[ISI] 
+0&=&p[SI]-r[I] \\{}
+0&=&r[S] - 2p[SS] + w[S] \\{}
+0&=&p[SI] + p[SI]^2/[S] -2r[II],
 }
-Finally we use the conservation law for links 
-\eq{
-[SS]+[SI]+[II]=\frac{z}{2}
-}
-to write 
-\eq{
-[SI]=\frac{z}{2}-[SS]-[II]
-}
-\subquestion Use a pair approximation to close your differential equation system.
-
-\solution
-We can use the closures from the lecture
+where I have also collected the $[II]$ terms in the third equation. We can now multiply the third equation by $[S]$ to clear the remaining fraction, which yields
 \eqa{
-[SSI]&=&\frac{2[SS][SI]}{[S]} \\
-2[ISI]&=&\frac{[SI]^2}{[S]} 
+0&=&p[SI]-r[I] \\{}
+0&=&r[S] - 2p[SS] + w[S] \\{}
+0&=&p[SI][S] + p[SI]^2 - 2r[II][S],
 }
-substitution into the differential equations yields
+Since we only have a single $[II]$ let's eliminate it using the link conservation law in the form 
+\eq{
+[II] = \frac{z}{2} - [SS] - [SI] 
+}
+after we substitute this the third equation reads 
 \eqa{
-\dot{[SS]}&=&r[SI]-2p\frac{[SS][SI]}{[S]}+w[SI] \\
-\dot{[II]}&=&-2r[II]+p[SI]+\frac{[SI]^2}{[S]} 
+0&=&p[SI][S] + p[SI]^2 - 2r(z/2-[SS] - [SI])[S]\\
+ &=& (p+2r)[SI][S] + p[SI]^2 -rz[S] + 2r[SS][S]
 }
-
-\subquestion
-We now have a dynamical system with 3 dynamical variables $[I],[SS],[II]$ and two auxilliary variables governed by conservation laws. Compute the Jacobian matrix that governs of this system. (Note that you either have to substitute the conservation laws or consider the change of the auxilliary variables in your derivatives.)  
-
-\solution 
-In this steady state the Jacobi matrix elements are 
+It seems everything will be nicer if we multiply this equation by another $p$. After that our system reads
 \eqa{
-J_{1,1}&=& \frac{\partial}{\partial [I]} [\dot{I}] \\
- &=& \frac{\partial}{\partial [I]} \left( p[SI]-r[I] \right) \\
- &=& -r
+0&=&p[SI]-r[I] \\{}
+0&=&r[S] - 2p[SS] + w[S] \\{}
+0&=& (p+2r)p[SI][S] + p^2[SI]^2 -rzp[S] + 2p[SS][S]r
 }
-
+Now we can write the second equation as 
+\eq{
+2p[SS] = (w+r) [S]
+}
+and substitute. The result is 
 \eqa{
-J_{1,2}&=& \frac{\partial}{\partial [SS]} [\dot{I}] \\
- &=& \frac{\partial}{\partial [SS]} \left( p[SI]-r[I] \right) \\
- &=& p \frac{\partial}{\partial[SS]} [SI] \\
- &=& p \frac{\partial}{\partial[SS]} (z/2-[ss]-[II]) \\
- &=& -p
+0&=&p[SI]-r[I] \\{}
+0&=&(p+2r)p[SI][S] + p^2[SI]^2 -prz[S] + r(w+r)[S]^2
 }
-So, this was an example where it mattered that $[SI]$ isn't a dynamical variable, but now governed by a conservation law.  
-
+Using the first equation to replace $p[SI]$ with $r[I]$ gives
+\eq{
+0=(p+2r)r[I][S] + r^2[I]^2 -prz[S] + r(w+r)[S]^2
+}
+Since all link variables have now disappeared from the equation we can simplify the notation by dropping the brackets
+\eq{
+0=(p+2r)rSI + r^2I^2 -przS + r(w+r)S^2
+}
+Of course we have to take care that we remember that these $S$ and $I$ are still in normalized units, so we should not confuse them with the variables that we defined in the beginning of the chapter, but this risk is rather small compared to the risk of making an algebraic mistakes when manipulating long equations. In any case we are almost done. Let's use the node conservation law $S=1-I$ to eliminate $S$ from the equation. 
 \eqa{
-J_{1,3}&=& \frac{\partial}{\partial [II]} [\dot{I}] \\
- &=& \frac{\partial}{\partial [II]} \left( p[SI]-r[I] \right) \\
- &=& p \frac{\partial}{\partial[II]} [SI] \\
- &=& p \frac{\partial}{\partial[II]} (z/2-[ss]-[II]) \\
- &=& -p
+0&=&(p+2r)r(1-I)I + r^2I^2 -prz(1-I) + r(w+r)(1-I)^2 \\
+ &=&(p+2r)rI -(p+2r)rI^2 + r^2I^2 - prz + przI  + r(w+r) - 2 r(w+r) I +  r(w+r) I^2 \\
+ &=& (-pr-2r^2 + r^2 +r^2 + rw ) I^2 + (pr+2r^2 -2r^2 - 2rw + prz ) I + r(w+r-pz) \\
+ &=& r(w-p) I^2 + r(p-2w+prz) I + r(w+r-pz) \\
+ &=& (w-p) I^2 + (p-2w+pz) I + (w+r-pz) \\ 
 }
-
+Now it's a good idea to give the prefactors names
 \eqa{
-J_{2,1}&=& \frac{\partial}{\partial [I]} [\dot{SS}] \\
- &=& \frac{\partial}{\partial [I]} \left( r[SI] - 2p\frac{[SS][SI]}{[S]} + w[SI]\right) \\
- &=&  2p\frac{[SS][SI]}{[S]^2} \frac{\partial [S]}{\partial [I]}  \\
- &=&  -2p\frac{[SS][SI]}{[S]^2} 
+a &=& w-p \\
+b &=& p(1+z)-2w \\
+c &=& w+r-pz  
 }
-
-\eqa{
-J_{2,2}&=& \frac{\partial}{\partial [SS]} [\dot{SS}] \\
-  &=& \frac{\partial}{\partial [SS]} \left( r[SI] - 2p\frac{[SS][SI]}{[S]} + w[SI]\right) \\
-  &=& -r - 2p\frac{[SI]}{[S]}+2p\frac{[SS]}{[S]} - w \\
-}
- 
-\eqa{
-J_{2,3}&=& \frac{\partial}{\partial [II]} [\dot{SS}] \\
-  &=& \frac{\partial}{\partial [II]} \left( r[SI] - 2p\frac{[SS][SI]}{[S]} + w[SI]\right) \\
-  &=& -r +2p\frac{[SS]}{[S]} - w \\
-}
-
-\eqa{
-J_{3,1}&=& \frac{\partial}{\partial [I]} [\dot{II}] \\
- &=& \frac{\partial}{\partial [I]} \left( p[SI] + p\frac{[SI]^2}{S} - 2r[II]  \right) \\
- &=& \frac{\partial}{\partial [I]} \left( p[SI] + p\frac{[SI]^2}{S} - 2r[II]  \right) \\
- &=&   p\frac{[SI]^2}{S^2} \frac{\partial [S]}{\partial [I]}  \\
- &=&  - p\frac{[SI]^2}{S^2} 
-}
-
-\eqa{
-J_{3,2}&=& \frac{\partial}{\partial [SS]} [\dot{II}] \\
- &=& \frac{\partial}{\partial [SS]} \left( p[SI] + p\frac{[SI]^2}{S} - 2r[II]  \right) \\
- &=&  -p + p\frac{2[SI]}{S} \frac{\partial [SI]}{\partial [SS]} \\
- &=&  -p - p\frac{2[SI]}{S} 
-}
-
-\eqa{
-J_{3,3}&=& \frac{\partial}{\partial [II]} [\dot{II}] \\
- &=& \frac{\partial}{\partial [II]} \left( p[SI] + p\frac{[SI]^2}{S} - 2r[II]  \right) \\
- &=& -p - p\frac{2[SI]}{S} - 2r 
-}
-
-\subquestion Find the steady state where the epidemic is extinct. Evaluate the Jacobi matrix in that steady state.
-
-\solution
-Ecological intuition tells us that in the extinct state there are no infected $[I]=0$ and no links involving infected $[IS]=[II]=0$. Hence
-\eqa{
-[S]&=&1\\{}
-[SS]&=&z/2
-}
-Substituting back into the equations confirms that this satisfies the conservation laws and the rate of change is zero. 
-
+which allows us to write the polynomial in the standard form 
 \eq{
-J_{1,1} = -r
+0 = aI^2 + bI + c. 
 }
-
+The solution is the `quadratic formula'
 \eq{
-J_{1,2} = -p
+I = \frac{-b\pm \sqrt{b^2-4ac}}{2a}
 }
-\eq{
-J_{1,3} = -p
-}
-\eq{
-J_{2,1} = -2p\frac{[SS][SI]}{[S]^2} = 0 
-} 
-\eq{ J_{2,2} = -r -2p\frac{[SI]}{[S]}+2p\frac{[SS]}{[S]} - w = -r+pz-w 
-}
- 
-\eq{
-J_{2,3} = -r +2p\frac{[SS]}{[S]} - w = -r +pz -w 
-}
-
-\eq{
-J_{3,1} = - p\frac{[SI]^2}{S^2} = 0 
-}
-
-\eq{
-J_{3,2} =  -p - p\frac{2[SI]}{S} = -p 
-}
-
-\eq{
-J_{3,3} = -p - p\frac{2[SI]}{S} - 2r = -p -2r
-}
-So in summary
-\eq{
-{\bf J} = \aveccc{ -r & -p & - p\\ 0 & -r +pz-w & -r +pz-w \\ 0 & -p & -p -2r 
-}
-}
-
-\subquestion 
-You should be able to read off one eigenvalue of the Jacobian straight away. For reasonable choices of parameters this eigenvalue is always negative. The other two eigenvalues are given by a two by two matrix. 
-Identify this reduced matrix. 
-
-\solution
-Because there is only a diagonal entry in the first column of the Jacobian the diagonal entry is an eigenvalue 
-\eq{
-\lambda=-r
-}
-and the remaining eigenvalues are given by the reduced matrix 
-\eqn{
-\avecc{ -r +pz-w & -r +pz-w \\ -p & -p -2r }
-}
-
-\subquestion 
-We could now compute the eigenvalues of the remaining 2x2 matrix. But we can also make our life a bit easier. The symmetry of the system (extinct steady state is fixed at zero) tells us that a bifurcation occurring on the extinct state will likely be a transcritical. Hence we expect the epidemic threshold to be a transcritical bifurcation. In this bifurcation one eigenvalue becomes zero and therefore also the determinant becomes zero. Use this to find the epidemic threshold and express it in terms of the critical value of $p$ from which on the disease can invade a healthy network. 
-
-\solution
-The determinant is the product of the eigenvalues of a matrix. Hence the determinant is zero if and only if there is a zero eigenvalue. Hence we can find the conditions for a zero eigenvalue to occur by writing 
-\eq{
-\left| \begin{array}{c c} -r +pz-w & -r +pz-w \\ -p & -p -2r \end{array} \right| =0 
-}
-Computing the determinant yields 
-\eq{
-(-r +pz-w)(-p -2r+p) =0 
-}
-The second term simplifies to $-2r$. Since we are not interested in $r=0$ we can divide by this term which leaves us with 
-\eq{
--r +pz-w = 0
-}
-So the critical value of $p$ is 
-\eq{
-p = \frac{r+w}{z}
-}
-One interesting aspect of this equation is that the critical point of the non-adaptive SIS model (e.g. from Ex.~17.1) appears as a special case for $w=0$. 
+which is the answer we are looking for. 

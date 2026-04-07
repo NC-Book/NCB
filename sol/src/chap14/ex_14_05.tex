@@ -1,5 +1,5 @@
 
-\exercise{Walk through a more complex two-dimensional analysis}{3}
+\exercise{Complex system step-by-step}{3}
 \label{exComplexComplex}
 Let's go step-by-step through the analysis of the following system:
 \eqan{
@@ -7,7 +7,7 @@ Let's go step-by-step through the analysis of the following system:
 \dot{y} &=& \frac12 -x
 }
 \subquestion
-Compute the steady state of the system. Then find the Jacobian in the steady state, and compute the eigenvalues:
+Compute the steady state of the system. Then find the Jacobian in the steady state, and compute the eigenvalues.
 
 \solution
 From the second equation we see 
@@ -22,8 +22,7 @@ and hence
 \eq{
 y^*=-2\frac{a}{b}
 }
-
-We compute the elements of the Jacobian matrix.
+\paragraph{Jacobian.}We compute the elements of the Jacobian matrix.
 \eqa{
 J_{11}&=&\left. \frac{\partial \dot{x}}{\partial x}\right|_* = by^* = -2a  \\
 J_{12}&=&\left. \frac{\partial \dot{x}}{\partial y}\right|_* = bx^* = b/2 \\
@@ -34,7 +33,7 @@ hence
 \eq{
 {\bf J} = \avecc{-2a & b/2 \\ -1 & 0 }
 }
-We find the characteristic polynomial using the approach 
+\paragraph{Eigenvalues.}We find the characteristic polynomial using the approach 
 \eqn{
 \avecc{-2a & b/2 \\ -1 & 0 }\avec{1\\ B} = \lambda \avec{1\\ B} 
 }
@@ -56,7 +55,7 @@ a^2-b/2&=&(\lambda+a)^2 \\
 \lambda_{1,2} &=& -a \pm  \sqrt{a^2-b/2} 
 }
 \subquestion 
-You should now have an expression for the eigenvalues that contains a square root. To make sense of it, lets determine for which values of $a$ and $b$ the eigenvalues are complex. (i.e.~when is the term under the root negative such that it the root becomes imaginary.)
+Determine for which values of $a$ and $b$ the eigenvalues are complex.
 
 \solution
 The eigenvalues are complex when
@@ -69,14 +68,14 @@ which is the case when
 }
 
 \subquestion
-Now, assuming the eigenvalues are complex, consider the real part of the two eigenvalues and hence find a condition for stability of the steady state. 
+How does stability depend on $a$ and $b$ if the eigenvalues are complex?
 
 \solution
 Since we know that the results of the square root are imaginary in this case the real part is just ${\rm Re}(\lambda)=-a$ and hence the steady state is stable if 
 \eqn{a>0.}
 
 \subquestion 
-Assuming eigenvalues are real, consider the expression for the leading (i.e.~largest) eigenvalue $\lambda_1$ and hence determine the stability in this case. 
+How does stability depend on $a$ and $b$ if the eigenvalues are real?
 \solution 
 Because the we are now assuming that the eigenvalues are real the square has real values and the leading eigenvalue is 
 \eqn{
@@ -96,7 +95,7 @@ Note that we need squaring both sides of an inequality can produce wrong results
 \eqn{a>0,\,b<0}
 
 \subquestion 
-Summarize your results. Draw a diagram where $a$ and $b$ are the axis. In this diagram draw lines that correspond to the stability conditions and the points where the eigenvalues change from real to complex. Then color in the area where the steady state is stable. 
+Draw a diagram where $a$ and $b$ are the axis. Use lines to indicate where stability changes or eigenvalues become complex. Color in the area where the steady state is stable. 
 
 \solution
 We know 

@@ -35,10 +35,10 @@ q&=&\sum k q_k \\
 So, we expect person X to infect in average 75 other people. This answers part (a) of the question. 
 
 \subquestion 
-What is the expected number of people that are infected by the people that X infects (assume a locally treelike network $c=0$) 
+What is the expected number of people that are infected by the people that X infects (assume a locally treelike network without degree correlations) 
 
 \solution
-In part (b) we are asked for the expected number of people that those 75 people infect. Since the 75 infected have been infected via a link, we can expect them to be typical neighbors so each of these people is expected to infect 75 other people in turn. Hence the answer to part (b) is $75\cdot75=5,625$. In this part we have used the treelike assumption ($c=0$).
+In part (b) we are asked for the expected number of people that those 75 people infect. Since the 75 infected have been infected via a link, we can expect them to be typical neighbors so each of these people is expected to infect 75 other people in turn. Hence, the answer to part (b) is $75\cdot75=5,625$. In this part we have used the treelike assumption ($c=0$).
 
 \subquestion 
 Why are these estimates only valid for the early stage of the pandemic?
@@ -46,4 +46,4 @@ Why are these estimates only valid for the early stage of the pandemic?
 \solution
 If we were considering later stages then the disease would have spread widely, so we would have to take into account that some of X's contacts may be already infected, which means that X can't infect them anymore. During the early stage of the disease this is not a problem because we know that almost nobody is infected. 
 
-I am writing this solution on March 28, 2020. I haven't left my house for nearly two weeks as I am self-isolating during the CoViD-19 pandemic. The zombie disease considered in this exercise is much more virulent than Covid, but the same mathematics apply. Today the official number of infected in the US is 100.000. Even this high number means that a randomly picked person in the US is infected is only 0.3\%, so our assumption the that none of X's contacts are infected before X infects them is still a very good approximation. 
+I am writing this solution on March 28, 2020. I haven't left my house for nearly two weeks as I am self-isolating during the CoViD-19 pandemic. The zombie disease considered in this exercise is much more virulent than Covid, but the same mathematics apply. Today the official number of infected in the US is 100.000. Even this high number means that a randomly picked person in the US is infected is only 0.3\%, so our assumption that none of X's contacts are infected before X infects them is still a very good approximation. 
