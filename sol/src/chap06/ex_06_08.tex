@@ -15,7 +15,7 @@ z&=&\sum k p_k \\
  &=& 2.25 + 1.2  + 3.55 = 7. 
 }
 Hence we expect a random employee to have in average 7 friends in the company. 
-But, Ada has shared her secret not with a random person, but with a friend. So, let's compute the excess degree distribution 
+\paragraph{Random employee friend's average number of friends.} But, Ada has shared her secret not with a random person, but with a friend. So, let's compute the excess degree distribution 
 \eqa{
 q_k&=&(k+1)p_{k+1}/z \\
  &=&(k+1)(0.75 \delta_{k+1,3} + 0.2 \delta_{k+1,6} + 0.05 \delta_{k+1,71})/7 \\
@@ -25,7 +25,9 @@ q_k&=&(k+1)p_{k+1}/z \\
  &=&(2.25 \delta_{k,2} + 1.2 \delta_{k,5} + 3.55 \delta_{k,70})/7.  
 }
 We could now also divide the terms by the 7 but this leads to unsightly decimals, so we skip this for now. 
-\paragraph{Random employee's average number of friends.} Instead let's compute the expected number of friends that Bob has in addition to Ada. This is the mean excess degree 
+Instead let's compute the expected number of friends that Bob has in addition to Ada. 
+
+This is the mean excess degree 
 \eqa{
 q&=&\sum k q_k \\
  &=&\sum k (2.25 \delta_{k,2} + 1.2 \delta_{k,5} + 3.55 \delta_{k,70})/7 \\
