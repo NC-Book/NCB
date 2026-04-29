@@ -4,7 +4,7 @@ The following figure shows the probability that a random graph drawn from an ens
 \begin{center}
 \includegraphics[width=0.4\textwidth]{netsdistribution.png}
 \end{center}
-But how was this figure actually made? Here we illustrate the underlying calculations with the example $z=2$.
+Here we illustrate the underlying calculations with the example $z=2$.
 
 \subquestion Compute the probability that an individual network drawn from an ensemble with $N=100$ and mean degree 2, actually has a mean degree of $z=2$. 
 
@@ -39,7 +39,7 @@ B(K_{\rm max},K)=\frac{K_{\rm max}!}{(K_{\rm max}-K)!K!}
 }
 \paragraph{Probability for mean degree $z=2$.}Now putting everything together we can write the probability that a network drawn from the ensemble has $K$ links as 
 \eq{
-  p^{K}q^{K_{\rm max}-K} B(K_{\rm max},K) = \left(\frac{2}{99}\right)^{100}\left(\frac{97}{99}\right)^{4580}\frac{100! 4850!}{4950!} 
+  p^{K}q^{K_{\rm max}-K} B(K_{\rm max},K) = \left(\frac{2}{99}\right)^{100}\left(\frac{97}{99}\right)^{4850}\frac{4950!}{100!\cdot 4850!} 
 }
 Are we done yet? No, because this equation is quite horrible. We certainly don't want to compute the factorial of 4950 and also $(2/99)^{100}$ may give you numerical trouble. So,  we need to simplify this a bit. 
 
@@ -64,7 +64,7 @@ which is a surprisingly sane result from an expression that is still a bit crazy
 
 \paragraph{The problem.}Probabilities are quite intuitive but they are not well suited when we compare distributions with different numbers of values. Consider that the figure shows the probabilities for networks up to mean degree 3. For $N=100$ nodes this means the probabilities for networks with 0 to 150 links are shown in the figure, so 151 possible outcomes in total. By contrast for $N=10000$ nodes there are 15001 possible values that can be realized in the same interval. Due to the much higher number of outcomes in the larger network each one outcome has individually a much lower probability, which makes is difficult to visualize and meaningfully compare the distribution from network of different size. 
 
-\paragraph{The solution.}The solution to this problem is to convert the individual probabilities into a probability density, that is in this case probability per unit of $z$. To do this conversion we only need to divide the probabilities by the average $z$-distance between out comes. For example for the network with $N=100$ two consecutive values of $z$ that are possible differ by one link. For example at $K=100$ links the network has mean degree $z=2$. The next denser network that is possible has $K=101$ links for a mean degree  of $z=2.02$ hence the distance between adjacent outcomes is $0.02$ So to convert the probabilities into probability densities we take our computed probabilities and divide them by 0.02, which is the same as multiplying them by 50. For the outcome probability density at $z=2$ in the network with $N=100$ we find $0.04\cdot 50 = 2$, which is the value shown in the figure. 
+\paragraph{The solution.}The solution to this problem is to convert the individual probabilities into a probability density, that is in this case probability per unit of $z$. To do this conversion we only need to divide the probabilities by the average $z$-distance between out comes. For example for the network with $N=100$ two consecutive values of $z$ that are possible differ by one link. For example at $K=100$ links the network has mean degree $z=2$. The next denser network that is possible has $K=101$ links for a mean degree  of $z=2.02$ hence the distance between adjacent outcomes is $0.02$. So to convert the probabilities into probability densities we take our computed probabilities and divide them by 0.02, which is the same as multiplying them by 50. For the outcome probability density at $z=2$ in the network with $N=100$ we find $0.04\cdot 50 = 2$, which is the value shown in the figure. 
 
-\paragraph{Conclusion.}Probability densities are convenient to interpret visually as the integral over the curve should always be 1. Hence even of networks are now described by curves that have the same volume under the curve. 
+\paragraph{Conclusion.}Probability densities are convenient to interpret visually as the integral over the curve should always be 1. Hence networks are now described by curves that have the same volume under the curve. 
 

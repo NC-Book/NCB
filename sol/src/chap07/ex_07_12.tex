@@ -13,7 +13,7 @@ n_{\diamond -} = \frac{z^k}{s}N^{n-k} = \frac{z^5}{2}
 
 \solution We follow the same reasoning as in the chapter. There are in total $n_\square$ four-cycles that could be part of one or more lollipop. Also the network has $N-4\approx N$ nodes which to which each four-cycle could connect to form a lollipop. 
 
-We can now imagine that we pick one four-cycle and one additional node at the time and check if the are linked so that they make a lollipop. The number of these tests that we need to carry out to check all combinations of four-cycles and nodes is approximately $Nn_{\square}$. 
+We can now imagine that we pick one four-cycle and one additional node at the time and check if they are linked so that they make a lollipop. The number of these tests that we need to carry out, to check all combinations of four-cycles and nodes is approximately $Nn_{\square}$. 
 
 The probability that a given node links to a given four-cycle is $4p$, because there are 4 nodes in the cycle that we can potentially link to and the link to each of the 4 nodes was placed with probability $p$ in the network creation. 
 Multiplying this probability with the number cycle-node combinations that we check gives us
@@ -22,7 +22,7 @@ n_{\diamond -} = 4p N n_{\square} \approx 4z n_{\square}
 }
 Note that there is no additional symmetry factor. The symmetry of the four-cycle is already accounted for in the number of squares. If anything we reduce the symmetry by turning a four-cycle into a lollipop. This reduction in symmetry is another way of explaining why the factor 4 appears (4-cycle $s=8$ becomes lolly $s=2$). 
 
-\subquestion Now, substitute the estimate for the number of 4-cycles from  Ex.~7.4 into your solution from (b) and show that the result is consistent with (a).  
+\subquestion Substitute the estimate for the number of 4-cycles from  Ex.~7.4 into your solution from (b) and show that the result is consistent with (a).  
 
 \solution 
 We know from above that the number of expected number of four-cycles is 
