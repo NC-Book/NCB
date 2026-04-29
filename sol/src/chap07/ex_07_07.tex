@@ -5,7 +5,7 @@ We know that large random graphs with $z\ll N$ are locally treelike, but we also
 So we expect that there are few very short cycles because the network is locally tree-like. We also expect that there are few very long cycles because the network isn't actually that large. So there must be some kind of optimum in the middle. 
 \paragraph{Approximate formula.}For a first try we can use the approximate formula 
 \eq{
-n_{\rm motif} = \frac{1}{s} z^k N{n-k}
+n_{\rm motif} = \frac{1}{s} z^k N^{n-k}
 }
 We have already figured out above that for a cycle of length $l$ (an $l$-cycle) the symmetry number is $s=2l$. Moreover $n=k=l$ is true in every cycle. So the equation simplifies to 
 \eq{
@@ -23,11 +23,11 @@ n_{\rm 3-cycle}=\frac{3!}{6} (2\cdot 10^{-2})^3 \frac{99\cdot 100 \cdot 101}{1 \
 so that's just 1 or two three-cycles. However, maybe we have learned something from this calculation. 
 \paragraph{Finding the most common cycle.}Notice that the $n!$ enters from the denominator of the Binomial Formula will always cancel with the $n!$ that is in the front of the motif equation. we can thus use
 \eq{
-n_{\mbox{$l$-cycle}} = \frac{1}{2l} p^l 101\cdot 100 \cdots 101-l
+n_{\mbox{$l$-cycle}} = \frac{1}{2l} p^l 101\cdot 100 \cdots (101-l)
 }
-Now consider what happens when we increase $l$ we multiply one more factor of $p$ the denominator of the fraction in the beginning increases by 2 and we multiply a factor of $101-l$ in the end. Does this mean there are more or less $l+1$-cycles than $l$-cycles? Let's consider the ratio 
+Now consider what happens when we increase $l$: we multiply one more factor of $p$, the denominator of the fraction in the beginning increases by 2 and we multiply a factor of $101-l$ in the end. Does this mean there are more or less $l+1$-cycles than $l$-cycles? Let's consider the ratio 
 \eq{
-\frac{n_{\mbox{$l+1$-cycle}}}{n_{\mbox{$l$-cycle}}} =  \frac{\frac{1}{2l+2} p^{l+1} 101\cdot 100 \dots 101-l \cdot 101-l-1}{\frac{1}{2l} p^l 101\cdot 100 \dots 101-l} = \frac{l+1}{l} p (100 -l)
+\frac{n_{\mbox{$l+1$-cycle}}}{n_{\mbox{$l$-cycle}}} =  \frac{\frac{1}{2l+2} p^{l+1} 101\cdot 100 \dots (101-l) \cdot (101-l-1)}{\frac{1}{2l} p^l 101\cdot 100 \dots (101-l)} = \frac{l+1}{l} p (100 -l)
 }
 The first factor hardly matters because $(l+1)/l\approx 1$ for all but the first few $l$. The factor $p$ is 0.02 (so a division by 50). However for the first few $l$ the last factor constitutes a multiplication of almost 100. for example for $l=3$ we have 
 \eq{
