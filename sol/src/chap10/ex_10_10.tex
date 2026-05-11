@@ -18,13 +18,13 @@ Furthermore we know the definition of the attack function
 \eq{
 R=\sum r_k x^k.
 }
-Substituting the $r_k$ we can write
+Substituting $r_k$, we can write
 \eqa{
 R &=& \sum p_k (1-y^k) x^k \\
   &=& \left(\sum k p_k x^k \right) - \left( \sum p_k (xy)^k \right) \\
   &=& G(x) - G(xy) = G-G(xy)
 }
-where we used $G(x)=sum p_k x^k$ in the last step.
+where we used $G(x)=\sum p_k x^k$ in the last step.
 
 \subquestion
 Now start from $R=G-G(xy)$ and show that the properties of the network after the viral attack are given by 
@@ -43,7 +43,7 @@ G_{\rm a}=\frac{G(\tilde{A}y)}{G(y)}, \qqq Q_{\rm a}=\frac{Q(\tilde{A}y)}{Q(y)},
 where $\tilde{A}=\tilde{c}x+\tilde{r}$ and $\tilde{c}=1-\tilde{r}=yG'(y)/z=yQ(y)$. 
 
 \solution
-\paragraph{Number of nodes.} To find the equation for $N$ we need to work out what proportion of the network is removed in the attack: 
+\paragraph{Number of nodes.} To find the equation for $N_\mathrm{a} $ we need to work out what proportion of the network is removed in the attack: 
 \eq{
 r=R(1)=G(1)-G(y) = 1-G(y),  
 }
@@ -90,7 +90,7 @@ and then compute $z_{\rm a}$ using the relationship between degree generating fu
 \eq{
 z_{\rm a} = G_{\rm a}'(1)
 }
-In this case we have take care with the derivative as we are differentiating with respect to $x$, which appears as the argument of $\tilde{A}$, (remember $\tilde{A}=\tilde{A}(x)$). We find
+In this case we must take care with the derivative as we are differentiating with respect to $x$, which appears as the argument of $\tilde{A}$, (remember $\tilde{A}=\tilde{A}(x)$). We find
 \eqa{
 z_{\rm a} &=& \left.\frac{\partial}{\partial x} \frac{G(\tilde{A}y)}{G(y)} \right|_{x=1} \\
 &=& \left. \frac{G'(\tilde{A}y)\tilde{A}'y}{G(y)} \right|_{x=1} \\

@@ -6,7 +6,7 @@ I have been developing a new messaging app. Of course the last thing everybody n
 Consider a configuration model network where the nodes are users and links mean that the users regularly exchange messages. Based on your understanding of random networks what degrees do you expect the initial adopters of the messaging app to have. 
 
 \solution 
-They will all have degrees of 4 or less. The spreading is initially treelike. Every user who adopts the app will have one friend who is also an adopter. However, until our app has spread to a large proportion of the network every adopter will have only one friend using the app by the time they start using it. This implies that the early adopters are all people who have 4 or less friends. 
+They will all have degrees of 4 or less. The spreading is initially treelike. Every user who adopts the app will have one friend who is also an adopter. However, until our app has spread to a large proportion of the network every adopter will have only one friend using the app by the time they start using it. This implies that the early adopters are all people who have 4 or fewer friends. 
 
 \subquestion
 Assume that the network is described by a general degree distribution $p_k$.
@@ -31,9 +31,9 @@ A giant component exists if $q_{\rm a}\geq 1$ hence our app will be successful i
 \eq{
 2p_2+6p_3+12p_4 \geq z
 }
-This answer also points to an interesting rule. If something can spread only on nodes of a certain degree we can compute the mean excess degree only on those nodes (i.e.~treating all other $p_k$ as zeroes). This even works if we have a certain chance of infecting nodes of a certain degree. For example if we can infect every node but only with 50\% chance then can just divide all the $p_k$ by 2 and then compute the mean excess degree. That such simple rules exists further illustrates the beauty of the mean excess degree. 
+This answer also points to an interesting rule. If something can spread only on nodes of a certain degree we can compute the mean excess degree only on those nodes (i.e.~treating all other $p_k$ as zeroes). This even works if we have a certain chance of infecting nodes of a certain degree. For example if we can infect every node but only with a 50\% chance, then we can just divide all the $p_k$ by 2 and then compute the mean excess degree. That such simple rules exists further illustrates the beauty of the mean excess degree. 
 
-Note having mean degree is double edged sword for our messaging app. The mean degree appears in the denominator of the condition, thus a high mean degree makes it less likely that the app can succeed. However, if the mean degree is too low then there might not be a giant component at all in the network, which would also doom our app to fail. 
+Note that having mean degree is a double edged sword for our messaging app. The mean degree appears in the denominator of the condition, thus a high mean degree makes it less likely that the app can succeed. However, if the mean degree is too low then there might not be a giant component at all in the network, which would also doom our app to fail. 
 
 The calculation in this exercise is the central piece of a highly-cited paper by Duncan Watts 
 (PNAS 99, 5766-5771, 2002). If you managed to get the result yourself, you can be a little bit proud. 

@@ -1,7 +1,7 @@
 \exercise{Polynomial Long Division}{1}\label{exAttackPolyLong}In the chapter we needed to solve $v=(0.8v+0.2)^3$. Use the known solution $v=1$ to reduce this equation to a quadratic form by polynomial long division. [Check the solution, if you haven't seen this before.]
 
 \solution
-\paragraph{Bringing the condition into a nicer form.}To get started we bring the condition into a nicer form. write the decimals as fractions, multiply out the cubic function, and bring everything to one side. 
+\paragraph{Bringing the condition into a nicer form.}To get started we bring the condition into a nicer form. Write the decimals as fractions, multiply out the cubic function, and bring everything to one side. 
 \eqa{
 0&=& \left(\frac{4}{5}v+\frac{1}{5}\right)^3 -v \\
  &=& (4v+1)^3 -125v \\ 
@@ -25,10 +25,10 @@ X(v-1)=112v^2-113v+1.
 }
 This equation is now asking the question, what do we need to multiply $v-1$ by to make $112v^2-113v+1.$. We proceed as above and look at the leading term, $112v^2$. this tells us that $X$ must be of the form 
 \eq{X=112v+Y,}
-where $Y$ is an undetermined constant. Substituting this into out previous condition we find we have
+where $Y$ is an undetermined constant. Substituting this into our previous condition we find we have
 \eqa{
 (112v+Y)(v-1)&=&112v^2-113v+1\\
-112v^2-112+Y(v-1)&=&112v^2-113v+1\\
+112v^2-112v+Y(v-1)&=&112v^2-113v+1\\
 Y(v-1)&=&-v+1\\
 Y=-1
 }
@@ -43,4 +43,4 @@ Y=-1
 On the right-hand side the known solution $v=1$ has been divided out of the rest of the polynomial. So to find the other solutions we now only need to solve the quadratic polynomial 
 $64v^2+112v-1$. 
 
-This can now be solved in the normal way, but it's slightly tedious and boring so let's skip this and talk about something more interesting: Did you notice that the polynomial long division is a greedy algorithm? We want to find all the terms of the quadratic polynomial, but in the beginning most are hard to guess. However, we can work out the quadratic term because all subsequent lower-order term that we add cannot interfere with the quadratic. Once we have the quadratic the linear becomes easy, and one we have the linear one, the constant term becomes the easy as well. 
+This can now be solved in the normal way, but it's slightly tedious and boring so let's skip this and talk about something more interesting: Did you notice that the polynomial long division is a greedy algorithm? We want to find all the terms of the quadratic polynomial, but in the beginning most are hard to guess. However, we can work out the quadratic term because all subsequent lower-order term that we add cannot interfere with the quadratic. Once we have the quadratic the linear becomes easy, and once we have the linear one, the constant term becomes the easy as well. 

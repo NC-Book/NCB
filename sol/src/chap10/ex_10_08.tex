@@ -8,7 +8,7 @@ small to sustain animal populations for an extended amount of time, due to inbre
 \solution
 To answer this question we need to compute the giant component size after we have removed 80\% of the links from the original network.
 
-You may have guessed that randomly removing 80\% of the links from a random graph of mean degree $6$ leads to a random graph with mean degree $z_{\rm a}=  1.2$. If not we can show it very quickly. Recall that the generating function for an ER random graph is $G=exp{z(x-1)}$, hence
+You may have guessed that randomly removing 80\% of the links from a random graph of mean degree $6$ leads to a random graph with mean degree $z_{\rm a}=  1.2$. If not we can show it very quickly. Recall that the generating function for an ER random graph is $G=\exp{z(x-1)}$, hence
 \eq{
 G_{\rm a}=G(0.2x+0.8)=\exp{6((0.2x+0.8)-1)}=\exp{1.2(x-1)} 
 }
@@ -26,10 +26,10 @@ s=1-G_{\rm a}(v)=1-Q_{\rm a}(v)=1-v\approx 0.313698331
 }
 So we find the sheep on approximately 31\% of the islands.
 
-\subquestion There is also a species of rabbits on the islands. They also can only survive by forming a giant component of connected populations. But, they are surprisingly good swimmers so they can use all the links between islands, though thy can't colonize any islands where sheep are present. On what proportion of islands would you expect rabbits?
+\subquestion There is also a species of rabbits on the islands. They also can only survive by forming a giant component of connected populations. But, they are surprisingly good swimmers so they can use all the links between islands, though they can't colonize any islands where sheep are present. On what proportion of islands would you expect rabbits?
 
 \solution 
-From the perspective of rabbits the sheep are a viral attack on their network (weird thought isn't it). So let's work out what degree distribution this viral attack leaves of for the rabbits. 
+From the perspective of rabbits the sheep are a viral attack on their network (weird thought isn't it). So let's work out what degree distribution this viral attack leaves for the rabbits. 
 
 In this case we already know that the sheep will take up approximately 31\% of the network, and $A_{\rm c}$, the parameter $v_{\rm c}$ is the $v$ that we computed previously and the pruning function that removes the links that are not usable by sheep is 
 \eq{
@@ -59,7 +59,7 @@ where $\tilde{A}=\tilde{c}x+\tilde{r}$. Using the equation for $Q_{\rm a}$ from 
 Q_{\rm a}=\frac{Q(\tilde{A}y)}{Q(y)} = \frac{G(\tilde{A}y)}{G(y)} =
 \exp{zy(\tilde{A}-1)},
 }
-here we used that $G=Q$ because our initial network is ER. As we can see from the result the same still holds after the viral attack $G_{\rm a}=Q_{\rm a}$, this shows that the ER network is still an ER network after a viral attack on it's giant component, albeit with a lower mean degree. 
+here we used that $G=Q$ because our initial network is ER. As we can see from the result the same still holds after the viral attack $G_{\rm a}=Q_{\rm a}$, this shows that the ER network is still an ER network after a viral attack on its giant component, albeit with a lower mean degree. 
 
 We can now find the giant component size for rabbits by iterating 
 \eq{
@@ -71,6 +71,6 @@ where rab stands for rabbit. Starting from 0.5 yields
 \end{center}
 and then find the giant component size from
 \eq{
-s_{\rm rab}=1-G_{\rm a}(y_{\rm rab})=1-0.02366006026=0.9763399397.
+s_{\rm rab}=1-G_{\rm a}(v_{\rm rab})=1-0.02366006026=0.9763399397.
 }
 So in summary we expect to find sheep on approximately 31\% of the islands and rabbits on approximately 98\% of the islands without sheep.   
