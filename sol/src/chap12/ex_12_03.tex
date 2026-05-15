@@ -6,7 +6,7 @@ The mean degree of our network is
 \eqa{
 z&=&\sum k p_k \\
  &=&\sum_{k=1}^\infty k a k^{-3} \\
- &=& a \sum_{k=1}^\infty a k^{-2} 
+ &=& a \sum_{k=1}^\infty k^{-2} 
 }
 which is finite. We now compute the excess degree distribution 
 \eqa{
@@ -19,7 +19,7 @@ In the next step we want to show that the mean excess degree is infinite, so our
  q&=&\sum k q_k \\
   &=& \sum \frac{a}{z} k (k+1)^{-2} \\
   &=& \sum \frac{a}{z} (k+1) (k+1)^{-2} - \frac{a}{z}(1)(k+1)^{-2}  \\
-  &=& \left(\sum \frac{a}{z} (k+1) (k+1)^{-2}\right) - \left(\sum \frac{a}{z}\frac{a}{z}(k+1)^{-2}\right)  \\
+  &=& \left(\sum \frac{a}{z} (k+1) (k+1)^{-2}\right) - \left(\sum \frac{a}{z}(k+1)^{-2}\right)  \\
   &=& \frac{a}{z} \left(\sum  (k+1)^{-1}\right) - \frac{1}{z}\left(\sum a(k+1)^{-2}\right)  \\
   &=& \frac{a}{z} \left(\sum_{k=1}^\infty  k^{-1}\right) - \frac{1}{z}\left(\sum_{k=1}^\infty ak^{-2}\right)  \\    
   &=& \frac{a}{z} \left(\sum_{k=1}^\infty  k^{-1}\right) - \frac{z}{z} \\

@@ -1,45 +1,36 @@
 \exercise{Box of bolts \label{exGrowBolts}}{4}
-In a factory there is a big box of bolts, some of which are broken. At a rate $r$ a worker takes a bolt that is not broken out of the box. 
+In a factory there's a big box of bolts, some of which are broken. At a rate $r$ a worker takes a bolt that is not broken out of the box. Derive a differential equation for the proportion of bolts that are broken, then solve it. Check your result by deriving the same solution in a different (perhaps simpler?) way.
 
-\subquestion
-Write a differential equation for the number of bolts $N$ that are in the box.
+
 
 \solution
-By now we can write the equation for $N$ straight forwardly 
+\paragraph{Differential equation.} By now we can write the equation for $N$ straightforwardly 
 \begin{equation}
  \dot{N}=-r
 \end{equation}
-
-\subquestion
-Express the proportion of broken bolts $x$ as a function of $N$ and the number of broken bolts $B$.  
-
-\solution
+The proportion of broken bolts $x$ as a function of $N$ and the number of broken bolts $B$ is 
 \eq{
-x=\frac{B}{N} 
+x=\frac{B}{N} .
 }
+%Differentiate the equation with respect to time to find a differential equation for the number of broken bolts. (Note that $B$ is constant in time). 
+%Then use substitution to express the right hand side of the differential equation in terms of $x$ (There can be a $B$ on the right hand side because $B$ is a constant but we want to replace the dynamical variable $N$)
 
-\subquestion 
-Differentiate the equation from part (b) with respect to time to find a differential equation for the number of broken bolts. (Note that $B$ is constant in time). Then use substitution to express the right hand side of the differential equation in terms of $x$ (There can be a $B$ on the right hand side because $B$ is a constant but we want to replace the dynamical variable $N$)
-
-\solution
-Differentiating with respect to time yield
+Differentiating with respect to time yields
 \eq{
-\dot{x}=-\frac{B}{N^2} \dot{N} 
+\dot{x}=-\frac{B}{N^2} \dot{N}. 
 }
 We substitute $\dot{N}=-r$ and $N=B/x$ to find 
 \eq{
 \dot{x}=r\frac{x^2}{B}
 }
 
-\subquestion
-Solve the differential equation for $x$.
 
-\solution
+\paragraph{Solution.}
 We use separation of variables to write 
 \eq{
 \int \frac{1}{x^2} {\rm d}x = \int \frac{r}{B} {\rm d}t
 }
-Integrating we find
+Integrating, we find
 \eq{
 -\frac{1}{x} = \frac{rt}{B}+C
 }
@@ -52,11 +43,9 @@ By considering $t=0$ we find that $-C=1/x_0$, hence
 x(t) = \frac{1}{\frac{1}{x_0}-\frac{rt}{B}}
 }
 
-\subquestion
-Bonus: Check your result by computing $x(t)$ in a different way.
+\paragraph{Different derivation.}
 
-\solution 
-We can define the number of  functional (non-broken bolts as $F$). Straightforwardly the number of functional bolts is 
+We can define the number of  functional (non-broken) bolts as $F$. Straightforwardly, the number of functional bolts is 
 \eq{
 F=F_0-rt
 }

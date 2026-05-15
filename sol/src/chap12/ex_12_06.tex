@@ -12,7 +12,7 @@ Using the information from the question gives us
 \subquestion Find the steady state.
 
 \solution
-we solve 
+We solve 
 \eq{0=a-bx^*},
 which yields 
 \eq{
@@ -50,7 +50,7 @@ x(t) =\frac{a - \exp{-b(t+C)}}{b}
 }
 It is very reassuring to see that if we consider this solution after a very long time, $t\to \infty$, the exponential term will become vanishingly small and we are left with $x=a/b$, the steady state. 
 
-The problem with this solution is that you need to be able to integrate $1/(a-bx)$. This is not an insurmountable hurdle as you might just remember this integral, find it by trial an error (we get fractions from differentiating logs so differentiating some promising logs quickly leads to the right solution), or you could just look it up in a table of known integrals (you find them online these days, but having an integral table as a printed book is still valuable). 
+The problem with this solution is that you need to be able to integrate $1/(a-bx)$. This is not an insurmountable hurdle as you might just remember this integral, find it by trial and error (we get fractions from differentiating logs so differentiating some promising logs quickly leads to the right solution), or you could just look it up in a table of known integrals (you find them online these days, but having an integral table as a printed book is still valuable). 
 
 If none of the options above works for you, you can always try to find a more insightful solution. In this case the differential equation is almost linear, just with an offset $a$. We know that linear equations lead to exponential solutions, but in this case it cannot be a simple exponential because in the long run it needs to go to $a/b$ and not to zero.  
 
@@ -64,13 +64,13 @@ where $r$ and $s$ are free parameters that we introduced here. We can find the r
   rs \exp{st} &=& a - b \left(\frac{a}{b} + r \exp{st}\right) \\
   rs \exp{st} &=& a - a - br \exp{st} \\
   rs \exp{st} &=& - br \exp{st} \\
-  s &=& b \\
+  s &=& -b \\
 }
 which gives us the general solution in the form 
 \eq{
-x(t)=\frac{a}{b} + r \exp{-bt}
+x(t)=\frac{a}{b} + r \exp{-bt}.
 }
-this is the same solution that we also found using the separation of variables. It is actually a bit nicer as the free parameter $r$ enters in a cleaner way. If you are not convinced that these solutions are actually the same consider that the previous solution can be written as   
+This is the same solution that we also found using the separation of variables. It is actually a bit nicer as the free parameter $r$ enters in a cleaner way. If you are not convinced that these solutions are actually the same consider that the previous solution can be written as   
 \eq{
 x(t) =\frac{a}{b} - \frac{\exp{-bC}}{b} \exp{-bt}
 }
@@ -88,13 +88,13 @@ where we used that the steady state is constant in time. Now substituting the ol
 \eq{
 \dot{\delta} = - a + bx 
 }
-to also remove the $x$ from the right hand side we use the defining the definition of $\delta$ in the form $x=x^*-\delta$ which yields 
+to also remove the $x$ from the right hand side we use the definition of $\delta$ in the form $x=x^*-\delta$ which yields 
 \eq{
 \dot{\delta} = -a + b (x^* - \delta) 
 }
-If we now substitute $x^*=a/b$ this become 
+If we now substitute $x^*=a/b$, this become 
 \eq{
-\dot{\delta} = -a + b (a/b - \delta) = -a+a-b\delta 
+\dot{\delta} = -a + b (a/b - \delta) = -a+a-b\delta.
 }
 Cleaning up we find that this has become a linear differential equation 
 \eq{
@@ -104,7 +104,7 @@ As we have seen in the chapter the general solution for this differential equati
 \eq{
 \delta(t) = r \exp{-bt}
 }
-where $r$ is again an arbitrary constant. To find a solution in terms of $x$ we use the definition of $\delta$ again in the from $x=x^*-\delta$ which yields 
+where $r$ is again an arbitrary constant. To find a solution in terms of $x$ we use the definition of $\delta$ again in the form $x=x^*-\delta$ which yields 
 \eq{
 x(t) = \frac{a}{b} - r\exp{-bt},
 }

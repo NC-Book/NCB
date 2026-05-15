@@ -2,7 +2,7 @@
 Find the general solutions for the following differential equations:
 \begin{enumerate}
 \item \eqn{\dot{x} = 4x} 
-\item \eqn{\dot{x} = \frac{1}{2nx}}
+\item \eqn{\dot{x} = \frac{1}{2x}}
 \item \eqn{\dot{x} = \frac{x}{a+t}}
 \item \eqn{\frac{\d{c}_k}{\d{k}} = - \frac{2c_k}{k}}
 \end{enumerate}
@@ -35,5 +35,13 @@ x &=& \pm \sqrt{t+C}
 \log (x) &=& \log(a+t) + C \\
 x &=& \exp{\log(a+t) + C} \\
 x &=& A (a+t)
+}
+
+\item
+\eqa{
+\frac{\d{c}_k}{\d{k}} &=& \frac{-2c_k}{k} \\
+\int \frac{1}{c_k} \d{c}_k &=& \int \frac{-2}{k}\d{k} \\
+\log (c_k) &=& -2 \log (k) +C  \\
+c_k &=& A k^{-2}
 }
 \end{enumerate}

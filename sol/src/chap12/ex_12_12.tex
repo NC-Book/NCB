@@ -5,11 +5,11 @@ Many systems in nature exhibit logistic growth, which is described by the logist
 \subquestion Show that the equation for the SIS model can be written in the form of logistic growth and determine the values of $A$ and $K$.
 
 \solution 
-In the logistic differential equation the variable is called $x$ while in the SIS model we called it $I$, so lets start by renaming, $I=x$. In terms of $x$ we can write our SIS model as 
+In the logistic differential equation the variable is called $x$ while in the SIS model we called it $I$, so let's start by renaming, $I=x$. In terms of $x$ we can write our SIS model as 
 \eq{
 \dot{x}=p(1-x)x -rx
 }
-To bring it into the form of the logistic differential equation it is usefull to first collect all powers of $x$,
+To bring it into the form of the logistic differential equation, it is useful to first collect all powers of $x$,
 \eq{
 \dot{x} = (p-r)x - p x^2  
 }
@@ -17,7 +17,7 @@ Now we can isolate one factor of $x$, which gives us
 \eq{
 \dot{x} = x\left((p-r)- p x\right).  
 }
-We have arrived almost at the desired form however, there is still a factor $p$ in front of the $x$ in the bracket, whereas there is only a 1 there in the logistic growth. Pulling this p out yields
+We have arrived almost at the desired form, however, there is still a factor $p$ in front of the $x$ in the bracket, whereas there is only a 1 there in the logistic growth. Pulling this $p$ out yields
 \eq{
 \dot{x} = xp\left(\frac{(p-r)}{p}- x\right).  
 }
@@ -44,7 +44,7 @@ This leads us to the integral equation
 }
 The integral on the right is easy and we can solve it straight away
 \eq{
-\int \frac{1}{x(K-x)} {\rm d}x = At+C 
+\int \frac{1}{x(K-x)} {\rm d}x = At+C .
 }
 
 \subquestion
@@ -52,7 +52,7 @@ We are now left with a more difficult integral to solve. To do this, first show 
 \eqn{
  \frac{a}{x}+\frac{b}{K-x}  
 }
-where $a$ and $b$ are constants. In other words: Find $a$ and $b$ such that such that the expression above becomes identical to the term under the integral. (Hint: After the first steps, isolate the $x$.)
+where $a$ and $b$ are constants. In other words: [Hint: After the first steps, isolate the $x$.]
 
 \solution 
 Consider that the term under our integral was 
@@ -75,7 +75,7 @@ which we can also write as
 \eq{
 0 = (Ka-1) + (b-a)x
 }
-This condition must be fulfilled for all values of $x$ which is only possible if we chose $a=b$. From the first bracket we see furthermore that $a=1/K$.
+This condition must be fulfilled for all values of $x$, which is only possible if we choose $a=b$. From the first bracket we see furthermore that $a=1/K$.
 
 Let's do a quick check to see if this is right. 
 \eq{
@@ -102,9 +102,9 @@ This gives us two simpler integrals to solve. We can solve the second one straig
 }
 Logarithms frequently show up when we integrate fractions. To solve the first of the two integrals, let's just try what happens if we differentiate $log(K-x)$, using the chain rule 
 \eq{
-\frac{{\rm d}}{{\rm d}x} \log(K-x) = \frac{K-x}{-1} 
+\frac{{\rm d}}{{\rm d}x} \log(K-x) = \frac{-1}{K-x} 
 }
-where the $-1$ appears due to the inner derivative. If multiply the whole equation and multiply by -1 and then integrate it again we get 
+where the $-1$ appears due to the inner derivative. If we multiply the whole equation and multiply by $-1$ and then integrate it, again we get 
 \eq{
 -\log(K-x) = \int \frac{1}{K-x} {\rm d}x 
 }
@@ -130,7 +130,7 @@ and then solve all the integrals
 \eq{
 \frac{1}{K} \log(x) - \frac{1}{K} \log(K-x) = At+C
 }
-We now need to solve for $x$ to do we fist multiply everything by $K$,
+We now need to solve for $x$, to do so, we first multiply everything by $K$,
 \eq{
 \log(x) - \log(K-x) = K(At+C) 
 }
