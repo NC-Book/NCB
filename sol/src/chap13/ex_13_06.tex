@@ -14,7 +14,7 @@ We write the system in the form
 \eq{
 \dot{\vec{x}} = \avecc{2 & -9 \\ -1 & 2} \vec{x}
 }
-where $\vec{x}=(x,y)^T$.
+where $\vec{x}=(x,y)^\mathrm{T}$.
 
 \subquestion 
 Write the initial state as a linear combination of the eigenvectors of the matrix that appears in (a). 
@@ -33,11 +33,11 @@ the first line reads
 \eq{
 2-9a = 5
 }
-which means $a=-1/3$ so the eigenvector for the $\lambda_1=5$ is 
+which means $a=-1/3$, so the eigenvector for $\lambda_1=5$ is 
 \eq{
 \vec{v}_1 = \avec{1 \\ -1/3}  
 }
-Because an eigenvector stays an eigenvector if we rescale it we can multiply it by 3 which gives a nicer version of the same eigenvector
+Because an eigenvector stays an eigenvector if we rescale it, we can multiply it by 3 which gives a nicer version of the same eigenvector
 \eq{
 \avec{3 \\ -1}  
 }
@@ -56,7 +56,7 @@ and hence $a=1/3$. So the eigenvector for $\lambda_2=-1$ is
 \vec{v}_2 = \avec{1 \\ 1/3}  
 }
 
-We now need to write the initial condititon as a combination of eigenvectors. We are looking for $c_1$ and $c_2$ such that
+We now need to write the initial condition as a combination of eigenvectors. We are looking for $c_1$ and $c_2$ such that
 \eq{
 \avecc{1\\ 1} = c_1 \avec{1 \\ -1/3} +c_2 \avec{1\\ 1/3} \label{ini}
 }
@@ -65,7 +65,7 @@ We now need to write the initial condititon as a combination of eigenvectors. We
 Solve the system (i.e.~compute $x(t)$ and $y(t)$).
 
 \solution
-Form the first row in \eqref{ini} we can see that 
+From the first row in \eqref{ini} we can see that 
 \eq{c_1+c_2=1.}
 and hence 
 \eq{c_2=1-c_1}
@@ -91,11 +91,11 @@ c_2 = 2
 }
 We know from the lecture that the solution has the form
 \eq{
-\vec{x}(t) = c_1 \exp{\lambda_1 t} \vec{v}_1 + c_2 \exp{\lambda_2 t} \vec{v}_2 
+\vec{x}(t) = c_1 \exp{\lambda_1 t} \vec{v}_1 + c_2 \exp{\lambda_2 t} \vec{v}_2 .
 }
-so in this case 
+So, in this case 
 \eq{
-\vec{x}(t)= - \exp{5t} \avec{1 \\ -1/3} + 2 \exp{-t} \avec{1 \\ 1/3} 
+\vec{x}(t)= - \exp{5t} \avec{1 \\ -1/3} + 2 \exp{-t} \avec{1 \\ 1/3}.
 }
 
 

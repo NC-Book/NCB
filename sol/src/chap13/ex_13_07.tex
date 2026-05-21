@@ -4,7 +4,7 @@ In Ex.~12.10 we studied the following system using a change of variables to dise
 \dot{x} &=& y  \\ 
 \dot{y} &=& -x
 }
-The previous solution was elegant but required a lot of insight. Now, solve the system also using the eigendecomposition method from this chapter. Also find the particular solution starting at $x=1$, $y=0$. (There may be a surprise on the way but eventually you should reach the same result as before. If it is too difficult now read the next chapter first, and then perhaps check the solution.) 
+The previous solution was elegant but required a lot of insight. Now, solve the system also using the eigendecomposition method from this chapter. Also find the particular solution starting at $x=1$, $y=0$. (There may be a surprise on the way but eventually you should reach the same result as before. If it is too difficult now, read the next chapter first, and then perhaps check the solution.) 
 
 \solution
 
@@ -29,7 +29,7 @@ So $\lambda$ now has the imaginary values
 \eq{
 \lambda_1 = i \qqq \lambda_2 = -i
 }
-where $i=\sqrt{-1}$. Since $b=\lambda$ the corresponding eigenvectors are
+where $i=\sqrt{-1}$. Since $b=\lambda$, the corresponding eigenvectors are
 \eq{
 \vec{v_1} = \avec{1 \\ i} \qqq \vec{v_2} = \avec{1 \\ -i}  
 }
@@ -37,11 +37,11 @@ Hence the general solution is
 \eq{
 \vec{x}(t) = c_1 \avec{1 \\ i} \exp{it} + c_2 \avec{1 \\ -i}  \exp{-it}.
 }
-We can use the initial condition from the exercise ($x=1$, $y=0$) to determine the value of $c_1$, $c_2$ For this purpose we consider the system at $t=0$, which yields 
+We can use the initial condition from the exercise ($x=1$, $y=0$) to determine the value of $c_1$ and $c_2$. For this purpose we consider the system at $t=0$, which yields 
 \eq{
 \avec{1\\ 0} = c_1 \avec{1 \\ i} + c_2 \avec{1 \\ -i} 
 }
-We can now immediately see that we need $c_1 = C_2$ to satisfy the condition in the lower row. And then using $c_1=c_2$ the upper row gives us $1=2c_1$, so the coefficients are 
+We can now immediately see that we need $c_1 = c_2$ to satisfy the condition in the lower row. Then, using $c_1=c_2$, the upper row gives us $1=2c_1$, so the coefficients are 
 \eq{
 c_1 =c_2 = \frac{1}{2}
 }
@@ -55,12 +55,12 @@ x(t) = \frac{\exp{it}+\exp{-it}}{2} = \cos(t)
 }
 and the second component is 
 \eq{
-y(t) = \frac{\exp{it}-\exp{-it}}{2i} = \sin(t)
+y(t) = \frac{\exp{it}-\exp{-it}}{2i} = -\sin(t)
 }
 and hence we find the expected solution 
 \eqa{
 x(t) &=& \cos(t) \\
-y(t) &=& \sin(t)
+y(t) &=& -\sin(t)
 }
 
 

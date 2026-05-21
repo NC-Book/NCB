@@ -8,7 +8,7 @@ Compute the eigenvalues and eigenvectors of the matrices
 Write the vector $(8,9)^{\rm T}$ as a linear combination of the eigenvectors of matrix $\bf A$. 
 
 \solution 
-For ${\bf A}$ we need to solve 
+\paragraph{Matrix A.} For ${\bf A}$ we need to solve 
 \eq{
 \avecc{6 & 5 \\ 12 & 2}\avec{a \\ b} = \lambda \avec{a \\ b} 
 }
@@ -40,19 +40,19 @@ We multiply both sides by 5 to avoid the fractions and then solve
 4 \pm 8 &=& \lambda  
 }
 So we have two eigenvalues $\lambda_1 = 12$ and $\lambda_2=-4$. Using Eq.~(\ref{eqv2}) we compute the corresponding values of $b$ which are 
-$6/5$ for the first eigenvector and $-4/5$ for the second one. To avoid the fractions we can multiply the eigenvectors by a factor of five which yields 
+$6/5$ for the first eigenvector and $-2$ for the second one. To avoid the fractions we can multiply the eigenvectors by a factor of five which yields 
 \eq{
-\vec{v_1} = \avec{5\\ 6} \qqq \vec{v_2} = \avec{5\\ -4}
+\vec{v_1} = \avec{5\\ 6} \qqq \vec{v_2} = \avec{5\\ -10}
 }
 
 To decompose the vector $(8,9)^{\rm T}$ into these eigenvectors we need to solve 
 \eq{
-  \avec{8\\ 9} = c_1 \avec{5\\ 6} + c_2 \avec{5\\ -4}
+  \avec{8\\ 9} = c_1 \avec{5\\ 6} + c_2 \avec{5\\ -10}
 }
 and hence 
 \eqa{
 8 &=& 5 (c_1+c_2) \\
-9 &=& 6c_1 -4c_2 
+9 &=& 6c_1 -10c_2 
 }
 We can rewerite the first equation as 
 \eq{
@@ -64,17 +64,17 @@ c_2=8/5-c_1.
 }
 Substituting into the second equation yields
 \eqa{
-9 &=& 6 c_1 - 4 ( \frac85 - c_1) \\
-9 &=& 10 c_1 - \frac{32}{5}  \\
-77/5 &=& 10 c_1   \\
-c_1 &=& 77/50
+9 &=& 6 c_1 - 10 ( \frac85 - c_1) \\
+9 &=& 16 c_1 - \frac{80}{5}  \\
+25 &=& 16 c_1   \\
+c_1 &=& 25/16
 }
 and correspodingly 
 \eq{
-c_2 = \frac{80}{50}- \frac{77}{50} = \frac{3}{50}. 
+c_2 = \frac{3}{80}. 
 }
 
-Now we also want to know the eigenvalues and eigenvectors of the matrix $\bf B$ but this is much less tedious. We consider
+\paragraph{Matrix B.} Now we also want to know the eigenvalues and eigenvectors of the matrix $\bf B$ but this is much less tedious. We consider
 \eq{
 \avecc{1 & 8 \\ 0 & 3 }\avec{a\\ b} = \lambda \avec{a\\ b}
 }
@@ -95,7 +95,7 @@ For convenience we can normalize the vectors such that $b=1$. In this case
 \eq{
 a+ 8 = 3a 
 }
-so an $8=2a$ and hence the vector is $(4,1)^{\rm T}$. 
+so $8=2a$ and hence the vector is $(4,1)^{\rm T}$. 
 
 There should also be a second eigenvector, but the only other way to solve Eq.~(\ref{eigencond}) is $b=0$, so let's try this:
 \eq{
@@ -105,7 +105,7 @@ Again we have already solved the second row, but the condition from the first ro
 \eq{
 a = \lambda a
 }
-Clearly, $\lambda=1$ and then we can chose $a$ however we like, so we might as well use $a=1$. So in summary the matrix ${\bf B}$ hast the eigenvectors 
+Clearly, $\lambda=1$ and then we can choose $a$ however we like, so we might as well use $a=1$. So in summary the matrix ${\bf B}$ has the eigenvectors 
 \eq{
 \vec{v_1} = \avec{4\\ 1} \qqq \vec{v_2}=\avec{1\\ 0}  
 }
