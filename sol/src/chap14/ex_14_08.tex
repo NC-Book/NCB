@@ -39,21 +39,21 @@ This linear map is solved by
 \eq{
 \delta_i = (f'(x^*))^i \delta_0
 }
-We can now see that the deviation $\delta$ gets smaller and smaller $|f'(x^*)|<1$, whereas for $|f'(x^*)|>1$ it becomes larger and larger in maginitude. So $|f'(x^*)|<1$ is the stability condition that we are looking for.  
+We can now see that the deviation $\delta$ gets smaller and smaller $|f'(x^*)|<1$, whereas for $|f'(x^*)|>1$ it becomes larger and larger in magnitude. So $|f'(x^*)|<1$ is the stability condition that we are looking for.  
 
 \subquestion
 Now, find the stability condition for multi-dimensional maps $\vec{x_{i+1}}=f(\vec{x_i})$, where $\vec{x_i}$ is a vector of dimension $N$.
 
 \solution
-We proceed in the same way as for the one.dimensional system. We start by defining $\vec{x^*}$ as the fixed point such that 
+We proceed in the same way as for the one-dimensional system. We start by defining $\vec{x^*}$ as the fixed point such that 
 \eq{
-f(\vec{x^*})=x^*
+f(\vec{x^*})=\vec{x^*}
 }
 and then introduce the deviation 
 \eq{
 \vec{\delta} = \vec{x} - \vec{x^*}.
 }
-By stubstituting $\vec{x} = \vec{x^*} + \vec{\delta} $ into the iteration rule we find 
+By substituting $\vec{x} = \vec{x^*} + \vec{\delta} $ into the iteration rule we find 
 \eq{
 \vec{\delta_{i+1}} + \vec{x^*} = f(\vec{x^*} + \vec{\delta_i}).
 }
@@ -63,7 +63,7 @@ Now we can Taylor expand the right hand side, which yields
 }
 where $\bf J$ is the Jacobian matrix of $f$ evaluated at $\vec{x^*}$ exactly as in the case for differential equations. 
 
-We now recognize that the $f(\vec{x^*})=\vec{x^*}$ on the right cancels with the $\vec{x*}$ on the left. Moreover unless the Jacobian term is zero we can neglect the quadratic terms leaving us with  
+We now recognize that the $f(\vec{x^*})=\vec{x^*}$ on the right cancels with the $\vec{x^*}$ on the left. Moreover unless the Jacobian term is zero we can neglect the quadratic terms leaving us with  
 \eq{
 \vec{\delta_{i+1}} =  {\bf J}\vec{\delta_i}.
 }
@@ -79,7 +79,7 @@ Substituting the expansion into the linear map takes us to
 \eq{
 \sum c_n(i+1) \vec{v_n} =  {\bf J}\sum c_n(i) \vec{v_n} =  \sum c_n(i) \lambda_n \vec{v_n}.
 }
-Here it is again time for the best trck ever: As the eigenvectors form a basis the only possible solution is that the first term on the left matches the first term on the right and so on. Hence,
+Here it is again time for the best trick ever: As the eigenvectors form a basis the only possible solution is that the first term on the left matches the first term on the right and so on. Hence,
 \eq{
 c_n(i+1) = \lambda_n c_n(i)  
 }
@@ -98,7 +98,7 @@ However more importantly we can now read off the stability condition that we are
 Suppose you wanted to solve $5x=x^2$ by the fixed-point iteration $x_{i+1}={x_i}^2/5$. Do you see why this is problematic? Can you fix it?
 
 \solution 
-To explore this we first compute the fixed points, which yields $x_1=0$ and $x_2=-5$.
+To explore this we first compute the fixed points, which yields $x_1=0$ and $x_2=5$.
 
 Now we can study the stability of these fixed points. We consider the derivative
 \eq{
@@ -106,17 +106,17 @@ Now we can study the stability of these fixed points. We consider the derivative
 }
 For $x^*=0$ we get $\lambda=0$ and since our stability condition for maps is $|\lambda|<1$ the fixed point at $x^*=0$ is stable and our iteration should converge there. 
 
-For the second fixed point $x^*-5$ we find $\lambda=-2$ and hence this fixed point is unstable, which explains why the iteration cannot converge to this point. 
+For the second fixed point $x^*=5$ we find $\lambda=2$ and hence this fixed point is unstable, which explains why the iteration cannot converge to this point. 
 
 So what can we do? Note that the way we constructed the iteration rule from the original problem is not without alternatives. Instead of turning $5x=x^2$ into $x_{i+1}={x_i}^2/5$ we can also turn it into 
-$x_{i+1}=\sqrt{5x_i}$, but no, now $-5$ isn't even a fixed point anymore. Taking square roots of things can make solutions vanish, so let's try one more
+\eq{x_{i+1}=\sqrt{5x_i}.} %but no, now $-5$ isn't even a fixed point anymore. Taking square roots of things can make solutions vanish, so let's try one more
+%\eq{
+%x_{i+1} = -\sqrt{-5x_i}
+%}
+When we evaluate the derivative, we find 
 \eq{
-x_{i+1} = -\sqrt{-5x_i}
+\lambda= \frac{5}{2\sqrt{5x^*}} = \frac{5}{2\sqrt{25}} = \frac{1}{2}.   
 }
-Now $x^*=-5$ is a fixed point. And when we evaluate the derivative we find 
-\eq{
-\lambda= -\frac{5}{2\sqrt{-5x^*}} = -\frac{5}{2\sqrt{25}} = - \frac{1}{2}   
-}
-so the fixed point is stable now and the iteration can converge there. 
+So, the fixed point is stable now and the iteration can converge there. 
 
 The take home message from this is that if your fixed-point iteration does not converge where it should, try different ways of phrasing the iteration rule; that will fix it. 

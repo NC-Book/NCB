@@ -42,7 +42,7 @@ which gives us the conditions
 -2a + bB/2  &=& \lambda \\
 -1 &=& \lambda B
 }
-From the second condition we get $B=-1/\lambda$. Substituting this into the second condition yields 
+From the second condition we get $B=-1/\lambda$. Substituting this into the first condition yields 
 \eqn{
 -2a -b/2\lambda = \lambda
 }
@@ -71,7 +71,7 @@ which is the case when
 How does stability depend on $a$ and $b$ if the eigenvalues are complex?
 
 \solution
-Since we know that the results of the square root are imaginary in this case the real part is just ${\rm Re}(\lambda)=-a$ and hence the steady state is stable if 
+Since we know that the results of the square root are imaginary in this case, the real part is just ${\rm Re}(\lambda)=-a$ and hence, the steady state is stable if 
 \eqn{a>0.}
 
 \subquestion 
@@ -85,14 +85,14 @@ From this equation we can see that there is no hope for stability if $a<0$ as th
 
 This eigenvalue is negative if 
 \eqan{
-0 & < & -a + \sqrt{a^2-b/2} \\
-a & < & \sqrt{a^2-b/2} \\
-a^2 & < & a^2-b/2 \\
+0 & > & -a + \sqrt{a^2-b/2} \\
+a & > & \sqrt{a^2-b/2} \\
+a^2 & > & a^2-b/2 \\
 0 & < & b/2 \\
 0 & < & b 
 }
-Note that we need squaring both sides of an inequality can produce wrong results if the sides have different signs. However in this case we know the square root is positive and we have already determined that we need $a$ to be positive. Hence if the eigenvalues are real the condition for stability is 
-\eqn{a>0,\,b<0}
+Note that squaring both sides of an inequality can produce wrong results if the sides have different signs. However in this case we know the square root is positive and we have already determined that we need $a$ to be positive. Hence if the eigenvalues are real the condition for stability is 
+\eqn{a>0,\,b>0}
 
 \subquestion 
 Draw a diagram where $a$ and $b$ are the axis. Use lines to indicate where stability changes or eigenvalues become complex. Color in the area where the steady state is stable. 
@@ -102,7 +102,11 @@ We know
 \begin{itemize}
 \item The eigenvalues are complex if $b>2a^2$.
 \item If the eigenvalues are complex then the system is stable if $a>0$.
-\item If the eigenvalues are real then the system is stable if $a>0$ and $b<0$.
+\item If the eigenvalues are real then the system is stable if $a>0$ and $b>0$.
 \end{itemize}
-We can graphically depict these cases graphically follows:
+We can graphically depict these cases follows:
 
+\begin{center}
+\includegraphics[width=0.6\textwidth]{ex14_5}
+\end{center}
+The steady state is stable in the green (top-right) quadrant, which is borderd by the two stability conditions (strong lines). The brighter area (parabola) correpsonds to the parameter region where the condition for complex eigenvalues is relevant. 

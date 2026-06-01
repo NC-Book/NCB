@@ -22,7 +22,7 @@ similarly the second line gives us
 \eq{
 J_{21}x + J_{22}y = \lambda y. 
 }
-Here we don't care about the eigenvector. We just want to discover how the eigenvalues depend on $J_{11}$, $J_{12}$, $J_{21}$, and $J_{22}$. Heve we seek to eliminate $x$ and $y$ from the equation. Since the first line gave us a condition that only contains the fraction $y/x$ lets see if we can create this fraction again. So we divide the condition from the secons line by $x$ which yields 
+Here we don't care about the eigenvector. We just want to discover how the eigenvalues depend on $J_{11}$, $J_{12}$, $J_{21}$, and $J_{22}$. Hence we seek to eliminate $x$ and $y$ from the equation. Since the first line gave us a condition that only contains the fraction $y/x$ let's see if we can create this fraction again. So, we divide the condition from the second line by $x$ which yields 
 \eq{
 J_{21} + J_{22} \frac{y}{x} = \lambda \frac{y}{x}
 }
@@ -34,7 +34,7 @@ which we can substitute into the first condition to find
 \eq{
 \lambda = J_{11} + \frac{J_{12}J_{21}}{\lambda-J_{22}}
 }
-\paragraph{Part (b).}At this point we have already reached our first goal (a) as we can now see that $J_{12}$ and $J_{21}$ only appear in form of the product $J_{12}J_{21}$ which is our cycle weight $w$. Of course the condition is actually our characteristic polynomial which we can now write in the standard form 
+\paragraph{Part (b).}At this point we have already reached our first goal (a) as we can now see that $J_{12}$ and $J_{21}$ only appear in form of the product $J_{12}J_{21}$ which is our cycle weight $w$. Of course, the condition is actually our characteristic polynomial which we can now write in the standard form 
 \eq{
 \lambda^2 - J_{22} \lambda -J_{11}\lambda + J_{11}J_{22}-w = 0 
 }
@@ -43,7 +43,7 @@ We can now just factorize the characteristic polynomial
  (\lambda-(J_{22}+J_{11})/2)^2 -(J_{22}+J_{11})^2/4 + J_{11}J_{22} - w &=& 0 \\
  (\lambda-(J_{22}+J_{11})/2)^2 &=& J_{22}^2/4 +J_{11}^2/4 -J_{11}J_{22}/2 + w  \\
  \lambda -(J_{22}+J_{11})/2 &=& \pm \sqrt{(J_{22}-J_{11})^2/4 + w } \\
- \lambda = (J_{22}+J_{11})/2 \pm \sqrt{{J_{22}-J_{11}}^2/4 + w} \\
+ \lambda = (J_{22}+J_{11})/2 \pm \sqrt{(J_{22}-J_{11})^2/4 + w} \\
 }
 We have now almost reached the next goal. If $w=0$ then we can further simplify 
 \eq{
@@ -54,27 +54,27 @@ So we find the eigenvalues
 \lambda_1 &=& \frac{J_{22}+J_{11}}{2} +  \frac{J_{22}-J_{11}}{2} = J_{22}  \\
 \lambda_2 &=& \frac{J_{22}+J_{11}}{2} -  \frac{J_{22}-J_{11}}{2} = J_{11}  \\
 }
-Which shows (b) if the weight is zero. The eigenvalues are $J_{11}$ and $J_{22}$. 
+Which shows (b): if the weight is zero, the eigenvalues are $J_{11}$ and $J_{22}$. 
 
 \paragraph{Part (c) and (d).}Now let's return to the case where the weight is not zero. From the equation 
 \eq{
 \lambda = \frac{J_{22}+J_{11}}{2} \pm  \sqrt{\frac{(J_{22}-J_{11})^2}{4}+w}
 }
-we can already sees that the separation between the two eigenvalues grows when $w>0$ and shrinks when $w<0$ which covers points (c) and (d). But can we actually see how strong the pull or push from the cycle is? 
+we can already see that the separation between the two eigenvalues grows when $w>0$ and shrinks when $w<0$ which covers points (c) and (d). But can we actually see how strong the pull or push from the cycle is? 
 
-Ideally I want an equation such as $\lambda_1 = J_{22} + x$, where $x$ is the effect of the push or pull from the cycle. So lets substitute this in. Because we focused on the eigenvalue $\lambda_1$ we only need to consider the positive case, so 
+Ideally, I want an equation such as $\lambda_1 = J_{22} + x$, where $x$ is the effect of the push or pull from the cycle. So, let's substitute this in. Because we focused on the eigenvalue $\lambda_1$, we only need to consider the positive case, so 
 \eq{
-d+x = \frac{J_{22}+J_{11}}{2} + \sqrt{\frac{(J_{22}-J_{11})^2}{4}+w}
+J_{22}+x = \frac{J_{22}+J_{11}}{2} + \sqrt{\frac{(J_{22}-J_{11})^2}{4}+w}
 }
-Which we can also write as 
+which we can also write as 
 \eq{
 x = -\frac{J_{22}-J_{11}}{2} + \sqrt{\frac{(J_{22}-J_{11})^2}{4}+w}
 }
-It is interesting that $J_{11}$ and $J_{22}$ now only appear in expressions of the form $(J_{22}-J_{11})/2$ which is half the distance between $J_{11}$ and $J_{22}$ or in other words the distance between $d$ and the midpoint between $J_{11}$ and $J_{22}$. Let's call this $h$. We define
+It is interesting that $J_{11}$ and $J_{22}$ now only appear in expressions of the form $(J_{22}-J_{11})/2$ which is half the distance between $J_{11}$ and $J_{22}$ or in other words the distance between $J_{22}$ and the midpoint between $J_{11}$ and $J_{22}$. Let's call this $h$. We define
 \eq{
 h= \frac{J_{11}-J_{22}}{2} 
 }
-substituting simplifies our condition for $x$ to 
+Substituting simplifies our condition for $x$ to 
 \eq{
 x=-h + \sqrt{h^2+w}
 }

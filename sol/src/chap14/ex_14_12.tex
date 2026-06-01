@@ -9,15 +9,15 @@ This exercise proposes a hypothetical mechanical device. The first subquestions 
 Determine the stability of the steady state at $x=y=0$.
 \solution
 We compute the Jacobian matrix
-\eqn{
+\eq{
 {\bf J}=\avecc{2 & -4\\ 3 & -5}. 
 }
 We compute the characteristic polynomial as 
-\eqn{
+\eq{
 \left| \avecc{2 - \lambda & -4 \\ 3 & -5 - \lambda} \right| = \lambda^2 +3 \lambda +2
 }
 Then, we solve 
-\eqan{
+\eqa{
 0&=&\lambda^2 +3 \lambda +2 \\
 0&=&(\lambda+3/2)^2 +2 - 9/4 \\ 
 1/4 &=& (\lambda+3/2)^2 \\
@@ -25,35 +25,42 @@ Then, we solve
 \lambda &=& -3/2 \pm 1/2
 }
 So, we have two eigenvalues 
-\eqn{
+\eq{
 \lambda_1 = -1 \qqq \lambda_2=-2. 
 }
-Since both eigenvalues are negative the steady state is stable. 
+Since both eigenvalues are negative, the steady state is stable. 
 
 \subquestion
 Now imagine that we changed this system by clamping some part in place. As a result $y$ becomes fixed at $y=0$ and cannot change anymore, which removes it as a variable. Write the differential equation that describes the system after $y$ has been fixed. 
 
 \solution
-As the value of $y$ is not prescribed by the algebraic equation $y=0$ we don't need a differential equation for $y$ anymore. In the differential equation for $x$ we can substitute $y=0$ to remove the remaining $y$, which leaves us with 
-\eqn{
+As the value of $y$ is now prescribed by the algebraic equation $y=0$, we don't need a differential equation for $y$ anymore. In the differential equation for $x$ we can substitute $y=0$ to remove the remaining $y$, which leaves us with 
+\eq{
 \dot{x}=2x
 }
 \subquestion 
 Determine the stability of the steady state in the resulting system. Is the result surprising?
 
 \solution
-The system still has a steady state at $x=0$, which isn't very surprising. However if we compute the Jacobian of the new system we find
-\eqn{
+The system still has a steady state at $x=0$, which isn't very surprising. However, if we compute the Jacobian of the new system we find
+\eq{
 {\bf J}=2,
 }
 hence
 \eq{
 \lambda=2 
 }
-which shows that the system is now unstable. This result is surprising: We started with a system were $x$ and $y$ sat stably at 0, but if we try to hold $y$ there, then the stability is lost. 
+which shows that the system is now unstable. This result is surprising: We started with a system where $x$ and $y$ sat stably at 0, but if we try to hold $y$ there, then the stability is lost. 
 
 \subquestion
-This system exhibits the so-called \emph{hydra effect}: If left alone it settles into a stable steady state, but if we try to hold a certain part in place in this state, then the rest of the system becomes unstable. Can you design a mechanical gadget, possibly corresponding to a different set of equations, that exhibits a hydra effect? 
+This system exhibits the so-called \emph{hydra effect}: If left alone, it settles into a stable steady state, but if we try to hold a certain part in place in this state, then the rest of the system becomes unstable. Can you design a mechanical gadget, possibly corresponding to a different set of equations, that exhibits a hydra effect? 
 
 \solution
 This is an unsolved question. But there doesn't seem to be a fundamental reason that would make such a system impossible. It would be really interesting to have a mechanical toy that is stable if it isn't held in place.
+
+Andr\'{e} Osth\"{o}vener pointed out that a bicycle rolling on a treadmill is a mechanical hydra. Imagine an electric treadmill with a bicycle on top. The front of the bicycle is fixed to the frame of the treadmill so that it is not pushed off the treadmill by the treadmills motion, but otherwise the bicycle can move freely. 
+
+When we run the treadmill the bicycle will be rolling in place as if it was riding on the road with constant velocity. Rolling bicycles are self stabilizing (at reasonable speeds) so the bicycle rolling on the treadmill will settle into a steady state. However the self-stabilization works only if the handlebar can move freely. Although the handlebar does not move in the steady state, fixing it firmly in place will destabilize the steady state, and the bicycle will tip over. 
+
+This reasoning shows that the bicycle on the treadmill is a mechanical hydra, but it is not a small toy that we could just sit on our desk. (Even a minature bicycle on a miniature treadmill would require constant power input, which is not as cool as a gadget that could just sit calmly on its own.) So I consider this a partial solution. 
+
