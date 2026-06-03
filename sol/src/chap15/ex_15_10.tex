@@ -2,7 +2,7 @@
 Consider a network with $N$ nodes and mean degree $z$. Existing links in this network are broken at a rate $1$ per link. At rate $r$ per node a node establishes a link to a randomly chosen partner. 
 
 \subquestion
-The dynamics of the degree distribution are captured by the differential equation 
+The dynamics of the degree distribution are captured by the ODE
 \eq{
 \dot{p_k} = -\underbrace{2rp_k}_1 -\underbrace{kp_k}_2 +\underbrace{2rp_{k-1}}_3+\underbrace{(k+1)p_{k+1}}_4    
 }
@@ -20,7 +20,7 @@ The terms capture the following processes:
  4. We gain nodes of degree $k$ because nodes of degree $k+1$ lose a link
 
 \subquestion
-Define $G(x)$ as the generating function of the degree distribution. And derive a differential equation that captures the dynamics of $G$.
+Define $G(x)$ as the generating function of the degree distribution, and derive a differential equation that captures the dynamics of $G$.
 
 \solution
 We define
@@ -34,7 +34,7 @@ and write
 }
 
 \subquestion
-Consider the steady state of your equation and integrate to obtain $G(x)$. (Use the normalization conditions to fix the constant of integration.) 
+Consider the steady state of your equation and integrate to obtain $G(x)$. [Use the normalization conditions to fix the constant of integration.] 
 
 \solution
 Setting the rate of change to zero yields

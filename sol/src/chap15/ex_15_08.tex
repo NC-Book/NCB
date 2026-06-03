@@ -1,7 +1,7 @@
 \exercise{adaptive Voter Model (aVM)}{3}
-Consider a network with $N$ nodes and $K$ links, where nodes represent agents and links represent social contacts. Each agent is in either of two states A and B, say favoring one of two political parties. AB-Links, connecting agents of different opinion, get updated at rate $r$. In an update with probability $p$ the link is cut and one of the two agents (chosen randomly) creates a new link to an agent in the same opinion state (so the new link is an AA or BB link). Otherwise (so with probability, $\bar{p}=1-p$) one agent chosen at random convinces the other of their opinion. 
+Consider a network with $N$ nodes and $K$ links, where nodes represent agents and links represent social contacts. Each agent is in either of two states A and B, say favoring one of two political parties. AB-Links get updated at rate $r$. In an update with probability $p$ the link is cut and one of the two agents (chosen randomly) creates a new link to an agent in the same opinion state (so the new link is an AA or BB link). Otherwise (so with probability, $\bar{p}=1-p$) one agent, chosen at random, convinces the other to change opinion. 
 
-\subquestion{Derive a mean-field model for $[A]$ and $[B]$, the density of agents holding opinion A and B.}
+\subquestion{Derive a mean-field model for $[A]$ and $[B]$, the density of agents holding opinion A and B. (The result may be surprising.)}
 
 \solution
 Rewiring of the link does not change the numbers at all, so we can ignore it. The process that changes the agents' opinion results in 
@@ -11,10 +11,10 @@ Rewiring of the link does not change the numbers at all, so we can ignore it. Th
 }
 If an update occurs where we copy the opinion the number of nodes of opinion A is increased by 1 (probability 50\%) or it is decreased by 1 (also probability 50\%). These two processes cancel so that the net change of the number of nodes in state A (or B) is zero. The voter model is actually a very fair model. 
 
-In a simulation with a finite number of agents $[A]$ and $[B]$ may still change due to stochastic fluctuations. Because there is change involved in the consensus process the average opinion $[A]-[B]$ follows a random walk. Eventually, after very long time, a consensus might even be reached where by coincidence, every agent ends up in the same opinion state, which stops the game. 
+In a simulation with a finite number of agents $[A]$ and $[B]$ may still change due to stochastic fluctuations. Because there is chance involved in the consensus process the average opinion $[A]-[B]$ follows a random walk. Eventually, after very long time, a consensus might even be reached where by coincidence, every agent ends up in the same opinion state, which stops the game. 
 
 \subquestion
-Derive differential equations for $[AA]$ and $[BB]$ and close using a pair approximation. (Don't use the conservation law yet.)
+Derive differential equations for $[AA]$ and $[BB]$ and close it using a pair approximation. (Don't use the conservation law yet.)
 
 \solution
 Rewiring occurs at rate $p[AB]$ and whenever a rewiring event occurs we get a new $[AA]$ or $[BB]$ link with 50\% probability each which gives us term $p[AB]/2$ in the equations for both $[AA]$ and $[BB]$.
@@ -50,7 +50,7 @@ The equation for $[BB]$ is completely symmetric. Hence, we arrive at the system
 }
 
 \subquestion
-Consider the case $[A]=[B]=1/2$ and find the two steady states of the system (Hint: You will need to use a conservation law, but delay this as long as possible to preserve the symmetry)
+Consider the case $[A]=[B]=1/2$ and find the two steady states of the system [Hint: Now you need the conservation law, but delay this as long as possible to preserve the symmetry]
 
 \solution
 So yes, because we found in (a) that $[A]$ and $[B]$ never change (deterministically) we can treat them as parameters. It makes sense to consider the symmetric state $[A]=[B]=1/2$
@@ -106,7 +106,7 @@ Which we can substitute into our remaining steady state condition to find,
 
 \subquestion 
 In simulations of this model, a fragmentation transition is observed. 
-On the one side of this transition there is ongoing opinion dynamics which can observed over a very long time. On the other side the system rapidly splits into two separate components such that no agent of opinion A has contact to an agent with opinion B. Estimate the value of $p$ at which this transition occurs. (Bonus: Your estimate from the moment expansion won't be very precise in this case, formulate an hypothesis why this might be the case.)
+On the one side of this transition there is ongoing opinion dynamics that persists for a long time. On the other side the system rapidly splits into two separate components such that no agent of opinion A has contact to an agent with opinion B. Estimate the value of $p$ at which this transition occurs. [Bonus: Your estimate from the moment expansion won't be very precise in this case, formulate an hypothesis why this might be the case. Check the solution for a detailed discussion.]
 
 \solution 
 We already noticed that the there are two steady states, $[AB]=0$ which corresponds to the fragmented state and 

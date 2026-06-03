@@ -11,7 +11,7 @@ along with the two conservation laws $[S]+[I]=1$ and $[SS]+[II]+[SI]=z/2$ and th
 }
 
 \subquestion 
-Compute the Jacobian matrix $\bf J$ that describes these differential equations. 
+Compute the Jacobian matrix $\bf J$ for an unspecified steady state.
 
 \solution
 To make our life a bit easier we refrain from substituting everything right away. Since we have chosen $[I]$, $[SS]$, and $[II]$ as our variables, we will treat $[S]$ and $[SI]$ as auxiliary variables. This means they are just shorthand notations for the expressions 
@@ -87,10 +87,10 @@ After this nice exercise in differentiation we have our Jacobian
 }. 
 }
 
-\subquestion Find a condition for the `invasion threshold' from which on the disease can invade a disease-free system. Hint: Use $|{\bf J}|=0$.
+\subquestion Find a condition for the \textit{invasion threshold}, the critical value of $p$ beyond which the  disease can invade a disease-free system. [Use $|{\bf J}|=0$].
 
 \solution 
-In the healthy state we know
+\paragraph{Condition for the invasion threshold.}In the healthy state we know
 \eq{
 [I]=0 \qqq [S]=1
 }
@@ -124,10 +124,7 @@ Since we are looking for solutions where the determinant becomes zero, multiplyi
 }
 This simplified nicely. It is also good to see that $p$ and $z$ only appear as a product. You'd expect that the number of links and the transmission rate across those links somehow multiply. It is also interesting to see that rewiring acts exactly as recovery. This was unexpected but is a nice insight into the system. 
 
-\subquestion 
-Find the critical value of $p$ from which on invasion of the disease is possible. As a test consider the case $w=0$ and compare it to the condition for the non-adaptive SIS model from Ex.~15.2. 
-
-\solution 
+\paragraph{Critical value of $p$.}
 This is simple now. We solve our condition for $p$, which yields 
 \eq{
 p = \frac{r+w}{z}
