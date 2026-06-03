@@ -1,5 +1,6 @@
 \exercise{aSIS moment expansion}{2}
-In the aSIS model infected nodes recover at the rate $r$, the infection spreads across $SI$ links at rate $p$ and susceptible nodes rewire their SI links from infected neighbors to randomly chosen susceptible partners at rate $w$, derive a differential equation for the density of SS-link, $[SS]$, as a function of the density of SI-links, $[SI]$, and SSI-triplet chains, $[SSI]$. 
+In the aSIS model infected nodes recover at the rate $r$, the infection spreads across $SI$ links at rate $p$ and susceptible nodes rewire their SI links from infected neighbors to randomly chosen susceptible partners at rate $w$, derive a differential equation for the density of SS-links, $[SS]$, as a function of the density of SI-links, $[SI]$, and SSI-triplet chains, $[SSI]$ (i.e. derive 
+$\dot{[SS]} = r[SI]-p[SSI]+w[SI]$.)
 
 \solution
 To derive the differential equation, we consider the processes one-by-one. The easiest one is rewiring. When an SI-link is rewired by the susceptible node it turns into an SS-link. So this process produces SS-links at the rate 
@@ -7,19 +8,19 @@ To derive the differential equation, we consider the processes one-by-one. The e
 wK_{\rm SI}.
 }
 
-Next we consider recovery. Like rewiring, recovery can only ever be a source of SS-links. If a node recovers, it creates a new SS-link for every neighbor in state S, that the recovering node has. Because our focal node is in state I before recovery, the links that are turned into SS-links upon recovery are SI-links before. So, to estimate the number of SS-links created in a typical recovery event we need to estimate the average number of SI-links on an I-node. 
+Next we consider recovery. Like rewiring, recovery can only ever be a source of SS-links. If a node recovers, it creates a new SS-link for every neighbor in state S that the recovering node has. Because our focal node is in state I before recovery, the links that are turned into SS-links upon recovery are SI-links before. So, to estimate the number of SS-links created in a typical recovery event we need to estimate the average number of SI-links on an I-node. 
 
-The average number of SI-links per is $K_{\rm SI}/I$. Multiplying the rate of recovery envents, $rI$, we find the production rate of SS-links from recovery to be 
+The average number of SI-links per I-node is $K_{\rm SI}/I$. Multiplying the rate of recovery events, $rI$, we find the production rate of SS-links from recovery to be 
 \eq{
 rI \frac{K_{\rm SI}}{I} = rK_{\rm SI}.
 }
 
-Finally we consider infection, which can only appear as a sink of SS-links. When an infection event happens the number of SS-links that are destroyed, is identical to the number of SSI-triplet chains running through the SI-link on which the infection occurs, which is $T_{\rm SSI}/K_{\rm SI}$. Multiplying the rate of infection events, $pK_{\rm SI}$, we find the total rate of destruction of SS-links to be 
+Finally, we consider infection, which can only appear as a sink of SS-links. When an infection event happens, the number of SS-links that are destroyed is identical to the number of SSI-triplet chains running through the SI-link on which the infection occurs, which is $T_{\rm SSI}/K_{\rm SI}$. Multiplying the rate of infection events, $pK_{\rm SI}$, we find the total rate of destruction of SS-links to be 
 \eq{
 pK_{\rm SI} \frac{T_{\rm SSI}}{K_{\rm SI}} = pT_{\rm SSI}
 }
 
-Taking all of the terms into consideration we arrive at 
+Taking all of the terms into consideration, we arrive at 
 \eq{
 \dot{K}_{\rm SS} = rK_{\rm SI} - pT_{\rm SSI} + wK_{\rm SI}
 }

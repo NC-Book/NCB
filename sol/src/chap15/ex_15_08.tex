@@ -4,12 +4,12 @@ Consider a network with $N$ nodes and $K$ links, where nodes represent agents an
 \subquestion{Derive a mean-field model for $[A]$ and $[B]$, the density of agents holding opinion A and B.}
 
 \solution
-Rewiring of the link does not change the numbers at all, so we can ignore it. The process that changes the agents opinion results in 
+Rewiring of the link does not change the numbers at all, so we can ignore it. The process that changes the agents' opinion results in 
 \eqa{
 \dot{[A]}&=&(1-p)\frac12 [AB]-\frac12 [AB] = 0 \\ 
 \dot{[B]}&=&(1-p)\frac12 [AB]-\frac12 [AB] = 0 
 }
-If an update occurs where we copy the opinion the number of nodes of opinion A is increased by 1 (probability 50\%) or it is decreased by 1 (also probability 50\%). These two processes cancel so the that the net change of the number of nodes in state A (or B) is zero. The voter model is actually a very fair model. 
+If an update occurs where we copy the opinion the number of nodes of opinion A is increased by 1 (probability 50\%) or it is decreased by 1 (also probability 50\%). These two processes cancel so that the net change of the number of nodes in state A (or B) is zero. The voter model is actually a very fair model. 
 
 In a simulation with a finite number of agents $[A]$ and $[B]$ may still change due to stochastic fluctuations. Because there is change involved in the consensus process the average opinion $[A]-[B]$ follows a random walk. Eventually, after very long time, a consensus might even be reached where by coincidence, every agent ends up in the same opinion state, which stops the game. 
 
@@ -21,7 +21,7 @@ Rewiring occurs at rate $p[AB]$ and whenever a rewiring event occurs we get a ne
 
 Opinion adoption events occur at a rate $\bar{p}[AB]$. Half the time the node of type B will adopt opinion A and in this case we get one new AA-link. This gives us a gain rate $\bar{p}[AB]/2$. 
 
-We may gain additional AA-links if the newly convinced note had already additional neighbors of opinion A. We gain one such additional link for every ABA-chain that runs through the AB-link on which the convincing occurs. The corresponding rate of AA-link creation is $2\bar{p}[ABA]/2$, where the factor 2 appears because every ABA chain runs through two AB-links (see chapter text).
+We may gain additional AA-links if the newly convinced node had already additional neighbors of opinion A. We gain one such additional link for every ABA-chain that runs through the AB-link on which the convincing occurs. The corresponding rate of AA-link creation is $2\bar{p}[ABA]/2$, where the factor 2 appears because every ABA chain runs through two AB-links (see chapter text).
 
 Finally we can lose AA-links from opinion adoption events if a node of opinion A is convinced of opinion B. This also occurs at a rate $\bar{p}[AB]/2$. In this case we lose one AA-link for every AAB chain that runs through the AB-link on which the opinion adoption event occurs. The corresponding rate is $\bar{p}[AAB]/2$.
 
@@ -74,7 +74,7 @@ Let's see if we can find another steady state. Dividing our equations by $[AB]$ 
  0 &=& \frac{1}{2} + 2\bar{p} ( [AB]-[AA] )  \\{}    
  0 &=& \frac{1}{2} + 2\bar{p} ( [AB]-[BB] ).  
 }
-You could now use the conservation law for links $[AA]+[BB]+[AB]=z/2$ and solve for for the steady state the hard way. A more insightful way to go is to notice that nice things happen when we compute the difference between the two equations.
+You could now use the conservation law for links $[AA]+[BB]+[AB]=z/2$ and solve for the steady state the hard way. A more insightful way to go is to notice that nice things happen when we compute the difference between the two equations.
 We find 
 \eq{
 0 = 2\bar{p} ([BB]-[AA])
@@ -106,7 +106,7 @@ Which we can substitute into our remaining steady state condition to find,
 
 \subquestion 
 In simulations of this model, a fragmentation transition is observed. 
-On the one side of this transition there is ongoing opinion dynamics which can observed over very long time. On the other side the system rapidly splits into two separate components such that no agent of opinion A has contact to an agent with opinion B. Estimate the value of $p$ at which this transition occurs. (Bonus: Your estimate from the moment expansion won't be very precise in this case, formulate an hypothesis why this might be the case.)
+On the one side of this transition there is ongoing opinion dynamics which can observed over a very long time. On the other side the system rapidly splits into two separate components such that no agent of opinion A has contact to an agent with opinion B. Estimate the value of $p$ at which this transition occurs. (Bonus: Your estimate from the moment expansion won't be very precise in this case, formulate an hypothesis why this might be the case.)
 
 \solution 
 We already noticed that the there are two steady states, $[AB]=0$ which corresponds to the fragmented state and 
@@ -117,13 +117,13 @@ which corresponds to the state with ongoing opinion dynamics.
 
 Now the question is, why and when is there a transition between these states. 
 A first clue is that the non-fragmented state may not always be physical. 
-The smalles $\bar{p}$ becomes, the smaller is $[AB]$ in this state until it eventually becomes negative. 
+The smaller $\bar{p}$ becomes, the smaller is $[AB]$ in this state until it eventually becomes negative. 
 
 To find the transition point where the solution becomes unphysical we consider
 \eqa{
 0  &=&  \frac{1}{6}\left( z - \frac{1}{\bar{p}} \right) \\
 0  &=&  z - \frac{1}{\bar{p}} \\
-0  &=&  Z\bar{p} -1 \\
+0  &=&  z\bar{p} -1 \\
 1  &=&  z\bar{p} \\
 \bar{p} &=& 1/z
 }
@@ -135,7 +135,7 @@ and hence
 \eq{
 p = 1- \frac{1}{z}
 }
-SO does the transition happen as the state where the dialog between agents is ongoing, dip out of the physical space?
+So, does the transition happen as the state where the dialog between agents is ongoing dip out of the physical space?
 
 To be sure we could check the stability of the two steady states. The result is that 
 the state where the network remains connected is indeed the only stable state while it occurs at $[AB]>0$. When the state becomes unphysical, the fragmented state at $[AB]=0$ becomes stable instead.
@@ -145,8 +145,8 @@ The idea that the moment expansion gives us is qualitatively right: There are tw
 So far so good. However, quantitatively our predictions are way off. For example for a mean degree of $z=4$ we would expect that fragmentation occurs at $p=1-1/z=0.75$. However, in simulations fragmentation already occurs at $p=0.4$. Why is the pair approximation so wrong in this case, when it worked so beautifully for the SIS model?
 The answer lies in the fragmentation transition itself: Our assumptions, and particularly the closure approximations, are based on the idea that we have a certain number of links of a given type, but then these links come together randomly in triplet chains. By contrast, picture how the network would look like close to the fragmentation point. 
 
-It has alraeady almost split into two homogeneous components that are only connected with each other by the last few AB-links. Due to the polarization that has developed this is a very non-random network. In particular many AB links are connected to nodes that have been freshly convinced and now find themselves on the wrong side of the divide. Because the AB-links are clustered around these nodes, there is a much larger number of ABA and BAB triplets than we would expect in random networks. 
+It has already almost split into two homogeneous components that are only connected with each other by the last few AB-links. Due to the polarization that has developed this is a very non-random network. In particular, many AB-links are connected to nodes that have been freshly convinced and now find themselves on the wrong side of the divide. Because the AB-links are clustered around these nodes, there is a much larger number of ABA and BAB triplets than we would expect in random networks. 
 
 So now that we have realized what the problem with the fragmentation is we can make an approximation that corrects for this by assuming that the network is almost fragmented. Such an approximation would then be accurate near the fragmentation, but inaccurate in other parameter regions where the network is more random. Why not give it a try? 
 
-(OK one final thought: Did you notice that we predict that for $p=0$ we predict that the network fragments at $z=1$? Of course that is where the giant component transition occurs in random graphs. It's very nice to see this reappearing. So the pair approximation actually works well in this limit.)
+(OK, one final thought: Did you notice that we predict that for $p=0$, the network fragments at $z=1$? Of course, that is where the giant component transition occurs in random graphs. It's very nice to see this reappearing. So the pair approximation actually works well in this limit.)

@@ -5,7 +5,7 @@ The aSIS model is described by the following differential equation system:
 [\dot{SS}] &=& r[SI]-p[SSI]+w[SI] \\{}
 [\dot{II}] &=& p[SI]+2p[ISI]-2r[II] 
 }
-along with the two conservations laws $[S]+[I]=1$ and $[SS]+[II]+[SI]=z/2$ and the closure approximations 
+along with the two conservation laws $[S]+[I]=1$ and $[SS]+[II]+[SI]=z/2$ and the closure approximations 
 \eqn{
 [SSI] = \frac{2[SS][SI]}{[S]} \qqq [ISI]=\frac{[SI]^2}{2[S]}. 
 }
@@ -14,12 +14,12 @@ along with the two conservations laws $[S]+[I]=1$ and $[SS]+[II]+[SI]=z/2$ and t
 Compute the Jacobian matrix $\bf J$ that describes these differential equations. 
 
 \solution
-To make our life a bit easier we refrain from substituting everything right away. Since we have chosen $[I]$, $[SS]$, and $[II]$ as our variables, we will treat $[S]$ and $[SI]$ as auxiliary variables. This means they are just short hand notations for the expressions 
+To make our life a bit easier we refrain from substituting everything right away. Since we have chosen $[I]$, $[SS]$, and $[II]$ as our variables, we will treat $[S]$ and $[SI]$ as auxiliary variables. This means they are just shorthand notations for the expressions 
 \eqa{
 [S] &=& 1-[I] \\{}
 [SI] &=& z/2 - [SS] - [II]
 }
-When we compute the derivatives for the Jacobi matrix we will have to differentiate these functions accordingly. Their derivatives with respect to the variables are 
+When we compute the derivatives for the Jacobi matrix, we will have to differentiate these functions accordingly. Their derivatives with respect to the variables are 
 \eq{ 
 \frac{\partial}{\partial [I]} [S] = -1 \qqq \frac{\partial}{\partial [SS]} [S] = 0 \qqq \frac{\partial}{\partial [II]} [S] = 0
 }
@@ -105,7 +105,7 @@ Substituting this steady state into our Jacobian simplifies it considerably and 
 0 &  -p  & -p  -2r 
 }. 
 }
-Because the diagonal element $J_{11}=-r$ is alone in its column it must be also an eigenvalue,  $\lambda_1=-r$. So one way to make a bifurcation occur is to set $r=0$. This makes sense, if the nodes no longer recover the system changes fundamentally. So it is good that this turns out to be a bifurcation, but it is not the one we are after. To check for other ways in which an eigenvalue can become zero, we consider the $2\times 2$ block that is left when we remove the first row and column
+Because the diagonal element $J_{11}=-r$ is alone in its column, it must be also an eigenvalue,  $\lambda_1=-r$. So one way to make a bifurcation occur is to set $r=0$. This makes sense, if the nodes no longer recover the system changes fundamentally. So it is good that this turns out to be a bifurcation, but it is not the one we are after. To check for other ways in which an eigenvalue can become zero, we consider the $2\times 2$ block that is left when we remove the first row and column
 \eq{ 
 {\bf J}_{\overline{11}} = \avecc{
 -r + pz -w  & -r +pz  -w \\
@@ -118,14 +118,14 @@ As we compute the determinant we want to exploit that one line has two identical
   &=& (-r+pz-w)(-p-2r+p) \\
   &=& (-r+pz-w)(2r) 
 }
-Since we are looking for solutions where the determinant becomes zero, multiplying this out would be a step in the wrong direction. We already know that a bifurcation happens at $r=0$ so we are no longer interested in this. Once we exclude $r=0$ it is save to divide by $2r$ and we are left with the condition 
+Since we are looking for solutions where the determinant becomes zero, multiplying this out would be a step in the wrong direction. We already know that a bifurcation happens at $r=0$ so we are no longer interested in this. Once we exclude $r=0$, it is safe to divide by $2r$ and we are left with the condition 
 \eq{
 -r+pz-w = 0
 }
 This simplified nicely. It is also good to see that $p$ and $z$ only appear as a product. You'd expect that the number of links and the transmission rate across those links somehow multiply. It is also interesting to see that rewiring acts exactly as recovery. This was unexpected but is a nice insight into the system. 
 
 \subquestion 
-Find the critical value of $p$ from which on invasion of the disease is possible. As a test consider the case $w=0$ and compare it to the condition for the the non-adaptive SIS model from Ex.~15.2. 
+Find the critical value of $p$ from which on invasion of the disease is possible. As a test consider the case $w=0$ and compare it to the condition for the non-adaptive SIS model from Ex.~15.2. 
 
 \solution 
 This is simple now. We solve our condition for $p$, which yields 
@@ -138,5 +138,5 @@ p= \frac{r}{z}
 }
 which is consistent with the previous result. 
 
-As a side note, we find that our social distancing strategy is quite effective in preventing the invasion, and we not even really distancing. As a healthy person you are not isolating, you are just meeting other people. 
+As a side note, we find that our social distancing strategy is quite effective in preventing the invasion, and we are not even really distancing. As a healthy person you are not isolating, you are just meeting other people. 
 

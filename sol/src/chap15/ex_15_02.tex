@@ -10,7 +10,7 @@ To find the steady states we consider the condition
 \eq{
 0=pz(1-[I])[I]-r[I] 
 }
-As all terms on the right are proportional to $[I]$. The disease-free state $[I]=0$ is a steady state. To find the other steady state we divide by $[I]$ and arrive at 
+As all terms on the right are proportional to $[I]$, the disease-free state $[I]=0$ is a steady state. To find the other steady state we divide by $[I]$ and arrive at 
 \eq{
 0=pz(1-[I])-r 
 }
@@ -28,21 +28,21 @@ so $p>r/z$. Hence the critical point from which on the disease can invade is
 \eq{
 p=\frac{r}{z}
 }
-So more recovery rate means we need faster infection as well, while higher degree means that the disease can already invade at lower infection rates. Makes sence. 
+So more recovery rate means we need faster infection as well, while higher degree means that the disease can already invade at lower infection rates. Makes sense. 
 
 Now let's try the other way. We start by computing the Jacobian, which in this case is a $1 \times 1$ matrix 
 \eq{
 {\bf J} = \left( \frac{\partial [\dot{I}]}{\partial [I]} \right) = \left( pz(1-2[I])-r \right)
 }
-We consider this matrix in the disease free state $[I] = 0$ and find the point where the stability changes using $|{\bf J}|=0$. Because $\bf J$ is a $1\times 1$ matrix the determinant is identical to its only element
+We consider this matrix in the disease-free state $[I] = 0$ and find the point where the stability changes using $|{\bf J}|=0$. Because $\bf J$ is a $1\times 1$ matrix the determinant is identical to its only element
 \eq{
 |{\bf J}| = |(pz-r)| = pz-r 
 }
-Hence the condition $|{\bf J}|=0$ gives us 
+Hence, the condition $|{\bf J}|=0$ gives us 
 \eq{
 p=\frac{r}{z}
 }
-as before. Technically the two conditions find two different properties that are slightly different. The instability of the disease-free state guarantees that a perturbation that introduces some infected can spread. Whereas the existence of a positive `endemic' steady state guarantees that there is a way for the disease to survive in the long run. In this simple SIS model both of these properties (invasion, persistence) start at the same threshold. But this is not the case for the adaptive SIS model. 
+as before. Technically, the two conditions find two different properties that are slightly different. The instability of the disease-free state guarantees that a perturbation that introduces some infected can spread, whereas the existence of a positive `endemic' steady state guarantees that there is a way for the disease to survive in the long run. In this simple SIS model, both of these properties (invasion, persistence) start at the same threshold. But this is not the case for the adaptive SIS model. 
 
 
 

@@ -6,19 +6,19 @@ Let's define $x$ as the probability that the node is still infected at time $t$ 
 \eq{
 \dot{x} = -rx 
 }
-with intial condition $x(0)=1$ and hence 
+with initial condition $x(0)=1$ and hence 
 \eq{
 x(t) = \exp{-rt}
 }
-Since the infection reaches our node via a link we can assume that we have $q=z$ additional neighbors. And, because the disease is rare these additional neighbors are initially susceptible. Since our focal node is infected the susceptible neighbors will not start to rewire their links away at rate $w$. Hence the number of susceptible neighbors, $k$ will change according to  
+Since the infection reaches our node via a link we can assume that we have $q=z$ additional neighbors. And, because the disease is rare these additional neighbors are initially susceptible. Since our focal node is infected the susceptible neighbors will start to rewire their links away at rate $w$. Hence the number of susceptible neighbors, $k$ will change according to  
 \eq{
 \dot{k}=-wk
 }
-with initial condition $K(0)=z$ which we integrate to find 
+with initial condition $k(0)=z$ which we integrate to find 
 \eq{
 k(t)=z\exp{-wt}
 }
-The rate at which we infect neighbors as long as we are infected is $p$. So if we multiply this with the number of neighbors and the proabability that we are still infected we get the instantaneous rate of transmissions $pz\exp{-rt}\exp{-wt}$ = $p\exp{-(r+w)t}$. To find our $R_0$ we integrate over all time 
+The rate at which we infect neighbors as long as we are infected is $p$. So if we multiply this with the number of neighbors and the probability that we are still infected we get the instantaneous rate of transmissions $pz\exp{-rt}\exp{-wt}$ = $pz\exp{-(r+w)t}$. To find our $R_0$ we integrate over all time 
 \eq{
 R_0 = \int pz\exp{-(r+w)t} {\rm d}t = \left[ - \frac{pz}{r+w} \exp{-(r+w)t} \right]_0^\infty   = 0 +  \frac{pz}{r+w} 
 }

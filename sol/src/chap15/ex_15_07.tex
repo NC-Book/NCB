@@ -8,12 +8,12 @@ Let's also find the nontrivial steady states. We need to solve
 0&=& r[SI] - 2p[SS][SI]/[S] + w[SI] \\{}
 0&=& p [SI] + p[SI]^2/[S] - 2 r [II].
 }
-Before we even start solving it let's see if there is a way to use our knowledge about trivial state to make the search for non-trivial states easier. 
-Have you spotted it already? In the second equation all terms are linear in $[SI]$, so unless $[SI]=0$ we can divide the whole equation by $[SI]$. At this point we are pretty sure that the trivial solution that we guessed above is the only steady state where $[SI]=0$, so we can divide the equation without losing any solutions, and replace the second equation with
+Before we even start solving it, let's see if there is a way to use our knowledge about the trivial state to make the search for non-trivial states easier. 
+Have you spotted it already? In the second equation, all terms are linear in $[SI]$, so unless $[SI]=0$, we can divide the whole equation by $[SI]$. At this point we are pretty sure that the trivial solution that we guessed above is the only steady state where $[SI]=0$, so we can divide the equation without losing any solutions and replace the second equation with
 \eq{
 0=r+w - 2p\frac{[SS]}{[S]}.
 }
-The key to dealing with equation systems of intermediate complexity is staying in control and not letting them grow into a mess. Because we don't like fractions we multiply this equation by $[S]$. The system now reads 
+The key to dealing with equation systems of intermediate complexity is staying in control and not letting them grow into a mess. Because we don't like fractions, we multiply this equation by $[S]$. The system now reads 
 \eqa{
 0&=&p[SI]-r[I] \\{}
 0&=&r[S] - 2p[SS] + w[S] \\{}
@@ -25,16 +25,16 @@ where I have also collected the $[II]$ terms in the third equation. We can now m
 0&=&r[S] - 2p[SS] + w[S] \\{}
 0&=&p[SI][S] + p[SI]^2 - 2r[II][S],
 }
-Since we only have a single $[II]$ let's eliminate it using the link conservation law in the form 
+Since we only have a single $[II]$, let's eliminate it using the link conservation law in the form 
 \eq{
 [II] = \frac{z}{2} - [SS] - [SI] 
 }
-after we substitute this the third equation reads 
+after we substitute this, the third equation reads 
 \eqa{
 0&=&p[SI][S] + p[SI]^2 - 2r(z/2-[SS] - [SI])[S]\\
  &=& (p+2r)[SI][S] + p[SI]^2 -rz[S] + 2r[SS][S]
 }
-It seems everything will be nicer if we multiply this equation by another $p$. After that our system reads
+It seems everything will be nicer if we multiply this equation by another $p$. After that, our system reads
 \eqa{
 0&=&p[SI]-r[I] \\{}
 0&=&r[S] - 2p[SS] + w[S] \\{}
@@ -57,7 +57,7 @@ Since all link variables have now disappeared from the equation we can simplify 
 \eq{
 0=(p+2r)rSI + r^2I^2 -przS + r(w+r)S^2
 }
-Of course we have to take care that we remember that these $S$ and $I$ are still in normalized units, so we should not confuse them with the variables that we defined in the beginning of the chapter, but this risk is rather small compared to the risk of making an algebraic mistakes when manipulating long equations. In any case we are almost done. Let's use the node conservation law $S=1-I$ to eliminate $S$ from the equation. 
+Of course we have to take care that we remember that these $S$ and $I$ are still in normalized units, so we should not confuse them with the variables that we defined in the beginning of the chapter, but this risk is rather small compared to the risk of making an algebraic mistake when manipulating long equations. In any case, we are almost done. Let's use the node conservation law $S=1-I$ to eliminate $S$ from the equation. 
 \eqa{
 0&=&(p+2r)r(1-I)I + r^2I^2 -prz(1-I) + r(w+r)(1-I)^2 \\
  &=&(p+2r)rI -(p+2r)rI^2 + r^2I^2 - prz + przI  + r(w+r) - 2 r(w+r) I +  r(w+r) I^2 \\
