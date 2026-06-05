@@ -9,13 +9,13 @@ Compute the steady states and their stability for the system
 
 We compute the steady states by solving 
 \eq{
-0=a\delta^2+b\rho
+0=a \delta^2+b p
 }
 which yields 
 \eq{
 x^*=\pm \sqrt{-\frac{bp}{a}}
 }
-This means we have either two steady states ($b\rho/a<0$) or none ($b\rho/a>0$). If $a$ and $b$ have the same sign then steady states exist at negative values of $\rho$, otherwise they only exist at positive values of $\rho$. 
+This means we have either two steady states ($b p/a<0$) or none ($bp/a>0$). If $a$ and $b$ have the same sign, then steady states exist at negative values of $p$, otherwise they only exist at positive values of $p$. 
 
 In this sense there are two forms of the fold bifurcation, but they are indistinguishable in practice.
 
@@ -23,11 +23,11 @@ To determine the stability of solutions we compute
 \eq{
 f_{\rm x}=\frac{\partial }{\partial x} ax^2+bp = 2ax
 }
-If $a>0$ then the positive steady state is unstable and the negative one is unstable. For $a<0$ it's the other way around. 
+If $a>0$ then the positive steady state is unstable and the negative one is stable. For $a<0$ it's the other way around. 
 
 We can now draw the bifurcation diagram 
 \begin{center}
 \includegraphics[width=0.6\textwidth]{Fold}
 \end{center}
-This diagram corresponds to the case $a<0$ (positive branch of steady states is stable) and $b>0$ (steady states exist for negative $p$).
+This diagram corresponds to the case $a<0$ (positive branch of steady states is stable) and $b<0$ (steady states exist for negative $p$).
 

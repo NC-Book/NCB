@@ -1,10 +1,10 @@
 \exercise{Cellular switch \label{exBrainCellular}}{3}
-In human cells a certain protein can be present in an activated and an inactivated form.  The dynamics of the amount of activated protein, $x$, can be modeled as 
+In human cells, a certain protein can be present in an activated and an inactivated form.  The dynamics of the amount of activated protein, $x$, can be modeled as 
 \eqn{
 \dot{x} = \frac{x^2}{1+x^2}(S-x) - x,   
 }
 where $S$ is the total amount of protein in either form.
-Biologist suspect that the protein acts as a switch that the cell uses to store information. Is this possible? 
+Biologists suspect that the protein acts as a switch that the cell uses to store information. Is this possible? 
 
 \solution 
 We start by considering the steady states. Straight away it is apparent that 
@@ -12,7 +12,7 @@ $x=0$ is a solution. So maybe this is the off state of the switch.
 Let's check the stability of the state. We differentiate the equation of motion to find 
 \eqa{
 f_{\rm x} &=& \left. \partial_x \left(  \frac{x^2}{1+x^2}(S-x) - x \right) \right|_{x=0} \\
-&=& \left. \left(  \frac{2x}{1+x^2}(S-x) - \frac{2x^3}{(1+x^2)}(S-x) -  \frac{x^2}{1+x^2}  - 1 \right) \right|_{x=0} \\ 
+&=& \left. \left(  \frac{2x}{1+x^2}(S-x) - \frac{2x^3}{(1+x^2)^2}(S-x) -  \frac{x^2}{1+x^2}  - 1 \right) \right|_{x=0} \\ 
 &=& \left. \left(  \frac{2x(1+x^2)}{(1+x^2)^2}(S-x) - \frac{2x^3}{(1+x^2)^2}(S-x) -  \frac{x^2}{1+x^2}  - 1 \right) \right|_{x=0} \\
 &=& \left. \left(  \frac{2x}{(1+x^2)^2}(S-x) -  \frac{x^2}{1+x^2}  - 1 \right) \right|_{x=0} \\
 &=&  - 1  \\
@@ -35,11 +35,11 @@ which we can solve for
 \eq{
 x = \frac{S}{4} \pm \frac{\sqrt{S^2-8}}{4}.
 }
-So this gives us two more steady states if the term under the root is positive and none otherwise.  We have discovered an interesting constraint. The system can only act as a switch if the total amount of the protein is large enough, $S>\sqrt{8}$. If this condition is met then we have three steady states. We could now check the stability of these, but actually we don't need to. Because we know that the state at $X=0$, we can conclude $\dot{x}<0$ for sufficiently small $x$. In a one dimensional system, the trajectories that lead to the stable state at $x=0$ must come from somewhere and the only place they can come from is the lower of the non-trivial stead states, but this means that the lower branch must be unstable. 
+So this gives us two more steady states if the term under the root is positive and none otherwise.  We have discovered an interesting constraint. The system can only act as a switch if the total amount of the protein is large enough, $S>\sqrt{8}$. If this condition is met then we have three steady states. We could now check the stability of these, but actually we don't need to. Because we know that the state at $x=0$ is stable, we can conclude $\dot{x}<0$ for sufficiently small $x$. In a one dimensional system, the trajectories that lead to the stable state at $x=0$ must come from somewhere and the only place they can come from is the lower of the non-trivial steady states, but this means that the lower branch must be unstable. 
 
-So if the system sits in the lower branch and we perturb it lightly downward it will fall to the steady state at $x=0$. Conversely if we perturb it slightly upwards then $x$ will rise until it hits the upper steady state, which shows that the upper steady state must be stable. This reasoning only works in one-dimensional systems, but we will see its extension to multi-dimensional systems in the next chapter. 
+So; if the system sits in the lower branch and we perturb it lightly downward, it will fall to the steady state at $x=0$. Conversely, if we perturb it slightly upwards then $x$ will rise until it hits the upper steady state, which shows that the upper steady state must be stable. This reasoning only works in one-dimensional systems, but we will see its extension to multi-dimensional systems in the next chapter. 
 
-We are now ready to answer our biological question. Yes, this system can act as a switch provided there is enough of the protein $S>\sqrt{8}$. If there is less than this amount it will always be in the off state (maybe this is an experiment that can be done). If there is enough of the protein then it can be in the off state, $x=0$ or in the on state $x=(S+\sqrt{S^2-8})/4$. The cell can switch between the off and the on state if it has some other process that can produce or deplete the activated protein. In that case the switching will occur at $x=(S-\sqrt{S^2-8})/4$. 
+We are now ready to answer our biological question. Yes, this system can act as a switch provided there is enough of the protein $S>\sqrt{8}$. If there is less than this amount it will always be in the off state (maybe this is an experiment that can be done). If there is enough of the protein, then it can be in the off state, $x=0$ or in the on state $x=(S+\sqrt{S^2-8})/4$. The cell can switch between the off and the on state if it has some other process that can produce or deplete the activated protein. In that case, the switching will occur at $x=(S-\sqrt{S^2-8})/4$. 
 
 BIFURCATION DIAGRAM
 
