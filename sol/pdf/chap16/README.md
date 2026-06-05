@@ -9,4 +9,5 @@
 - [Exercise 03: Transcritical bifurcation](ex_16_03.pdf)
 - [Exercise 04: Pitchfork bifurcation](ex_16_04.pdf)
 - [Exercise 05: Fold bifurcation revisited](ex_16_05.pdf)
+- [Exercise 06: Transcritical bifurcation normal form](ex_16_06.pdf)
 
