@@ -1,10 +1,10 @@
 \exercise{SEIS center manifold}{4}
-The SEIS model is an epidemic model in which contact between a susceptible and an infectious agent causes the susceptible agent to enter an exposed (E) state, where it carries the disease but isn't infectious yet. Exposed agents then progress to the infectious I state before eventually recovering  back to the susceptible state. The SEIS model is described by the equations 
+The SEIS model is an epidemic model in which contact between a susceptible and an infectious agent causes the susceptible agent to enter an exposed (E) state, where it carries the disease but isn't infectious yet. Exposed agents then progress to the infectious (I) state before eventually recovering  back to the susceptible state. The SEIS model is described by the equations 
 \eqan{
 \dot{E}&=&pI(1-E-I)-E \\
 \dot{I}&=&E-I.
 }
-Our goal in this exercise is to decide whether a discontinous transition takes place at the epidemic threshold, withour computing nontrivial steady states.
+Our goal in this exercise is to decide whether a discontinuous transition takes place at the epidemic threshold, without computing nontrivial steady states.
 \subquestion 
 Find the epidemic threshold, by analyzing the stability of the trivial state.
 
@@ -17,7 +17,7 @@ and substitute the steady state, to find
 \eq{
 {\bf J} = \avecc{-1 & p \\ 1 & -1}
 }
-Since this is two-dimensional system we can test for Hopf bifurcations with the test function ${\rm Tr}(\bf J)$, however since the trace is fixed at -2 there is no Hopf bifurcation. We check for zero eigenvalues by computing the determinant
+Since this is a two-dimensional system we can test for Hopf bifurcations with the test function ${\rm Tr}(\bf J)$, however since the trace is fixed at $-2$ there is no Hopf bifurcation. We check for zero eigenvalues by computing the determinant
 \eq{
 |{\bf J}| = 1 -p 
 }
@@ -52,7 +52,7 @@ y &=& (E-I)/2
 and hence 
 \eqa{
 \dot{x} &=& (\dot{E}+\dot{I})/2 = (pI(1-E-I)-I)/2 = (p(x-y)(1-2x)-x+y)/2 \\
-\dot{y} &=& (\dot{E}-\dot{I})/2 = (pI(1-E-I)-2E+I)/2 = (p(x-y)(1-x)-x-3y)/2 
+\dot{y} &=& (\dot{E}-\dot{I})/2 = (pI(1-E-I)-2E+I)/2 = (p(x-y)(1-2x)-x-3y)/2 
 }
 
 \subquestion
@@ -68,7 +68,7 @@ p=\rho+1
 into the equations, which yields
 \eqa{
 \dot{x} &=& \frac{(\rho+1)(x-y)(1-2x)-x+y}{2} \\
-\dot{y} &=& \frac{(\rho+1)(x-y)(1-x)-x-3y}{2}
+\dot{y} &=& \frac{(\rho+1)(x-y)(1-2x)-x-3y}{2}
 }
 Now we start with the Ansatz 
 \eq{
@@ -83,7 +83,7 @@ We can now substitute $\dot{x}$ and $\dot{y}$ and immediately multiply by two, w
 \eq{
 (\rho+1)(x-y)(1-x)-x-3y = a ((\rho+1)(x-y)(1-2x)-x+y)
 }
-We only need to match the lowest order expressions on each side which are int this case the ones that contain only one of the small variables. So as we multiply the sides out we need to keep only those terms that do not contain products of small variables, 
+We only need to match the lowest order expressions on each side which are in this case the ones that contain only one of the small variables. So as we multiply the sides out we need to keep only those terms that do not contain products of small variables, 
 \eq{
 x-y-x-3y = a (x-y-x+y) 
 }
@@ -98,14 +98,14 @@ ax=0
 Because we are interested in small $x$ and not $x=0$, this shows $a=0$ and hence 
 \eq{y=0.}
 
-\subquestion Constrain your dynamics to the center mainfold (substitute your $y$ into $\dot{x}$). Compare the result to the normal form of the transcritical bifurcation. Is the bifurcation in the SEIS model \emph{supercritical} as in the SIS model or \emph{subcritical} as in the aSIS model with strong rewiring (see Ex.~16.11)? 
+\subquestion Constrain your dynamics to the center manifold (substitute your $y$ into $\dot{x}$). Compare the result to the normal form of the transcritical bifurcation. Is the bifurcation in the SEIS model \emph{supercritical} as in the SIS model or \emph{subcritical} as in the aSIS model with strong rewiring (see Ex.~16.11)? 
 
 \solution 
 We have a very simple approximation for $y$ indeed: $y=0$. Substituting into the equation for $\dot{x}$ yields 
 \eq{
 \dot{x}=\frac{(\rho+1)x(1-2x)-x}{2} = \frac{x\rho-2x^2\rho-2x^2}{2}
 }
-In the derivation of the transcritical normal form we showed that if there if there are nonzero $x^2$ and $\rho x$ terms then all higher order terms can be ignored as they do not change the behavior in the neighborhood of the bifurcation point. We can therefore now ignore the $x^2\rho$ term and write 
+In the derivation of the transcritical normal form we showed that if there are nonzero $x^2$ and $\rho x$ terms then all higher order terms can be ignored as they do not change the behavior in the neighborhood of the bifurcation point. We can therefore now ignore the $x^2\rho$ term and write 
 \eq{
 \dot{x} = \frac{1}{2}x\rho - x^2 
 }
@@ -114,7 +114,7 @@ In Ex.~16.11 we wrote the normal form of the transcritical bifurcation as
 \dot{x} = ax + bx^2,
 }
 where the $a$ is not the same $a$ as our coefficient $a$ above. 
-In the previous exercise we also showed that the trivial state is stable for $a<0$ and the bifurcation behaves supercritcally if $b<0$ and subcritically if $b>0$. Comparing with our SEIS system we can now see that
+In the previous exercise we also showed that the trivial state is stable for $a<0$ and the bifurcation behaves supercritically if $b<0$ and subcritically if $b>0$. Comparing with our SEIS system we can now see that
 \eq{
 a=\frac{1}{2}\rho \qqq  b= -1
 }
@@ -129,11 +129,11 @@ Differentiating the ansatz leads to
 \eq{
 \dot{y}=(2bx+c\rho)\dot{x}. 
 }
-By now we know that we won't need all the higher order terms. So let'S multiply out $\dot{y}$ while ignoring all terms greater than 2nd order. While we are on it note that $y$ itself is a second order term now, so we can ignore all terms where $y$ is multiplied with anything else. SO we write  
+By now we know that we won't need all the higher order terms. So let's multiply out $\dot{y}$ while ignoring all terms greater than 2nd order. While we are on it note that $y$ itself is a second order term now, so we can ignore all terms where $y$ is multiplied with anything else. So we write  
 \eq{
 \dot{y}= \frac{x\rho + x - y -2x^2 -x-3y}{2} + O(3) = \frac{x\rho}{2} -x^2 -2y + O(3)   
 }
-For $\dot{x}$ first order terms up to first order are sufficient, because the multiplication with $2bx+c\rho$ will add another order, so 
+For $\dot{x}$, expanding up to first order is sufficient, because the multiplication with $2bx+c\rho$ will add another order, so 
 \eq{
 \dot{x} = \frac{x -x}{2} + O(2) = O(2)   
 }

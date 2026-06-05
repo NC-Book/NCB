@@ -6,7 +6,7 @@ To develop a better model of predator-prey dynamics,we consider the number of pr
 \dot{S} &=& -rXS+bH+cH -mS \\
 \dot{H} &=& +rXS-bH -mH 
 }
-where predator reproduction $cH$ and linear mortality of the predator ($mS$ and $mH$).
+where predator reproduction $cH$ and mortality $mS$, $mH$ are slow.
 
 \subquestion Ignore the equation for prey for now. Use Tikhonov-Fenichel reduction to find the one-dimensional slow subsystem of the predator dynamics. 
 
@@ -21,7 +21,7 @@ Using that $c$ and $m$ are small, we set them to zero to identify the fast subsy
 \dot{S} &=& -rXS+bH\\
 \dot{H} &=& +rXS-bH 
 }
-It is apparent that $Y=S+H$ is a conserved on the fast timescale. Moreover we see that in the steady state of the fast dynamics 
+It is apparent that $Y=S+H$ is a conserved quantity on the fast timescale. Moreover we see that in the steady state of the fast dynamics 
 \eq{
 rXS=bH
 }
@@ -45,7 +45,7 @@ We now write an equation for our slow variable
 \eq{
 \dot{Y} = \dot{H} + \dot{S} = cH -mS -mH = cH -mY = c \frac{rXY}{b+rX} - mY
 }
-where we replaced $H$ with it's value on the slow manifold $(bXY)/(r+bX)$. 
+where we replaced $H$ with its value on the slow manifold $(bXY)/(b+rX)$. 
 
 \subquestion
 Call the slow predator variable $Y$ and write a closed model consisting of ODEs for $X$ and $Y$. Compare the result with the Lotka-Volterra model. 
@@ -65,6 +65,6 @@ If we compare this model with the Lotka-Volterra model,
 \dot{X} &=& aX-bXY \\
 \dot{Y} &=& cXY-mY,
 }
-we can see that the problematic predator-prey interaction term $XY$ has been replaced with $rXY/(b+rX)$. This is the so-called Holling type-II functional response, named after it's inventor CS Holling. Holling independently rediscovered this function after it was first derived from an analogous problem in organic chemistry, by Leonor Michaelis and Maud Leonora Menten. Hence, it is also known as Michaelis-Menten kinetics. In ecological models Holling type-II responses avoid the problem of very high prey consumption rates at large prey population sizes. If the $X$ is small then the type-II response behave approximately like $rXY/b$ which is reminiscent of the Lotka-Volterra interaction. However if $X$ becomes large the it approaches $Y$, hence the predation rate becomes independent of prey abundance as the predator saturates (pun intended).     
+we can see that the problematic predator-prey interaction term $XY$ has been replaced with $rXY/(b+rX)$. This is the so-called Holling type-II functional response, named after its inventor CS Holling. Holling independently rediscovered this function after it was first derived from an analogous problem in organic chemistry, by Leonor Michaelis and Maud Leonora Menten. Hence, it is also known as Michaelis-Menten kinetics. In ecological models Holling type-II responses avoid the problem of very high prey consumption rates at large prey population sizes. If the $X$ is small then the type-II response behave approximately like $rXY/b$ which is reminiscent of the Lotka-Volterra interaction. However if $X$ becomes large then it approaches $Y$, hence the predation rate becomes independent of prey abundance as the predator saturates (pun intended).     
 
 We have already seen the type-II response in action in the Rosenzweig-MacArthur model in Ex.~14.7. Now you know where it comes from. 

@@ -5,12 +5,12 @@ Let's consider once again the mean-field SIS model, $\dot{I}=pzI(1-I)-I$. But th
 Compute the steady state of the system as a function of $p$ is there still an epidemic threshold?
 
 \solution 
-At this point you probably know by heart that the SIS model with fixed $Z$ has an epidemic threshold at $pz/r=1$ which corresponds to a transcritical bifurcation, But let'S see what happens in the adaptive model 
+At this point you probably know by heart that the SIS model with fixed $z$ has an epidemic threshold at $pz/r=1$ which corresponds to a transcritical bifurcation, but let's see what happens in the adaptive model 
 \eqa{
 \dot{I} &=& pzI(1-I)-I \\ 
 \dot{z} &=& a-bI 
 }
-We know that $I=0$ makes the equation form the infected stationary, but that would leave the $z$ increasing forever, so that's not a steady state. Setting the first equation to zero and dividing out one factor of $I$ gives us the condition
+We know that $I=0$ makes the equation for the infected stationary, but that would leave the $z$ increasing forever, so that's not a steady state. Setting the first equation to zero and dividing out one factor of $I$ gives us the condition
 \eq{
 0 = pz(1-I)-1 \\ 
 }
@@ -33,7 +33,7 @@ I=\frac{a}{b} \qqq z = \frac{1}{p(1-a/b)}
 There is no evidence for an epidemic threshold. 
 
 \subquestion 
-Now consider the case where $b=\epsilon$ and $a=\epsilon^2$.What happens in the limit $\epsilon\to 0$?
+Now consider the case where $b=\epsilon$ and $a=\epsilon^2$. What happens in the limit $\epsilon\to 0$?
 
 \solution 
 So this is now a system with three timescales, where we just set $\epsilon=0$
@@ -41,14 +41,14 @@ So this is now a system with three timescales, where we just set $\epsilon=0$
 \dot{I} &=& pzI(1-I)-I \\
 \dot{z} &=& 0
 }
-where $z$ is now once again a parameter. From previous chapters we know the result of the analysis of this system, so I won't explore it again in detail. SO just recall that computing the steady states now reveals the disease free state at $I=0$ and the endemic state at $I=1-1/pz$ which is only feasible if $pz>1$.
+where $z$ is now once again a parameter. From previous chapters we know the result of the analysis of this system, so I won't explore it again in detail. So just recall that computing the steady states now reveals the disease free state at $I=0$ and the endemic state at $I=1-1/pz$ which is only feasible if $pz>1$.
 So in summary the slow manifold is 
 \eqa{ 
      I &= 0 \qqq &\mbox{for $pz\leq 1$} \\
-     I &= 1-1/pz \qqq &\mbox{for $pz > 1$} \\    
+     I &= 1-1/pz \qqq &\mbox{for $pz > 1$}   
 }
 So we have considered the fast dynamics and found that it has a bifurcation. 
-Lets consider the next slower timescale. We renormalize time by epsilon. The resulting system is 
+Let's consider the next slower timescale. We renormalize time by $\epsilon$. The resulting system is 
 \eqa{
 \epsilon \dot{I} &=& pzI(1-I)-I \\
 \dot{z} &=& \epsilon -I 
@@ -58,7 +58,7 @@ In the limit $\epsilon$ to zero the first of these equations becomes
 0 = pzI(1-I)-I 
 }
 this is just the conservation law that now restricts us to slow manifold. 
-In the second equation we have to be a bit more careful. It is tempting to set $\epsilon=0$. In the case where $pz>I$ such that $I>0$ this is perfectly fine as we can argue that $\epsilon \ll I $ and hence can be neglected. However in the case where $I=0$. We are left with 
+In the second equation we have to be a bit more careful. It is tempting to set $\epsilon=0$. In the case where $pz>1$ such that $I>0$ this is perfectly fine as we can argue that $\epsilon \ll I $ and hence can be neglected. However in the case where $I=0$. We are left with 
 \eq{
    \dot{z} =  \epsilon 
 }
@@ -67,7 +67,7 @@ In this case every small value of $\epsilon$ leads to qualitatively different lo
      \dot{z} &= \epsilon \qqq &\mbox{for $pz\leq 1$} \\
      \dot{z} &= -1+1/pz \qqq &\mbox{for $pz > 1$} \\    
 }
-So for $pz \leq 1$, $Z$ is slowly increases until $pz=1$, whereas at $pz>1$, $z$ decreases until $pz=1$. Hence, $z$ is tuned to exactly the case where the dynamics on the fastest timescale has a critical state.
+So for $pz \leq 1$, $z$ slowly increases until $pz=1$, whereas at $pz>1$, $z$ decreases until $pz=1$. Hence, $z$ is tuned to exactly the case where the dynamics on the fastest timescale has a critical state.
 
 This is an example of self-organized criticality. Our system will always self-organize to the point where it is in a critical state, which might explain why some systems (e.g.~the brain) can remain at a bifurcation point.
 
@@ -81,4 +81,4 @@ Generally, agents can never be sure that the system is in the ordered phase, if 
 
 Until somebody proves me wrong I will claim that this form of self-organized criticality always requires dynamics on three timescales. First the timescale of the critical dynamics must be separate from the adaptation processes as otherwise the adaptation itself, would destroy the criticality as we have seen in the first part of this exercise. Second, unless the active elements in our system have a view of the entire system, they cannot detect the ordered phase with certainty and hence must adapt more slowly when they perceive order around them, hence another timescale separation is required. 
 
-Once we have understood this mechanism it is easy to find many real world examples that could lead to self-organized criticality:. Or consider a company that produces high quality products. If the products are always flawless, then the standards of quality control may start to slip (ordered phase slowly moves to disorder). Eventually factors in the dynamics of the factory lead to faulty products being produced (Fast internal dynamics), then the management takes decisive action to improve quality control (quicker adjustment to the ordered state). Here the timescales are years (decline of quality control), weeks or months (management action), and days (internal dynamics of the production process). Another famous example is biomass building up in a forest until a forest fire resets it. Here the slow biomass build up in the ordered phase is easy to identify. The fast timescale is the spreading of the fires, while the third timescale is the fire consuming it's fuel (the rate at which small fires slowly decrease the biomass in the system, is a slower process than the dynamics of the individual fire.)
+Once we have understood this mechanism it is easy to find many real world examples that could lead to self-organized criticality. Or consider a company that produces high quality products. If the products are always flawless, then the standards of quality control may start to slip (ordered phase slowly moves to disorder). Eventually factors in the dynamics of the factory lead to faulty products being produced (Fast internal dynamics), then the management takes decisive action to improve quality control (quicker adjustment to the ordered state). Here the timescales are years (decline of quality control), weeks or months (management action), and days (internal dynamics of the production process). Another famous example is biomass building up in a forest until a forest fire resets it. Here the slow biomass build up in the ordered phase is easy to identify. The fast timescale is the spreading of the fires, while the third timescale is the fire consuming its fuel (the rate at which small fires slowly decrease the biomass in the system, is a slower process than the dynamics of the individual fire.)

@@ -4,11 +4,11 @@
 - [Exercise Sheet 16](ex_16.pdf)
 
 ## Solutions
-- [Exercise 01: A fancy derivative](ex_16_01.pdf)
-- [Exercise 02: Abstract sensitivity example](ex_16_02.pdf)
-- [Exercise 03: Transcritical bifurcation](ex_16_03.pdf)
-- [Exercise 04: Pitchfork bifurcation](ex_16_04.pdf)
-- [Exercise 05: Fold bifurcation revisited](ex_16_05.pdf)
+- [Exercise 01: Geometric dynamic](ex_16_01.pdf)
+- [Exercise 02: Fold bifurcation normal form](ex_16_02.pdf)
+- [Exercise 03: Abstract sensitvity example](ex_16_03.pdf)
+- [Exercise 04: Degeneracy of the epidemic threshold](ex_16_04.pdf)
+- [Exercise 05: Cellular switch](ex_16_05.pdf)
 - [Exercise 06: Transcritical bifurcation normal form](ex_16_06.pdf)
 - [Exercise 07: Pitchfork normal form](ex_16_07.pdf)
 - [Exercise 08: Spruce Budworm](ex_16_08.pdf)

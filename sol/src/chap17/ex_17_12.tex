@@ -1,5 +1,5 @@
 \exercise{SIS Closure complications}{5}
-Let's consider these two equations form the pair approximation of the SIS model 
+Let's consider these two equations from the pair approximation of the SIS model 
 \eqan{
 [\dot{SS}]&=& r[SI] - 2p[SS][SI]/[S] \\{}
 [\dot{II}]&=& p [SI] + p[SI]^2/[S] - 2 r [II].
@@ -20,12 +20,12 @@ Setting the left hand side of the equations to zero yields
 0&=& r[SI] - 2p[SS][SI]/[S]  \\{}
 0&=& p [SI] + p[SI]^2/[S] - 2 r [II].
 }
-One possible steady state is the disease free state where $[SI]=[II]=0$. To find the other steady state we divide the upper equation by $[SI]$ and multiply both lower equations by $[S]$
+One possible steady state is the disease free state where $[SI]=[II]=0$. To find the other steady state we divide the upper equation by $[SI]$ and multiply the lower equations by $[S]$
 \eqa{
 0&=& r[S] - 2p[SS] \\{}
 0&=& p [SI][S] + p[SI]^2 - 2 r [II][S].
 }
-In second equation we can use the conservation law for links to replace $[II]=z/2-[SS]-[SI]$ which yields 
+In the second equation, we can use the conservation law for links to replace $[II]=z/2-[SS]-[SI]$ which yields 
 \eqa{
 0&=& r[S] - 2p[SS] \\{}
 0&=& p [SI][S] + p[SI]^2 - zr[S] + 2r[SS][S]+2r[SI][S].
@@ -51,6 +51,6 @@ We pull the denominator into the terms to arrive at
 }
 We can now define a normalized recovery rate parameter $\tilde{r}=r/p$ which turns the equation into 
 \eq{
-[SI] = -[S]\left(\frac{1}{2} + \tilde{r} \right) + \sqrt{\left(\frac{1}{4}+\frac{r}{p}\right)[S]^2 + z\tilde{r}[S]}
+[SI] = -[S]\left(\frac{1}{2} + \tilde{r} \right) + \sqrt{\left(\frac{1}{4}+\tilde{r}\right)[S]^2 + z\tilde{r}[S]}
 }
 This equation has simplified considerably, but surprisingly at $[S]=1$ where every node is susceptible we find $[SI]\neq 0$. Clearly our intuition that SI-links require I-nodes was not reflected in the link equations. Of course there is no reason to believe that this coarse graining would actually obey our expectations. After all it is an approximation and we are pushing it to extreme cases where the premise that the link equations are faster is violated. Conversely, it would not have raised many eyebrows if a coarse graining was possible that worked elegantly in this case. So maybe this can be fixed somehow. If you know how, let me know. 
