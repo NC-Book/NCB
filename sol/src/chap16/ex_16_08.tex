@@ -1,48 +1,93 @@
 \exercise{Spruce Budworm\label{xsBrainBudworm}}{4}
 The spruce budworm is a moth that feeds on the needles of spruce trees, and can occur in large outbreaks. The dynamics is modeled by 
 \eqn{
-\dot{x} = x(1-x/K) - x^2/(1+x^2)
+\dot{x} = 0.55x(1-x/K) - x^2/(1+x^2),
 }
 where $K$ is a parameter that indicates the mass of spruce needles in the area. 
 Analyze this system to determine whether this model can explain the sudden outbreaks. 
 
 \solution
-A good way to start is to compute the steady states. We can immediately spot $x_1^*=0$. Dividing this steady state out of the equation leaves us with the condition
-\eq{
-0 = 1- \frac{x}{K} - \frac{x}{1+x^2}
+A good way to start is write the system as 
+\eqn{
+\dot{x} = r\left(x-\frac{x^2}{K}\right) - \frac{x^2}{1+x^2},
 }
-We can multiply the denominator, but this leaves us with 
+where I have introduced a parameter $r=0.55$ to make it look neater and save some ink (and writing effort). 
+
+Now we notice that $X^*=0$ is a steady state. Maybe this has bifurcation where it becomes unstable causing the outbreak we are looking for? Let's check. 
+
+We calculate 
 \eq{
-0 = (1+x^2) - \frac{x(1+x^2)}{K} -x 
+\left. \frac{\partial \dot{x}}{\partial x}\right|_{x=0} = \left[ r\left(1-\frac{2x}{K}\right) - \frac{2x}{1+x^2} + \frac{2x^3}{(1+x^2)^2} \right]_{x=0} = r 
+}
+where we used the quotient and chain rule in the derivative of the loss rate.
+
+So, no, there is is no bifurcation. As long as the growth rate $r$ is positive the steady state at $x^*=0$ is always unstable. In retrospect this makes sense as for small $x$ the mortality rate becomes and the limitation of the growth ($-x^2/K$) become neglibile, so we are left with pure exponential growth. 
+
+Okay, fine, we have found an unstable state. So let's return to the steady state condition 
+\eqn{
+\dot{x} = r\left(x-\frac{x^2}{K}\right) - \frac{x^2}{1+x^2}=0
+}
+Dividing by $x$ to remove the steady state that we already know yields
+\eq{
+0 = r- \frac{rx}{K} - \frac{x}{1+x^2}.
+}
+Multiplying the denominator leaves us with 
+\eq{
+0 = r(1+x^2) - \frac{rx(1+x^2)}{K} -x 
 }
 or equivalently 
 \eq{
-0= (x^2 -x + 1) K - (x^3+x) 
+0= (rx^2 + r -x) K - r(x^3+x). 
 }
-We have created a third order polynomial. In principle this can be factorized, but this is not fun. So let's try something else we can start by analyzing the stability of the trivial steady state. 
+We have created a third order-polynomial. In principle this can be factorized to find an expression for $x$, but the resulting equation is complicated and no fun at all. So let's instead solve this for $K$:
+\eq{
+K = \frac{r(x^3+x)}{rx^2+r-x}. 
+}
+This was easy and allows us to plot $x$ over $K$:
+\begin{center}
+\includegraphics[width=0.5\textwidth]{budworm1}
+\end{center}
+Now that's interesting We need more needles to sustain the budworm at a density between 1 and 2 than at a density of 4. More importantly we can flip this diagram around to lool at the budworm density as a function of the amount of needles. 
+\begin{center}
+\includegraphics[width=0.5\textwidth]{budworm2}
+\end{center}
+In this diagram I have added the unstable steady state at zero. Because this is a one-dimensional system the steady states then have to alternate in stablility. And therefore we know the stability of the other steady state branches.
 
-We compute the derivative of the equation of motion
+So this is oor result: We can see that for low needle mass in an area the budworm approaches a roughly etween zero and one. But when we are approaching a needle mass of twelve we encounter a bifurcation where we tip into a state of budworm density of about nine. This is the sudden outbreak we are looking for.\\[0.5cm] 
+
+\par{\bf Bonus: Actually checking stability.} If you wanted to actually check the stability of the solution branches then there is a relatively painless way to do it. 
+
+First, consider that the stability of the steady states cannot change except in bifurcations. So we do not need to check the stability in every point. Even if we don't trust our result that the stability needs to alternate between branches we would only need to check it once per branch. So instead of checking the stability for all $K$ and $x$ we only need to check it for three particular points chosen to lie on the three non-trivial branches. 
+
+Intuitively we could now choose suitable values of $K$ and find the correspoding steady state values for $x$, but we already learned that it is easier to go in the opposite way. Looking at the bifurcation diagram again, we can see that we can select the three non-trivial branches by considering values of $x_1=1/2$, $x_2=2$ and $x_3=4$, respectively.
+
+According to the relationship that we discovered above the corresponding values of $K$ that make these points steady states are
+\eq{
+K_1 = \frac{r({x_1}^3+x_1)}{r{x_1}^2+r-x_1} = \frac{(5/8)r}{(5/4)r-1/2} = \frac{5r}{10r-4} = 
+}
+\eq{
+K_2 = \frac{r({x_2}^3+x_2)}{r{x_2}^2+r-x_2} = \frac{10r}{5r-2}  
+}
+\eq{
+K_3 = \frac{r({x_3}^3+x_3)}{r{x_3}^2+r-x_3} = \frac{68r}{17r-4}  
+}
+We now have pairs of values for $x$ and $K$ that we can substitute into
+\eq{
+\frac{\partial \dot{x}}{\partial x} = r\left(1-\frac{2x}{K}\right) - \frac{2x}{1+x^2} + \frac{2x^3}{(1+x^2)^2}  
+}
+For the first value this yields the stability condition 
 \eqa{
-f_{\rm x} &=& \left. \partial_x  \left( x-\frac{x^2}{K} - \frac{x^2}{1+x^2} \right)\right|_{x=0} \\
-&=& \left.   \left(  1-\frac{2x}{K} - \frac{2x}{1+x^2} + \frac{2x^3}{(1+x^2)^2}  \right)\right|_{x=0} \\
-&=& \left.   \left(  1-\frac{2x}{K}  - \frac{2x(1+x^2)}{(1+x^2)^2} + \frac{2x^3}{(1+x^2)^2}  \right)\right|_{x=0} \\
-&=& \left.   \left( 1-\frac{2x}{K}  - \frac{2x}{(1+x^2)^2}   \right)\right|_{x=0} \\
-&=& 1 \\
+0&>& \left.\frac{\partial \dot{x}}{\partial x}\right|_{x=x_1,K=K_1} \\
+0&>& r\left(1-\frac{2x_1}{K_1}\right) - \frac{2x_1}{1+{x_1}^2} + \frac{2{x_1}^3}{(1+{x_1}^2)^2}\\
+0 &>& r\left(1-\frac{1}{5r/(10r-4)}\right) - \frac{1}{1+1/4} + \frac{1/4}{(1+1/4)^2}\\
+0 &>& r\left(1-\frac{10r-4}{5r}\right) - \frac{4}{5} + \frac{1/4}{25/16}\\
+0 &>& r\left(1-\frac{10r-4}{5r}\right) - \frac{80}{100} + \frac{16}{100}\\ 
+\frac{64}{100} &>& r\left(1-\frac{10r-4}{5r}\right)\\
+320r &>& 100 r (5r-10r+4) \\
+32 &>& 10 (4-5r) \\\
+50r &>& 40-32 \\
+r &>& 8 / 50 = 16/100 = 0.16
 }
-Of course it would have been quicker to substitute the zero without first simplifying the remaining fractions, but I was thinking that we might need the term again. 
+which is true because we know $r=0.55$. So the lowest branch of steady states is stable.
 
-So there are no bifurcations of the trivial steady state, it is always unstable. (Our hope here was that a subcritical loss of stability of the budworm-free state could explain the outbreaks, but no luck.)
-
-OK, let's return to our cubic equation for the steady states. Here it is again:
-\eq{
-0= (x^2 -x + 1) K - (x^3+x) 
-}
-We can easily solve this for $K$, which results in 
-\eq{
-K=\frac{x^3+x}{x^2 -x + 1}
-}
-
-
-
-
-FINISH ....
+We can do the same calculation for $x_2$ and $K_2$ which yields the condition $r>64/100$ which is false, confirming that the second lowest non-trivial branch is unstable. For $x_3$ and $K_3$ we find the condition $r>128/289$ (approximately $0.55>0.44$), which is true, confirming that the top-most branch of steady states is stable.

@@ -23,15 +23,15 @@ So this steady state is stable.  If there is another stable state we could maybe
 }
 Clearing the denominator gives us 
 \eq{
-0= x(S-x) - (1+x^2)
+0= x(S-x) - (1+x^2),
 }
 which we can write as
 \eqa{
 0 &=& -2x^2 +Sx -1 \\
 0 &=& x^2-Sx/2 +1/2 \\
-0 &=& (x-S/4)^2 - S^2/16  +1/2 \\
+0 &=& (x-S/4)^2 - S^2/16  +1/2
 }
-which we can solve for 
+We can now solve for 
 \eq{
 x = \frac{S}{4} \pm \frac{\sqrt{S^2-8}}{4}.
 }
@@ -41,7 +41,9 @@ So; if the system sits in the lower branch and we perturb it lightly downward, i
 
 We are now ready to answer our biological question. Yes, this system can act as a switch provided there is enough of the protein $S>\sqrt{8}$. If there is less than this amount it will always be in the off state (maybe this is an experiment that can be done). If there is enough of the protein, then it can be in the off state, $x=0$ or in the on state $x=(S+\sqrt{S^2-8})/4$. The cell can switch between the off and the on state if it has some other process that can produce or deplete the activated protein. In that case, the switching will occur at $x=(S-\sqrt{S^2-8})/4$. 
 
-BIFURCATION DIAGRAM
+\begin{center}
+\includegraphics[width=0.6\textwidth]{Protein}
+\end{center}
 
 
 
