@@ -2,3 +2,35 @@
 Among the topological centralities (degree, closeness, betweenness and spectral centrality) only one extends naturally to networks with multiple components. Discuss the problems that occur, and try to find ways to extend all of these centralities gracefully to systems with multiple components.
 
 \solution
+\paragraph{Degree centrality.}Of the centralities only degree centrality can be safely and directly applied to networks with multiple components. Because degree centrality is essentially a local property, component structure does not interfere with it. 
+
+
+\paragraph{Betweenness centrality.}A close second place is betweenness centrality. 
+A first problem is that there are no shortest paths between nodes in different components. But for the purpose of betweenness centrality this problem is easy to ignore by just ignoring those pairs of nodes. 
+
+We can then compute the betweenness centrality using the paths between the remaining pairs, but does the ranking we get as a result make sense? The number of shortest paths that could run through a node scales quadratically with the number of nodes in the component. Hence the betweenness centralities of nodes in larger components will tend to be much larger than the betweenness centralities in nodes in small components. So do we just accept that and acknowledge that the importance of a component grows quadratically with its size, or do we normalize the centralities by the component size, or maybe the square of the component size? Perhaps depending on the application either of these may be appropriate?
+
+\paragraph{Closeness centrality.}With closeness centrality the absence of shortest paths between nodes in different components presents a more fundamental problem. Technically speaking this means that the distances between some nodes are infinity and if we average over all distances this means that every node is on average infinitely far away from every other node. We could just leave the distances between nodes in different components out of the calculation of the centralities, but if done naively this would make nodes in small components more important, and isolated nodes would be the most important ones. 
+
+One potential solution is to leave distances between nodes in different components out and then scale the results in a suitable way (bonus exercise: try to come up with one---how do you expect closeness to scale as a function of network size?). Another proposal is to take the infinite distances into account but add them up in another way: Instead of averaging the distances to all other nodes and then inverting the result, we can first invert the distances and then average. The inverse of $\infty$ is $0$, so this solves the mathematical problem. 
+
+\paragraph{Spectral centrality.}The spectral centrality gives us the most honest result. In this case the method fails because the leading eigenvector will only have non-zero elements in one component, typically the larger one. So all nodes in other components will be assigned an eigenvalue centrality of zero. Clearly this isn't what we would usually want. 
+
+One possibility is to take additional eigenvectors into account. But eigenvectors can be rescaled arbitrarily, so how do we compare nodes that are in different eigenvectors?  A sensible solution is to scale the vectors by their respective eigenvalue and then compare their elements. 
+
+Alternatively, we might just listen to what the eigenvectors are trying to tell us: There is a philosophical problem here: If nodes are part of a connected network, the network structure puts the nodes into relation to another, and hence we can interpret the structure of these relationships to infer importance. But between disconnected components we lack any connectivity on which our reasoning could build. Hence, comparing the importances of the nodes risks comparing apples with oranges. 
+
+\paragraph{Conclusion.}Comparisons between importances of nodes in different components therefore always require an absolute external standard. In case of degree centrality we postulate such a standard by postulating that every link conveys an equal amount of importance. In other contexts similar standards can be constructed. Can you think of some examples?
+
+
+
+
+
+
+
+
+
+
+
+
+

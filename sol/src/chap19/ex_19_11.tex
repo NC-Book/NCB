@@ -1,5 +1,5 @@
 \exercise{Press perturbation}{4} 
-A dynamical system resides in a state $\vec{x}^*$. Your goal is to reduce the the value of the first variable in the steady state, $x_1^*$. You can add a small constant term $\epsilon$ to one of the functions $f$ on the right-hand side of your equation of motion. You recal the implicit function theorem 
+A dynamical system resides in a state $\vec{x}^*$. Your goal is to reduce the value of the first variable in the steady state, $x_1^*$. You can add a small constant term $\epsilon$ to one of the functions $f$ on the right-hand side of your equation of motion. You recall the implicit function theorem 
 \eqn{
 \frac{\d \vec{x}^*}{\d p} = -{\bf J}^{-1} \frac{\partial f}{\partial p} 
 }
@@ -23,9 +23,9 @@ hence we can write
 \eq{
      {\bf J}^{-1} \vec{v_n} = \frac{1}{\lambda_n}\vec{v_n}
 }
-which shows that $\vec{v_n}$ is a right eigenvector of ${\bf J}^{-1}$ and the eigenvalue is $1/\lambda_n$. So the right eigenvectors of the Jacobian are also right eigenvectors for the inverse Jacobian, and the eigenvalues of the inverse Jacobian are the inverse of the corresponding eigenvalues for the Jacobian. 
+which shows that $\vec{v_n}$ is a right eigenvector of ${\bf J}^{-1}$ and the eigenvalue is $1/\lambda_n$. So, the right eigenvectors of the Jacobian are also right eigenvectors for the inverse Jacobian, and the eigenvalues of the inverse Jacobian are the inverse of the corresponding eigenvalues for the Jacobian. 
 
-We can proceed in the same way for the left eigenvalues 
+We can proceed in the same way for the left eigenvectors
 \eqa{
     \vec{w_n}^\dag {\bf J} &=& \lambda_n  \vec{w_n}^\dag \\
     \vec{w_n}^\dag {\bf J}{\bf J}^{-1} &=& \lambda_n  \vec{w_n}^\dag {\bf J}^{-1} \\
@@ -66,7 +66,7 @@ We now only need to show that this is the same as the right-hand side of the equ
 }
 
 \subquestion 
-Now determine how the the first coordinate of steady state $x_1^*$ changes as we changes when we add a small constant term $\epsilon$ to $x_j$'s equation of motion  $f_j(\vec{x})$. Does this give you an idea for another centrality?  
+Now determine how the first coordinate of steady state $x_1^*$ changes as we changes when we add a small constant term $\epsilon$ to $x_j$'s equation of motion  $f_j(\vec{x})$. Does this give you an idea for another centrality?  
 
 \solution 
 We start with the implicit function theorem, now written with $\epsilon$ instead of the generic parameter $p$ 
@@ -77,13 +77,13 @@ We know that the right hand sides of our equation of motion $f$ only contain one
 \eq{
 \frac{\partial f}{\partial \epsilon} = \vec{e_j}
 }
-where $e_j$ is the $j$th coordinate vector, i.e.~the vector that is zero except for a 1 in element $j$. What happens when we multiply this vector with another vector is that only the $j$'s element form the other vector is left. 
+where $e_j$ is the $j$th coordinate vector, i.e.~the vector that is zero except for a 1 in element $j$. What happens when we multiply this vector with another vector is that only the $j$th element from the other vector is left. 
 If you don't see this immediately let's compute $\vec{w_n^\dag}\vec{e_j}$. 
 We can write this inner product as 
 \eq{
 \vec{w_n^\dag}\vec{e_j}= \sum_i w_{n,i}^\dag e_{j,i} 
 }
-Moreover the $i$th element of $\vec{e_j}$ is 0 unless $i=j$ for which it is one, so 
+Moreover, the $i$th element of $\vec{e_j}$ is 0 unless $i=j$ for which it is one, so 
 \eq{
 e_{j,i} = \delta_{i,j}
 }
@@ -109,7 +109,7 @@ This expression now tells us how the steady state of ${x_i}^*$ is affected when 
 
 Does this give us an idea for another centrality? We could consider how much the steady state is shifted in total if we add our small term to equation $j$. 
 
-Lets define the shift of the steady state
+Let's define the shift of the steady state
 \eq{
 \vec{s}= \frac{\d \vec{x}^*}{\d \epsilon}.
 }
@@ -124,4 +124,4 @@ Hence, the total shift in the steady state is
 \eq{
 |s| = \sqrt{\sum_{n,m} \frac{ (\vec{v_{n}^\dag}\vec{v_{m}}) (w_{m,j}^\dag w_{n,j}) }{|\lambda_n|^2}}
 }
-so this is a kind press perturbation sensitivity. Similar to our other centralities we can exchange $\vec{w}$ and $\vec{v}$ in the equation in we want an indicator for sensitivity to press perturbations instead. 
+so this is a kind of press perturbation sensitivity. Similar to our other centralities we can exchange $\vec{w}$ and $\vec{v}$ in the equation if we want an indicator for sensitivity to press perturbations instead. 

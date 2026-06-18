@@ -1,7 +1,7 @@
 \exercise{Linked pair \label{exCentralPair}}{2}
 Let's consider the linked pair (o-o) network in more detail. 
 
-\subquestion Write the adjacency matrix $\bf A$ and compute the eigenvalues $\lambda_n$, the right eigenvalues $\vec{v_n}$ and the left eigenvalues $\vec{w_n}^\dag$. 
+\subquestion Write the adjacency matrix $\bf A$ and compute the eigenvalues $\lambda_n$, the right eigenvectors $\vec{v_n}$ and the left eigenvectors $\vec{w_n}^\dag$. 
 
 \solution 
 The adjacency matrix is 
@@ -16,7 +16,7 @@ The right eigenvectors are
 \eq{
 \vec{v_1} = \avec{1 \\ 1}, \qqq \vec{v_2} = \avec{1\\ -1}. 
 }
-since the matrix is symmetric we have $\vec{v_n}=\vec{w_n}$ and hence
+Since the matrix is symmetric, we have $\vec{v_n}=\vec{w_n}$, and hence
 \eq{
 \vec{w_1}^\dag = (1,1), \qqq  \vec{w_2}^\dag = (1,-1),
 }
@@ -24,7 +24,7 @@ since the matrix is symmetric we have $\vec{v_n}=\vec{w_n}$ and hence
 \subquestion Consider the iteration $\vec{v}(i+1) = {\bf A} \vec{v}(i)$, starting with $\vec{v}(0)=(1,2)^{\rm T}$. Find a closed-form solution for $\vec{v}(i)$. 
 
 \solution 
-We remember from Chap.~12 how this is done. We start with the iterations rule 
+We remember from Chap.~12 how this is done. We start with the iteration rule 
 \eq{
 \vec{v}(i+1) = {\bf A} \vec{v}(i)
 }
@@ -34,9 +34,9 @@ and formally decompose the vector $\vec{v}(i)$ into right eigenvectors of ${\bf 
 }
 substituting into the iteration rule yields 
 \eq{
-\sum c_n(i+1) \vec{v_n} = {\bf A} \sum c_n(i) \vec{v_n} = \sum c_n(i) \lambda_n \vec{v_n}
+\sum c_n(i+1) \vec{v_n} = {\bf A} \sum c_n(i) \vec{v_n} = \sum c_n(i) \lambda_n \vec{v_n}.
 }
-Since the two eigenvectors point in different directions we can consider the the two components in the directions of the two eigenvectors independently, which yields 
+Since the two eigenvectors point in different directions, we can consider the two components in the directions of the two eigenvectors independently, which yields 
 \eqa{
 c_1(i+1) &=& c_1(i) \\
 c_2(i+1) &=& -c_2(i)
@@ -45,7 +45,7 @@ So in each step we leave $c_1$ as it is and multiply $c_2$ with -1. Hence
 \eq{
 c_1 (i) = c_1 (0) \qqq c_2(i) = (-1)^i c_2(0)
 }
-Now we only need to determine $c_1(0)$ and $c_2(0)$ by decomposing the initial $\vec{v}(0)=(1,2)^{\rm T}$. We can do this with our shiny new trick of multiplying the intitial vector with the right eigenvectors. Note however that we haven't normalized our eigenvectors properly, so we additionally need to divide by $\vec{w_n}^\dag \vec{v_n}$ to compensate 
+Now we only need to determine $c_1(0)$ and $c_2(0)$ by decomposing the initial $\vec{v}(0)=(1,2)^{\rm T}$. We can do this with our shiny new trick of multiplying the inititial vector with the left eigenvectors. Note however that we haven't normalized our eigenvectors properly, so we additionally need to divide by $\vec{w_n}^\dag \vec{v_n}$ to compensate 
 \eq{
 c_1 = \frac{\vec{w_1}^\dag \vec{v}(0)}{\vec{w_1}^\dag \vec{v_1}} = \frac{(1,1)\avec{1 \\ 2}}{(1,1)\avec{1 \\ 1}} = \frac{3}{2}
 }
@@ -66,18 +66,18 @@ So if $i$ is even
 }
 and if $i$ is odd 
 \eq{
-\vec{v}(i) = \frac{3}{2} \avec{1 \\ 1 } + \frac{1}{2} \avec{1 \\ -1} = \avec{2\\ 1} 
+\vec{v}(i) = \frac{3}{2} \avec{1 \\ 1 } + \frac{1}{2} \avec{1 \\ -1} = \avec{2\\ 1}.
 }
-hence our vector $\vec{v}$ will alternate between these values for all eternity.  
+Hence, our vector $\vec{v}$ will alternate between these values for all eternity.  
 
-\subquestion Now consider the shifted matrix ${\bf B}={\bf A}+{\bf I}$, where ${\bf I}$ is an identity matrix of appropriate size. Again, find the eigenvalues and eigenvectors and study the iteration $\vec{v}(i+1)={\bf B}\vec{v}(i)$, stating from $\vec{v}(0)=(1,2)^{\rm T}$.
+\subquestion Now consider the shifted matrix ${\bf B}={\bf A}+{\bf I}$, where ${\bf I}$ is an identity matrix of appropriate size. Again, find the eigenvalues and eigenvectors and study the iteration $\vec{v}(i+1)={\bf B}\vec{v}(i)$, starting from $\vec{v}(0)=(1,2)^{\rm T}$.
 
 \solution 
 The identity matrix is 
 \eq{
 {\bf I} = \avecc{1 & 0 \\ 0 & 1}. 
 }
-hence 
+Hence, 
 \eq{
 {\bf B} = \avecc{0 & 1 \\ 1 & 0} + \avecc{1 & 0 \\ 0 & 1} = \avecc{1 & 1 \\ 1 & 1}
 }
@@ -88,11 +88,11 @@ Since this is a shift by one unit we expect the eigenvalues to be $\lambda_1 = 2
 \eqa{
 \vec{v_2}= \avec{1\\ -1} & \qqq & \vec{w_2}^\dag = (1,-1)
 }
-Since the eigenvectors haven't changed the decomposition of the initial state hasn't changed as well so 
+Since the eigenvectors haven't changed, the decomposition of the initial state hasn't changed as well so 
 \eq{
 c_1(0) = \frac{3}{2} \qqq c_2(0) = - \frac{1}{2}
 }
-What has changes however is the time evolution of these coefficients. If we take the iteration rule  
+What has changed, however, is the time evolution of these coefficients. If we take the iteration rule  
 \eq{
 \vec{v}(i+1) = {\bf B} \vec{v}(i)
 }
@@ -109,7 +109,7 @@ but if we split this into two equations for the individual $c_n$ and substitute 
 c_1(i+1) &=& 2 c_1(i)  \\
 c_2(i+1) &=& 0
 }
-Hence we find the solution 
+Hence, we find the solution 
 \eq{
 \vec{v}(i) = \frac{3}{2} 2^i \avec{1 \\ 1} 
 }
@@ -117,4 +117,4 @@ for $i>0$. So already after one iteration we have ($i=1$)
 \eq{
 \vec{v}(1) = \avec{3 \\ 3 } 
 }
-which is an eigenvectro of $\bf A$. So already after one step the iteration converges to the desired eigenvector. This happens so quickly in this case because the `error', i.e.~the component in the direcetion of the second eigenvector is multiplied by 0 in every step, with this particular shift. 
+which is an eigenvector of $\bf A$. So already after one step the iteration converges to the desired eigenvector. This happens so quickly in this case because the `error', i.e.,~the component in the direction of the second eigenvector is multiplied by 0 in every step, with this particular shift. 

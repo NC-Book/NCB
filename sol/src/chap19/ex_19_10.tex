@@ -1,5 +1,5 @@
 \exercise{Matrix perturbation theory\label{exCentralImport}}{4}
-Let's suppose we make a small change to our Jacobian such that ${\bf J}={\bf A}+p{\bf B}$, where ${\bf A}$ is the original Jacobian, ${\bf B}$ describes  the change and $p$ is a parameter that is initially zero. Let's assume we know the eigenvalues $\lambda_n$ and the left eigenvectors $\vec{w_n^\dag}$ and the right eigenvectors $\vec{v_n}$ of $J$ for $p=0$. We now compute how the eigenvalues change as we increase $p$:
+Let's suppose we make a small change to our Jacobian such that ${\bf J}={\bf A}+p{\bf B}$, where ${\bf A}$ is the original Jacobian, ${\bf B}$ describes  the change and $p$ is a parameter that is initially zero. Let's assume we know the eigenvalues $\lambda_n$ and the left eigenvectors $\vec{w_n^\dag}$ and the right eigenvectors $\vec{v_n}$ of $\bf J$ for $p=0$. We now compute how the eigenvalues change as we increase $p$:
 
 \subquestion 
 Start with the (right) eigenvector equation for $\bf J$, substitute $\bf J$ and differentiate the whole equation with respect to $p$. Finally eliminate $\bf A$ by using the substitution backwards.  
@@ -16,21 +16,21 @@ yields
 \eq{
 ({\bf A}+p{\bf B}) \vec{v_n} = \lambda_n \vec{v_n}
 }
-When we change $p$ both the eigenvectors and eigenvalues will change so we need a to use a product rule in the differentiation 
+When we change $p$ both the eigenvectors and eigenvalues will change so we need to use the product rule in the differentiation 
 \eqa{
 \partial_p ({\bf A}+p{\bf B}) \vec{v_n} &=& \partial_p (\lambda_n \vec{v_n}) \\ 
 {\bf B}\vec{v_n} + {\bf J}\vec{v_n}'   &=&  \lambda_n' \vec{v_n} + \lambda_n \vec{v_n}'
 }
 In the second row of this equation I used a dash to indicate the derivative with respect to $p$. I have also already put the $\bf J$ back in by undoing the substitution in the second row.
 
-\subquestion You should now have one equation that contains the change of $\partial_p \lambda_n$ but also $\partial_p \vec{v_n}$, which we don't want to compute. To fix this multiply your equation with $\vec{w_n^\dag}$ from the left, then find a way to eliminate $\partial_p \vec{v_n}$, and solve for $\partial_p \lambda_n$.  
+\subquestion You should now have one equation that contains the change of $\partial_p \lambda_n$ but also $\partial_p \vec{v_n}$, which we don't want to compute. To fix this, multiply your equation with $\vec{w_n^\dag}$ from the left, then find a way to eliminate $\partial_p \vec{v_n}$, and solve for $\partial_p \lambda_n$.  
 
 \solution 
 Multiplying $\vec{w_n^\dag}$ from the left yields
 \eq{
 \vec{w_n^\dag} {\bf B}\vec{v_n} + \vec{w_n^\dag} {\bf J}\vec{v_n}'   =   \vec{w_n^\dag} \lambda_n' \vec{v_n} + \vec{w_n^\dag} \lambda_n \vec{v_n}'
 }
-Our goal is to remove the $\vec{v_n}'$ which on both side of the equation. This makes you wonder if they maybe cancel each other, doesn't it? Recall that
+Our goal is to remove the $\vec{v_n}'$ on both side of the equation. This makes you wonder if they maybe cancel each other, doesn't it? Recall that
 \eq{
     \vec{w_n^\dag} {\bf J} = \lambda_n \vec{w_n^\dag}.
 }
@@ -49,9 +49,9 @@ Since $\lambda_n'$ is a number we can just pull it out from between the two vect
 \subquestion Does the result give you an idea for another way in which we could rank the importance of nodes?
 
 \solution 
-The equation gives us a way to estimate the effect of the eigenvalues if we change the matrix. Suppose I wanted to improve the stability of the system and I had a way of adding a small controller to one node, which provides a little bit of negative feedback without changing the steady state. In that case I might want to rank the nodes in terms ot their effect on the eigenvalue. 
+The equation gives us a way to estimate the effect on the eigenvalues if we change the matrix. Suppose I wanted to improve the stability of the system and I had a way of adding a small controller to one node, which provides a little bit of negative feedback without changing the steady state. In that case I might want to rank the nodes in terms of their effect on the eigenvalue. 
 
-If I chose to control node $i$, the matrix $\bf B$ has only one non-zero element  $B_{ii}=-1$, and hence we can compute the impact on the rightmost eigenvalue as 
+If I chose to control node $i$, the matrix $\bf B$ has only one non-zero element $B_{ii}=-1$, and hence we can compute the impact on the rightmost eigenvalue as 
 \eq{
 \frac{\partial \lambda_1}{\partial p} = - \frac{w_{1,i}^\dag v_{1,i}}{\vec{w_1^\dag}\vec{v_1}}.
 }

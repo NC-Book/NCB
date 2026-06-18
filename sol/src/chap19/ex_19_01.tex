@@ -35,19 +35,19 @@ To compute the first left eigenvector we need to solve
 \eq{
 (a,b) \avecc{-1 & 3 \\ 0 & -2} = -(a,b)
 }
-Consider the left and the right column separately leads to the equations 
+Considering the left and the right columns separately leads to the equations 
 \eqa{ 
 -a + 0b &=& -a \\
 3a-2b &=& -b
 }
-the first equation just tells us that we can chose $a$ as we want so we set $a=1$. Now the remaining equation reads 
+The first equation just tells us that we can choose $a$ as we want so we set $a=1$. Now the remaining equation reads 
 \eqa{
 3-2b &=& -b \\
  b&=&3 
 }
 Hence we can write the eigenvector as  
 \eq{
-{w_1}^\dag =  (1,3) 
+\vec{w_1}^\dag =  (1,3) 
 }
 For the second left eigenvector we consider 
 \eq{
@@ -80,7 +80,7 @@ which is perfect. There is still one product remaining,
 \eq{
    \vec{w_2}^\dag \vec{v_2} = (0,1) \avec{-3\\ 1} = 1,
 }
-which is also correctly normalized already. This shows that we have found the vectors we wanted. Note however, that this solution is not unique. In this case chosing these vectors is quite compelling, but it you double your length of say $\vec{v_1}$ and half the length of $\vec{w_n^\dag}$ you will still have vectors that meet the conditions, and consequently you will also find slightly different answers to the last part of this exercise. 
+which is also correctly normalized already. This shows that we have found the vectors we wanted. Note however, that this solution is not unique. In this case choosing these vectors is quite compelling, but if you double the length of say $\vec{v_1}$ and halve the length of $\vec{w_n^\dag}$ you will still have vectors that meet the conditions, and consequently you will also find slightly different answers to the last part of this exercise. 
 
 We now want to find $c_1$ and $c_2$ such that 
 \eq{

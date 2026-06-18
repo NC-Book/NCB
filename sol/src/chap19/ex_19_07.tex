@@ -10,15 +10,15 @@ where $k_j$ is the degree of node $j$. So instead of a division by a constant $\
 \eq{
 v_i = \sum_j B_{ij} v_j
 }
-where $\bf B$ is some matrix that we still need to construct. To gain some intuition let's consider the example of a chain of three nodes (o-o-o). The Adjacency matrix for such a chain is 
+where $\bf B$ is some matrix that we still need to construct. To gain some intuition let's consider the example of a chain of three nodes (o-o-o). The adjacency matrix for such a chain is 
 \eq{
 {\bf A} = \aveccc{ 0 & 1 & 0 \\ 1 & 0 & 1 \\ 0 & 1 & 0 }
 }
 and the degrees are $k_1=1$, $k_2=2$, $k_3=1$. Hence the equation above gives us 
 \eqa{
-v_1 &=& v_2 \\
-v_2 &=& (v_1+v_3)/2 \\
-v_3 &=& v_2
+v_1 &=& v_2/2 \\
+v_2 &=& (v_1+v_3) \\
+v_3 &=& v_2/2
 }
 Let's compare this to how these equations would look like with a general $\bf B$, 
 \eqa{
@@ -31,28 +31,28 @@ By comparing the two equation systems we can now see
 B_{11}=B_{13}=B_{22}=B_{31}=B_{33} = 0 
 }
 \eq{
-B_{21}=B_{23}= 1/2 
+B_{12}=B_{32}= 1/2 
 }
 \eq{
-B_{12}=B_{32}=1
+B_{21}=B_{23}=1
 }
 Hence, 
 \eq{
-{\bf B} = \aveccc{ 0 & 1 & 0 \\ 1/2 & 0 & 1/2 \\ 0 & 1 & 0 }
+{\bf B} = \aveccc{ 0 & 1/2 & 0 \\ 1 & 0 & 1 \\ 0 & 1/2 & 0 }
 }
-So this is like the adjacency matrix but every row has been divided by the degree of the corresponding node. As a result the column sum (sum over all columns) in every row is now 1. For the general case we can write 
+So this is like the adjacency matrix but every column has been divided by the degree of the corresponding node. As a result the column sum (sum over all elements within a column) is now 1. For the general case we can write 
 \eq{
-{\bf B} = {\bf K}^{-1} {\bf A} 
+{\bf B} ={\bf A} {\bf K}^{-1}
 }
 where we defined $\bf K$ as the degree matrix i.e.~the matrix which has the node degrees on the diagonal. So for our example network
 \eq{
 {\bf K} = \aveccc{1 & 0 & 0 \\ 0 & 2 & 0 \\ 0 & 0 & 1 }
 }
-The power $-1$ on this matrix indicates the matrix inverse and our diagonal matrix this is simply 
+The power $-1$ on this matrix indicates the matrix inverse and for our diagonal matrix this is simply 
 \eq{
-{\bf K}^{-1} = \aveccc{1 & 0 & 0 \\ 0 & 1/2 & 0 \\ 0 & 0 & 1 }
+{\bf K}^{-1} = \aveccc{1 & 0 & 0 \\ 0 & 1/2 & 0 \\ 0 & 0 & 1 }.
 }
-multiplying this from the left has the desired effect of normalizing the rows. But let's not get distracted. Whether we use this notation or not, we can now write 
+Multiplying this from the right has the desired effect of normalizing the columns. But let's not get distracted. Whether we use this notation or not, we can now write 
 \eq{
 v_i = \sum_j B_{ij} v_j 
 }
@@ -60,31 +60,28 @@ or equivalently
 \eq{
 \vec{v} = {\bf B} \vec{v} 
 }
-where $\bf B$ is an adjacency matrix where all the rows have been normalized such that they add up to one. The question is now, does this equation actually have a solution? Before we try to answer this generally, it is good to first check this in our example system. We return to  
+where $\bf B$ is an adjacency matrix where all the columns have been normalized such that they add up to one. The question is now, does this equation actually have a solution? Before we try to answer this generally, it is good to first check this in our example system. We return to  
 \eqa{
-v_1 &=& v_2 \\
-v_2 &=& (v_1+v_3)/2 \\
-v_3 &=& v_2
+v_1 &=& v_2/2 \\
+v_2 &=& v_1+v_3 \\
+v_3 &=& v_2/2
 }
-Straight away the first and the last equations tell us $v_1=v_2=v_3$. If the substitute $v_3=v_2$ and $v_1=v_2$ in the second equation we get 
+If we substitute $v_1=v_2/2$ and $v_3=v_2/2$ in the second equation we get 
 \eq{
 v_2 = \frac{v_2 + v_2}{2} 
 }
-which is obviously true. So $v_1=v_2=v_3$ is a solution. As always we can scale the the vector $v$ as we want, but for example 
+which is obviously true. So $v_1=v_2/2=v_3$ is a solution. As always we can scale the vector $v$ as we want, but for example 
 \eq{
-\vec{v} = \avec{1 \\ 1 \\ 1} 
+\vec{v} = \avec{1 \\ 2 \\ 1} 
 }
-is a solution. Unfortunately this tells us that all nodes are of equal importance. Will it always be like this with this centrality. Consider that the matrix $\bf B$ has the property 
-\eq{
-\sum_j B_{ij} = 1 \quad \mbox{for all $i$}
-}
+is a solution. This tells us that the centrality of each node is directly proportional to its degree. Will it always be like this with this centrality? 
 We know that we can write the $i$th component of the product ${\bf B}\vec{v}$ as 
 \eq{
 [{\bf B}\vec{v}]_i = \sum_j B_{ij} v_j 
 }
-Now consider what happens when $\vec{v}=(1,1,\ldots)^{\rm T}$ in this case $v_j=1$ for all $j$. Then 
+Now consider what happens when $\vec{v}=(k_1,k_2,\ldots)^{\rm T}$ and $B_{ij}=A_{ij}1/k_j$. Then 
 \eq{
-[{\bf B}\vec{v}]_i = \sum_j B_{ij} v_j = \sum_j B_{ij} = 1 \quad  \mbox{for all $i$}}
-This shows that whenever ${\bf B}$ is a matrix in which the column sums are all one, then the vector $\vec{v}=(1,1,\ldots)^{\rm T}$ is an eigenvector with eigenvalue one, and hence it is always the solution to our condition $\vec{v}={\bf B}\vec{v}$.
+[{\bf B}\vec{v}]_i = \sum_j B_{ij} v_j = \sum_j A_{ij}\frac{1}{k_j}k_j =\sum_j A_{ij}= k_i \quad  \mbox{for all $i$}}
+This shows that ${\bf A}{\bf K}^{-1}\vec{k} = \vec{k}$, confirming that the degree vector is always the steady-state solution.
 
-So in summary, the centrality that we constructed will always tell us that each node is equally important. SO maybe we should call it the `humanist centrality'.
+So in summary, the `divided attention' centrality that we constructed simply recovers the degree centrality.

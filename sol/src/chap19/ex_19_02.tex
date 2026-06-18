@@ -8,10 +8,10 @@ For the Jacobian from the previous question compute the observability and contro
 (\vec{v_m}\vec{v_n^\dag})  (\vec{w_m^\dag}\vec{w_n}) 
 }{\lambda_n+\lambda_m^\dag} 
 }
-and then compute the observability $P_{ii}$ and controlability $Q_{ii}$ of the two nodes. 
+and then compute the observability $P_{ii}$ and controllability $Q_{ii}$ of the two nodes. 
 
 \solution 
-From the previous exercise we know the eigenvectors 
+From the previous exercise, we know the eigenvectors 
 \eq{
    \vec{v_1}=\avec{1\\ 0},  \qqq \vec{w_1}^\dag = (1,3),  
 }
@@ -32,12 +32,12 @@ and the eigenvalues
 \frac{
 (\vec{w_1}\vec{w_2^\dag})  (\vec{v_1^\dag}\vec{v_2}) 
 }{\lambda_2+\lambda_1^\dag} \\
-\frac{
+& &+\frac{
 (\vec{w_2}\vec{w_1^\dag})  (\vec{v_2^\dag}\vec{v_1}) 
 }{\lambda_1+\lambda_2^\dag} +  
 \frac{
 (\vec{w_2}\vec{w_2^\dag})  (\vec{v_2^\dag}\vec{v_2}) 
-}{\lambda_2+\lambda_2^\dag} \\
+}{\lambda_2+\lambda_2^\dag}
 }
 Let's consider the numerators of these four terms separately:
 \eqa{
@@ -59,7 +59,7 @@ So the observability of the first node is $1/2$ whereas the observability of the
 
 Now we compute the four numerators that appear in $Q$
 \eqa{
-(\vec{w_1^\dag}\vec{w_1})  (\vec{v_1}\vec{v_1}\dag) &=& \left((1,3)\avec{1\\ 3}\right)  \left(\avec{1\\ 0}(1,0)\right)\\
+(\vec{w_1^\dag}\vec{w_1})  (\vec{v_1}\vec{v_1^\dag}) &=& \left((1,3)\avec{1\\ 3}\right)  \left(\avec{1\\ 0}(1,0)\right)\\
    &=& (10) \cdot \avecc{1 & 0 \\ 0 & 0   } \\
 (\vec{w_1^\dag}\vec{w_2})  (\vec{v_1}\vec{v_2^\dag}) &=& \left((1,3)\avec{0\\ 1}\right) \left(\avec{1 \\0 }(-3,1)\right) \\  
 &=& (3) \cdot  \avecc{-3 & 1 \\ 0 & 0} \\  
@@ -73,4 +73,4 @@ Hence the matrix is
 {\bf Q} &=& 5 \avecc{1 & 0 \\ 0 & 0 } + \avecc{-3 & 1 \\ 0 & 0} + \avecc{-3 & 0 \\ 1 & 0}  + \frac{1}{4} \avecc{9 & -3 \\ -3 & 1} \\ 
    &=& \frac{1}{4}  \avecc{5 & 1 \\ 1 & 1 }
 }
-This shows that the first node with its controllability of $5/4$ is five times more sensitive to perturbations than the second node (controlability 1/4) 
+This shows that the first node with its controllability of $5/4$ is five times more sensitive to perturbations than the second node (controllability $1/4$). 
