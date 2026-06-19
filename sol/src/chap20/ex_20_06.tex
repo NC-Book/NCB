@@ -19,7 +19,7 @@ The block from the Jacobian has the form
 }
 where $Z$ has been used as a placeholder for the derivative of $\dot{R}$ with respect to $R$, while we could compute two of the terms in $Z$ there are likely further terms from the omitted ($\ldots$) terms. Without further information, we'll just hope that the value of $Z$ doesn't matter for what we want to show.  
 
-Now we look att eh stationarity conditions for the two predators, they read
+Now we look at the stationarity conditions for the two predators, they read
 \eqa{
 0 &=& g_1(R^*)X_1^* - m_1 X_1^* \\
 0 &=& g_2(R^*)X_2^* - m_2 X_2^* 
@@ -42,7 +42,7 @@ which shows that in the Jacobian the two diagonal elements for the predators are
 \solution
 We do not know the Jacobian of the entire system. So our only hope to get the job done is that the zero eigenvalue arises from an eigenvector that is localized within the motif, and hence is independent of the rest of the network. 
 
-For this idea to work we need to find a vector that is an eigenvector with eigenvalue 0 of our $3 \times 3$ block, and has a zero element in the row that corresponds to the resource to keep the eigenvector from spilling out in to the wider network. 
+For this idea to work we need to find a vector that is an eigenvector with eigenvalue 0 of our $3 \times 3$ block, and has a zero element in the row that corresponds to the resource to keep the eigenvector from spilling out into the wider network. 
 
 So we are looking for a solution to 
 \eq{
@@ -60,4 +60,4 @@ We can satisfy this condition for example by choosing $v_1=m_2$ and $v_2=-m_1$.
 
 So we can say whenever a large population dynamical system contains the EC motif studied here, then the Jacobian will always have a zero eigenvalue corresponding to the eigenvector $(m_2,-m_1,0,\ldots)^{\rm T}$, where `$\ldots$' are further zeros corresponding to other system variables.
 
-The presence of the zero eigenvalue means that no such system can be asymptotically stable (Unless we chose the parameters very carefully there isn't even a steady state that we could converge to, but this is a different, though related, matter.) This insight is one form of the competitive exclusion principle, which is a very valuable in ecology: It means that if we see observe two species competing for a single resource in nature, their must be some additional regulation going on in the background, leading to further nonlinearities not captured by the present model. If such additional regulations were absent the two species could not coexist. In the past searching for hidden regulation that makes the coexistence of such competitors possible has led to some exciting discoveries. 
+The presence of the zero eigenvalue means that no such system can be asymptotically stable (Unless we choose the parameters very carefully there isn't even a steady state that we could converge to, but this is a different, though related, matter.) This insight is one form of the competitive exclusion principle, which is very valuable in ecology: It means that if we observe two species competing for a single resource in nature, there must be some additional regulation going on in the background, leading to further nonlinearities not captured by the present model. If such additional regulations were absent the two species could not coexist. In the past searching for hidden regulation that makes the coexistence of such competitors possible has led to some exciting discoveries. 

@@ -3,7 +3,7 @@ Consider the following network:
 \begin{center}
 \includegraphics[width=0.4\textwidth]{branch}
 \end{center}
-\subquestion Suppose the adjacency matrix has an eigenvalue $\vec{v}$ with eigenvalue $\lambda$. Normalize the first element of this eigenvector to $v_1=1$, then determine the eigenvector elements $v_2$, $v_3$ and $v_4$. For which values of $\lambda$ is $v_3>0$? 
+\subquestion Suppose the adjacency matrix has an eigenvector $\vec{v}$ with eigenvalue $\lambda$. Normalize the first element of this eigenvector to $v_1=1$, then determine the eigenvector elements $v_2$, $v_3$ and $v_4$. For which values of $\lambda$ is $v_3>0$? 
 
 \solution 
 We start from the eigenvector equation 
@@ -51,38 +51,37 @@ If $\lambda$ is positive this yields the condition
 }
 For the case $\lambda<0$ we multiply both sides with $\lambda$, 
 \eqa{
-\lambda^2 -1 &<& \lambda \\
-\lambda^2 -\lambda -1 &<& 0 \\
-(\lambda -1/2)^2 &<& 5/4 
+\lambda^2 -1 &<& 0 \\
+| \lambda | < 1
 }
-Since we are looking for negative values of $\lambda$ we only need to consider the negative square root, which leads us to the golden ratio's little brother
+Since we are looking for negative values of $\lambda$ this yields the condition
 \eq{
-\lambda  > \frac{1-\sqrt{5}}{2}. 
+-1 < \lambda  < 0. 
 }
 In summary, if $\lambda>1$ then $v_3>0$ and in this case all of the elements of our four nodes are positive. The nodes in this sparsely connected branch find it difficult to sustain large eigenvalues, if other parts of the network want a large eigenvalue our four nodes have to pull all in the same direction to keep up.  
 
 If $0<\lambda<1$ then $v_3<0$. Checking the other nodes reveals that the sign change occurs between node 3 and node 4. 
 
-If $(1-\sqrt{5})/2< \lambda < 0$ then $v_3>0$, but $v_2<0$ and $v_4<0$.  
+If $-1 < \lambda < 0$ then $v_3>0$, but $v_2<0$ and $v_4<0$.  
 
-If $\lambda<(1-\sqrt{5})/2$ then then $v_3<0$. Now a sign chain occurs in every link of the branch. Since the branch is bipartite, alternating the signs in every step is a way to sustain relatively large negative eigenvalues. 
+If $\lambda<-1$ then $v_3<0$. Now a sign change occurs in every link of the branch. Since the branch is bipartite, alternating the signs in every step is a way to sustain relatively large negative eigenvalues. 
 
 \subquestion
 Consider also the case where instead of the branch a chain of 10 nodes is attached to the rest of the network. Compute the eigenvector elements for the nodes in the chain for the case $\lambda=9$. 
 
 \solution 
-Let's number the nodes consecutively from the tip (node 1) to end that is attached to the rest of the network (node 10). We start by choosing the normalization so that 
+Let's number the nodes consecutively from the tip (node 1) to the end that is attached to the rest of the network (node 10). We start by choosing the normalization so that 
 \eq{
 v_1=1.
 } 
 
-Node one only has one neighbor, node 2, and hence the first row of the eigenvector equation for this system reads 
+Node 1 only has one neighbor, node 2, and hence the first row of the eigenvector equation for this system reads 
 \eq{
 v_2 = \lambda v_1 = 9 
 }
 The eigenvector equation for the second row reads 
 \eqa{
-v_1 + V_3 &=& \lambda v_2 \\
+v_1 + v_3 &=& \lambda v_2 \\
 1 + v_3 &=& 81
 }
 so 
@@ -91,7 +90,7 @@ v_3=80
 }
 From row three we get 
 \eq{
-v_2 + v_4 = \lambda v_2 
+v_2 + v_4 = \lambda v_3 
 }
 which we can write as 
 \eq{
@@ -105,16 +104,16 @@ so
 \eqa{
 v_4 &=& 9 v_3 - v_2 = 720 - 9 = 711 \\
 v_5 &=& 9 v_4 - v_3 = 6399 - 80 = 6319  \\
-v_6 &=& 9 v_5 - V_4 = 56871 - 711 = 56160 \\
+v_6 &=& 9 v_5 - v_4 = 56871 - 711 = 56160 \\
 v_7 &=& 9 v_6 - v_5 = 505440 - 6319 = 499121 \\
 v_8 &=& 9 v_7 - v_6 = 4492089 - 56160 = 4435929\\
 v_9 &=& 9 v_8 - v_7 = 39923361 - 499121 = 39424240\\
 v_{10} &=& 9 v_9 - v_8 = 354818160 - 4435929 = 350382231 \\
 v_{11} &=& 9 v_{10} - v_9 = 3153440079 - 39424240 = 3114015839  
 }
-I have gone to 11 (the first node in the rest of the network) because now we can normalize the eigenvector so that it that $v_{11}=1$.
+I have gone to 11 (the first node in the rest of the network) because now we can normalize the eigenvector so that $v_{11}=1$.
 
-Using this normalization we have 
+Using this normalization, we have 
 \eqa{
 v_1 &=& 3.2112875e-10 \\
 v_2 &=& 2.89015871e-9 \\
@@ -128,6 +127,4 @@ v_9 &=& 0.01266025673 \\
 v_{10} &=& 0.1125178063 \\ 
 v_{11} &=& 1.0
 }
-So the eigenvector stays very well confined to the rest of the network. 
-
-Fun fact: One eigenvalue of the network is very close to the golden ratio. Networks that contain long chains typically have such an eigenvalue. 
+So, the eigenvector stays very well confined to the rest of the network. 

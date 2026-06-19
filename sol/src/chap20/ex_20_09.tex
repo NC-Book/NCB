@@ -30,10 +30,11 @@ In the figure above I have already numbered the nodes according to the instructi
 }
 so 
 \eq{
-{\bf B} = \avecc{ 1 & 0 \\ 1 & 1 \\ 0 & 1} 
-}.
+{\bf B} = \avecc{ 1 & 0 \\ 1 & 1 \\ 0 & 1}
+}
+and
 \eq{
-{\bf B}^\dag = \aveccc{ 1 & 1 & 0 \\ 0 & 1 & 1} 
+{\bf B}^\dag = \aveccc{ 1 & 1 & 0 \\ 0 & 1 & 1}. 
 }
 
 \subquestion 
@@ -45,7 +46,7 @@ Show that stacking $\vec{r}$ on $-\vec{s}$ yields an eigenvector with eigenvalue
 
 
 \solution
-We assume $\vec{v}$ is an eigenvectors with eigenvalue $\lambda$. We just showed that this implies that 
+We assume $\vec{v}$ is an eigenvector with eigenvalue $\lambda$. We just showed that this implies that 
 \eqa{ 
   {\bf B}{\vec{s}} &=& \lambda \vec{r} \\  
   {\bf B}^{\dag}{\vec{r}} &=& \lambda \vec{s}
@@ -65,30 +66,30 @@ Hence $\vec{w}$ must be an eigenvector with eigenvalue $-\lambda$.
 Now, prove that every bipartite network has a symmetric spectrum. 
 
 \solution 
-The main difficulty in finding this proof is that we had need to come up with equations that can describe all bipartite networks, while not describing any non-bipartite network. But looking at a simple example got us on the right track. We can now prove that the spectrum is symmetric along the following lines:
+The main difficulty in finding this proof is that we had to come up with equations that can describe all bipartite networks, while not describing any non-bipartite network. But looking at a simple example got us on the right track. We can now prove that the spectrum is symmetric along the following lines:
 
-A bipartite network can be colored with two colors such that no adjacent nodes have the same color. If we label the such that any node that of the first color has a lower index then any node of the second color. Then it must be possible to write the adjacency matrix in the following block form 
+A bipartite network can be colored with two colors such that no adjacent nodes have the same color. If we label the nodes such that any node of the first color has a lower index than any node of the second color, then it must be possible to write the adjacency matrix in the following block form 
 \eq{
 {\bf A} = \avecc{{\bf 0} & {\bf B} \\ {\bf B}^\dag & {\bf 0}}
 }
 where the blocks of zeros must be present, since nodes would otherwise link to nodes of the same color. 
 
-Suppose $v$ is an eigenvector of $\bf A$ with eigenvalue $\lambda$. For a given $\vec{v}$ we can chose $\vec{r}$ and $\vec{s}$ such that 
+Suppose $\vec{v}$ is an eigenvector of $\bf A$ with eigenvalue $\lambda$. For a given $\vec{v}$ we can choose $\vec{r}$ and $\vec{s}$ such that 
 \eq{
 \vec{v} = \avec{\vec{r}\\ \vec{s}}
 }
 and 
 \eqa{
 {\bf B}{\vec{s}} &=& \lambda \vec{r} \\  
-{\bf B}^{\dag}{\vec{r}} &=& \lambda \vec{s}
-}.
+{\bf B}^{\dag}{\vec{r}} &=& \lambda \vec{s}.
+}
 We can then show that the vector 
 \eq{
  \vec{w} = \avec{\vec{r}\\ -\vec{s}}
 }
-obey
+obeys
 \eq{
-{\bf A}\vec{w} = - \lambda \vec{w}
+{\bf A}\vec{w} = - \lambda \vec{w}.
 }
-hence $\vec{w}$ is an eigenvector of ${\bf A}$ with eigenvalue $-\lambda$.
-Hence we have shown that for every eigenvector $\vec{v}$ with eigenvalue $\lambda$ there must be an eigenvector $\vec{w}$ with eigenvalue $-\lambda$ and therefore the spectrum of a bipartite network is symmetric. 
+Hence, $\vec{w}$ is an eigenvector of ${\bf A}$ with eigenvalue $-\lambda$.
+Hence, we have shown that for every eigenvector $\vec{v}$ with eigenvalue $\lambda$ there must be an eigenvector $\vec{w}$ with eigenvalue $-\lambda$ and therefore the spectrum of a bipartite network is symmetric. 

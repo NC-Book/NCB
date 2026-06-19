@@ -12,13 +12,13 @@ The adjacency matrix for the four node system is
 \eq{
 {\bf A} = \avecccc{ 0 & 1 & 1 & 1 \\ 1 & 0 & 0 & 0 \\ 1 & 0 & 0 & 0 \\ 1 & 0 & 0 & 0  }
 }
-Where we have chosen the hub to be node 1 (It'S the most important one, of course it is node 1 ;o)  
+Where we have chosen the hub to be node 1 (It's the most important one, of course it is node 1 ;o)  
 
 An elegant way to work out the eigenvalues is as follows: We note that the network is bipartite, which suggests that it is a good idea to consider the two-step adjacency matrix, 
 \eq{
 {\bf A_2} = {\bf A}^2 = \avecccc{ 3 & 0 & 0 & 0 \\ 0 & 1 & 1 & 1 \\ 0 & 1 & 1 & 1 \\ 0 & 1 & 1 & 1  }
 }
-I have not actually computed this matrix as a matrix product, but rather used an intuitive understanding of the walks. If we go on a walk of length 2 from the hub, we have the choice of three spokes to walk to but all walks will lead us back to the hub, so there are 3 ways to get back to the hub, and no way to end up elsewhere. If we start our two step walk from a spoke there is exactly one walk to takes us to every spoke, but no way to end up in the hub. Because we have a lone diagonal element in the first row we see that one eigenvalue must of the two step adjacency must by 3. So this gives us the eigenvalues 
+I have not actually computed this matrix as a matrix product, but rather used an intuitive understanding of the walks. If we go on a walk of length 2 from the hub, we have the choice of three spokes to walk to, but all walks will lead us back to the hub, so there are 3 ways to get back to the hub, and no way to end up elsewhere. If we start our two step walk from a spoke there is exactly one walk that takes us to every spoke, but no way to end up in the hub. Because we have a lone diagonal element in the first row we see that one eigenvalue of the two step adjacency must be 3. So, this gives us the eigenvalues 
 \eq{
 \lambda_1=\sqrt{3} \qqq \lambda_4=-\sqrt{3}
 } 
@@ -26,7 +26,7 @@ We could also work out the other eigenvalues from the two-step network but there
 \eq{
 \lambda_2=\lambda_3=0 
 }
-Now the eigenvalues for the full star with 100 spokes is very easy. It's two step matrix will have a  diagonal element of 100 that is alone in a row. This gives us an eigenvalue of 100 for the two-step matrix and hence eigenvalues 
+Now the eigenvalues for the full star with 100 spokes are very easy. Its two step matrix will have a  diagonal element of 100 that is alone in a row. This gives us an eigenvalue of 100 for the two-step matrix and hence eigenvalues 
 \eq{
 \lambda_1=10 \qqq \lambda_{101} = -10 
 }
@@ -55,16 +55,16 @@ a &=& \lambda b.
 We can set the spoke element $b=1$ and then the hub element will be $a=10$ for $\lambda=10$ and $a=-10$ for $\lambda=-10$. So the two even symmetry eigenvectors are
 \eqa{
 \vec{v_1} = (10,1,1,\ldots)^{\rm T} \\
-\vec{v_1101} = (-10,1,1,\ldots)^{\rm T} 
+\vec{v_{101}} = (-10,1,1,\ldots)^{\rm T} 
 }
 
 \subquestion 
 Bonus: Take the 100 nodes of degree 1 and attach two nodes of degree 1 to each of them. Find all eigenvalues and eigenvectors. 
 
 \solution
-Since we know all the tricks we can do this now. We continue to call the node of degree 100 the hub. The nodes of degree 3 are the spokes. And the nodes of degree 1 are the rim. 
+Since we know all the tricks, we can do this now. We continue to call the node of degree 100 the hub. The nodes of degree 3 are the spokes. And the nodes of degree 1 are the rim. 
 
-If we remove the hub we are left a network that consists of 100 3-chains. We know that the eigenvalues of a single 3-chain are $0$, $\sqrt{2}$, and $-\sqrt{2}$. So our network of 100 3-chains has 100 eigenvalues that are zero, 100 eigenvalues that are $\sqrt{2}$, and 100 eigenvalues this are $-\sqrt{2}$. So by the interlacing theorem our original network has 99 eigenvalues that are 0, 99 eigenvalues that are $\sqrt{2}$ and 99 eigenvalues that are -$\sqrt{2}$. So we know 297 eigenvalues already. 
+If we remove the hub, we are left with a network that consists of 100 3-chains. We know that the eigenvalues of a single 3-chain are $0$, $\sqrt{2}$, and $-\sqrt{2}$. So our network of 100 3-chains has 100 eigenvalues that are zero, 100 eigenvalues that are $\sqrt{2}$, and 100 eigenvalues this are $-\sqrt{2}$. So by the interlacing theorem our original network has 99 eigenvalues that are 0, 99 eigenvalues that are $\sqrt{2}$ and 99 eigenvalues that are -$\sqrt{2}$. So we know 297 eigenvalues already. 
 
 The 99 eigenvalues of zero originate from the odd-symmetry eigenvector of three-chain and we know that odd-symmetry eigenvectors stay confined in their motifs. Hence we can just take eigenvector elements from one of the three chains and fill the rest of the eigenvector up with zeros. For example 
 \eqa{
@@ -106,13 +106,13 @@ We can even write this in matrix form
 }
 Actually, we can interpret the matrix that appears here as a an adjacency matrix of an new reduced network. This network has only three nodes (one representative of every of the three classes) and it is a directed graph. However, it is still bipartite, so we expect symmetric eigenvalues. We could just solve the quadratic polynomial from the system of three equations, but it is more fun to do this with networks insight. 
 
-Because od the bipartiteness we expect an eigenvalue of zero. Looking at the matrix we see that $a=0$ will ensure the first and last element of the vector are zero after multiplication. We have already set the last element to 1, this leaves only $b$. To make also the central element zero after the multiplication we must meet the condition $b+2=0$ so $b=-2$. Hence $(0,-2,1)^{\rm T}$ is an eigenvector of the reduced network. and the corresponding eigenvalue is 0. For the full network that means we have 
+Because of the bipartiteness we expect an eigenvalue of zero. Looking at the matrix we see that $a=0$ will ensure the first and last element of the vector are zero after multiplication. We have already set the last element to 1, this leaves only $b$. To make also the central element zero after the multiplication we must meet the condition $b+2=0$ so $b=-2$. Hence $(0,-2,1)^{\rm T}$ is an eigenvector of the reduced network. and the corresponding eigenvalue is 0. For the full network that means we have 
 \eq{
-\lambda_{201} = 0 \qqq \vec{v_{101}}=(-2,1,0,1,1,0,1,1,0,1,\ldots)
+\lambda_{201} = 0 \qqq \vec{v_{201}}=(-2,1,0,1,1,0,1,1,0,1,\ldots)^{\rm{T}}
 }
 where the sequence 1,0,1 repeats for the rest of the vector. All rim nodes have the element 1, all spokes 0 and the hub -2.
 
-The other two remaining eigenvalues of our directed 3-chain have squares that add up to the combined wight of walks of length two. The walk between node 1 and node two has weight $1\cdot100=100$ and the walk between 2 and three has weight $2\times 1$ and hence 
+The other two remaining eigenvalues of our directed 3-chain have squares that add up to the combined weight of walks of length two. The walk between node 1 and node two has weight $1\cdot100=100$ and the walk between 2 and three has weight $2\times 1$ and hence 
 \eq{
 2 \lambda^2 = 2 \cdot (100+2) 
 }
@@ -132,18 +132,18 @@ b+2 = a \lambda = \lambda^2 = 102
 so $b=100$ for both eigenvectors. Hence the eigenvectors are 
 \eqa{
 \vec{v_1} &=& (100,1,\sqrt{102},1,1,\sqrt{102},1,\ldots)^{\rm T} \\
-\vec{v_301} &=& (100,1,-\sqrt{102},1,1,-\sqrt{102},1,\ldots)^{\rm T} \\
+\vec{v_{301}} &=& (100,1,-\sqrt{102},1,1,-\sqrt{102},1,\ldots)^{\rm T} \\
 }
 We are still missing the eigenvectors for the 99 eigenvalues of $\sqrt{2}$ and 99 eigenvalues of $-\sqrt{2}$. These eigenvectors stem from the even-symmetry eigenvectors in the 3-chains that we obtained when we deleted the central node.
 Within the branches these eigenvectors have the form $(1,\pm \sqrt{2},1)^{\rm T}$, so within the branch these already obey the eigenvector equation. But normally these even-symmetry eigenvectors should spill outside their motif if we connect other nodes. We also know that the eigenvectors we are looking for must be an odd-symmetry eigenvector because we have found all even-symmetry eigenvectors already. Any odd-symmetry eigenvector must have a zero element on the hub.
 
-So here is a plan: We pick one branch and assign it the eigenvector elements $1,\sqrt{2},1$, where the ones go on the rim nodes. Then we pick another branch and assign $-1,-\sqrt{2},-1$ to it's three nodes. All other branches and the hub are set to zero. That the two branches will obey the eigenvector equation with eigenvalue $\sqrt{2}$ and on the hub node whatever spills out of one branch will be canceled by what spills out the other. So after mutliplication we the hub will have an element of 0, which is what we want. For example if we picking the first branch and the second one gives us the eigenvector 
+So here is a plan: We pick one branch and assign it the eigenvector elements $1,\sqrt{2},1$, where the ones go on the rim nodes. Then we pick another branch and assign $-1,-\sqrt{2},-1$ to its three nodes. All other branches and the hub are set to zero. That the two branches will obey the eigenvector equation with eigenvalue $\sqrt{2}$ and on the hub node whatever spills out of one branch will be canceled by what spills out the other. So after mutliplication, the hub will have an element of 0, which is what we want. For example if we picking the first branch and the second one gives us the eigenvector 
 \eq{
 \vec{v_2} = (0,1,\sqrt{2},1,-1,-\sqrt{2},-1,0,\ldots)^{\rm T}
 }
 where all further elements are zero. Because there are 100 branches we can for example always pick the first branch to put the positive elements and one of the other 99 to put the negative elements which gives us 99 independent eigenvectors. 
 
-We can then repeat the same procedure for the for the eigenvector $-\sqrt{2}$, which gives us the last 99 eigenvectors. The results are summarized in the table below. 
+We can then repeat the same procedure for the eigenvector $-\sqrt{2}$, which gives us the last 99 eigenvectors. The results are summarized in the table below. 
 
 \makeatletter
 

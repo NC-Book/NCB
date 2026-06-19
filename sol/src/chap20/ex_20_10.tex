@@ -37,7 +37,7 @@ which is the desired result.
 \subquestion Define the reactivity of the steady state as the highest possible value of $a$. Show that the reactivity is identical to the rightmost eigenvalue of $\bf H$. 
 
 \solution
-Easy, if you see the way: Note the that 
+Easy, if you see the way: Note that 
 \eq{
   a = \frac{\vec{\delta}^{\dag} {\bf H} \vec{\delta}}{\vec{\delta}^{\dag}\vec{\delta}},
 }
@@ -54,9 +54,9 @@ Compute $\bf J$ and $\bf H$ and the reactivity in the nontrivial steady state.
 \solution
 The second equation gives us the steady state condition
 \eq{
-0 = \frac{XY}{3+X} - Y \\
+0 = \frac{2XY}{3+X} - Y \\
 }
-dividing by $Y$ yields 
+Dividing by $Y$ yields 
 \eqa{
 0 &=& 2X/(3+X) -1 \\
 3+X &=& 2X \\
@@ -64,29 +64,29 @@ dividing by $Y$ yields
 }
 So now that we know that $X=3$, we can compute $Y$ from the first row:
 \eqa{
- 0 &=& X(4-X) - 2XY/(3+X) \\
- 0 &=& 3 - Y\\
- Y &=& 3.
+ 0 &=&  X - XY/(3+X) \\
+ 0 &=& 3 - 3Y/6\\
+ Y &=& 6.
 }
-So the non-trivial steady state is at $(X^*,Y*)=(3,3).$ Now we compute 
+So the non-trivial steady state is at $(X^*,Y^*)=(3,6).$ Now we compute 
 \eqa{
-J_{11} &=& \left.\frac{\partial}{\partial X} \dot{X} \right|_* = \left. 4-2X - \frac{2Y}{3+X} + \frac{2XY}{(3+X)^2}\right|_* =  4-6 -1+ 18/36 = -2.5  \\
+J_{11} &=& \left.\frac{\partial}{\partial X} \dot{X} \right|_* = \left. 1-\frac{3Y}{(3+X)^2}\right|_* =  1- 18/36 = 0.5  \\
 J_{12} &=& \left.\frac{\partial}{\partial Y} \dot{X} \right|_* = \left. - \frac{X}{3+X} \right|_* = -0.5 \\
-J_{21} &=& \left.\frac{\partial}{\partial X} \dot{Y} \right|_* = \left.  \frac{2Y}{3+X} - \frac{2XY}{(3+X)^2}  \right|_*  = 1 - 18/36 = 0.5 \\
+J_{21} &=& \left.\frac{\partial}{\partial X} \dot{Y} \right|_* = \left.  \frac{6Y}{(3+X)^2}  \right|_*  = 36/36 = 1 \\
 J_{22} &=& \left.\frac{\partial}{\partial Y} \dot{Y} \right|_* = \left. \frac{2X}{3+X} - 1 \right|_* = 6/6-1 = 0  
 }
 Hence the Jacobian is 
 \eq{
-{\bf J} = \avecc{-2.5 & -0.5\\ 0.5 & 0}  
+{\bf J} = \avecc{0.5 & -0.5\\ 1 & 0}  
 }
 and we can compute 
 \eq{
-{\bf H} = \frac{\avecc{-2.5 & -0.5\\ 0.5 & 0} + \avecc{-2.5 & 0.5\\ -0.5 & 0}}{2} = \avecc{-2.5 & 0 \\ 0 & 0}
+{\bf H} = \frac{\avecc{0.5 & -0.5\\ 1 & 0} + \avecc{0.5 & 1\\ -0.5 & 0}}{2} = \avecc{0.5 & 0.25 \\ 0.25 & 0}
 }
-We can see immediately that $\bf H$ has the eigenvalues -2.5 and 0. So the rightmost eigenvalue is 0. Which means the reactivity is 0.
+Computing the eigenvalues for {\bf H} we get the values $1/4 \pm\sqrt{2}/4$. So the rightmost eigenvalue is $1/4 +\sqrt{2}/4$. Which means the reactivity is $\approx 0.6036$.
 
 \subquestion 
 We now consider a larger system where the Jacobian $\bf J$ from (d) appears as a principal submatrix. (Perhaps the system contains $X$ and $Y$ along with many other variables). What can you say about the reactivity of the entire system? 
 
 \solution
-For the larger system we compute the reactivity from the Hermitian part of its Jacobian. The hermitian matrix for the entire system will then contain $\bf H$ from (d) as a principle submatrix. Because the matrix is hermitian the rightmost eigenvalue of $\bf H$ is a lower bound for the rightmost eigenvalue for the hermitian matrix for the entire system. Hence the reactivity of the entire system must be at least 0.   
+For the larger system we compute the reactivity from the Hermitian part of its Jacobian. The Hermitian matrix for the entire system will then contain $\bf H$ from (d) as a principal submatrix. Because the matrix is Hermitian the rightmost eigenvalue of $\bf H$ is a lower bound for the rightmost eigenvalue for the Hermitian matrix for the entire system. Hence the reactivity of the entire system must be at least $1/4+\sqrt{2}/4$.   

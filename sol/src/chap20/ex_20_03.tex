@@ -6,9 +6,9 @@ We assume that the nodes are numbered from one end of the chain, i.e.
 \begin{center}
 (1)-(2)-(3)-(4)-(5)
 \end{center}
-The orbit structure is (15)(24)(3), hence there are two eigenvectors with even symmetry and three with odd symmetry. 
+The orbit structure is (15)(24)(3), hence there are three eigenvectors with even symmetry and two with odd symmetry. 
 
-We start by finding the eigenvalues that belong to the eigenvectors with odd symmetry. There are two ways to find the eigenvalues. First the more boring option: Since the eigenvector elements need to sum to zero in each orbit, the eigenvector has the structure 
+We start by finding the eigenvalues that belong to the eigenvectors with odd symmetry. There are two ways to find the eigenvalues. First, the more boring option: Since the eigenvector elements need to sum to zero in each orbit, the eigenvector has the structure 
 \eq{
 \vec{v} =  (a,b,0,-b,-a)^{\rm T}.
 }
@@ -23,12 +23,12 @@ Multiplying ${\bf A}$
 }
 \avec{ a\\ b \\ 0 \\ -b \\ -a} =   \avec{b \\ a \\ 0 \\ -a \\ -b} 
 }
-So this is the ${\bf A}\vec{v}$, if $\vec{v}$ is an eigenvector then this should be the same as $\lambda \vec{v}$, which yields the condition
+So, this is ${\bf A}\vec{v}$. If $\vec{v}$ is an eigenvector, then this should be the same as $\lambda \vec{v}$, which yields the condition
 \eq{
  \avec{b \\ a \\ 0 \\ -a \\ -b}  = \lambda \avec{ a\\ b \\ 0 \\ -b \\ -a}
 }
 
-Due to the symmetry the condition in the third row is trivial and row 5 and four 4 contain the same condition as $1$ and $2$. Hence the equation stipulates only two independent conditions 
+Due to the symmetry the condition in the third row is trivial and row 5 and 4 contain the same condition as $1$ and $2$. Hence the equation stipulates only two independent conditions 
 \eqa{
  b &=& \lambda a \\
  a &=& \lambda b
@@ -43,17 +43,17 @@ which implies
 }
 and hence 
 \eq{
-\lambda \pm 1
+\lambda = \pm 1
 }
-Could we have found this result more quickly. Sure. Just delete the central node from the chain. This leaves us with a network consisting of two linked pairs: 
+Could we have found this result more quickly? Sure. Just delete the central node from the chain. This leaves us with a network consisting of two linked pairs: 
 \begin{center}
 (1)-(2)\qqq (4)-(5)
 \end{center}
-Maybe you still remember that the linked pair has eigenvalues 1 and -1. Otherwise these are very quick to find. Because we have two pair the eigenvalues of the reduced networks are
+Maybe you still remember that the linked pair has eigenvalues 1 and -1. Otherwise, these are very quick to find. Because we have two pairs, the eigenvalues of the reduced network are
 \eq{
-\mu_1 = 1, \quad \mu_2 = 1, \quad \mu_3=-1, \mu_4=-1.
+\mu_1 = 1, \quad \mu_2 = 1, \quad \mu_3=-1, \quad \mu_4=-1.
 }
-By the interlacing theorem, the eigenvalues of the original netwok have to interlace with these, which also reveals that 1 and -1 must have been eigenvalues of the original network. 
+By the interlacing theorem, the eigenvalues of the original network have to interlace with these, which also reveals that 1 and -1 must have been eigenvalues of the original network. 
 
 Now for the eigenvectors with even symmetry. These eigenvectors must have the form $(a,b,c,b,a)^{\rm T}$, and hence applying the eigenvector equation gives us 
 \eq{
@@ -92,7 +92,7 @@ so the last two eigenvalues are
 
 Could we have found the three even-symmetry eigenvalues more quickly? Sure. 
 From the odd-symmetry eigenvectors we already know the eigenvalues 1 and -1
-The network is biparpite which means that the three missing eigenvalues must be 0 and a symmetric pair. Let's say the symmetric eigenvalues are $m$ and $-m$. We know that the squares of all eigenvalues must add up to two times the number of links, so 
+The network is bipartite, which means that the three missing eigenvalues must be 0 and a symmetric pair. Let's say the symmetric eigenvalues are $m$ and $-m$. We know that the squares of all eigenvalues must add up to two times the number of links, so 
 \eq{
 (1)^2 + (-1)^2+ 0^2 + (m)^2 + (-m)^2 = 2 \cdot 4
 }

@@ -20,20 +20,20 @@ The clique by itself can sustain an adjacency eigenvalue of 5. The adjacency mat
 }
 and hence 
 \eq{
-\kappa_n \geq 5p -r 
+\kappa_1 \geq 5p -r.
 }
 
 \subquestion At which value of $p$ will the clique destabilize the disease-free steady state? Is the transition that occurs at this point the epidemic threshold?  
 
 \solution 
-If the clique is present in the network we can be certain that the disease-free state is unstable if 
+If the clique is present in the network, we can be certain that the disease-free state is unstable if 
 \eq{
-p\geq 5r.
+p\geq r/5.
 }
-Of course the disease-free state could be destabilized before if even larger cliques or hubs of degree greater then 25 are present. But is this really the epidemic threshold?
+Of course, the disease-free state could be destabilized before if even larger cliques or hubs of degree greater than 25 are present. But is this really the epidemic threshold?
 
 In practice often yes, at least this reasoning typically agrees with other ways of determining the epidemic threshold. If we think about it more carefully some caveats are in order: First, the model is not necessarily good. In this way of modeling we are using continuous variables to describe the probability that a person is infected (see Ex.~19.8), but actually people are infected or they are not. If we were talking about large groups we can usually safely switch from discrete to continuous variables, but here what supposedly keeps the disease alive is a clique of just 6 people. With such small numbers there is a chance that all six people randomly recover from the disease at the same time. If such a chance exists it will eventually happen, so our clique of six people will not be able to keep the epidemic going indefinitely by themselves. 
 
-The second caveat is more philosophical in nature. When previously defined the epidemic threshold as the point where a finite proportion of the population is infected. We haven't even specified how large the population is in our model. So we might be talking about an infinite population and in this case any finite number of infected that might exist in our clique and in their neighborhood, does not constitute a finite proportion of the population, so we could still be below the threshold. By contrast we could be talking about a finite population. In fact the whole network could be nothing but the clique. In such a very finite network (and if we are willing to split hairs, in any finite network) no sharp epidemic threshold exists. 
+The second caveat is more philosophical in nature. When we previously defined the epidemic threshold as the point where a finite proportion of the population is infected. We haven't even specified how large the population is in our model. So we might be talking about an infinite population and in this case any finite number of infected that might exist in our clique and in their neighborhood, does not constitute a finite proportion of the population, so we could still be below the threshold. By contrast, we could be talking about a finite population. In fact the whole network could be nothing but the clique. In such a very finite network (and if we are willing to split hairs, in any finite network) no sharp epidemic threshold exists. 
 
 But in practice, yes, you can use this approach. The result will be useful, just take it with a grain of salt. 
