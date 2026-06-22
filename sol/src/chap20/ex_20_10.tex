@@ -1,15 +1,12 @@
 \exercise{Reactivity \label{exMotifReactivity}}{4}
-Let $J$ be the Jacobian of a steady state in an ODE system.
+Let $\bf J$ be the Jacobian of a steady state in an ODE system. Consider a small deviation $\vec{\delta}(t)$ from the steady state. Hence the absolute distance of the system from the steady state at time $t$ is $|\vec{\delta}|=\sqrt{\vec{\delta}^{\rm T}\vec{\delta}}$.
 
 \subquestion
-Consider the deviation $\vec{\delta}(t)$ from the steady state following an initial perturbation $\delta_0$, and write an equation of the length $|\vec{\delta}|=\sqrt{\vec{\delta}^{\rm T}\vec{\delta}}$.
-
-\subquestion
-Define $a$ as the relative rate of change in $|\vec{\delta}|$, i.e.~the current change in the distance normalized by the current distance. Then show 
+Define $a$ as the relative rate of change in $|\vec{\delta}|$, i.e.~the current change in the distance normalized by the current distance, and show 
 \eqn{
-  a = \frac{\vec{\delta}^{\dag} {\bf H} \vec{\delta}}{\vec{\delta}^{\dag}\vec{\delta}},
+  a = \frac{1}{|\vec{\delta}|} \frac{{\rm d}}{{\rm d} t} |\vec{\delta}|=\frac{\vec{\delta}^{\dag} {\bf H} \vec{\delta}}{\vec{\delta}^{\dag}\vec{\delta}},
 }
-where ${\bf H} = ({\bf J}+{\bf J}^{\dag})/2$ is the hermitian part of the Jacobian. 
+where ${\bf H} = ({\bf J}+{\bf J}^{\dag})/2$ is the Hermitian part of the Jacobian. 
 
 \solution 
 We know that close to the steady state the deviation changes according to
@@ -20,11 +17,11 @@ If we transpose and conjugate this equation we find
 \eq{
    \dot{\vec{\delta}}^{\dag} = {\vec{\delta}}^{\dag} {\bf J}^{\dag}.
 }
-We now define 
+The relative change of the absolute distance from the steady state is
 \eq{
-a = \frac{1}{|\vec{\delta}|} \frac{{\rm d}}{{\rm d} t} |\vec{\delta}|
+a = \frac{1}{|\vec{\delta}|} \frac{{\rm d}}{{\rm d} t} |\vec{\delta}|.
 }
-and compute
+We now compute
 \eqa{
 \frac{1}{|\vec{\delta}|} \frac{{\rm d}}{{\rm d} t} |\vec{\delta}| &=& \frac{1}{|\vec{\delta}|} \frac{{\rm d}}{{\rm d} t} \sqrt{\vec{\delta}^\dag\vec{\delta}} \\
 &=& \frac{1}{|\vec{\delta}|} \frac{1}{2\sqrt{\vec{\delta}^\dag\vec{\delta}}} \frac{\rm d}{{\rm d} t} \vec{\delta}^\dag\vec{\delta} \\
@@ -86,7 +83,7 @@ and we can compute
 Computing the eigenvalues for {\bf H} we get the values $1/4 \pm\sqrt{2}/4$. So the rightmost eigenvalue is $1/4 +\sqrt{2}/4$. Which means the reactivity is $\approx 0.6036$.
 
 \subquestion 
-We now consider a larger system where the Jacobian $\bf J$ from (d) appears as a principal submatrix. (Perhaps the system contains $X$ and $Y$ along with many other variables). What can you say about the reactivity of the entire system? 
+We now consider a larger system where the Jacobian $\bf J$ from (c) appears as a principal submatrix. (Perhaps the system contains $X$ and $Y$ along with many other variables). What can you say about the reactivity of the entire system? 
 
 \solution
 For the larger system we compute the reactivity from the Hermitian part of its Jacobian. The Hermitian matrix for the entire system will then contain $\bf H$ from (d) as a principal submatrix. Because the matrix is Hermitian the rightmost eigenvalue of $\bf H$ is a lower bound for the rightmost eigenvalue for the Hermitian matrix for the entire system. Hence the reactivity of the entire system must be at least $1/4+\sqrt{2}/4$.   
