@@ -1,10 +1,10 @@
 \exercise{Spectral methods in the wild}{3}
-A supermarket chain approaches you. Their goal is to identify different groups in their customer base. They have a large dataset that containing 1 million checkout receipts. Each receipt contains information which products they have bought in the purchase. Describe in bullet points how you would approach this question. 
+A supermarket chain approaches you. Their goal is to identify different groups in their customer base. They have a large dataset containing 1 million checkout receipts. Each receipt contains information which products the customer has bought in the purchase. Describe in bullet points how you would approach this question. 
 
 \solution
 
 \begin{itemize}
-\item We can represent the customers previous purchases as a table. This table could state the rate at which the customer buys an item or just whether the customer has ever bought the item. For example it could be something line this
+\item We can represent the customers' previous purchases as a table. This table could state the rate at which the customer buys an item or just whether the customer has ever bought the item. For example, it could be something like this
 \begin{center}
 \begin{tabular}{l  c c c c}
  & \sw{Product 1} & \sw{Product 2} &  \sw{Product 3} & $\cdots$ \\\hline
@@ -16,12 +16,12 @@ A supermarket chain approaches you. Their goal is to identify different groups i
 \end{tabular}
 \end{center}
 
-\item We standardize the products such that every column in the table has mean zero and variance one
-\item Now we regard the rows as vectors and define a distance $d_{ij}$ between customers as the euclidian distance between their respective vectors
+\item We standardize the products such that every column in the table has mean zero and variance one.
+\item Now, we regard the rows as vectors and define a distance $d_{ij}$ between customers as the Euclidean distance between their respective vectors.
 \item  We define a similarity between customers, perhaps simply as $S_{ij}=1/d_{ij}$.
-\item We threshold the similarities. For example a similarity $s_{ij}$ is retained if it is among the top-10 similarity scores for either customer $i$ or $j$. All other  $S_{ij}$ are set to zero. 
-\item  We now regard the $S_{ij}$ as elements of a weighted adjacency $\bf s$ and construct the corresponding Laplacian ${\bf L}=-{\bf S}+{\bf D}$, where ${\bf D}=\delta_{ij} \sum_k S_{ik}$, or alternatively one of the other Laplacians. 
+\item We threshold the similarities. For example, a similarity $S_{ij}$ is retained if it is among the top-10 similarity scores for either customer $i$ or $j$. All other  $S_{ij}$ are set to zero. 
+\item  We now regard the $S_{ij}$ as elements of a weighted adjacency $\bf S$ and construct the corresponding Laplacian ${\bf L}=-{\bf S}+{\bf D}$, where ${\bf D}=\delta_{ij} \sum_k S_{ik}$, or alternatively one of the other Laplacians. 
 \item We compute the second smallest eigenvalue of $\bf L$ and the corresponding eigenvector $\vec{v}$.
-\item The customers who correspond to a positive entry in the eigenvector are identified as a cluster, the customers who correspond to a negative entry in the eigenvector form another cluster. 
+\item The customers who correspond to a positive entry in the eigenvector are identified as a cluster. The customers who correspond to a negative entry in the eigenvector form another cluster. 
 \item Additional eigenvectors can be used to split the clusters further. 
 \end{itemize}

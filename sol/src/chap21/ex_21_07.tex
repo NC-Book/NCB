@@ -1,9 +1,9 @@
 \exercise{Laplacian properties \label{exVibeProperties}}{4}
-For undirected graphs the Laplacian $\bf L$ has an interesting property: If we multiply it from both sides with a vector $\vec{x}$ we get 
+For undirected graphs the Laplacian $\bf L$ has an interesting property: If we multiply it from both sides with a vector $\vec{x}$ we find 
 \eqn{
 \vec{x}^{\rm T} {\bf L} \vec{x}=\sum_{i,j>i} A_{ij} (x_i-x_j)^2.
 }
-which sums the quadratic differences in x over all links, providing a measure of the smoothness of $\vec{x}$.
+which sums the quadratic differences in $x$ over all links, providing a measure of the smoothness of $\vec{x}$.
 
 \subquestion Show that this equation is correct.   
 
@@ -36,7 +36,7 @@ It looks we are almost ready to combine the sum back together but that would giv
 \eq{ {x_i}^2-x_ix_j} 
 but we need 
 \eq{ (x_i-x_j)^2=({x_i}^2 + {x_j}^2 -2x_ix_j ) } 
-SO comparing these two equations we need the $x_ix_j$ term twice, and we also need the quadratic term ${x_i}^2$ twice, just once with an $j$ instead of an $i$, so the plan is now to double everything and somehow exchange an $i$ for a $j$ in one of the terms. This is easier while the sums are still separate. We write 
+So, comparing these two equations we need the $x_ix_j$ term twice, and we also need the quadratic term ${x_i}^2$ twice, just once with an $j$ instead of an $i$, so the plan is now to double everything and somehow exchange an $i$ for a $j$ in one of the terms. This is easier while the sums are still separate. We write 
 \eqa{
 2\vec{x}^{\rm T}{\bf L} \vec{x} &=&   2\left(\sum_{i,j} A_{ij} {x_i}^2   \right) - 2\left(\sum_{i,j} x_i  A_{ij} x_j\right) \\ 
 &=&  \left(\sum_{i,j} A_{ij} {x_i}^2\right) + \left(\sum_{i,j} A_{ij} {x_i}^2\right) - \left(\sum_{i,j} A_{ij}  (2x_ix_j)\right)   
@@ -49,7 +49,7 @@ In the last step we used that we can change the order of summation and that $\bf
 \eqa{
 2\vec{x}^{\rm T}{\bf L} \vec{x} 
 &=&  \left(\sum_{i,j} A_{ij} {x_j}^2\right) + \left(\sum_{i,j} A_{ij} {x_i}^2\right) - \left(\sum_{i,j} A_{ij}  (2x_ix_j)\right)  \\
-&=&  \sum_{i,j} A_{ij} ({x_i}^2 - 2x_ix_j + {x_j}^2  \\
+&=&  \sum_{i,j} A_{ij} ({x_i}^2 - 2x_ix_j + {x_j}^2)  \\
 &=& \sum_{i,j} A_{ij} (x_i-x_j)^2  
 } 
 OK we are almost there we just have to deal with the factor of two. This is easy to see now isn't it? The right hand side of the equation sums over every link twice. If we only sum over the $j>i$ then we sum only over every link once, so 
@@ -116,18 +116,18 @@ This one is just like part a:
 \eqa{
 \vec{x}^\dag {\bf Q} \vec{x} &=& \sum_{i,j} x_i Q_{ij} x_j \\
   &=&  \sum_{i,j} x_i (\delta_{ij}k_i + A_{ij} ) x_j \\
-  &=&  \left(\sum_{i,j}\delta_{ij}k_ix_ix_j\right) + \left(\sum_{i,j} X_ix_j A_{ij}\right) \\
+  &=&  \left(\sum_{i,j}\delta_{ij}k_ix_ix_j\right) + \left(\sum_{i,j} x_ix_j A_{ij}\right) \\
   &=&  \left(\sum_{i}k_i{x_i}^2\right) + \left(\sum_{i,j} x_ix_j A_{ij}\right) \\
   &=&  \left(\sum_{i,j}A_{ij}{x_i}^2\right) + \left(\sum_{i,j} x_ix_j A_{ij}\right) \\
   &=&  2\left(\sum_{(i,j)\in E}{x_i}^2\right) + 2\left(\sum_{(i,j) \in E} x_ix_j \right) \\
-  &=&  \left(\sum_{(i,j)\in E}{x_i}^2\right)+\left(\sum_{(i,j)\in E}A{x_i}^2\right) + \left(\sum_{(i,j) \in E} 2x_ix_j \right) \\  
+  &=&  \left(\sum_{(i,j)\in E}{x_i}^2\right)+\left(\sum_{(i,j)\in E}A_{ij}{x_i}^2\right) + \left(\sum_{(i,j) \in E} 2x_ix_j \right) \\  
   &=&  \left(\sum_{(i,j)\in E}{x_i}^2\right)+\left(\sum_{(i,j)\in E}{x_j}^2\right) + 2\left(\sum_{(i,j) \in E} x_ix_j A_{ij}\right) \\  
   &=& \sum_{(i,j)\in E}({x_i}^2+2x_ix_j+{x_j}^2) \\ 
   &=& \sum_{(i,j)\in E}(x_i+x_j)^2
 }
 So this one is the sum over sums of squares of the combined values on linked nodes. 
 
-\paragraph{Forth expression:} $\rm Tr(\bf L)$. 
+\paragraph{Fourth expression:} $\rm Tr(\bf L)$. 
 
 The diagonal terms of the Laplacian are the node degrees, so the trace is just the two times the total degree, so $2K$
 
@@ -155,14 +155,14 @@ which implies
 \eq{
 \sum_{(i,j)\in E} (v_i+v_j)^2 = 0  
 }
-This is odd, isn't it. The vector $\vec{v}$ is an eigenvector of a real symmetric matrix and hence his eigenvectors must have real elements. So we are adding up square of real numbers, which cannot be negative, but the result must be zero. Hence the only way in which this is possible is 
+This is odd, isn't it. The vector $\vec{v}$ is an eigenvector of a real symmetric matrix and hence its eigenvectors must have real elements. So we are adding up squares of real numbers, which cannot be negative, but the result must be zero. Hence, the only way in which this is possible is 
 \eq{
 v_i = -v_j \quad \mbox{ for all links $(i,j)$}
 }
-This is quite a strong constraint. Imagine our 3-chain, (1)-(2)-(3). We can always normalize the eigenvector such that $v_1=1$ this automatically implies $v_2=-1$ which in turn implies $v_3=1$. So if a zero eigenvalue exists, the we can start with one node and set the eigenvector element to 1. All of the nodes neighbors must then have elements of -1, the second neighbors again get a 1 and so on. Of course this is only possible if the network is bipartite, otherwise a node could be a neighbor and a second neighbor at the same time. So a zero eigenvalue of $\bf Q$ indicates bipartiteness. 
+This is quite a strong constraint. Imagine our 3-chain, (1)-(2)-(3). We can always normalize the eigenvector such that $v_1=1$ this automatically implies $v_2=-1$ which in turn implies $v_3=1$. So if a zero eigenvalue exists, we can start with one node and set the eigenvector element to 1. All of the node's neighbors must then have elements of -1, the second neighbors again get a 1 and so on. Of course, this is only possible if the network is bipartite. Otherwise, a node could be a neighbor and a second neighbor at the same time. So, a zero eigenvalue of $\bf Q$ indicates bipartiteness. 
 
-We have to be a little bit careful because we need only one component of $\bf Q$ to be bipartite, the the eigenvector can just be zero in the other components. 
+We have to be a little bit careful because we need only one component of $\bf Q$ to be bipartite, the eigenvector can just be zero in the other components. 
 
-One can also prove the other direction, if a component is bipartite then we always have a zero eigenvalue of $\bf Q$. 
+One can also prove the other direction: if a component is bipartite, then we always have a zero eigenvalue of $\bf Q$. 
 
 In summary: $|{\bf Q}|=0$ if and only if there is at least one bipartite component. 

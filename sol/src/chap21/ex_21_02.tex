@@ -2,8 +2,8 @@
 Consider a random walk on a network described by an adjacency matrix $\bf A$. A walker that in a node $i$ leaves at a random point in time such that the departure rate equals the node degree $k_i$. When leaving the walker picks a link connecting to $i$ at random and moves instantaneously to the link's other endpoint $j$. Derive a differential equation that governs the dynamics of $x_i$, the probability that the walker is in node $i$.
 
 \solution 
-Let's consider a small time interval $\d t$ since the walker leaves at rate $i$.
-The walker is currently in node $i$ with probability $x_i$. If it is in node $i$ it leaves at a rate $k_i$. Therefore the total probability that the walker leaves node $i$ in the time interval $\d t$ is 
+Let's consider a small time interval $\d t$ since the walker leaves at rate $k_i$.
+The walker is currently in node $i$ with probability $x_i$. If it is in node $i$, it leaves at a rate $k_i$. Therefore, the total probability that the walker leaves node $i$ in the time interval $\d t$ is 
 \eq{
      R_{{\rm leave},i} = x_i k_i \d t 
 }
@@ -11,28 +11,28 @@ Next consider the rate at which the walker is arriving from a specific neighbor 
 \eq{
      R_{{\rm leave},j} = x_j k_j \d t 
 }
-If the walker leaves node $j$, which has degree $k_j$ the chance that it chooses the link to $i$ is $1/k_j$ hence the probability that we see the walker traveling from $j$ to $i$ in the time interval $\d t$ is
+If the walker leaves node $j$, which has degree $k_j$, the chance that it chooses the link to $i$ is $1/k_j$. Hence, the probability that we see the walker traveling from $j$ to $i$ in the time interval $\d t$ is
 \eq{
     R_{{\rm travel},j \to i} = \frac{x_j k_j}{k_j} \d t = x_j \d t 
 }
-Since $\d t$ is short we can simply add up the arrival rates from all neighbors od node $i$, 
+Since $\d t$ is short, we can simply add up the arrival rates from all neighbors of node $i$, 
 \eqa{
    R_{{\rm arrive},i} &=& \sum_{[ij]} R_{{\rm travel},j \to i} \\ 
      &=& \sum_j A_{ij} R_{{\rm travel},j \to i}  \\
      &=& \sum_j A_{ij} x_j \d t  
 }
-Note that in the arrival term we did not have to multiply an extra factor $1-x_i)$ to exclude that the walker is in $x_i$ already, like we did in the SIS model where we had to exclude that the node is already infected. The difference arises because many nodes can be infected in the epidemic, but in the random walk there is only one walker. Hence the probabilities are not independent. If the walker is in node $j$ we can be sure that it is not in node $i$. So if we look at the case where the walker is currently in $j$ the probability that it is not in $i$ is not $1-x_i$ but it is actually 1.
+Note that in the arrival term we did not have to multiply an extra factor $(1-x_i)$ to exclude that the walker is in $i$ already, like we did in the SIS model where we had to exclude that the node is already infected. The difference arises because many nodes can be infected in the epidemic, but in the random walk there is only one walker. Hence, the probabilities are not independent. If the walker is in node $j$ we can be sure that it is not in node $i$. So, if we look at the case where the walker is currently in $j$, the probability that it is not in $i$ is not $1-x_i$ but it is actually 1.
 
-The change in $x_i$, that occurs over the interval $\d t$ is the difference of arrival and departure rate,
+The change in $x_i$ that occurs over the interval $\d t$ is the difference of arrival and departure rates,
 \eq{
-\d x_i =  R_{{\rm arrive},i} - R_{{\rm leave},j} = \left( sum_j A_{ij} x_j \d t\right) - \left( x_i k_i \d t  \right) 
+\d x_i =  R_{{\rm arrive},i} - R_{{\rm leave},i} = \left( \sum_j A_{ij} x_j \d t\right) - \left( x_i k_i \d t  \right) 
 }
 Dividing by $\d t$ yields
 \eq{
 \frac{\d x_i}{\d t} = \dot{x}_i = - x_i k_i + \sum A_{ij} x_j  
 }
-which is the equation that we used as a starting point in the chapter. We recognize at the $i$-th component of the vector equation 
+which is the equation that we used as a starting point in the chapter. We recognize this as the $i$-th component of the vector equation 
 \eq{
-\vec{x} = ({\bf A} - {\bf K}) \vec{x} = - {\bf L}\vec{x}.
+\dot{\vec{x}} = ({\bf A} - {\bf K}) \vec{x} = - {\bf L}\vec{x}.
 }
 
