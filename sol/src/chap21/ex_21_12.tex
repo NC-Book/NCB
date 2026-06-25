@@ -26,11 +26,11 @@ and hence
 \eq{
   b_{1,2} =   \frac{\lambda\pm \sqrt{\lambda^2-4}}{2}
 }
-Because the maximum node degree is 2 we should the eigenvalues should be $-2\leq \lambda \leq 2$, so the square root term is imaginary. The equation we found for $b$ almost almost looks a bit too perfect. Let's compute $|b|$. 
+Because the maximum node degree is 2, the eigenvalues should be $-2\leq \lambda \leq 2$, so the square root term is imaginary. The equation we found for $b$ almost looks a bit too perfect. Let's compute $|b|$. 
 
 We start with 
 \eqa{
-  |b|^2 &=& \left(\frac{\lambda}{2}\right)2 + \left( \pm \frac{\sqrt{\lambda^2-4}}{2}   \right)^2 \\
+  |b|^2 &=& \left(\frac{\lambda}{2}\right)^2 + \left( \pm \frac{\sqrt{\lambda^2-4}}{2}   \right)^2 \\
   &=& \frac{\lambda^2 +4-\lambda^2 }{4} \\
   &=& \frac{4}{4} \\
   &=& 1
@@ -40,7 +40,7 @@ We start with
 
 \solution 
 In the previous part we found that the solutions for $b$ are always of magnitude 1 regardless of $\lambda$, so $b$ describes the unit circle in the complex plane. Any complex number can be expressed as  
-$x+iy$, but also also as $r\exp{i\theta}$. In general these two ways of writing the complex number are realted via 
+$x+iy$, but also also as $r\exp{i\theta}$. In general these two ways of writing the complex number are related via 
 \eqa{
 x&=& r \cos(\theta) \\
 y&=& r \sin(\theta)
@@ -62,7 +62,6 @@ b_{1,2} &=&\frac{\lambda}{2} \pm i\frac{\sqrt{4-\lambda^2}}{2} \\
    &=& \frac{2\cos(\theta)}{2} \pm i \frac{\sqrt{4-4\cos^2(\theta)}}{2} \\
    &=& \cos(\theta) \pm i \sqrt{1-\cos^2(\theta)} \\
   &=& \cos(\theta) \pm i \sqrt{\sin^2(\theta)} \\
-  &=& \cos(\theta) \pm i \sqrt{\sin^2(\theta)} \\
   &=& \cos(\theta) \pm i \sin(\theta) \\
   &=& \exp{\pm i \theta}
 }
@@ -83,7 +82,6 @@ v_{j} = c_1 \exp{ij\theta} + c_2 \exp{-ij\theta}
 moreover we know $\lambda=2\cos(\theta)$. Substituting everything yields 
 \eq{
 c_1 \exp{i(j-1)\theta} + c_2 \exp{-i(j-1)\theta} + c_1 \exp{i(j+1)\theta} + c_2 \exp{-i(j+1)\theta}  = 2 \cos(\theta)(c_1 \exp{ij\theta} + c_2 \exp{-ij\theta})  
-)
 }
 Let's sort this a bit 
 \eqa{
@@ -97,7 +95,7 @@ So this also works.
 \subquestion At the beginning and end of the chain, the eigenvector condition is slightly different. For example in node 1: $v_2=\lambda v_1$. However, we can write it in the familiar form $v_0+v_2=\lambda v_1$, if we demand $v_0=0$. Hence introduce \textit{ghost nodes}, numbered 0 and $N+1$ and demand that $v_0=v_{N+1}=0$. Use this boundary condition to find all eigenvalues and eigenvectors. 
 
 \solution 
-SO far we have
+So far we have
 \eq{
 v_j = c_1 \exp{ij\theta} + c_2\exp{-ij\theta} 
 }
@@ -118,7 +116,7 @@ Now we have one boundary condition left:
 \eq{
 v_{N+1} = \sin ((N+1)\theta) = 0 
 }
-The $\sin$ function is zero if its argument is a multiple of $\pi$. Hence the boundary condition is met when 
+The $\sin$ function is zero if its argument is a multiple of $\pi$. Hence, the boundary condition is met when 
 \eq{
 (N+1) \theta = n \pi  
 }
@@ -130,11 +128,11 @@ Remembering that $\lambda = 2 \cos(\theta)$ which gives us the {\bf adjacency ei
 \eq{
 \lambda_n = 2 \cos( n\pi/(N+1) )
 }
-Note that we get $N$ different values for the eigenvalues, for $n=1,\ldots,N$, which shows that we find all the eigenvalues in this way. Moreover we already know the corresponding eigenvectors 
+Note that we get $N$ different values for the eigenvalues, for $n=1,\ldots,N$, which shows that we find all the eigenvalues in this way. Moreover, we already know the corresponding eigenvectors 
 \eq{
 v_{n,j} = \sin(j\theta) = \sin(jn\pi/(N+1))
 }
-We could have found the same result by solving the eigenvector condition using generating functions or by turning it into a two dimensional map and solving it with eigenvectors. Interestingly all of these approaches require us to solve the same quadratic polynomial, but among them this approach is the least tedious and perhaps the most insightful. 
+We could have found the same result by solving the eigenvector condition using generating functions or by turning it into a two dimensional map and solving it with eigenvectors. Interestingly, all of these approaches require us to solve the same quadratic polynomial, but among them this approach is the least tedious and perhaps the most insightful. 
 
 If you want to practice it, you can now also solve the Laplacian eigenvectors of the path graph (be careful with the boundary conditions if you do). The result for the {\bf Laplacian eigenvalues} is 
 \eq{
