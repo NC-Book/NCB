@@ -1,7 +1,7 @@
 
 
 \exercise{Abstract stability analysis}{2}
-We place copies of a dynamical system into the nodes of a network and couple them diffusively such that the the local within-node Jacobian and the coupling matrix are given by
+We place copies of a dynamical system into the nodes of a network and couple them diffusively such that the local within-node Jacobian and the coupling matrix are given by
 \eq{
 {\bf P}=\avecc{2 & -3 \\ 3 & -4}, \hspace{1cm}
 {\bf C} = \avecc{0 & 0 \\ 0 & 1}
@@ -9,7 +9,7 @@ We place copies of a dynamical system into the nodes of a network and couple the
 Compute the master stability function for this system. Describe what the result means for the network. 
 
 \solution
-Using the master stability function trick we know that we can compute the eigenvalues of the Jacobian as eigenvalues of  
+Using the master stability function trick, we know that we can compute the eigenvalues of the Jacobian as eigenvalues of  
 \eq{
 {\bf P} - \kappa  {\bf C} =  \avecc{2 & -3 \\ 3 & -4-\kappa} 
 }
@@ -31,14 +31,14 @@ and
 \eq{
 M(\kappa) =  \frac{-(\kappa+2) + \sqrt{\kappa^2+12\kappa}}{2} 
 }
-The homogeneous state is unstable if there is a $\kappa$ such that $M>0$. To find the bifurcation points where this happens we can solve 
+The homogeneous state is unstable if there is a $\kappa$ such that $M>0$. To find the bifurcation points where this happens, we can solve 
 \eqa{
 0 &=& -(\kappa+2) + \sqrt{\kappa^2+12\kappa} \\ 
 \kappa+2 &=&  \sqrt{\kappa^2+12\kappa} \\
 \kappa^2+4\kappa+4 &=& \kappa^2+12\kappa \\
 4 &=& 8 \kappa 
 }
-Hence the threshold is at 
+Hence, the threshold is at 
 \eq{
 \kappa= \frac{1}{2}
 }

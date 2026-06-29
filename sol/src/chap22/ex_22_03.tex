@@ -9,5 +9,75 @@ where $x_i$, $y_i$ are the local variables in node $i$, $f$ and $g$ are arbitrar
 \subquestion 
 Show that, if $(x^*,y^*)$ is the steady state of a network containing only a single node, then every network has a homogeneous steady state at $x_i=x^*$, $y_i = y^*$ for all $i$.   
 
+\solution
+On a single node the system becomes 
+\eqan{
+\dot{x} &=& f(x,y)\\
+\dot{y} &=& g(x,y)
+}
+Hence, a steady state $x^*,y^*$ for the single node system  must satisfy $g(x^*,y^*)=0$ and $f(x^*,y^*)=0$. 
+
+We now consider a state of a system on a network where $x_i=x^*$ and $y_i=y^*$ for all $i$. Substituting into the first equation of motion yields 
+\eqa{
+\dot{x}_i &=& f(x^*,y^*) - c_{\rm x} \sum_j L_{i,j} x^* \\
+         &=& 0 - c_{\rm x} x^* \sum_j L_{i,j} \\
+         &=& - c_{\rm x} x^* \underbrace{\left(k_i - \sum_j A_{i,j}\right)}_0 =0 
+}
+And similarly 
+\eqa{
+\dot{y}_i &=& g(x^*,y^*) - c_{\rm y} \sum_j L_{i,j} y^* \\
+         &=& 0 - c_{\rm y} y^* \sum_j L_{i,j} \\
+         &=& - c_{\rm y} y^* \left(k_i - \sum_j A_{i,j}\right)=0 
+}
+Since none of the variables changes in time, this is a steady state of the entire system.
+
 \subquestion 
-Compute the Jacobian $\bf J$ for this system on the linked pair and show that it can be written in the form ${\bf J}={\bf I}\otimes {\bf P}-{\bf L}\otimes {\bf C}$, where $\bf P$ is the Jacobian of the a network consisting of a single isolated node. 
+Compute the Jacobian $\bf J$ for this system on the linked pair and show that it can be written in the form ${\bf J}={\bf I}\otimes {\bf P}-{\bf L}\otimes {\bf C}$, where $\bf P$ is the Jacobian of a network consisting of a single isolated node. 
+
+\solution 
+On the linked pair we can write the system as 
+\eqan{
+\dot{x}_{1} &=& f(x_1,y_1) + c_{\rm x} (x_2-x_1)\\
+\dot{y}_{1} &=& g(x_1,y_1) + c_{\rm y} (y_2-y_1) \\
+\dot{x}_{2} &=& f(x_2,y_2) + c_{\rm x} (x_1-x_2)\\
+\dot{y}_{2} &=& g(x_2,y_2) + c_{\rm y} (y_1-y_2)
+}
+where we have already substituted the linked-pair Laplacian 
+\eq{
+{\bf L} = \avecc{1 & -1  \\ -1 & 1}.
+}
+We can now compute the Jacobian in the usual way 
+\eq{
+{\bf J} = \avecccc{ f_{\rm x} - c_{\rm x} & f_{\rm y} & c_{\rm x} & 0 \\
+     g_{\rm x} & g_{\rm y} -c_{\rm y} & 0 & c_{\rm y} \\ 
+     c_{\rm x} & 0 & f_{\rm x} - c_{\rm x} & f_{\rm y} \\
+     0 & c_{\rm y} & g_{\rm x} & g_{\rm y} -c_{\rm y}.}
+}
+Now let's compute $\bf J$ using the shortcut instead. We need the linked pair Laplacian from above, the Jacobian of the single node system 
+\eq{
+{\bf P} = \avecc{ f_{\rm x} & f_{\rm y} \\ g_{\rm x} & g_{\rm y}}, 
+}
+the coupling matrix 
+\eq{
+{\bf C} = \avecc{c_{\rm x} & 0 \\ 0 & c_{\rm y}}, 
+}
+and the identity matrix of the right size
+\eq{
+{\bf I} = \avecc{1 & 0 \\ 0 & 1}.
+}
+Then we can write 
+\eqa{
+{\bf J} &=& {\bf I} \otimes {\bf P} - {\bf L} \otimes {\bf C} \\
+  &=& \avecc{1 & 0 \\ 0 & 1} \otimes {\bf P} - \avecc{1 & -1  \\ -1 & 1} \otimes {\bf C} \\
+  &=& \avecc{{\bf P} & 0 \\ 0 & {\bf P}} + \avecc{- {\bf C} & {\bf C}  \\ {\bf C} & -{\bf C}} \\
+  &=& \avecccc{ f_{\rm x} - c_{\rm x} & f_{\rm y} & c_{\rm x} & 0 \\
+     g_{\rm x} & g_{\rm y} -c_{\rm y} & 0 & c_{\rm y} \\ 
+     c_{\rm x} & 0 & f_{\rm x} - c_{\rm x} & f_{\rm y} \\
+     0 & c_{\rm y} & g_{\rm x} & g_{\rm y} -c_{\rm y},}
+}
+which is the same result.
+
+
+
+
+

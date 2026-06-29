@@ -17,7 +17,7 @@ x=1
 }
 So the steady state is $x=y=1$. We compute the Jacobian elements
 \eqa{
-J_{11}&=&\left.\frac{\partial \dot{x}}{\partial x}\right|_* = \left.  \frac{8x+1}{5}-1\right|_* = 4/5 \\ 
+J_{11}&=&\left.\frac{\partial \dot{x}}{\partial x}\right|_* = \left.  \frac{8x+1}{5}-y\right|_* = 4/5 \\ 
 J_{12}&=&\left.\frac{\partial \dot{x}}{\partial y}\right|_* = \left.  -x\right|_* = -1 \\
 J_{21}&=&\left.\frac{\partial \dot{y}}{\partial x}\right|_* = \left.  y\right|_* = 1 \\
 J_{22}&=&\left.\frac{\partial \dot{y}}{\partial y}\right|_* = \left.  x-2y\right|_* = -1 \\
@@ -55,11 +55,11 @@ Hence the Turing bifurcations occur at
 Show that wave instabilities cannot occur. 
 
 \solution
-We know that in two dimensional system Hopf-like bifurcations can only occur when the trace of the Jacobian is zero. Hence we consider the trace of ${\bf P} - \kappa {\bf C}$ which is 
+We know that in two dimensional systems, Hopf-like bifurcations can only occur when the trace of the Jacobian is zero. Hence, we consider the trace of ${\bf P} - \kappa {\bf C}$ which is 
 \eq{
-{\rm Tr}({\bf P-\kappa {\bf C}}) = \frac{4-\kappa}{5} -(1+\kappa) = -\frac{1+6\kappa}{5} < 0
+{\rm Tr}({\bf P}-\kappa {\bf C}) = \frac{4-\kappa}{5} -(1+\kappa) = -\frac{1+6\kappa}{5} < 0
 }
-Since the Laplacian can only have eigenvalues $\kappa\geq 0$ the trace is always negative and hence wave instabilities cannot occur. 
+Since the Laplacian can only have eigenvalues $\kappa\geq 0$ the trace is always negative, and hence wave instabilities cannot occur. 
 
 \subquestion 
 Consider a linked pair of nodes, where the link has weight $w$. For which link weights is the positive homogeneous state stable?
@@ -77,13 +77,13 @@ One eigenvalue of the Laplacian is
 \eq{
 \kappa_1=0 
 }
-Moreover trying the eigenvector $(1,-1)^{\rm T}$ reveals the other eigenvalue 
+Moreover, trying the eigenvector $(1,-1)^{\rm T}$ reveals the other eigenvalue 
 \eq{
 \kappa_2=2w
 }
 We can verify that $\kappa_1=0$ does not cause an instability. In this case ${\bf P}-\kappa{\bf C}={\bf P}$ and the eigenvalues of $P$ have negative real parts. 
 
-The stability can only change is bifurcation and the first bifurcation that occurs when we increase $w$ is the Turing bifurcation at
+The stability can only change in a bifurcation and the first bifurcation that occurs when we increase $w$ is the Turing bifurcation at
 \eq{
 \kappa = \frac{3- \sqrt{5}}{2}
 }
@@ -99,6 +99,6 @@ then the coupling between the patches becomes strong enough to overcome the rest
 we encounter another Turing bifurcation 
 at
 \eq{
-w= \frac{3+ \sqrt{5}}{4}
+w= \frac{3+ \sqrt{5}}{4}.
 }
-at this point the coupling becomes so strong that the two patches start to behave effectively as a single patch and the homogeneous state is stable again. 
+At this point the coupling becomes so strong that the two patches start to behave effectively as a single patch and the homogeneous state is stable again. 

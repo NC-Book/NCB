@@ -1,5 +1,5 @@
 \exercise{Spectra of hypercubes}{4}
-A hypercube is a generalization of cubes to arbitrary dimensions. The 0-dimensional hypercube is just a single  node. 
+A hypercube is a generalization of cubes to arbitrary dimensions. The 0-dimensional hypercube is just a single node. 
 
 \subquestion
 Compute the eigenvalue of the adjacency matrix of the 0-dimensional hypercube, ${\bf A_0}$.
@@ -7,7 +7,7 @@ Compute the eigenvalue of the adjacency matrix of the 0-dimensional hypercube, $
 \solution
 Since 
 \eq{ {\bf A_0} = (0)}
-we get $\lambda=0$
+we get $\lambda=0$.
 
 \subquestion
 To make a 1-dimensional hypercube we take the 0-dimensional hypercube and make a copy of it. Then we connect every node in the original cube with the same node in the copy. Compute the eigenvalues of the corresponding adjacency matrix ${\bf A_1}$. 
@@ -15,19 +15,19 @@ To make a 1-dimensional hypercube we take the 0-dimensional hypercube and make a
 \solution
 Following the instructions leads to 
 \eq{
-{\bf{A_1}} = \avecc{0 & 1 \\ 1 & 0}
+{\bf{A_1}} = \avecc{0 & 1 \\ 1 & 0}.
 }
-hence the eigenvalues are $\lambda_{1,2}=\pm 1$.
+Hence, the eigenvalues are $\lambda_{1,2}=\pm 1$.
 
 \subquestion
 To make a 2-dimensional hypercube we take the 1-dimensional hypercube and make a copy of it. Then we connect every node in the original 1D-cube with the same node in the copy. Try to express the adjacency matrix of the 2-dimensional hypercube, $\bf A_2$, as a function of $\bf A_1$, $\bf I$ and 
 \eqn{
 {\bf M}=\avecc{0 & 1\\ 1 & 0}
 }
-Note that $\bf M$ plays a different role than $\bf A_2$. If you use $\bf M$ in the right way you will have an equation that also relates $\bf A_0$ and $\bf A_1$ if you shift the index. Once you have convinced yourself of your formula, use it to compute the eigenvalues of $\bf A_2$
+Note that $\bf M$ plays a different role than $\bf A_2$. If you use $\bf M$ in the right way you will have an equation that also relates $\bf A_0$ and $\bf A_1$ if you shift the index. Once you have convinced yourself of your formula, use it to compute the eigenvalues of $\bf A_2$.
 
 \solution
-The adjacency matrix for the 2-dimansional hypercube is 
+The adjacency matrix for the 2-dimensional hypercube is 
 \eq{
 {\bf A_2} = \left(  \begin{array}{c c c c} 
 0 & 1 & 1 & 0 \\
@@ -40,11 +40,11 @@ which we can write as
 \eq{
 {\bf A_2} = {\bf I} \otimes {\bf A_1} + {\bf M}\otimes {\bf I}
 }
-The first term of the sum represents the copying of the previous network. The second term connects nodes up with their copies. So although $\bf A_1$ and $\bf M$ are the same matrix, they have different roles. $\bf A_1$ is the adjacency matrix of a 1-dimensional hypercube, and $\bf M$ is a kind of connection operator that we use to stitch together the copies.  
+The first term of the sum represents the copying of the previous network. The second term connects nodes up with their copies. So, although $\bf A_1$ and $\bf M$ are the same matrix, they have different roles. $\bf A_1$ is the adjacency matrix of a 1-dimensional hypercube, and $\bf M$ is a kind of connection operator that we use to stitch together the copies.  
 
-We can test if we are on the right track by following up on the hint from the question. Which suggests shifting the index, this leads to 
+We can test if we are on the right track by following up on the hint from the question. This suggests shifting the index, which leads to 
 \eq{
-{\bf A_1} = {\bf I} \otimes {\bf A_0} + {\bf M}\otimes {\bf I}
+{\bf A_1} = {\bf I} \otimes {\bf A_0} + {\bf M}\otimes {\bf I}.
 }
 We check that this is correct by substituting
 \eq{
@@ -60,7 +60,7 @@ Where $\alpha_1$ is any eigenvalue of $\bf A_1$ and $\mu$ is either of the two e
 
 Because the eigenvalues of $\bf M$ are $+1$ and $-1$ we find half the eigenvalues of $\bf A_2$ by adding 1 to every eigenvalue of $\bf A_1$ and the other half of the eigenvalues of $\bf A_2$ by subtracting 1 from the eigenvalues of $\bf A_1$. Since the eigenvalues of $\bf A_1$ were 1 and -1, the eigenvalues of $\bf A_2$ are
 \eq{
-\lambda = -2, 0, 0,2.   
+\lambda = -2, 0, 0, 2.   
 }
 
 \subquestion
@@ -84,9 +84,9 @@ and by putting both parts together we find the whole spectrum
 Compute the Laplacian eigenvalues of the 3-dimensional hypercube; call it $\bf L_3$ 
 
 \solution
-Note that the hypercubes are regular graphs, with a degree that is identical to the dimension of the cube. So for example the 3-dimensional hypercube is a 3-regular graph. Hence, 
+Note that the hypercubes are regular graphs, with a degree that is identical to the dimension of the cube. So, for example, the 3-dimensional hypercube is a 3-regular graph. Hence, 
 \eq{{\bf L_3}=3{\bf I}-{\bf A_3}}
-The minus sign in front of the adjacency just flips the spectrum, because it is symmetric this leaves it unchanged actually. Adding $3{\bf I}$ to the matrix shifts all eigenvalues by 3 units to the right, so the spectrum of ${\bf L_3}$ is
+The minus sign in front of the adjacency just flips the spectrum, because it is symmetric, and this leaves it unchanged actually. Adding $3{\bf I}$ to the matrix shifts all eigenvalues by 3 units to the right, so the spectrum of ${\bf L_3}$ is
 \eqn{
 \{0,2,2,2,4,4,4,6 \}
 }
@@ -95,7 +95,7 @@ The minus sign in front of the adjacency just flips the spectrum, because it is 
 Is there a general rule for the Laplacian eigenvalues of hypercubes? Can you use it to compute the Laplacian eigenvalues of the 4-dimensional hypercube?
 
 \solution
-So when we move from the three dimensional cube to the four dimensional-cube in the Laplacian spectrum also the degree of the nodes increases by one, which means we get one unit more shift to the right. So instead of adding and subtracting 1, we get the new spectrum by adding 0 and 2. So the spectrum for the 3-dimensional hypercube was
+So when we move from the three dimensional cube to the four dimensional cube in the Laplacian spectrum also the degree of the nodes increases by one, which means we get one unit more shift to the right. So instead of adding and subtracting 1, we get the new spectrum by adding 0 and 2. So, the spectrum for the 3-dimensional hypercube was
 \eqn{
 0,2,2,2,4,4,4,6
 }
@@ -131,6 +131,6 @@ Use your result to compute the sum of all Laplacian eigenvalues of the 1000-dime
 \solution 
 Hmm, we know that we can add up a generating function by differentiating and then substituting 1. So let's try 
 \eq{
-G_{1000}'(1) = 1000  (1+x^2)^{999} \cdot 2 = 100 \cdot 2^{1000}
+G_{1000}'(1) = 1000  (1+x^2)^{999} \cdot 2 = 1000 \cdot 2^{1000}
 }
-where the extra 2 appeared as because of the inner derivative of $x^2$. So is this the correct result? Yes, we can also compute it in another way: The sum over the eigenvalues is also the trace of the matrix and because the Laplacian has the node degrees on the diagonal the trace is also the sum over node degrees. We already noticed that the $i$-dimensional hypercube is an $i$-regular graph, so in the 1000-dimensional hypercube every node has degree 1000.  Moreover there 0-dimensional hypercube has only one node, but then the number of nodes doubles in every step so that the $i$-dimensional hypercube has $2^{i}$ nodes. So in summary the 1000-dimensional hypercube has $2^{1000}$ nodes and each of the nodes is 1000, and hence total node degree must be $1000\cdot 2^{1000}$.   
+where the extra 2 appeared because of the inner derivative of $x^2$. So is this the correct result? Yes, we can also compute it in another way: The sum over the eigenvalues is also the trace of the matrix and because the Laplacian has the node degrees on the diagonal the trace is also the sum over node degrees. We already noticed that the $i$-dimensional hypercube is an $i$-regular graph, so in the 1000-dimensional hypercube every node has degree 1000. Moreover, the 0-dimensional hypercube has only one node, but then the number of nodes doubles in every step so that the $i$-dimensional hypercube has $2^{i}$ nodes. So in summary, the 1000-dimensional hypercube has $2^{1000}$ nodes and each of the nodes has a degree of 1000, and hence the total node degree must be $1000\cdot 2^{1000}$.   

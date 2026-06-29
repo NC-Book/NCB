@@ -33,7 +33,7 @@ a     & a     & 4/5-a  & -1-a \\
 0     & 0     & 1      & -1
 }
 }
-Compare this with the Jacobian of a single isolated note (where there is nowhere to go and hence also no departures) 
+Compare this with the Jacobian of a single isolated node (where there is nowhere to go and hence also no departures) 
 \eq{
 {\bf P} = \avecc{4/5 & -1 \\ 1 & -1 }.
 }
@@ -48,9 +48,9 @@ a  &  a & -a & -a \\
 }
 We can now see that the rest in the second term prominently contains the block 
 \eq{
-{\bf C} = \avecc{a & a \\ 0 & 0}
+{\bf C} = \avecc{a & a \\ 0 & 0}.
 }
-this is the new coupling matrix. Using it the Jacobian can be written as 
+This is the new coupling matrix. Using it, the Jacobian can be written as 
 \eq{
 {\bf J} = \avecc{{\bf P} & 0 \\ 0 & {\bf P}} + \avecc{ -{\bf C} & {\bf C} \\ {\bf C} & -{\bf C}}
 }
@@ -88,6 +88,6 @@ We know $\kappa\geq 0$ (Laplacians have non-negative eigenvalues) and $a>0$ (a n
 
 To check for fold-like bifurcations we check the determinant
 \eq{
-0 = -(4/5-\kappa a) + (1+\kappa a) = 1/5 
+0 = -(4/5-\kappa a) + (1+\kappa a) = 1/5 +2\kappa a
 }
 so there are no fold-like bifurcations either. Hence this sort of flight response won't destabilize the stationary state. However, generally cross-diffusion (i.e.~diffusion where the departure rate of one variable depends on other variables) is likely to cause diffusion-driven instabilities.

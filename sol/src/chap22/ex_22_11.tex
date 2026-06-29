@@ -7,7 +7,7 @@ In the chapter we used a system-level approach to compute the Jacobian of a gene
 \subquestion 
 Compute Jacobian elements using the node-level approach
 \eqn{
-{\bf J}_{ni,mj} = \left. \frac{\partial \dot{x}_ni}{\partial x_{mj}} \right|_*
+{\bf J}_{ni,mj} = \left. \frac{\partial \dot{x}_{ni}}{\partial x_{mj}} \right|_*
 }
 and show that it can still be written as ${\bf J}={\bf I}\otimes {\bf P}-{\bf L}\otimes{\bf C}$
 
@@ -16,13 +16,13 @@ We first differentiate the first term of $\dot{x}_{ni}$,
 \eq{
  \frac{\partial}{\partial x_{mj}} f_n(x_{:i}) = \delta_{ij} \frac{\partial}{\partial x_{mi}} f_n(x_{:i}) = \delta_{ij}P_{nm}   
 }
-In the first step we noticed that the derives are all with respect to variables in node $j$ while the $f(x_{:i})$ only depends on variables in node $i$ hence the result is zero unless $i=j$, which we express using the Kronecker delta. With the $\delta_{ij}$ factor in place we can then replace the $j$ by a $i$. We are allowed to do this because either $i=j$ or the result is 0 due to the delta anyway. After the exchange we are left with the derivative of function $f_n$ with respect to the variable $x_m$ in the same node, which we recognize as the element $P_{nm}$ of the node Jacobian.  
+In the first step, we noticed that the derivatives are all with respect to variables in node $j$ while the $f(x_{:i})$ only depends on variables in node $i$ hence the result is zero unless $i=j$, which we express using the Kronecker delta. With the $\delta_{ij}$ factor in place we can then replace the $j$ by an $i$. We are allowed to do this because either $i=j$ or the result is 0 due to the delta anyway. After the exchange we are left with the derivative of function $f_n$ with respect to the variable $x_m$ in the same node, which we recognize as the element $P_{nm}$ of the node Jacobian.  
 
 Now for the second term of $\dot{x}_{ni}$, where we need to rename the summation index to $k$ to avoid confusion 
 \eqa{
  \frac{\partial}{\partial x_{mj}} c_n\sum_k L_{ik} x_{nk} 
  &=& c_n\sum_k L_{ik} \frac{\partial}{\partial x_{mj}}  x_{nk} \\ 
- &=& c_n\sum_k L_{ik} \delta_{nm} \delta{jk} \\  
+ &=& c_n\sum_k L_{ik} \delta_{nm} \delta_{jk} \\  
  &=& c_n\delta_{nm} L_{ij} \\  
 }
 Hence our derivative is 
@@ -42,7 +42,7 @@ This gives us an equation for the block $i,j$ of the Jacobian but we want an equ
 \eq{
 ({\bf A} \otimes {\bf B} )_{ij} = A_{ij} {\bf B} 
 }
-Now we do this step backwards. The first term contains a $\delta_{ij}$ which describes a matrix that has ones for $i=j$ and zeros elsewhere, i.e. the identity matrix $\bf I$, wheras the second term contains the elements of the Laplacian, so stepping from the blockwise to the system level we can write 
+Now we do this step backwards. The first term contains a $\delta_{ij}$ which describes a matrix that has ones for $i=j$ and zeros elsewhere, i.e. the identity matrix $\bf I$, whereas the second term contains the elements of the Laplacian, so stepping from the blockwise to the system level we can write 
 \eq{
 {\bf J} = {\bf I} \otimes {\bf P} - {\bf L} \otimes {\bf C} 
 }
@@ -63,7 +63,7 @@ The dynamics of this vector can be written as
 \eq{
 \vec{\dot{x}_{:i}} = f(\vec{x_{:i}}) - {\bf C} \sum_k L_{ik}  \vec{x_{:k}}
 }
-where we again identified $\bf C$ and changed the summation index to $k$ as above. Importantly all indices $n$ and $m$ have now vanished since we are writing equations for block vectors and hence don't need to resolve within-block coordinates anymore. Note in particular, that the equation now contains the function $f$ which returns the vector of changes due to the local dynamics within a nodes, in contrast to $f_n$ which returns only the change in the $n$-th variable of the node. (In case you are wondering this is not a new notation, we have been using it ever since we write the equation $\dot{\vec{x}}=f(\vec{x})$ ten chapters ago). 
+where we again identified $\bf C$ and changed the summation index to $k$ as above. Importantly all indices $n$ and $m$ have now vanished since we are writing equations for block vectors and hence don't need to resolve within-block coordinates anymore. Note in particular, that the equation now contains the function $f$ which returns the vector of changes due to the local dynamics within a node, in contrast to $f_n$ which returns only the change in the $n$-th variable of the node. (In case you are wondering this is not a new notation, we have been using it ever since we wrote the equation $\dot{\vec{x}}=f(\vec{x})$ ten chapters ago). 
 
 We can now compute the Jacobian blocks as 
 \eqa{
@@ -77,4 +77,4 @@ We have now arrived at an equation that we recognize from part a) of this exerci
 \eq{
 {\bf J} = {\bf I} \otimes  {\bf P} - {\bf L} \otimes {\bf C}
 }
-These sort of calculations are quite important as they allow us to recongize the deeper structure of complex equation systems (and it won't always be the same structure as in this chapter). These sort of calculations are not particularly easy, but with some practice they become manageable. Generally the micro-level calculation with the multi-index notation offers the most easily navigable, but also often perhaps most tedious approach. The meso-scale block-level derivation, can be faster but may require more navigational skills. Finally the system level derivation, where we compute the entire Jacobian in one go can be extremely elegant, but also extremely difficult to navigate.  
+These sorts of calculations are quite important as they allow us to recognize the deeper structure of complex equation systems (and it won't always be the same structure as in this chapter). They are not particularly easy, but with some practice they become manageable. Generally the micro-level calculation with the multi-index notation offers the most easily navigable, but also often perhaps most tedious approach. The meso-scale block-level derivation can be faster but may require more navigational skills. Finally the system level derivation, where we compute the entire Jacobian in one go can be extremely elegant, but also extremely difficult to navigate.  

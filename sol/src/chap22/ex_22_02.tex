@@ -5,3 +5,105 @@
 Show either generally or with the matrices from the previous exercise that 
 \eqn{ \rm{ a) }\  c({\bf A} \otimes {\bf C})= c{\bf A} \otimes {\bf C} = {\bf A} \otimes c{\bf C},\ \rm{ b) }\ ({\bf A} \otimes {\bf C})(\vec{u} \otimes \vec{w}) = {\bf A}\vec{u} \otimes {\bf C}\vec{w},}
 where $c$ is a scalar and $\vec{u}$ and $\vec{w}$ are vectors of suitable dimension. 
+
+\solution
+{\bf Explicit Matrices.} Let's first do this with the matrices from the previous exercise. We start with property (a)
+\eqa{
+  c ({\bf A}\otimes {\bf C}) &=& c \left[ \avecc{1 & 2 \\ 3 & 4} \otimes \avecc{1 & 0 \\ 0 & 0 } \right]  \\
+   &=& c  \avecccc{1 & 0 & 2 & 0 \\ 0 & 0 & 0 & 0 \\ 3 & 0 & 4 & 0 \\ 0 & 0 & 0 & 0}  \\
+   &=&  \avecccc{1 c& 0 & 2c & 0 \\ 0 & 0 & 0 & 0 \\ 3c & 0 & 4c & 0 \\ 0 & 0 & 0 & 0} \\
+   &=& \left[ \avecc{1 & 2 \\ 3 & 4} \otimes \avecc{c & 0 \\ 0 & 0 } \right] = {\bf A} \otimes c{\bf C}  
+}
+Reusing the first three steps we can also write
+\eq{
+c ({\bf A}\otimes {\bf C}) =  \avecccc{1 c& 0 & 2c & 0 \\ 0 & 0 & 0 & 0 \\ 3c & 0 & 4c & 0 \\ 0 & 0 & 0 & 0} 
+= \left[ \avecc{1c & 2c \\ 3c & 4c} \otimes \avecc{1 & 0 \\ 0 & 0 } \right] = c{\bf A} \otimes {\bf C} 
+}
+To show the second property (b) we first compute
+\eqa{
+({\bf A} \otimes {\bf C})(\vec{u}\otimes\vec{w})&=&  
+   \left[ \avecc{1 & 2 \\ 3 & 4} \otimes \avecc{1 & 0 \\ 0 & 0 } \right]\left[\avec{u_1 \\ u_2} \otimes \avec{w_1\\ w_2}\right] \\
+   &=&  \avecccc{1 & 0 & 2 & 0 \\ 0 & 0 & 0 & 0 \\ 3 & 0 & 4 & 0 \\ 0 & 0 & 0 & 0} \avec{u_1 w_1 \\ u_1 w_2 \\ u_2 w_1 \\ u_2 w_2}  \\ 
+   &=& \avec{(u_1+ 2 u_2) w_1 \\ 0 \\ (3 u_1 + 4 u_2) w_1 \\ 0}.
+}
+Instead of trying to go from here back to a matrix product, let's consider the right side of the equation we are trying to prove:
+\eqa{
+{\bf A}\vec{u} \otimes {\bf C}\vec{w} &=& \avecc{1 & 2 \\ 3 & 4} \avec{u_1\\ u_2} \otimes \avecc{1 & 0 \\ 0 & 0 
+} \avec{w_1\\ w_2} \\
+&=& \avec{u_1 + 2u_2 \\ 3u_1 + 4u_2} \otimes \avec{w_1 \\ 0 }\\
+&=& \avec{(u_1+ 2 u_2) w_1 \\ 0 \\ (3 u_1 + 4 u_2) w_1 \\ 0},
+}
+which is the same result we found previously, so the two expressions are equal. 
+
+{\bf General case}. 
+To show the relationships in the general case let's think of the result of the Kronecker product ${\bf R} = {\bf A} \otimes {\bf C}$ as a block matrix, we can then define 
+\eq{ 
+R_{ni,mj}= \left[ {\bf A} \otimes {\bf C} \right]_{ni,mj}
+}
+as the element $i,j$ in the block $n,m$. In this notation the Kronecker product is defined as 
+\eq{
+    \left[ {\bf A} \otimes {\bf C} \right]_{ni,mj} = A_{n,m} C_{i,j}  
+}
+To show property (a) consider the element $ni,mj$ of $c({\bf A} \otimes {\bf C})$, which we write as 
+\eq{
+  \left[ c( {\bf A} \otimes {\bf C}) \right]_{ni,mj} = c \left[ ( {\bf A} \otimes {\bf C}) \right]_{ni,mj}  
+    = c A_{n,m} C_{i,j} 
+}
+Likewise we can write
+\eq{
+  \left[  c{\bf A} \otimes {\bf C} \right]_{ni,mj} =  \left[ c{\bf A} \otimes {\bf C} \right]_{ni,mj}  
+    =  [c{\bf A}]_{n,m} C_{i,j} =  c A_{n,m} C_{i,j}
+}
+and also 
+\eq{
+  \left[  {\bf A} \otimes c{\bf C} \right]_{ni,mj} =  \left[ {\bf A} \otimes c{\bf C} \right]_{ni,mj}  
+    =  A_{n,m} [c{\bf C}]_{i,j} =  c A_{n,m} C_{i,j}.
+}
+The three results are the same. So we have shown 
+\eq{
+ \left[ c( {\bf A} \otimes {\bf C}) \right]_{ni,mj} = \left[  c{\bf A} \otimes {\bf C} \right]_{ni,mj} =  \left[  {\bf A} \otimes c{\bf C} \right]_{ni,mj}
+}
+Because this is true independently of the values of the indices $n$, $m$, $i$, and $j$, it must also be true for the entire matrix, which proves
+\eq{
+c( {\bf A} \otimes {\bf C}) = c{\bf A} \otimes {\bf C}  =  {\bf A} \otimes c{\bf C}.
+}
+
+To show the second property (b) we need a blockwise version of the inner product between matrices. For non block matrices the inner product is defined by the element-wise rule 
+\eq{
+    [{\bf A} {\bf C} ]_{i,j} = \sum_k A_{i,k}C_{k,j}.   
+}
+Similarly we can multiply blockwise matrices by multiplying the respective blocks 
+\eq{
+    [{\bf A} {\bf C} ]_{m,n} = \sum_l {\bf A_{m,l}}{\bf C_{l,n}}.   
+}
+which means 
+\eqa{
+    [{\bf A} {\bf C} ]_{mi,nj} &=& \left[\sum_l {\bf A_{m,l}}{\bf C_{l,n}}\right]_{i,j}. \\ 
+    &=& \sum_l {\bf [A_{m,l}}{\bf C_{l,n}]_{i,j}} \\
+    &=& \sum_{l,k}  A_{mi,lk}C_{lk,nj} 
+}
+This is the same as the simple element-wise formula above, only the summation index is now the combined index $lk=l,k$ instead of just $k$.
+
+We can now write the left side of the relationship that we want to prove as 
+\eqa{
+[({\bf A} \otimes {\bf C})(\vec{u}\otimes\vec{w})]_{mi,nj} &=&
+    \sum_{l,k} \left[ {\bf A} \otimes {\bf C} \right]_{mi,lk} \left[ {\bf u} \otimes {\bf w} \right]_{lk,nj} \\
+    &=& \sum_{l,k} A_{m,l} C_{i,k} u_{l,n}w_{k,j}   
+}
+where we used the definition of the Kronecker product in the second step. 
+Now consider 
+\eqa{
+[({\bf A}\vec{u} \otimes {\bf C}\vec{w})]_{ni,mj} &=&
+  [{\bf A}\vec{u}]_{m,n} [{\bf C}\vec{w}]_{i,j} \\
+  &=& \left(\sum_l A_{m,l}u_{l,n}  \right) \left(\sum_k C_{i,k}w_{k,j} \right) \\ 
+  &=& \sum_{l,k} A_{m,l} C_{i,k} u_{l,n}w_{k,j}.
+} 
+Again the two expressions are identical so
+\eq{
+[({\bf A} \otimes {\bf C})(\vec{u}\otimes\vec{w})]_{mi,nj} = [({\bf A}\vec{u} \otimes {\bf C}\vec{w})]_{ni,mj}.
+}
+Since this is true for every element, it must also be true for the entire matrices, which shows
+\eq{
+({\bf A} \otimes {\bf C})(\vec{u}\otimes\vec{w}) = ({\bf A}\vec{u} \otimes {\bf C}\vec{w}).
+}
+Note that this proof also applies to the case where $\vec{u}$ and $\vec{w}$ are matrices. 
