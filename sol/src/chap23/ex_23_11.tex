@@ -12,21 +12,21 @@ Substituting $\vec{x}=\vec{x^*}$ into the definition of $S_{\rm KL}$ yields
 \subquestion $\dot{S}_{\rm KL}=0$ if $\vec{x}=\vec{x^*}$
 
 \solution 
-The easiest way to do this is to notice that by definition state doesn't change anymore when it is already in the stationary state, and if the state of the system doesn't change $S_{\rm KL}$ can't change either. 
+The easiest way to do this is to notice that by definition the state doesn't change anymore when it is already in the stationary state, and if the state of the system doesn't change, $S_{\rm KL}$ can't change either. 
 
-However, since we likely need it anyway below. Let's compute the derivative
+However, since we likely need it anyway below, let's compute the derivative
 \eqa{
     \dot{S}_{\rm KL} &=& \frac{\rm d}{{\rm d} t} \left( \sum p_k \log p_k - \sum p_k \log p_k^* \right)  \\
     &=& \sum \frac{p_k}{p_k}\dot{p}_k + \sum \dot{p}_k \log p_k  - \sum \dot{p}_k \log p_k^*   \\
     &=& \underbrace{\sum \dot{p}_k}_{=0} + \underbrace{\sum \dot{p}_k \log p_k - \sum \dot{p}_k \log p_k^* }_{= \sum \dot{p}_k \log \frac{p_k}{p_k^*}}  
 }
-In the first step we used the logarithm rules again to split the fraction in the logarithm into two sums. Then when we differentiate the first sum we used the product rule of differentiation. This gave us two terms which we split into their own individual sums. One of these terms looks a bit odd. The derivative of the logarithm gives us a $1/p_k$ and an inner derivative of $\dot{p}_k$ (chain rule!). The $1/p_k$ cancels with a $p_k$ that is already there so that we are left with a $\sum \dot{p}_k$ term. This term sums the changes in the probabilities of all microstates. In a sense it computes the change how much probability there is in the system in total, but of course the total probability is conserved ($\sum p_k=1$), and hence this term must be zero. The result is that when we differentiate $S_{\rm KL}$ only the factor in front of the logarithm but not the log term itself gets differentiated.
+In the first step we used the logarithm rules again to split the fraction in the logarithm into two sums. Then, when we differentiated the first sum, we used the product rule of differentiation. This gave us two terms, which we split into their own individual sums. One of these terms looks a bit odd. The derivative of the logarithm gives us a $1/p_k$ and an inner derivative of $\dot{p}_k$ (chain rule!). The $1/p_k$ cancels with a $p_k$ that is already there so that we are left with a $\sum \dot{p}_k$ term. This term sums the changes in the probabilities of all microstates. In a sense it computes the rate of change of the total probability, but of course the total probability is conserved ($\sum p_k=1$), and hence this term must be zero. The result is that when we differentiate $S_{\rm KL}$ only the factor in front of the logarithm but not the log term itself gets differentiated.
 
 We have now arrived at 
 \eq{
 \dot{S}_{\rm KL} = \sum \dot{p}_k \log \frac{p_k}{p_k^*}.
 }
-If substitute $\vec{x}=\vec{x^*}$ the result is
+If we substitute $\vec{x}=\vec{x^*}$, the result is
 \eq{
 \dot{S}_{\rm KL} = \sum 0 \cdot \log 1 = 0. 
 }
@@ -34,7 +34,7 @@ If substitute $\vec{x}=\vec{x^*}$ the result is
 \subquestion $S_{\rm KL}>0$ if $\vec{x}\neq \vec{x^*}$
 
 \solution
-Now we get to the part that was hinted at in the chapter. To prove these inequalities we will need to find a suitable bound for the logarithm. We that we will need a bound that it tight when $p_k=p_k*$, which means we need the bound to be tight when the argument of the logarithm is 1. 
+Now we get to the part that was hinted at in the chapter. To prove these inequalities we will need to find a suitable bound for the logarithm. We know that we will need a bound that is tight when $p_k=p_k*$, which means we need the bound to be tight when the argument of the logarithm is 1. 
 
 To find this bound we use the first order Taylor approximation 
 \eq{
@@ -107,12 +107,12 @@ Now we are ready to substitute into the equation for $\dot{S}_{\bf KL}$
 \eqa{
 \dot{S}_{\rm KL} &=& \sum_k \left(\sum_j A_{kj} p_j - \sum_j A_{jk} p_k \right) \log \frac{p_k}{p_k^*}\\
 &=& \sum_{k,j} \left(A_{kj} p_j - A_{jk} p_k \right) \log \frac{p_k}{p_k^*} \\ 
-&=&  \left( \sum_{k,j} A_{kj} p_j \log \frac{p_k}{p_k^*} \right)  - \left( sum_{k,j} A_{jk} p_k \log \frac{p_k}{p_k^*}  \right)  \\  
-&=&  \left( \sum_{k,j} A_{kj} p_j \log \frac{p_k}{p_k^*} \right)  + \left( sum_{k,j} A_{jk} p_k \log \frac{p_k^*}{p_k}  \right)  \\  
+&=&  \left( \sum_{k,j} A_{kj} p_j \log \frac{p_k}{p_k^*} \right)  - \left( \sum_{k,j} A_{jk} p_k \log \frac{p_k}{p_k^*}  \right)  \\  
+&=&  \left( \sum_{k,j} A_{kj} p_j \log \frac{p_k}{p_k^*} \right)  + \left( \sum_{k,j} A_{jk} p_k \log \frac{p_k^*}{p_k}  \right)  \\  
 }
-We could not apply our bound, but we would have to apply it in two places, this would possibly still work but often it is a better idea to apply it only once. So the log terms have to come back together. Fortunately we can make the prefactors look identical if we swap the summation indices on one of the terms. While we are on it we will rename them such that the familiar $A_{ij}$ appears,
+We could now apply our bound, but we would have to apply it in two places. This would possibly still work, but often it is a better idea to apply it only once. So, the log terms have to come back together. Fortunately, we can make the prefactors look identical if we swap the summation indices on one of the terms. While we are at it, we will rename them such that the familiar $A_{ij}$ appears,
 \eqa{
-\dot{S}_{\rm KL} &=&  \left( \sum_{i,j} A_{ij} p_j \log \frac{p_i}{p_i^*} \right)  + \left( sum_{i,j} A_{ij} p_j \log \frac{p_j^*}{p_j}  \right)  \\
+\dot{S}_{\rm KL} &=&  \left( \sum_{i,j} A_{ij} p_j \log \frac{p_i}{p_i^*} \right)  + \left( \sum_{i,j} A_{ij} p_j \log \frac{p_j^*}{p_j}  \right)  \\
 &=&   \sum_{i,j} A_{ij} p_j \left( \log \frac{p_i}{p_i^*} + \log \frac{p_j^*}{p_j} \right) \\ 
 &=&   \sum_{i,j} A_{ij} p_j  \log \frac{p_ip_j^*}{p_i^*p_j} 
 }
@@ -120,7 +120,7 @@ Now is a good time to apply the bound
 \eq{
 \dot{S}_{\rm KL} = \sum_{i,j} A_{ij} p_j  \log \frac{p_ip_j^*}{p_i^*p_j} < \sum_{i,j} A_{ij} p_j \left( \frac{p_ip_j^*}{p_i^*p_j} -1 \right) 
 }
-To see a bit more clearly it is good to turn the $A_{ij}$ back into $L_{ij}$. Is there an easy way to do this?
+To see a bit more clearly, it is good to turn the $A_{ij}$ back into $L_{ij}$. Is there an easy way to do this?
 
 We know that $\bf A$ and $-{\bf L}$ only differ in their diagonal elements, that is the elements where $i=j$, but in the sum all the terms with $i=j$ vanish anyway, consider that 
 \eqa{

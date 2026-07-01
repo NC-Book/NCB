@@ -8,7 +8,7 @@ The system has the Jacobian
 \eq{
 {\bf J}= \aveccc{ -2 & 1 & 0 \\ 2 & -3 & 1 \\ 0 & 2 & -1}
 }
-Because the system is a tree, we can use the detailed balance condition. The flow on the link connecting node 1 and 2 are 
+Because the system is a tree, we can use the detailed balance condition. The flow on the link connecting nodes 1 and 2 is 
 \eqa{
 j_{21}&=&j_{1\to 2}-j_{2\to 1} \\
   &=& 2v_1 - v_2  
@@ -17,7 +17,7 @@ Setting $j_{21}=0$ reveals
 \eq{
 v_2 = 2v_1
 }
-Consider the link from 2 to 3 gives us 
+Considering the link from 2 to 3 gives us 
 \eqa{
 j_{32} &=& j_{2\to 3} - j_{3\to 2} \\
   &=& 2v_2 -v_3
@@ -34,7 +34,7 @@ The sum of the elements is $7v_1$ and hence we have to set $v_1=1/7$ for the ele
 \eq{
 \aveccc{ -2 & 1 & 0 \\ 2 & -3 & 1 \\ 0 & 2 & -1}\avec{1/7\\ 2/7\\ 4/7} = \avec{0 \\ 0 \\ 0}
 }
-so the steady state proabilities are 
+so the steady state probabilities are 
 \eq{
 p_1 = \frac{1}{7},\quad p_2=\frac{2}{7}, \quad p_3=\frac{4}{7}.
 }
@@ -47,15 +47,15 @@ Now the Jacobian is
 \eq{
 {\bf J}= \aveccc{ -3 & 1 & 2 \\ 2 & -3 & 1 \\ 1 & 2 & -3}
 }
-The easiest way to the solution is to spot the kernel vector by visual inspection. Since the column sums are identical $(1,1,1)^{\rm T}$ must be an eigenvector and multiplying 
+The easiest way to the solution is to spot the kernel vector by visual inspection. Since the row sums are identical $(1,1,1)^{\rm T}$ must be an eigenvector and multiplying 
 \eq{
 \aveccc{ -3 & 1 & 2 \\ 2 & -3 & 1 \\ 1 & 2 & -3}\avec{1\\ 1\\ 1} = \avec{0\\ 0 \\ 0}
 }
-reveals that it is the desired kernel vector. Noramlizing it leads us directly to the result 
+reveals that it is the desired kernel vector. Normalizing it leads us directly to the result 
 \eq{
 p_1 = \frac{1}{3},\quad p_2=\frac{1}{3}, \quad p_3=\frac{1}{3}.
 }
-If you can't spot the eigenvector directly, you can always go back to the nodewise eqations by multiplying the Jacobian with an arbitrary vector $\vec{v}$ to find the conditions
+If you can't spot the eigenvector directly, you can always go back to the nodewise equations by multiplying the Jacobian with an arbitrary vector $\vec{v}$ to find the conditions
 \eq{
 \aveccc{ -3 & 1 & 2 \\ 2 & -3 & 1 \\ 1 & 2 & -3}\avec{v_1\\ v_2\\ v_3} = \avec{-3v_1+v_2+2v_3\\ -3v_2 + 2v_1 + v_3  \\ -3v_3 + v_1 + 2v_2}
 }
@@ -87,19 +87,19 @@ so we arrive at
 \eq{
 \vec{v} = (1\\ 1\\ 1)^{\rm T}
 }
-this way, before normalizing to find the result 
+This way, before normalizing to find the result 
 \eq{
 p_1 = \frac{1}{3},\quad p_2=\frac{1}{3}, \quad p_3=\frac{1}{3}.
 }
 as above. 
 
 \subquestion
-Show that the detailed balance condition is met in stationary state in the network from (a) but not in the network from (b).
+Show that the detailed balance condition is met in the stationary state in the network from (a) but not in the network from (b).
 
 \solution 
-We have used the detailed balance assumption in (a) to find the solution and then verified that the solution is correct, which proed that the system from (a) meets the detailed balance condition. 
+We have used the detailed balance assumption in (a) to find the solution and then verified that the solution is correct, which proved that the system from (a) meets the detailed balance condition. 
 
-To check the detailed balance condition in (b) we compute the net flux between node 1 and 2 
+To check the detailed balance condition in (b), we compute the net flux between nodes 1 and 2 
 \eqa{
 J_{21} &=& j_{1\to 2} - j_{2\to 1} \\
  &=& 2v_1 - v_2 = 2/3-1/3 = 1/3

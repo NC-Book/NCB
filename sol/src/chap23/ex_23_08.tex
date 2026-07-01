@@ -2,7 +2,7 @@
 Let's explore if observing the system can actually change its time evolution. 
 
 \subquestion
-Consider a diffusion process where a walker, moves randomly between the nodes of the linked-pair network so that jumps occur in average at rate 1. The walker starts at time zero in node 1. Compute the probability $x_1(2)$ that the walker is in node 1 at time 2.
+Consider a diffusion process where a walker moves randomly between the nodes of the linked-pair network so that jumps occur on average at rate 1. The walker starts at time zero in node 1. Compute the probability $x_1(2)$ that the walker is in node 1 at time 2.
 
 \solution 
 We already know that we can describe the diffusion on the linked-pair network as 
@@ -17,19 +17,19 @@ The eigenvectors of $\bf L$ are
 \eq{
 \vec{v_1} = \avec{1\\ 1},\qqq \vec{v_2}=\avec{1\\ -1}.
 }
-whit the eigenvalues 
+with the eigenvalues 
 \eq{
 \lambda_1=0, \qqq \lambda_2=2. 
 }
-Hence the general solution is 
+Hence, the general solution is 
 \eq{
 \vec{x}(t)=c_1\vec{v_1}+c_2\vec{v_2}\exp{-2t}
 }
 Now we consider a walker that is initially in the left node so 
 \eq{
-\vec{x}(0) = \avec{1 \\ 0 }
+\vec{x}(0) = \avec{1 \\ 0 },
 }
-Which we can write as 
+which we can write as 
 \eq{
 \avec{1\\ 0} = \frac{1}{2} \avec{1\\ 1} + \frac{1}{2} \avec{1\\ -1} 
 }
@@ -37,7 +37,7 @@ so that
 \eq{
 c_1=\frac{1}{2}, \qqq c_2=\frac{1}{2}.
 }
-Hence we have the particular solution
+Hence, we have the particular solution
 \eq{
 \vec{x}(t) = \frac{1}{2} \avec{1\\ 1} + \frac{1}{2} \avec{1\\ -1} \exp{-2t}
 }
@@ -45,10 +45,10 @@ The question asks us to find $x_1(2)$ so we compute
 \eq{
 R^* = x_1(2) = \frac{1}{2} + \frac{1}{2} \exp{-4} = \frac{1+\exp{-4}}{2} \approx 0.509
 }
-so slightly more than 50\%. We defined $R^*$ to be the result in this case to make it easier to talk about it later. 
+So, this is slightly more than 50\%. We defined $R^*$ to be the result in this case to make it easier to talk about it later. 
 
 \subquestion 
-Now assume that we check on the walker at time 1. With probability $x_1(1)$ we find it in node 1, with probability $x_2(1)=1-x_1(1)$ we find it in node 2. Of course the measurement resets the probabilities. For example if we see the walker in node 1 at time 1, we can be sure that it is there and hence $x_1(1)$ becomes 1. 
+Now assume that we check on the walker at time 1. With probability $x_1(1)$ we find it in node 1, with probability $x_2(1)=1-x_1(1)$ we find it in node 2. Of course, the measurement resets the probabilities. For example, if we see the walker in node 1 at time 1, we can be sure that it is there and hence $x_1(1)$ becomes 1. 
 Does knowing where the walker is at time 1 change the chance that it will be in node 1 at time 2? 
 
 \solution 
@@ -98,7 +98,7 @@ which give us the particular solution
 }
 for $t>1$. We can now compute 
 \eq{
-R_2=x_1(2) = \frac{1-\exp{2}}{2} \approx 0.432
+R_2=x_1(2) = \frac{1-\exp{-2}}{2} \approx 0.432
 }
 So now there is slightly less than 50\% chance that the walker will be back in node 1 at time 2. 
 
@@ -107,7 +107,7 @@ Using our particular solution from (a) we can compute the probability of finding
 \eq{
 p_1 = x_1(1) = \frac{1+\exp{-2}}{2} 
 }
-conversely the chance of finding the walker in node 2 when at time 1 is 
+Conversely, the chance of finding the walker in node 2 when checking at time 1 is 
 \eq{
 p_2 = x_2(1) = \frac{1-\exp{-2}}{2} 
 }
@@ -117,9 +117,9 @@ R_1 = \frac{1+\exp{-2}}{2}
 }
 In the second case the probability of finding the walker in 1 at time 2 is 
 \eq{
-R_2 = \frac{1-\exp{2}}{2} 
+R_2 = \frac{1-\exp{-2}}{2} 
 }
-So in the scenario where we check on the system at time 1 but we do not know the result yet the expected result for the probainility of finding the walker in node 1 at time 2 is 
+So in the scenario where we check on the system at time 1 but we do not know the result yet the expected result for the probabilility of finding the walker in node 1 at time 2 is 
 \eqa{
 R&=& p_1 R_1 + p_2 R_2 \\
  &=& \frac{1+\exp{-2}}{2} \frac{1+\exp{-2}}{2} + \frac{1-\exp{-2}}{2} \frac{1-\exp{2}}{2}\\

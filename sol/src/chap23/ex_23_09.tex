@@ -1,8 +1,8 @@
 \exercise{Fixation probability}{3}
-In a flowerbed there is space for five plants. Plats die at a rate of 3 per plant per time. When this happens one of the other plants has space to reproduce, so the space freed by the dying plant is filled (immediately) by an offspring of one of the other plants, chosen at random. But one plant has a rare mutation that makes it more resilient such that this plant only dies at rate 2. All of the mutant plant's offspring have the same mutation, whereas neither of the offspring of other plants has it. Compute the probability that mutant plants take over the whole flowerbed.    
+In a flowerbed there is space for five plants. Plants die at a rate of 3 per plant per time. When this happens, one of the other plants has space to reproduce, so the space freed by the dying plant is filled (immediately) by an offspring of one of the other plants, chosen at random. But one plant has a rare mutation that makes it more resilient such that this plant only dies at rate 2. All of the mutant plant's offspring have the same mutation, whereas neither of the offspring of other plants has it. Compute the probability that mutant plants take over the whole flowerbed.    
 
 \solution 
-In this case our system has 6 microstates when we have 0,1,2,3,4, or 5 mutants. Interestingly there are two absorbing states: If there are 0 mutant plants the mutation is lost and won't come back. If there are 5 mutant plants the mutation, then the non-mutatant (wildtype) plants have been excluded from the flower bed and the mutation has become fixed in the population. 
+In this case our system has 6 microstates when we have 0, 1, 2, 3, 4, or 5 mutants. Interestingly there are two absorbing states: If there are 0 mutant plants the mutation is lost and won't come back. If there are 5 mutant plants, then the non-mutant (wildtype) plants have been excluded from the flower bed and the mutation has become fixed in the population. 
 
 We define $x_n$ as the probability that the system is in state $n$ that has $n$ mutant plants. We collect the $x_n$ in the vector 
 \eq{

@@ -1,5 +1,5 @@
 \exercise{Paper supply}{3}
-In an office the copier paper is stored in a cabinet. At an average rate of once a week an employee takes paper out of the cabinet and loads it into the copier. There is a 50\% chance that the employee tries to load only one packet of paper, and a 50\% chance that the employee tries to load two packets of paper. If the cabinet is empty, the office manager immediately orders 4 new packets of paper which arrive in average within 2 weeks. 
+In an office the copier paper is stored in a cabinet. At an average rate of once a week an employee takes paper out of the cabinet and loads it into the copier. There is a 50\% chance that the employee tries to load only one packet of paper, and a 50\% chance that the employee tries to load two packets of paper. If the cabinet is empty, the office manager immediately orders 4 new packets of paper which arrive on average within 2 weeks. 
 
 \subquestion Consider this system as a network of states, numbered 0 to 4. The system is in state $i$ if there are $i$ packets of paper in the cabinet. Write a system of differential equations for the variables $x_0,\ldots,x_4$,
 where $x_i$ is the probability that the system is in state $i$.
@@ -59,10 +59,10 @@ S_2 &=& \left|\begin{array}{c c c c}
     0    & 0 & 1 
 \end{array} \right| + 0.5
 \left|\begin{array}{c c c} 
-0.5  & -0.5 & 0 \\
-0    & 1    & -0.5 \\
-0    & 0    & 1 
-\end{array} \right| = 0.75
+-0.5  & 0 & 0 \\
+1   & -0.5    & -0.5 \\
+0    & 1    & -0.5 
+\end{array} \right| = 0.3125
 }
 
 \eq{
@@ -71,7 +71,7 @@ S_3 = \left|\begin{array}{c c c c}
 0    &  1 & -0.5 & 0 \\
 0    &  0 & 1 & -0.5 \\
 -0.5 &  0 & 0 & 1 
-\end{array} \right| = 0.75 \\
+\end{array} \right| = 0.375 \\
 }
 \eq{
 S_4 = \left|\begin{array}{c c c c} 
@@ -79,7 +79,7 @@ S_4 = \left|\begin{array}{c c c c}
 0    &  1 & -0.5 & 0 \\
 0    &  0 & 1    & -0.5 \\
 -0.5 &  0 & 0    & 1 
-\end{array} \right| = 0.75
+\end{array} \right| = 0.25
 }
 \eq{
 S_5 = \left|\begin{array}{c c c c} 
@@ -91,13 +91,13 @@ S_5 = \left|\begin{array}{c c c c}
 }
 In summary we have 
 \eq{
-S_1=\frac{4}{4} \quad S_2=S_3=S_4=\frac34 \quad S_5=\frac24
+S_1=\frac{16}{16} \quad S_2=\frac{5}{16} \quad S_3=\frac{6}{16} \quad S_4=\frac{4}{16} \quad S_5=\frac{8}{16}
 }
 hence
 \eq{
-\sum S_i = \frac{15}{4}
+\sum S_i = \frac{39}{16}
 }
 so we can find the steady state
 \eq{
-X^*_1=\frac{4}{15} \quad X^*_2=X^*_3=X^*_4=\frac15 \quad X^*_5=\frac{2}{15}.
+X^*_1=\frac{16}{39} \quad X^*_2=\frac{5}{39}\quad X^*_3=\frac{6}{39}\quad X^*_4=\frac{4}{39} \quad X^*_5=\frac{8}{39}.
 }
