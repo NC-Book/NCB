@@ -14,5 +14,5 @@
 - [Exercise 08: Watching a kettle boil](ex_23_08.pdf)
 - [Exercise 09: Fixation probability](ex_23_09.pdf)
 - [Exercise 10: Two walkers](ex_23_10.pdf)
-- [Exercise 11: Lyapunov property](ex_23_11pdf)
+- [Exercise 11: Lyapunov property](ex_23_11.pdf)
 - [Exercise 12: Kirchhoff proof](ex_23_12.pdf)
